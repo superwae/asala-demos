@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Asala Store Demos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@300;400;500;600&family=Aref+Ruqaa:wght@700&display=swap">
+<style>
+/* Layout: a contact sheet. One row per style direction: phone screenshot, what it is, who it suits, the risk, and the link. */
+:root {
+  --bg: #f6f5f3; --card: #ffffff; --fg: #1b1917; --muted: #66605a; --line: #e2ddd7; --accent: #9a6b1f;
+  --f: "Readex Pro", "Segoe UI", Tahoma, sans-serif; --f-sign: "Aref Ruqaa", serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg: #151413; --card: #1e1c1a; --fg: #f1ede8; --muted: #a8a19a; --line: #34302c; --accent: #e0b25e; color-scheme: dark; } }
+:root[data-theme="dark"] { --bg: #151413; --card: #1e1c1a; --fg: #f1ede8; --muted: #a8a19a; --line: #34302c; --accent: #e0b25e; color-scheme: dark; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 400 1rem/1.65 var(--f); padding-inline: clamp(16px, 4vw, 40px); padding-block: 32px 60px; }
+main { max-width: 1040px; margin: 0 auto; }
+h1 { font: 700 clamp(2.4rem, 6vw, 3.6rem)/1.1 var(--f-sign); margin: 0; color: var(--accent); }
+.intro { color: var(--muted); max-width: 64ch; margin: 10px 0 0; }
+.chosen { display: grid; gap: 4px; margin: 22px 0 0; padding: 18px 20px; border-radius: 10px; background: var(--fg); color: var(--bg); text-decoration: none; }
+.chosen b { font-size: 1.15rem; font-weight: 600; }
+.chosen span { opacity: .85; }
+.chosen:hover { opacity: .92; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 34px; padding: 0; list-style: none; }
+.facts li { border: 1px solid var(--line); padding: 4px 12px; border-radius: 40px; font-size: .85rem; color: var(--muted); }
+.row { display: grid; grid-template-columns: 170px minmax(0, 1fr); gap: 24px; padding: 22px; background: var(--card); border: 1px solid var(--line); border-radius: 10px; margin-bottom: 14px; }
+.shot { width: 170px; aspect-ratio: 375 / 700; border-radius: 8px; overflow: hidden; border: 1px solid var(--line); background: var(--bg); }
+.shot img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
+.row h2 { margin: 0; font-size: 1.35rem; font-weight: 600; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+.pick { font-size: .75rem; font-weight: 600; background: var(--accent); color: var(--card); padding: 2px 10px; border-radius: 40px; }
+.group { font-size: 1.5rem; font-weight: 600; margin: 34px 0 6px; }
+.row h2 small { font-weight: 400; color: var(--muted); font-size: .9rem; }
+.row p { margin: 6px 0 0; }
+dl { display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; margin: 12px 0 14px; font-size: .93rem; }
+dt { color: var(--muted); } dd { margin: 0; }
+.open { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 20px; border-radius: 40px; background: var(--fg); color: var(--bg); text-decoration: none; font-weight: 500; }
+.open:hover { opacity: .88; }
+.open svg { width: 16px; height: 16px; }
+[dir="rtl"] .open svg { transform: scaleX(-1); }
+.notes { margin-top: 34px; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+.note { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 18px 20px; }
+.note h3 { margin: 0 0 6px; font-size: 1.05rem; font-weight: 600; }
+.note ul { margin: 0; padding-inline-start: 18px; color: var(--muted); font-size: .93rem; }
+@media (max-width: 620px) { .row { grid-template-columns: 1fr; } .shot { width: 100%; max-width: 260px; aspect-ratio: 375 / 560; } }
+</style>
+
+<main dir="ltr" lang="en">
+  <h1>Asala · store demos</h1>
+  <p class="intro">One jewellery store, many visual directions. Every demo works the same way: Arabic first with an English switch, prices in shekels, add to bag, cash-on-delivery checkout with delivery fee by city. Only the look changes, so you can compare styles fairly.</p>
+  <a class="chosen" href="asala-dawn.html"><b>Chosen direction: the Dawn store in Asala’s own brand</b><span>Your favourite layout, rebuilt from the Asala brand book with the real logo, colours and product photos. Open it</span></a>
+  <ul class="facts">
+    <li>“Siwar” was the placeholder name before Asalah</li>
+    <li>Prices and delivery fees are placeholders</li>
+    <li>Payment gateway not chosen yet</li>
+    <li>Built custom, not on Shopify</li>
+  </ul>
+
+  <h2 class="group">Best of the top-rated jewellery stores</h2>
+  <p class="intro" style="margin-top:4px">One store that combines what the best-rated jewellery shops do well (Pandora and Mejuri are in the top 1% of Baymard’s 2025 jewellery benchmark).</p>
+
+  <section class="row">
+    <div class="shot"><img src="hub/asala-best.jpg" alt="Asala Signature Store on a phone"></div>
+    <div>
+      <h2>Signature Store <small>best practices from Pandora, Mejuri and Tiffany</small></h2>
+      <p>A gift finder (who, occasion, budget), predictive search with photos, metal and category filters, quick view, a wishlist and recently viewed pieces. The product page shows on-model photos with zoom, the size in mm with an approximate true-size view, delivery fee and time by city, gift wrap with a card message, “looks lovely with” and an honest empty reviews area, plus a sticky add bar on phones. An “ideas” switch labels every feature with the shop it comes from.</p>
+      <dl><dt>Suits</dt><dd>The most complete, conversion-focused store; a strong base for the real build.</dd><dt>Risk</dt><dd>Many features to maintain; delivery times and the exchange policy must be set by the shop first.</dd></dl>
+      <a class="open" href="asala-best.html">Open demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </section>
+
+  <h2 class="group">The team’s Figma directions, built as working stores</h2>
+  <p class="intro" style="margin-top:4px">Each of the six directions in the “Asala — Website Directions” Figma file, rebuilt faithfully as a working store: bag, cash-on-delivery checkout, Arabic and English, and a phone layout. Claims we cannot back up (bestseller, most loved, secure checkout) were reworded.</p>
+
+  <section class="row">
+    <div class="shot"><img src="hub/asala-fig-b.jpg" alt="Open the Box on a phone"></div>
+    <div>
+      <h2>B · Open the box <small>Figma direction B</small></h2>
+      <p>A gift box that opens in the hero, a scrolling band of the diamond lattice, a colourful sketchbook bento where you can vote for the next piece, “find yours by the seal” categories and a gift-box builder.</p>
+      <dl><dt>Suits</dt><dd>A playful, gift-led brand with a strong bilingual voice.</dd><dt>Risk</dt><dd>Bold colours and big type; needs the drawings and packaging to really exist.</dd></dl>
+      <a class="open" href="asala-fig-b.html">Open demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="shot"><img src="hub/asala-fig-c.jpg" alt="Modern Gallery on a phone"></div>
+    <div>
+      <h2>C · Modern gallery <small>Figma direction C</small></h2>
+      <p>A giant “Heritage, cut to size.” headline, a photo mosaic, a black scrolling band, filterable pieces with Arabic names, “one dome, four lattices” with a working pattern and metal picker, and the packaging table with a gift builder.</p>
+      <dl><dt>Suits</dt><dd>A modern, gallery-like store that lets the photos and the Dome do the talking.</dd><dt>Risk</dt><dd>Very minimal; relies on great product photography.</dd></dl>
+      <a class="open" href="asala-fig-c.html">Open demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="shot"><img src="hub/asala-fig-d.jpg" alt="Modern Night on a phone"></div>
+    <div>
+      <h2>D · Modern night <small>Figma direction D</small></h2>
+      <p>Black and gold with a wide display type: a split hero with the cover photo, a spotlight carousel through every piece in an arch card, collection tiles, the four steps from sketch to ear and the pouch with a gift builder.</p>
+      <dl><dt>Suits</dt><dd>An evening, premium mood that suits gifting and the Dome.</dd><dt>Risk</dt><dd>Dark stores can feel heavy on phones in daylight; one carousel for browsing.</dd></dl>
+      <a class="open" href="asala-fig-d.html">Open demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="shot"><img src="hub/asala-fig-e.jpg" alt="Heritage House on a phone"></div>
+    <div>
+      <h2>E · Heritage house <small>Figma direction E (international)</small></h2>
+      <p>A classic international jewellery house: rotating announcements, a two-row header with the ASALA | أصالة lockup, a gifting hero carousel, categories, a signature carousel, the edit tiles, craft and campaign, atelier services, an opening gift box with a builder, #WearAsala and a trust row. Wishlist included.</p>
+      <dl><dt>Suits</dt><dd>Looking established and international from day one.</dd><dt>Risk</dt><dd>The most content to produce and keep up to date.</dd></dl>
+      <a class="open" href="asala-fig-e.html">Open demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="shot"><img src="hub/asala-fig-f.jpg" alt="Missoma Style on a phone"></div>
+    <div>
+      <h2>F · Missoma style <small>Figma direction F</small></h2>
+      <p>Missoma-like: utility bar, search in the header, two hero tiles, serif tabs over a product rail, edit tiles, a trust row, an inspiration wall and the sketchbook story, with a gift builder and extra Shop, Gifts, Atelier and Help views.</p>
+      <dl><dt>Suits</dt><dd>A familiar, fashion-jewellery feel that buyers already know how to use.</dd><dt>Risk</dt><dd>Close to a well-known brand’s look; less distinctive on its own.</dd></dl>
+      <a class="open" href="asala-fig-f.html">Open demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="shot"><img src="hub/asala-fig-f2.jpg" alt="Missoma Style with heritage touches on a phone"></div>
+    <div>
+      <h2>F2 · Heritage touches <small>Figma direction F2</small></h2>
+      <p>The same store as F with the heritage ornaments switched on: red diamonds between menu items, tatreez cross-stitch bands, diamond-mark dividers, stitched buttons and badges. A floating switch turns them on and off.</p>
+      <dl><dt>Suits</dt><dd>Keeping the easy Missoma layout while making it clearly Palestinian.</dd><dt>Risk</dt><dd>The ornaments must stay light, or they crowd the products.</dd></dl>
+      <a class="open" href="asala-fig-f.html#heritage">Open demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </section>
+
+  <h2 class="group">Interactive 3D</h2>
+  <section class="row">
+    <div class="shot"><img src="hub/asala-3d.jpg" alt="Asala 3D Studio on a phone"></div>
+    <div>
+      <h2>3D Studio <small>turn it, take it apart, design your own</small></h2>
+      <p>The Dome earring as a real 3D object: drag to turn it, switch its pattern and metal, and take it apart to see the pattern, frame, drops and hook. Below it, a studio where the buyer designs a whole earring (shape, arches, pattern weight and density, drops, metal, size, letters on the band, single or pair) and watches it built live, with a price and a link they can share.</p>
+      <dl><dt>Suits</dt><dd>Made-to-order and personalised pieces, and a launch that people talk about.</dd><dt>Risk</dt><dd>The custom shapes are generated, so the shop must confirm it can make every combination; heavier on older phones, with a photo fallback.</dd></dl>
+      <a class="open" href="asala-3d.html">Open demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </section>
+
+  <h2 class="group">Famous store layouts, in Asala’s own brand</h2>
+  <p class="intro" style="margin-top:4px">The layouts of well-known online shops, rebuilt with Asala’s real logo, colours, product photos and packaging.</p>
+
+  <section class="row">
+    <div class="shot"><img src="hub/asala-dawn.jpg" alt="Asala Dawn Store on a phone"></div>
+    <div>
+      <h2>Dawn Store, brand edition <span class="pick">Your pick</span> <small>the Shopify Dawn layout you picked</small></h2>
+      <p>The same clean Shopify-style layout, now with the ASALA wordmark, charcoal, ivory and red, and only Asala’s own photos. The Dome earring has a featured block where you choose one of its 4 filigree patterns and 3 materials, and the photo and price change. Light and dark mode.</p>
+      <dl><dt>Suits</dt><dd>The safest, most familiar way to launch: buyers already know how to use it.</dd><dt>Risk</dt><dd>Plain by design; it relies on the photos and the Dome piece to feel special.</dd></dl>
+      <a class="open" href="asala-dawn.html">Open demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="shot"><img src="hub/asala-metal.jpg" alt="Asala Metal Edit on a phone"></div>
+    <div>
+      <h2>Metal Edit <small>inspired by Monica Vinader</small></h2>
+      <p>A calm, premium store where the metal comes first: pick brass with gold, 925 silver or gold vermeil and the whole page follows. Mega-menus, filters with removable chips, and a full product page with metal and pattern choice, a free gift-packaging switch and “complete the look”.</p>
+      <dl><dt>Suits</dt><dd>Making Asala feel like a premium fine-jewellery brand and selling the silver and vermeil versions.</dd><dt>Risk</dt><dd>Only the Dome has three metals today, so the metal story is thin until more pieces do.</dd></dl>
+      <a class="open" href="asala-metal.html">Open demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="shot"><img src="hub/asala-ear.jpg" alt="Asala Ear Edit on a phone"></div>
+    <div>
+      <h2>Ear Edit <small>inspired by Astrid &amp; Miyu</small></h2>
+      <p>An earring-first store. Ear photos have tappable dots that show the piece being worn, a 3-question style finder suggests earrings with a reason for each, and every earring can be bought as a single or a pair (the single price is a proposal).</p>
+      <dl><dt>Suits</dt><dd>Asala’s real strength, statement earrings, and young buyers coming from Instagram.</dd><dt>Risk</dt><dd>Needs more photos of pieces being worn; the single-earring price must be agreed with the shop.</dd></dl>
+      <a class="open" href="asala-ear.html">Open demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="shot"><img src="hub/asala-maker.jpg" alt="Asala Maker Shop on a phone"></div>
+    <div>
+      <h2>Maker Shop <small>inspired by Etsy</small></h2>
+      <p>Laid out like an Etsy shop, but as Asala’s own store: banner and round shop icon, a shop announcement, sections in a sidebar, and a full listing page with options, a note for the maker, delivery by city, “meet the maker” and honest empty reviews.</p>
+      <dl><dt>Suits</dt><dd>Showing that every piece is handmade and made to order by a real person, which builds trust fast.</dd><dt>Risk</dt><dd>Looks more like a small workshop than a brand; less room for big visual storytelling.</dd></dl>
+      <a class="open" href="asala-maker.html">Open demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </section>
+
+  <h2 class="group">Original concepts from the brand book</h2>
+  <p class="intro" style="margin-top:4px">Three looks built from ideas inside the brand book itself: the founder’s drawings, the packaging and the arches.</p>
+
+  <section class="row">
+    <div class="shot"><img src="hub/asala-atelier.jpg" alt="Asala Atelier on a phone"></div>
+    <div>
+      <h2>The Atelier <small>the architect's drawing sheet</small></h2>
+      <p>The founder is an architect, so the store is her drawing sheet: the Dome of the Rock earring drawn with its real dimensions, a detail callout for the chosen filigree pattern, the three real material options, a sketch-to-piece strip, and every product on a sheet with a title block.</p>
+      <dl><dt>Suits</dt><dd>Making the design thinking the selling point, and the made-to-order Dome piece.</dd><dt>Risk</dt><dd>Technical look; less warm for quick impulse buys.</dd></dl>
+      <a class="open" href="asala-atelier.html">Open demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="shot"><img src="hub/asala-gift.jpg" alt="Asala Gift on a phone"></div>
+    <div>
+      <h2>The Gift <small>the packaging, as a store</small></h2>
+      <p>Matte charcoal with the diamond tissue pattern. The box opens to reveal the piece, and a four-step gift builder picks the piece, a real box size, a seal colour and a card message with a live preview of the thank-you card.</p>
+      <dl><dt>Suits</dt><dd>Gifting: weddings, graduations, thank-yous, the occasions in Asala's own plan.</dd><dt>Risk</dt><dd>Dark only; depends on the packaging actually being produced.</dd></dl>
+      <a class="open" href="asala-gift.html">Open demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="shot"><img src="hub/asala-courtyard.jpg" alt="Asala Courtyard on a phone"></div>
+    <div>
+      <h2>The Courtyard <small>architecture you wear</small></h2>
+      <p>Every image sits inside one of the brand's own arch shapes. The hero arch window widens as you scroll, collections are doorways, and a teal band (the colour of the founder's sketches) tells the history of earrings from the brand book.</p>
+      <dl><dt>Suits</dt><dd>Telling the heritage story and building a recognisable look on Instagram.</dd><dt>Risk</dt><dd>The arch frames crop photos; needs pieces shot with room above them.</dd></dl>
+      <a class="open" href="asala-courtyard.html">Open demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </section>
+
+  <h2 class="group">Earlier style directions</h2>
+  <p class="intro" style="margin-top:4px">Made before the brand book arrived, with free stock photos. The first branded version of the Dawn store is <a href="asalah.html" style="color:inherit">here</a>.</p>
+
+  <section class="row">
+    <div class="shot"><img src="hub/shopify.jpg" alt="Dawn-style store on a phone"></div>
+    <div>
+      <h2>Dawn Store <span class="pick">Your pick</span> <small>Shopify-style, with real photos</small></h2>
+      <p>Modelled on Shopify's default theme: photo banner, featured collection, collection cards, search, newsletter, and “Add to cart / Buy it now”. Uses real jewellery photos from Unsplash.</p>
+      <dl><dt>Suits</dt><dd>Looking familiar and trustworthy fast, once there are good product photos.</dd><dt>Risk</dt><dd>Looks like thousands of other stores; the photos do all the work.</dd></dl>
+      <a class="open" href="shopify.html">Open demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="shot"><img src="hub/editorial.jpg" alt="Editorial store on a phone"></div>
+    <div>
+      <h2>Editorial Store <small>inspired by Mejuri's layout</small></h2>
+      <p>Big lifestyle photos, a dropdown menu with pictures, a new-in shelf where cards show a second photo on hover, a “shop the look” photo you tap to see each piece, a gift guide by budget, and a product view with a photo gallery, details and “pairs well with”.</p>
+      <dl><dt>Suits</dt><dd>A brand that wants to feel like a modern fashion label and sell more per order (looks, pairings, gifts).</dd><dt>Risk</dt><dd>Needs good lifestyle photography to work; more sections to keep updated.</dd></dl>
+      <a class="open" href="editorial.html">Open demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="shot"><img src="hub/studio.jpg" alt="Name studio on a phone"></div>
+    <div>
+      <h2>Name Studio <small>inspired by the Apple Store's buying flow</small></h2>
+      <p>A flagship page for the Arabic name necklace: try any name in three scripts and three colours, compare necklaces side by side, then build it in four steps (script, colour, chain length, name) with a live preview that stays on screen.</p>
+      <dl><dt>Suits</dt><dd>Making personalised pieces the star; very clear for first-time online buyers.</dd><dt>Risk</dt><dd>Built around one hero product; the rest of the catalogue is secondary.</dd></dl>
+      <a class="open" href="studio.html">Open demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="shot"><img src="hub/velvet.jpg" alt="Velvet Tray on a phone"></div>
+    <div>
+      <h2>Velvet Tray <small>old-city jeweller's window</small></h2>
+      <p>Green velvet, brass frames and paper price tags, with real product photos in each tray slot and a “how they are worn” row. The top of the page is a live name necklace: type a name and it appears in Ruqaa script.</p>
+      <dl><dt>Suits</dt><dd>A shop that wants to feel crafted and a little premium.</dd><dt>Risk</dt><dd>Dark and moody; less playful for cheaper fashion pieces.</dd></dl>
+      <a class="open" href="velvet.html">Open demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="shot"><img src="hub/hebron.jpg" alt="Hebron Plates on a phone"></div>
+    <div>
+      <h2>Hebron Plates <small>cobalt pottery, bright and fun</small></h2>
+      <p>Each product photo sits inside a painted Hebron plate with a round price sticker. One switch previews every piece in gold, silver or rose (a tint on the photo), and a budget slider filters by price.</p>
+      <dl><dt>Suits</dt><dd>Affordable fashion jewellery, young buyers, Instagram traffic.</dd><dt>Risk</dt><dd>Loud; the plate frame is strong and could tire on a big catalogue.</dd></dl>
+      <a class="open" href="hebron.html">Open demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="shot"><img src="hub/tatreez.jpg" alt="Tatreez Panel on a phone"></div>
+    <div>
+      <h2>Tatreez Panel <small>Ramallah linen and red cross-stitch</small></h2>
+      <p>White linen with red stitched borders drawn by code, product photos in a running-stitch grid, worn-looks photos in cross-stitched frames, and the footer as the thobe's hem.</p>
+      <dl><dt>Suits</dt><dd>A brand that wants to be clearly Palestinian and proud of it.</dd><dt>Risk</dt><dd>Strong cultural identity; it must fit the shop's own personality.</dd></dl>
+      <a class="open" href="tatreez.html">Open demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </section>
+
+  <section class="row">
+    <div class="shot"><img src="hub/boutique.jpg" alt="Clean Boutique on a phone"></div>
+    <div>
+      <h2>Clean Boutique <small>the safe standard</small></h2>
+      <p>White, simple, photo-first, like the big international jewellery brands. Follows the phone's light or dark mode.</p>
+      <dl><dt>Suits</dt><dd>A neutral baseline to compare the bolder styles against.</dd><dt>Risk</dt><dd>Forgettable without strong photography.</dd></dl>
+      <a class="open" href="boutique.html">Open demo <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </section>
+
+  <div class="notes">
+    <div class="note"><h3>Still to decide with the shop</h3><ul><li>Store name and logo</li><li>Which local payment gateway or wallet to connect</li><li>Delivery zones, fees and the exchange policy</li><li>Real product photos and prices</li></ul></div>
+    <div class="note"><h3>How these were made</h3><ul><li>Design rules from two Claude skills: Impeccable (design direction and quality checks) and UI/UX Pro Max (e-commerce and accessibility rules)</li><li>All seven use the same free Unsplash photos as stand-ins for the shop's own product shots; only the Arabic name necklace is drawn in the page, so it can show any name</li></ul></div>
+  </div>
+</main>
+
+</body>
+</html>

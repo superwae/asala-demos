@@ -1,0 +1,638 @@
+<!doctype html>
+<html lang="ar">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Siwar Name Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;600;700;800&family=Aref+Ruqaa:wght@700&family=Reem+Kufi:wght@700&family=Amiri:wght@700&display=swap">
+<style>
+/* Layout: a single-product flagship page in the manner of the big electronics stores. Thin global nav, sticky product bar,
+   a big centred product moment, script and colour showcases, a comparison, a store shelf, and a step-by-step buy flow
+   with a preview that stays on screen. */
+:root {
+  --bg: #ffffff; --gray: #f5f5f7; --ink: #1d1d1f; --muted: #6e6e73; --line: #d2d2d7; --edge: #86868b;
+  --blue: #0066cc; --btn: #0071e3; --on-btn: #ffffff; --nav: rgba(250,250,252,.82); --error: #c4231b; --ok: #1b7f3b;
+  --f: "Noto Sans Arabic", "Segoe UI", Tahoma, sans-serif;
+  --gutter: clamp(16px, 4vw, 40px);
+  --jewel-shadow: rgba(29, 29, 31, .22);
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #000000; --gray: #161617; --ink: #f5f5f7; --muted: #a1a1a6; --line: #424245; --edge: #86868b;
+  --blue: #2997ff; --btn: #0071e3; --on-btn: #ffffff; --nav: rgba(22,22,23,.8); --error: #ff6961; --ok: #30d158; --jewel-shadow: rgba(0,0,0,.6); color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --bg: #000000; --gray: #161617; --ink: #f5f5f7; --muted: #a1a1a6; --line: #424245; --edge: #86868b;
+  --blue: #2997ff; --btn: #0071e3; --on-btn: #ffffff; --nav: rgba(22,22,23,.8); --error: #ff6961; --ok: #30d158; --jewel-shadow: rgba(0,0,0,.6); color-scheme: dark; }
+* { box-sizing: border-box; }
+html.panel-open { overflow: hidden; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 400 1.0625rem/1.6 var(--f); -webkit-font-smoothing: antialiased; }
+::selection { background: color-mix(in srgb, var(--btn) 25%, transparent); }
+:focus-visible { outline: 2px solid var(--btn); outline-offset: 3px; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+img { display: block; max-width: 100%; }
+.wrap { max-width: 1024px; margin: 0 auto; padding-inline: var(--gutter); }
+.wide { max-width: 1280px; margin: 0 auto; padding-inline: var(--gutter); }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+h1, h2, h3 { margin: 0; text-wrap: balance; letter-spacing: 0; }
+.pill { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 22px; border-radius: 980px; border: 0; background: var(--btn); color: var(--on-btn); font-weight: 500; font-size: 1rem; text-decoration: none; }
+.pill:hover { filter: brightness(1.08); }
+.pill.sm { min-height: 32px; padding: 0 14px; font-size: .8rem; }
+.pill.ghost { background: transparent; color: var(--blue); box-shadow: inset 0 0 0 1px var(--blue); }
+.more { display: inline-flex; align-items: center; gap: 4px; min-height: 44px; background: none; border: 0; padding: 0; color: var(--blue); font-size: 1rem; }
+.more:hover { text-decoration: underline; }
+.more svg { width: 14px; height: 14px; }
+[dir="rtl"] .more svg { transform: scaleX(-1); }
+
+.demo { margin: 0; background: var(--gray); color: var(--muted); text-align: center; font-size: .78rem; padding: 7px var(--gutter); }
+
+/* global nav */
+.gnav { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 40; background: var(--nav); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); }
+.gnav .wide { display: flex; align-items: center; justify-content: space-between; min-height: 48px; gap: 8px; }
+.gnav .logo { font-weight: 800; font-size: 1.15rem; color: var(--ink); text-decoration: none; }
+.gnav nav { display: flex; gap: 2px; }
+.gnav nav button { background: none; border: 0; min-height: 44px; padding: 0 10px; font-size: .82rem; color: var(--ink); opacity: .82; }
+.gnav nav button:hover { opacity: 1; }
+.gnav .tools { display: flex; align-items: center; }
+.icon { position: relative; width: 44px; height: 44px; display: grid; place-items: center; background: none; border: 0; color: var(--ink); }
+.icon svg { width: 17px; height: 17px; }
+.count { position: absolute; bottom: 7px; inset-inline-end: 4px; min-width: 16px; height: 16px; border-radius: 8px; background: var(--ink); color: var(--bg); font-size: .62rem; font-weight: 600; display: grid; place-items: center; font-variant-numeric: tabular-nums; }
+.lang { background: none; border: 0; min-height: 44px; padding: 0 8px; font-size: .78rem; color: var(--ink); opacity: .82; }
+@media (max-width: 760px) { .gnav nav { display: none; } }
+
+/* product bar */
+.pbar { position: sticky; top: calc(48px + env(safe-area-inset-top, 0px)); z-index: 30; background: var(--nav); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid var(--line); }
+.pbar .wide { display: flex; align-items: center; justify-content: space-between; min-height: 52px; gap: 12px; }
+.pbar h2 { font-size: 1.3rem; font-weight: 700; }
+.pbar .links { display: flex; align-items: center; gap: 14px; }
+.pbar .links button:not(.pill) { background: none; border: 0; min-height: 44px; font-size: .8rem; color: var(--ink); opacity: .82; padding: 0 2px; }
+@media (max-width: 560px) { .pbar .links button:not(.pill) { display: none; } }
+
+/* hero */
+.hero { background: var(--gray); text-align: center; padding-block: clamp(40px, 7vw, 80px) 0; overflow: hidden; }
+.hero h1 { font-size: clamp(2.6rem, 7vw, 5rem); font-weight: 800; line-height: 1.1; }
+.hero .tag { font-size: clamp(1.3rem, 3vw, 1.9rem); font-weight: 500; margin: 8px 0 6px; }
+.hero .from { color: var(--muted); margin: 0 0 18px; }
+.hero .btns { display: flex; gap: 18px; justify-content: center; align-items: center; flex-wrap: wrap; }
+.hero .stage { position: relative; height: clamp(260px, 42vw, 480px); max-width: 900px; margin: 18px auto 0; }
+.hero .stage canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+.section { padding-block: clamp(56px, 9vw, 110px); }
+.section.gray { background: var(--gray); }
+.headline { font-size: clamp(2rem, 4.6vw, 3.4rem); font-weight: 800; line-height: 1.12; text-align: center; }
+.sub { text-align: center; color: var(--muted); font-size: clamp(1.05rem, 2vw, 1.3rem); max-width: 40ch; margin: 14px auto 0; }
+
+/* script showcase */
+.try { display: flex; justify-content: center; margin: 28px 0 8px; }
+.try input { width: min(360px, 100%); min-height: 52px; padding: 0 20px; border-radius: 26px; border: 1px solid var(--edge); background: var(--bg); text-align: center; font-size: 1.15rem; }
+.scripts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 28px; }
+.tile { background: var(--gray); border-radius: 22px; padding: 18px 18px 22px; text-align: center; display: grid; gap: 6px; }
+.section.gray .tile { background: var(--bg); }
+.tile .art { position: relative; aspect-ratio: 4 / 3; }
+.tile .art canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.tile h3 { font-size: 1.25rem; font-weight: 700; }
+.tile p { margin: 0; color: var(--muted); font-size: .95rem; }
+@media (max-width: 720px) { .scripts { grid-template-columns: 1fr; } .tile .art { aspect-ratio: 16 / 9; } }
+
+/* lifestyle */
+.life { position: relative; overflow: hidden; border-radius: 28px; aspect-ratio: 16 / 9; }
+.life img { width: 100%; height: 100%; object-fit: cover; }
+.life p { position: absolute; inset-inline-start: 0; bottom: 0; margin: 0; padding: clamp(18px, 4vw, 40px); color: #fff; font-size: clamp(1.4rem, 3vw, 2.2rem); font-weight: 700; line-height: 1.25; max-width: 18ch; text-shadow: 0 2px 20px rgba(0,0,0,.45); }
+@media (max-width: 640px) { .life { aspect-ratio: 4 / 5; } }
+
+/* compare */
+.compare { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; margin-top: 40px; text-align: center; }
+.col { padding: 0 18px; display: grid; gap: 14px; align-content: start; justify-items: center; }
+.col + .col { border-inline-start: 1px solid var(--line); }
+.col .ph { position: relative; width: min(220px, 100%); aspect-ratio: 4 / 5; border-radius: 18px; overflow: hidden; background: var(--gray); }
+.col .ph img { width: 100%; height: 100%; object-fit: cover; }
+.col .ph canvas { position: absolute; inset: 6%; width: 88%; height: 88%; }
+.col h3 { font-size: 1.2rem; font-weight: 700; }
+.col .price { margin: 0; font-variant-numeric: tabular-nums; }
+.dots { display: flex; gap: 6px; justify-content: center; }
+.dots i { width: 14px; height: 14px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(0,0,0,.18); }
+.spec { margin: 0; display: grid; gap: 2px; padding-top: 14px; border-top: 1px solid var(--line); width: 100%; }
+.spec dt { color: var(--muted); font-size: .85rem; } .spec dd { margin: 0 0 8px; font-weight: 600; }
+@media (max-width: 760px) { .compare { grid-template-columns: 1fr; gap: 40px; } .col + .col { border-inline-start: 0; border-top: 1px solid var(--line); padding-top: 40px; } }
+
+/* shelf */
+.shelf-head { display: flex; justify-content: space-between; align-items: end; gap: 12px; margin-bottom: 20px; }
+.shelf-head h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 800; }
+.shelf { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(240px, 300px); gap: 18px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 6px var(--gutter) 30px; margin-inline: calc(-1 * var(--gutter)); scrollbar-width: none; }
+.shelf::-webkit-scrollbar { display: none; }
+.scard { scroll-snap-align: start; background: var(--bg); border-radius: 18px; overflow: hidden; display: grid; grid-template-rows: auto 1fr; border: 0; padding: 0; text-align: start; box-shadow: 0 4px 20px rgba(0,0,0,.06); transition: transform .3s cubic-bezier(.2,.8,.2,1), box-shadow .3s; }
+.scard:hover { transform: scale(1.015); box-shadow: 0 8px 30px rgba(0,0,0,.1); }
+.scard .ph { position: relative; aspect-ratio: 1; background: var(--gray); }
+.scard .ph img { width: 100%; height: 100%; object-fit: cover; }
+.scard .ph canvas { position: absolute; inset: 6%; width: 88%; height: 88%; }
+.scard .body { padding: 16px 18px 20px; display: grid; gap: 4px; }
+.scard b { font-size: 1.05rem; font-weight: 700; }
+.scard span { color: var(--muted); font-size: .92rem; font-variant-numeric: tabular-nums; }
+.scard .new { color: #b64400; font-size: .78rem; font-weight: 600; }
+.arrows { display: flex; gap: 10px; }
+.arrow { width: 44px; height: 44px; border-radius: 50%; border: 0; background: var(--gray); display: grid; place-items: center; color: var(--ink); }
+.section.gray .arrow { background: var(--bg); }
+.arrow svg { width: 18px; height: 18px; }
+[dir="rtl"] .arrow svg { transform: scaleX(-1); }
+.arrow:disabled { opacity: .35; cursor: default; }
+
+/* buy flow */
+.buy-head { display: flex; justify-content: space-between; align-items: end; gap: 12px; flex-wrap: wrap; margin-bottom: 30px; }
+.buy-head h2 { font-size: clamp(2rem, 4.4vw, 3rem); font-weight: 800; }
+.buy-head p { margin: 0; color: var(--muted); }
+.buy { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: clamp(20px, 4vw, 56px); align-items: start; }
+.preview { position: sticky; top: calc(120px + env(safe-area-inset-top, 0px)); background: var(--gray); border-radius: 28px; aspect-ratio: 1; }
+.preview canvas { position: absolute; inset: 6%; width: 88%; height: 88%; }
+.preview .cap { position: absolute; bottom: 16px; inset-inline: 0; text-align: center; color: var(--muted); font-size: .85rem; }
+.steps { display: grid; gap: 40px; }
+.step h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 4px; }
+.step h3 span { color: var(--muted); }
+.step .help { margin: 0 0 14px; color: var(--muted); font-size: .95rem; }
+.opts { display: grid; gap: 12px; }
+.opt { display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 64px; padding: 14px 18px; border-radius: 14px; border: 1px solid var(--edge); background: var(--bg); text-align: start; }
+.opt[aria-checked="true"] { border-color: var(--btn); box-shadow: inset 0 0 0 1px var(--btn); }
+.opt b { font-weight: 600; display: block; }
+.opt small { color: var(--muted); font-size: .85rem; }
+.opt .sample { font-size: 1.7rem; line-height: 1; }
+.opt .sw { width: 30px; height: 30px; border-radius: 50%; box-shadow: inset 0 -3px 6px rgba(0,0,0,.25), inset 0 2px 4px rgba(255,255,255,.6); flex: none; }
+.name-field { display: grid; gap: 6px; }
+.name-field input { width: 100%; min-height: 56px; padding: 0 18px; border-radius: 14px; border: 1px solid var(--edge); background: var(--bg); font-size: 1.3rem; }
+.name-field input:focus { border-color: var(--btn); outline: none; box-shadow: 0 0 0 3px color-mix(in srgb, var(--btn) 30%, transparent); }
+.name-field .row { display: flex; justify-content: space-between; color: var(--muted); font-size: .85rem; }
+.err { color: var(--error); font-size: .9rem; margin: 0; min-height: 1.2em; }
+.summary { position: sticky; bottom: 0; z-index: 20; transition: transform .35s cubic-bezier(.2,.8,.2,1), opacity .35s; background: var(--nav); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); border-top: 1px solid var(--line); padding-bottom: env(safe-area-inset-bottom, 0px); }
+.summary.away { transform: translateY(100%); opacity: 0; pointer-events: none; }
+.summary .wide { display: flex; align-items: center; justify-content: space-between; gap: 14px; min-height: 76px; flex-wrap: wrap; padding-block: 10px; }
+.summary .what { display: grid; }
+.summary .what b { font-weight: 700; }
+.summary .what span { color: var(--muted); font-size: .88rem; }
+.summary .total { font-size: 1.3rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+.summary .act { display: flex; align-items: center; gap: 16px; }
+@media (max-width: 860px) {
+  .buy { grid-template-columns: 1fr; }
+  .preview { position: sticky; top: calc(100px + env(safe-area-inset-top, 0px)); z-index: 5; aspect-ratio: 16 / 9; border-radius: 20px; box-shadow: 0 10px 24px rgba(0,0,0,.08); }
+}
+
+/* footnotes */
+.notes { background: var(--gray); color: var(--muted); font-size: .78rem; padding-block: 30px 24px; }
+.notes ol { margin: 0 0 18px; padding-inline-start: 18px; display: grid; gap: 6px; }
+.notes .bottom { border-top: 1px solid var(--line); padding-top: 14px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.notes b { color: var(--ink); font-weight: 500; user-select: all; font-variant-numeric: tabular-nums; }
+
+/* product sheet + bag */
+.sheet, .drawer { position: fixed; inset: 0; z-index: 50; background: rgba(0,0,0,.42); display: flex; opacity: 0; transition: opacity .25s; }
+.is-open { opacity: 1; }
+.sheet { align-items: center; justify-content: center; padding: 16px; }
+.sheet-card { position: relative; width: min(900px, 100%); max-height: calc(100% - 16px); overflow: auto; display: grid; grid-template-columns: 1fr 1fr; background: var(--bg); border-radius: 22px; transform: scale(.97); transition: transform .3s cubic-bezier(.2,.8,.2,1); }
+.is-open .sheet-card { transform: none; }
+.sheet-art { position: relative; aspect-ratio: 1; background: var(--gray); }
+.sheet-art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.sheet-art canvas { position: absolute; inset: 6%; width: 88%; height: 88%; }
+.sheet-info { padding: 36px 30px; display: flex; flex-direction: column; gap: 12px; }
+.sheet-cat { margin: 0; color: #b64400; font-size: .85rem; font-weight: 600; }
+.sheet-info h2 { font-size: 1.9rem; font-weight: 800; line-height: 1.2; }
+.sheet-price { margin: 0; font-size: 1.15rem; font-variant-numeric: tabular-nums; }
+.sheet-desc { margin: 0; color: var(--muted); }
+fieldset { border: 0; padding: 0; margin: 0; }
+legend, .lbl-s { font-weight: 600; margin-bottom: 8px; padding: 0; display: block; }
+[data-sheet-tones] { display: flex; gap: 8px; flex-wrap: wrap; }
+.tone { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border-radius: 12px; border: 1px solid var(--edge); background: var(--bg); }
+.tone[aria-checked="true"] { border-color: var(--btn); box-shadow: inset 0 0 0 1px var(--btn); }
+.tone-dot { width: 16px; height: 16px; border-radius: 50%; }
+.text-in { width: 100%; min-height: 50px; padding: 0 16px; border-radius: 12px; border: 1px solid var(--edge); background: var(--bg); font: 700 1.4rem "Aref Ruqaa", serif; }
+.hint { color: var(--muted); font-size: .82rem; }
+.x { position: absolute; top: 14px; inset-inline-end: 14px; z-index: 3; width: 36px; height: 36px; border-radius: 50%; border: 0; background: var(--gray); display: grid; place-items: center; color: var(--ink); }
+.x::before { content: ""; position: absolute; inset: -4px; }
+.x svg { width: 16px; height: 16px; }
+@media (max-width: 720px) {
+  .sheet { align-items: end; padding: 0; }
+  .sheet-card { grid-template-columns: 1fr; border-radius: 22px 22px 0 0; max-height: 94%; transform: translateY(40px); }
+  .sheet-art { aspect-ratio: 4 / 3; }
+  .sheet-info { padding: 22px 20px calc(22px + env(safe-area-inset-bottom, 0px)); }
+}
+.drawer { justify-content: flex-end; }
+.drawer-card { width: min(440px, 100%); height: 100%; overflow: auto; background: var(--bg); padding: calc(20px + env(safe-area-inset-top, 0px)) 24px calc(24px + env(safe-area-inset-bottom, 0px)); transform: translateX(40px); transition: transform .3s cubic-bezier(.2,.8,.2,1); }
+[dir="rtl"] .drawer-card { transform: translateX(-40px); }
+.drawer.is-open .drawer-card { transform: none; }
+.d-head { display: flex; align-items: center; gap: 10px; margin-bottom: 18px; }
+.d-head h2 { font-size: 1.7rem; font-weight: 800; }
+.d-head span { color: var(--muted); }
+.d-head .x { position: static; margin-inline-start: auto; }
+.empty { color: var(--muted); padding: 24px 0; text-align: center; display: grid; gap: 14px; justify-items: center; }
+[data-cart-list] { list-style: none; padding: 0; margin: 0; display: grid; gap: 18px; }
+.ci { display: grid; grid-template-columns: 84px 1fr auto; gap: 14px; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+.ci-img { position: relative; width: 84px; height: 84px; background: var(--gray); border-radius: 12px; overflow: hidden; }
+.ci-img img { width: 100%; height: 100%; object-fit: cover; }
+.ci-img canvas { position: absolute; inset: 6%; width: 88%; height: 88%; }
+.ci-name { margin: 0; font-weight: 700; }
+.ci-meta { margin: 2px 0 8px; color: var(--muted); font-size: .85rem; }
+.ci-row { display: flex; gap: 10px; align-items: center; }
+.ci-qty { display: inline-flex; align-items: center; border-radius: 10px; border: 1px solid var(--edge); }
+.ci-qty button { width: 44px; height: 44px; border: 0; background: none; font-size: 1.05rem; color: var(--blue); }
+.ci-qty output { min-width: 18px; text-align: center; font-variant-numeric: tabular-nums; }
+.ci-remove { border: 0; background: none; color: var(--blue); min-height: 44px; font-size: .88rem; }
+.ci-price { margin: 0; font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.sums { margin: 18px 0; display: grid; gap: 8px; font-variant-numeric: tabular-nums; }
+.sums div { display: flex; justify-content: space-between; } .sums dd { margin: 0; } .sums dt { color: var(--muted); }
+.sums .grand { padding-top: 10px; border-top: 1px solid var(--line); font-weight: 700; font-size: 1.15rem; } .sums .grand dt { color: var(--ink); }
+.form { display: grid; gap: 14px; }
+.form label { display: block; font-size: .88rem; font-weight: 600; margin-bottom: 5px; }
+.form input, .form select, .form textarea { width: 100%; min-height: 52px; padding: 10px 14px; border-radius: 12px; border: 1px solid var(--edge); background: var(--bg); }
+.form textarea { min-height: 84px; resize: vertical; }
+.form [aria-invalid="true"] { border-color: var(--error); box-shadow: inset 0 0 0 1px var(--error); }
+.form input[type="tel"] { direction: ltr; }
+[dir="rtl"] .form input[type="tel"] { text-align: right; }
+[data-pay-list] { display: grid; gap: 10px; }
+.pay { display: flex; gap: 12px; padding: 14px 16px; border-radius: 12px; border: 1px solid var(--edge); cursor: pointer; }
+.pay:has(input:checked) { border-color: var(--btn); box-shadow: inset 0 0 0 1px var(--btn); }
+.pay input { width: 18px; height: 18px; min-height: 0; margin: 4px 0 0; accent-color: var(--btn); }
+.pay-body { display: grid; } .pay-name { font-weight: 600; } .pay-note { color: var(--muted); font-size: .85rem; }
+.fee-hint { color: var(--muted); font-size: .85rem; margin: -6px 0 0; }
+.full { width: 100%; }
+.link-btn { border: 0; background: none; color: var(--blue); min-height: 44px; }
+.ok { text-align: center; padding: 40px 0; display: grid; gap: 12px; justify-items: center; }
+.ok h3 { font-size: 1.9rem; font-weight: 800; }
+.ok svg { width: 52px; height: 52px; color: var(--ok); }
+.toast { position: fixed; top: calc(110px + env(safe-area-inset-top, 0px)); inset-inline-end: 16px; width: min(340px, calc(100% - 32px)); z-index: 60; background: var(--bg); color: var(--ink); padding: 14px 16px; border-radius: 16px; box-shadow: 0 12px 40px rgba(0,0,0,.18); transform: translateY(-10px); opacity: 0; transition: .3s; pointer-events: none; font-weight: 600; }
+.toast.is-on { transform: none; opacity: 1; }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+
+<p class="demo" data-t="demo_note"></p>
+
+<header class="gnav">
+  <div class="wide">
+    <a class="logo" href="#top">سِوار</a>
+    <nav aria-label="Main">
+      <button type="button" data-go="shelf-sec" data-cat-label="necklace"></button>
+      <button type="button" data-go="shelf-sec" data-cat-label="bracelet"></button>
+      <button type="button" data-go="shelf-sec" data-cat-label="earrings"></button>
+      <button type="button" data-go="buy-sec" data-t="nm"></button>
+    </nav>
+    <div class="tools">
+      <button class="lang" type="button" data-lang-toggle data-t="lang_switch"></button>
+      <button class="icon" type="button" data-open-cart data-ta="cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="count" data-cart-count hidden>0</span></button>
+    </div>
+  </div>
+</header>
+
+<div class="pbar">
+  <div class="wide">
+    <h2 data-t="nm"></h2>
+    <div class="links">
+      <button type="button" data-go="scripts-sec" data-t="pb_overview"></button>
+      <button type="button" data-go="compare-sec" data-t="pb_compare"></button>
+      <button class="pill sm" type="button" data-go="buy-sec" data-t="buy"></button>
+    </div>
+  </div>
+</div>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <h1 data-t="nm"></h1>
+      <p class="tag" data-t="tagline"></p>
+      <p class="from" id="from"></p>
+      <div class="btns">
+        <button class="pill" type="button" data-go="buy-sec" data-t="buy"></button>
+        <button class="more" type="button" data-go="scripts-sec"><span data-t="learn"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+      </div>
+    </div>
+    <div class="stage"><canvas data-id="name" data-tone="gold" data-text="ليان" id="hero-canvas" aria-hidden="true"></canvas></div>
+  </section>
+
+  <section class="section" id="scripts-sec" aria-labelledby="scripts-h">
+    <div class="wide">
+      <h2 class="headline" id="scripts-h" data-t="scripts_h"></h2>
+      <p class="sub" data-t="scripts_p"></p>
+      <div class="try"><label class="sr" for="try" data-t="try_lbl"></label><input id="try" maxlength="8" autocomplete="off" data-tp="try_ph"></div>
+      <div class="scripts">
+        <div class="tile"><div class="art"><canvas data-id="name" data-tone="gold" data-font="ruqaa" data-try aria-hidden="true"></canvas></div><h3 data-t="f_ruqaa"></h3><p data-t="f_ruqaa_d"></p></div>
+        <div class="tile"><div class="art"><canvas data-id="name" data-tone="gold" data-font="kufi" data-try aria-hidden="true"></canvas></div><h3 data-t="f_kufi"></h3><p data-t="f_kufi_d"></p></div>
+        <div class="tile"><div class="art"><canvas data-id="name" data-tone="gold" data-font="naskh" data-try aria-hidden="true"></canvas></div><h3 data-t="f_naskh"></h3><p data-t="f_naskh_d"></p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section gray" aria-labelledby="tones-h">
+    <div class="wide">
+      <h2 class="headline" id="tones-h" data-t="tones_h"></h2>
+      <p class="sub" data-t="tones_p"></p>
+      <div class="scripts">
+        <div class="tile"><div class="art"><canvas data-id="name" data-tone="gold" data-try aria-hidden="true"></canvas></div><h3 data-t="t_gold"></h3></div>
+        <div class="tile"><div class="art"><canvas data-id="name" data-tone="silver" data-try aria-hidden="true"></canvas></div><h3 data-t="t_silver"></h3></div>
+        <div class="tile"><div class="art"><canvas data-id="name" data-tone="rose" data-try aria-hidden="true"></canvas></div><h3 data-t="t_rose"></h3></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-bottom:0">
+    <div class="wide"><figure class="life" style="margin:0"><img src="img/s-life.jpg" alt=""><p data-t="life"></p></figure></div>
+  </section>
+
+  <section class="section" id="compare-sec" aria-labelledby="compare-h">
+    <div class="wrap">
+      <h2 class="headline" id="compare-h" data-t="compare_h"></h2>
+      <div class="compare" id="compare"></div>
+    </div>
+  </section>
+
+  <section class="section gray" id="shelf-sec" aria-labelledby="shelf-h">
+    <div class="wide">
+      <div class="shelf-head">
+        <h2 id="shelf-h" data-t="shelf_h"></h2>
+        <div class="arrows">
+          <button class="arrow" type="button" id="prev" data-ta="prev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+          <button class="arrow" type="button" id="next" data-ta="next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+        </div>
+      </div>
+      <div class="shelf" id="shelf"></div>
+    </div>
+  </section>
+
+  <section class="section" id="buy-sec" aria-labelledby="buy-h">
+    <div class="wide">
+      <div class="buy-head"><h2 id="buy-h" data-t="buy_h"></h2><p data-t="buy_p"></p></div>
+      <div class="buy">
+        <div class="preview"><canvas data-id="name" id="buy-canvas" aria-hidden="true"></canvas><p class="cap" id="cap"></p></div>
+        <div class="steps">
+          <div class="step">
+            <h3><span data-t="s1a"></span> <span data-t="s1b"></span></h3>
+            <p class="help" data-t="s1h"></p>
+            <div class="opts" role="radiogroup" aria-labelledby="s1-lbl" id="opt-font"></div>
+            <span class="sr" id="s1-lbl" data-t="s1a"></span>
+          </div>
+          <div class="step">
+            <h3><span data-t="s2a"></span> <span data-t="s2b"></span></h3>
+            <div class="opts" role="radiogroup" aria-labelledby="s2-lbl" id="opt-tone"></div>
+            <span class="sr" id="s2-lbl" data-t="s2a"></span>
+          </div>
+          <div class="step">
+            <h3><span data-t="s3a"></span> <span data-t="s3b"></span></h3>
+            <p class="help" data-t="s3h"></p>
+            <div class="opts" role="radiogroup" aria-labelledby="s3-lbl" id="opt-len"></div>
+            <span class="sr" id="s3-lbl" data-t="s3a"></span>
+          </div>
+          <div class="step">
+            <h3><span data-t="s4a"></span> <span data-t="s4b"></span></h3>
+            <div class="name-field">
+              <label class="sr" for="name-in" data-t="s4a"></label>
+              <input id="name-in" maxlength="8" autocomplete="off" data-tp="try_ph" aria-describedby="name-err">
+              <div class="row"><span data-t="s4h"></span><span id="name-count">0/8</span></div>
+              <p class="err" id="name-err" aria-live="polite"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="summary away" id="summary">
+    <div class="wide">
+      <div class="what"><b data-t="nm"></b><span id="sum-line"></span></div>
+      <div class="act"><span class="total" id="sum-total"></span><button class="pill" type="button" id="add-btn" data-t="add_bag"></button></div>
+    </div>
+  </div>
+</main>
+
+<footer class="notes">
+  <div class="wide">
+    <ol>
+      <li data-t="n1"></li>
+      <li data-t="n2"></li>
+      <li data-t="n3"></li>
+    </ol>
+    <div class="bottom"><span>© 2026 سِوار</span><span><span data-t="wa"></span> <b>059 000 0000</b> · Instagram <b>@siwar.demo</b></span></div>
+  </div>
+</footer>
+
+<div class="sheet" data-sheet hidden role="dialog" aria-modal="true" aria-labelledby="sheet-title">
+  <div class="sheet-card">
+    <button class="x" type="button" data-close data-ta="close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    <div class="sheet-art"><img data-sheet-photo alt="" hidden><canvas data-sheet-canvas></canvas></div>
+    <div class="sheet-info">
+      <p class="sheet-cat" data-sheet-cat></p>
+      <h2 id="sheet-title" data-sheet-name></h2>
+      <p class="sheet-price" data-sheet-price></p>
+      <p class="sheet-desc" data-sheet-desc></p>
+      <fieldset><legend data-t="tone"></legend><div data-sheet-tones role="radiogroup"></div></fieldset>
+      <div data-sheet-custom hidden>
+        <label class="lbl-s" for="engrave" data-t="engrave"></label>
+        <input id="engrave" class="text-in" data-sheet-text maxlength="8" autocomplete="off">
+        <span class="hint" data-t="engrave_hint"></span>
+        <p class="err" data-sheet-err aria-live="polite"></p>
+      </div>
+      <button class="pill full" type="button" data-sheet-add data-t="add_bag"></button>
+    </div>
+  </div>
+</div>
+
+<div class="drawer" data-drawer hidden role="dialog" aria-modal="true" aria-labelledby="bag-title">
+  <div class="drawer-card" data-scroll>
+    <div class="d-head"><h2 id="bag-title" data-t="cart"></h2><span data-count-label></span>
+      <button class="x" type="button" data-close data-ta="close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+    <section data-step="bag">
+      <div class="empty" data-cart-empty><p data-t="bag_empty"></p><button class="pill" type="button" data-close data-t="continue"></button></div>
+      <div data-cart-filled hidden>
+        <ul data-cart-list></ul>
+        <dl class="sums"><div class="grand"><dt data-t="subtotal"></dt><dd data-subtotal></dd></div></dl>
+        <button class="pill full" type="button" data-goto="checkout" data-t="checkout"></button>
+      </div>
+    </section>
+    <section data-step="checkout" hidden>
+      <form class="form" data-checkout novalidate>
+        <div><label for="f-name" data-t="f_name"></label><input id="f-name" name="name" autocomplete="name"><p class="err" data-err="name"></p></div>
+        <div><label for="f-phone" data-t="f_phone"></label><input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" data-tp="ph_phone"><p class="err" data-err="phone"></p></div>
+        <div><label for="f-city" data-t="f_city"></label><select id="f-city" name="city" data-city-select></select><p class="err" data-err="city"></p></div>
+        <div><label for="f-address" data-t="f_address"></label><textarea id="f-address" name="address" data-tp="ph_address"></textarea><p class="err" data-err="address"></p></div>
+        <fieldset><legend data-t="f_pay"></legend><div data-pay-list></div></fieldset>
+        <dl class="sums">
+          <div><dt data-t="subtotal"></dt><dd data-subtotal></dd></div>
+          <div><dt data-t="delivery"></dt><dd data-fee></dd></div>
+          <div class="grand"><dt data-t="total"></dt><dd data-total></dd></div>
+        </dl>
+        <p class="fee-hint" data-fee-hint data-t="choose_city"></p>
+        <button class="pill full" type="submit" data-t="place_order"></button>
+        <button class="link-btn" type="button" data-goto="bag" data-t="back_to_bag"></button>
+      </form>
+    </section>
+    <section data-step="confirm" hidden>
+      <div class="ok">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="m7.5 12.5 3 3 6-7"/></svg>
+        <h3 data-t="ok_title"></h3>
+        <p><span data-t="ok_num"></span>: <b data-confirm-num></b></p>
+        <p data-confirm-body></p>
+        <button class="pill" type="button" data-shop-again data-t="ok_again"></button>
+      </div>
+    </section>
+  </div>
+</div>
+
+<div class="toast" data-toast role="status" aria-live="polite"></div>
+
+<script src="store.js"></script>
+<script>
+(function () {
+  var S = window.Store;
+  var state = { font: 'ruqaa', tone: 'gold', length: 45, name: '' };
+  var LENGTHS = [40, 45, 50];
+  var COMPARE = ['name', 'layered', 'drop'];
+  var SPECS = { name: { len: '40–50', personal: true }, layered: { len: '40 + 45', personal: false }, drop: { len: '45', personal: false } };
+
+  function fallbackName() { return S.lang() === 'ar' ? 'ليان' : 'Layan'; }
+  function draw(cv) { if (cv && cv.getBoundingClientRect().width) S.draw(cv); }
+  function updatePreview() {
+    var cv = document.getElementById('buy-canvas');
+    cv.setAttribute('data-tone', state.tone); cv.setAttribute('data-font', state.font); cv.setAttribute('data-text', state.name || fallbackName());
+    draw(cv);
+    var f = S.FONTS[state.font][S.lang()], tn = S.TONES[state.tone][S.lang()], len = state.length + (S.lang() === 'ar' ? ' سم' : ' cm');
+    document.getElementById('sum-line').textContent = [tn, f, len, state.name ? '«' + state.name + '»' : S.t('no_name')].join(' · ');
+    document.getElementById('sum-total').textContent = S.money(S.byId('name').price);
+    document.getElementById('cap').textContent = state.name ? '' : S.t('cap');
+    document.getElementById('name-count').textContent = state.name.length + '/8';
+  }
+  function radio(group, items, current) {
+    document.getElementById(group).innerHTML = items.map(function (it) {
+      return '<button class="opt" type="button" role="radio" data-' + group + '="' + it.v + '" aria-checked="' + (String(it.v) === String(current)) + '"><span><b>' + S.esc(it.label) + '</b>' + (it.note ? '<small>' + S.esc(it.note) + '</small>' : '') + '</span>' + (it.side || '') + '</button>';
+    }).join('');
+  }
+  function renderOptions() {
+    var L = S.lang();
+    radio('opt-font', Object.keys(S.FONTS).map(function (k) {
+      return { v: k, label: S.FONTS[k][L], note: S.t('f_' + k + '_d'), side: '<span class="sample" style="font-family:' + S.FONTS[k].css.replace(/"/g, "'") + '">' + S.esc(state.name || fallbackName()) + '</span>' };
+    }), state.font);
+    radio('opt-tone', Object.keys(S.TONES).map(function (k) { return { v: k, label: S.TONES[k][L], side: '<span class="sw" style="background:' + S.TONES[k].swatch + '"></span>' }; }), state.tone);
+    radio('opt-len', LENGTHS.map(function (n) { return { v: n, label: n + (L === 'ar' ? ' سم' : ' cm'), note: S.t('len_' + n) }; }), state.length);
+  }
+  function renderCompare() {
+    document.getElementById('compare').innerHTML = COMPARE.map(function (id) {
+      var p = S.byId(id), sp = SPECS[id], tones = id === 'name' ? Object.keys(S.TONES) : p.tones;
+      return '<div class="col"><div class="ph">' + S.media(p, { decorative: true }) + '</div>' +
+        '<div class="dots">' + tones.map(function (t) { return '<i title="' + S.esc(S.TONES[t][S.lang()]) + '" style="background:' + S.TONES[t].swatch + '"></i>'; }).join('') + '</div>' +
+        '<h3>' + S.esc(S.name(p)) + '</h3><p class="price">' + S.money(p.price) + '</p>' +
+        (id === 'name' ? '<button class="pill" type="button" data-go="buy-sec">' + S.esc(S.t('buy')) + '</button>' : '<button class="pill" type="button" data-add="' + id + '">' + S.esc(S.t('add_bag')) + '</button>') +
+        '<button class="more" type="button" data-open="' + id + '">' + S.esc(S.t('learn')) + '</button>' +
+        '<dl class="spec"><dt>' + S.esc(S.t('c_len')) + '</dt><dd>' + sp.len + (S.lang() === 'ar' ? ' سم' : ' cm') + '</dd>' +
+        '<dt>' + S.esc(S.t('c_personal')) + '</dt><dd>' + S.esc(sp.personal ? S.t('yes_name') : S.t('no')) + '</dd>' +
+        '<dt>' + S.esc(S.t('c_pay')) + '</dt><dd>' + S.esc(S.t('c_pay_v')) + '</dd></dl></div>';
+    }).join('');
+    S.mount(document.getElementById('compare'));
+  }
+  function renderShelf() {
+    var items = S.PRODUCTS.filter(function (p) { return !p.custom; });
+    document.getElementById('shelf').innerHTML = items.map(function (p) {
+      return '<button class="scard" type="button" data-open="' + p.id + '"><div class="ph">' + S.media(p, { decorative: true }) + '</div><div class="body">' +
+        (p.isNew ? '<span class="new">' + S.esc(S.t('new')) + '</span>' : '') + '<b>' + S.esc(S.name(p)) + '</b><span>' + S.money(p.price) + '</span></div></button>';
+    }).join('');
+    updateArrows();
+  }
+  function render() {
+    document.getElementById('from').textContent = S.t('from', { price: S.money(S.byId('name').price) });
+    var hero = document.getElementById('hero-canvas'); hero.setAttribute('data-text', fallbackName()); draw(hero);
+    var tryV = document.getElementById('try').value.trim();
+    S.$$('[data-try]').forEach(function (cv) { cv.setAttribute('data-text', tryV || fallbackName()); draw(cv); });
+    renderOptions(); renderCompare(); renderShelf(); updatePreview();
+  }
+
+  // shelf arrows
+  function dir() { return document.documentElement.dir === 'rtl' ? -1 : 1; }
+  function updateArrows() { var s = document.getElementById('shelf'), x = Math.abs(s.scrollLeft); document.getElementById('prev').disabled = x <= 2; document.getElementById('next').disabled = x >= s.scrollWidth - s.clientWidth - 2; }
+  document.getElementById('next').addEventListener('click', function () { document.getElementById('shelf').scrollBy({ left: dir() * 318, behavior: 'smooth' }); });
+  document.getElementById('prev').addEventListener('click', function () { document.getElementById('shelf').scrollBy({ left: -dir() * 318, behavior: 'smooth' }); });
+  document.getElementById('shelf').addEventListener('scroll', function () { requestAnimationFrame(updateArrows); });
+
+  document.getElementById('try').addEventListener('input', function (e) {
+    var v = e.target.value.trim();
+    S.$$('[data-try]').forEach(function (cv) { cv.setAttribute('data-text', v || fallbackName()); draw(cv); });
+  });
+  document.getElementById('name-in').addEventListener('input', function (e) {
+    state.name = e.target.value.trim(); document.getElementById('name-err').textContent = ''; e.target.removeAttribute('aria-invalid');
+    S.$$('#opt-font .sample').forEach(function (s) { s.textContent = state.name || fallbackName(); });
+    updatePreview();
+  });
+  document.addEventListener('click', function (e) {
+    var b;
+    if ((b = e.target.closest('[data-go]'))) { document.getElementById(b.getAttribute('data-go')).scrollIntoView({ behavior: 'smooth' }); return; }
+    if ((b = e.target.closest('[data-opt-font]'))) { state.font = b.getAttribute('data-opt-font'); mark('opt-font', b); updatePreview(); return; }
+    if ((b = e.target.closest('[data-opt-tone]'))) { state.tone = b.getAttribute('data-opt-tone'); mark('opt-tone', b); updatePreview(); return; }
+    if ((b = e.target.closest('[data-opt-len]'))) { state.length = Number(b.getAttribute('data-opt-len')); mark('opt-len', b); updatePreview(); return; }
+    if (e.target.closest('#add-btn')) {
+      if (!state.name) {
+        var inp = document.getElementById('name-in');
+        document.getElementById('name-err').textContent = S.t('e_engrave'); inp.setAttribute('aria-invalid', 'true');
+        inp.scrollIntoView({ behavior: 'smooth', block: 'center' }); setTimeout(function () { inp.focus({ preventScroll: true }); }, 350);
+        return;
+      }
+      S.add('name', state.tone, state.name, { font: state.font, length: state.length });
+    }
+  });
+  function mark(group, btn) { S.$$('#' + group + ' [role="radio"]').forEach(function (r) { r.setAttribute('aria-checked', String(r === btn)); }); }
+  // arrow keys inside each option group
+  document.addEventListener('keydown', function (e) {
+    var r = e.target.closest && e.target.closest('.opts [role="radio"]'); if (!r) return;
+    if (['ArrowDown', 'ArrowUp', 'ArrowLeft', 'ArrowRight'].indexOf(e.key) < 0) return;
+    e.preventDefault();
+    var all = S.$$('[role="radio"]', r.parentElement), i = all.indexOf(r), d = (e.key === 'ArrowDown' || e.key === 'ArrowLeft') ? 1 : -1;
+    var n = all[(i + d + all.length) % all.length]; n.focus(); n.click();
+  });
+
+  // the buy bar only shows while the builder is on screen
+  function checkBar() {
+    var r = document.getElementById('buy-sec').getBoundingClientRect(), h = window.innerHeight || document.documentElement.clientHeight;
+    document.getElementById('summary').classList.toggle('away', !(r.top < h * 0.75 && r.bottom > 160));
+  }
+  window.addEventListener('scroll', checkBar, { passive: true }); window.addEventListener('resize', checkBar); checkBar();
+
+  S.boot({
+    render: render,
+    strings: {
+      ar: {
+        nm: 'قلادة الاسم', tagline: 'اسمها. بخطٍّ تختارينه.', from: 'من {price}، والدفع عند الاستلام.', buy: 'اشتري', learn: 'اعرفي المزيد',
+        pb_overview: 'نظرة عامة', pb_compare: 'قارني',
+        scripts_h: 'ثلاثة خطوط. اسم واحد.', scripts_p: 'اكتبي أي اسم وشاهديه بالرقعة والكوفي والنسخ.', try_lbl: 'جرّبي اسماً', try_ph: 'اكتبي اسماً',
+        f_ruqaa: 'رقعة', f_ruqaa_d: 'ناعم ومتصل، الأكثر طلباً للهدايا.', f_kufi: 'كوفي', f_kufi_d: 'هندسي وعصري بخطوط مستقيمة.', f_naskh: 'نسخ', f_naskh_d: 'كلاسيكي وواضح كخط الكتب.',
+        tones_h: 'ثلاثة ألوان.', tones_p: 'ذهبي أو فضي أو وردي. اختاري ما يناسب بقية قطعك.', t_gold: 'ذهبي', t_silver: 'فضي', t_rose: 'وردي',
+        life: 'صُمّمت لتُلبس كل يوم.',
+        compare_h: 'أي قلادة تناسبك؟', c_len: 'طول السلسلة', c_personal: 'باسم', yes_name: 'نعم، حتى 8 أحرف', no: 'لا', c_pay: 'الدفع', c_pay_v: 'عند الاستلام أو بالبطاقة',
+        shelf_h: 'تسوقي المزيد.', prev: 'السابق', next: 'التالي',
+        buy_h: 'اصنعي قلادتك.', buy_p: 'أربع خطوات. تشاهدين النتيجة وأنت تختارين.',
+        s1a: 'الخط.', s1b: 'أي خط يشبهها؟', s1h: 'يمكنك تغييره في أي وقت قبل الطلب.',
+        s2a: 'اللون.', s2b: 'اختاري لون المعدن.',
+        s3a: 'الطول.', s3b: 'أين تستقر القلادة؟', s3h: 'السلسلة قابلة للتعديل ضمن الطول المختار.',
+        len_40: 'قريبة من الرقبة', len_45: 'فوق الترقوة، الأكثر شيوعاً', len_50: 'أطول قليلاً، تُلبس مع الطبقات',
+        s4a: 'الاسم.', s4b: 'اكتبيه كما تريدينه.', s4h: 'حروف عربية أو إنجليزية، حتى 8 أحرف.',
+        no_name: 'بلا اسم بعد', cap: 'معاينة باسم مثال', add_bag: 'أضيفي إلى السلة', continue: 'متابعة التسوق',
+        n1: 'الأسعار والأطوال والألوان أمثلة حتى يؤكدها المتجر.', n2: 'المعاينة رسم توضيحي؛ القطعة النهائية قد تختلف قليلاً في السماكة واللمعة.', n3: 'الصور من Unsplash للتوضيح فقط. رسوم التوصيل تظهر عند إتمام الطلب.',
+        wa: 'واتساب'
+      },
+      en: {
+        nm: 'Name necklace', tagline: 'Her name. In the script you choose.', from: 'From {price}, pay on delivery.', buy: 'Buy', learn: 'Learn more',
+        pb_overview: 'Overview', pb_compare: 'Compare',
+        scripts_h: 'Three scripts. One name.', scripts_p: 'Type any name and see it in Ruqaa, Kufi and Naskh.', try_lbl: 'Try a name', try_ph: 'Type a name',
+        f_ruqaa: 'Ruqaa', f_ruqaa_d: 'Soft and joined, the favourite for gifts.', f_kufi: 'Kufi', f_kufi_d: 'Geometric and modern, with straight strokes.', f_naskh: 'Naskh', f_naskh_d: 'Classic and clear, like book lettering.',
+        tones_h: 'Three colours.', tones_p: 'Gold, silver or rose tone. Pick what goes with her other pieces.', t_gold: 'Gold tone', t_silver: 'Silver tone', t_rose: 'Rose tone',
+        life: 'Made to be worn every day.',
+        compare_h: 'Which necklace is right for you?', c_len: 'Chain length', c_personal: 'Personalised', yes_name: 'Yes, up to 8 letters', no: 'No', c_pay: 'Payment', c_pay_v: 'On delivery or by card',
+        shelf_h: 'Shop more.', prev: 'Previous', next: 'Next',
+        buy_h: 'Make your necklace.', buy_p: 'Four steps. You see the result as you choose.',
+        s1a: 'Script.', s1b: 'Which one feels like her?', s1h: 'You can change it any time before ordering.',
+        s2a: 'Colour.', s2b: 'Choose the metal colour.',
+        s3a: 'Length.', s3b: 'Where should it sit?', s3h: 'The chain adjusts within the length you choose.',
+        len_40: 'Close to the neck', len_45: 'Above the collarbone, the most common', len_50: 'A little longer, good for layering',
+        s4a: 'Name.', s4b: 'Write it the way you want it.', s4h: 'Arabic or English letters, up to 8.',
+        no_name: 'No name yet', cap: 'Preview with a sample name', add_bag: 'Add to bag', continue: 'Continue shopping',
+        n1: 'Prices, lengths and colours are examples until the shop confirms them.', n2: 'The preview is an illustration; the final piece may differ slightly in thickness and shine.', n3: 'Photos from Unsplash, for illustration only. Delivery fees show at checkout.',
+        wa: 'WhatsApp'
+      }
+    }
+  });
+})();
+</script>
+
+</body>
+</html>

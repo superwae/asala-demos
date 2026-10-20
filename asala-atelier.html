@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="ar">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Asala Atelier</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;600;700&family=Almarai:wght@300;400;700&family=Martian+Mono:wght@300;400&family=Marcellus&display=swap">
+<style>
+/* Layout: the founder is an architect, so the store is her drawing sheet. Ivory paper with a fine grid,
+   charcoal ink, red annotation, real dimensions; every product sits on a sheet with a title block. */
+:root {
+  --paper: #F5F1E9; --paper-2: #ECE5D8; --ink: #33342F; --ink-2: #5d5d56; --rule: rgba(51,52,47,.18); --grid: rgba(51,52,47,.055);
+  --red: #C6383C; --red-ink: #a52a2e; --gold: #a9812f; --white: #fffdf8;
+  --f-display: "El Messiri", "Almarai", serif; --f-body: "Almarai", "Segoe UI", Tahoma, sans-serif; --f-mono: "Martian Mono", ui-monospace, monospace;
+  --gutter: clamp(16px, 4vw, 48px);
+  --jewel-shadow: rgba(51,52,47,.2);
+  color-scheme: light;
+}
+html[lang="en"] { --f-display: "Marcellus", "El Messiri", serif; }
+* { box-sizing: border-box; }
+html.panel-open { overflow: hidden; }
+body { margin: 0; color: var(--ink); font: 400 1rem/1.75 var(--f-body);
+  background-color: var(--paper);
+  background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 24px 24px; }
+::selection { background: var(--red); color: var(--white); }
+:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+img { display: block; max-width: 100%; }
+.wrap { max-width: 1280px; margin: 0 auto; padding-inline: var(--gutter); }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.mono { font-family: var(--f-mono); font-size: .7rem; letter-spacing: .04em; direction: ltr; unicode-bidi: isolate; }
+section[id] { scroll-margin-top: 80px; }
+
+.demo { margin: 0; background: var(--ink); color: var(--paper); text-align: center; font-size: .78rem; padding: 7px var(--gutter); }
+
+/* header as a drawing title strip */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--paper) 94%, transparent); backdrop-filter: blur(6px); border-bottom: 1px solid var(--ink); }
+.top .wrap { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 20px; min-height: 68px; }
+.brand { display: flex; align-items: center; gap: 12px; min-height: 44px; color: var(--ink); text-decoration: none; }
+.brand svg { width: 34px; height: 36px; }
+.brand img { height: 15px; width: auto; }
+.nav { display: flex; justify-content: center; gap: 4px; }
+.nav button { background: none; border: 0; min-height: 44px; padding: 0 12px; font-size: .95rem; color: var(--ink-2); }
+.nav button:hover { color: var(--ink); text-decoration: underline; text-decoration-color: var(--red); text-underline-offset: 6px; }
+.tools { display: flex; align-items: center; gap: 4px; }
+.lang { min-height: 44px; padding: 0 12px; border: 1px solid var(--ink); background: transparent; font-size: .82rem; }
+.icon { position: relative; width: 44px; height: 44px; display: grid; place-items: center; background: none; border: 0; }
+.icon svg { width: 21px; height: 21px; }
+.count { position: absolute; top: 4px; inset-inline-end: 0; min-width: 18px; height: 18px; padding: 0 4px; border-radius: 9px; background: var(--red); color: var(--white); font-size: .66rem; display: grid; place-items: center; font-variant-numeric: tabular-nums; }
+@media (max-width: 860px) { .nav { display: none; } .top .wrap { grid-template-columns: 1fr auto; } }
+
+/* hero sheet */
+.hero { padding-block: clamp(20px, 3vw, 40px) clamp(30px, 5vw, 64px); }
+.sheet-frame { border: 1.5px solid var(--ink); background: color-mix(in srgb, var(--paper) 70%, transparent); display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); }
+.drawing { position: relative; border-inline-end: 1px solid var(--ink); padding: clamp(18px, 3vw, 36px); display: grid; grid-template-rows: auto 1fr auto; gap: 10px; min-height: 560px; }
+.drawing .label { display: flex; justify-content: space-between; gap: 12px; color: var(--ink-2); }
+.plate { position: relative; display: grid; place-items: center; }
+.plate .render { position: relative; width: min(66%, 400px); margin-block: 10px 46px; }
+.plate .render img { width: 100%; mix-blend-mode: multiply; transition: filter .5s; }
+.plate svg.dims { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+.dims line, .dims path { stroke: var(--red); stroke-width: 1; fill: none; vector-effect: non-scaling-stroke; }
+.dim { position: absolute; color: var(--red); font-family: var(--f-mono); font-size: .66rem; letter-spacing: .04em; direction: ltr; white-space: nowrap; opacity: 0; animation: fade .6s ease 1.4s forwards; }
+.dim-w { left: 50%; bottom: -34px; transform: translateX(-50%); background: var(--paper); padding: 0 6px; }
+.dim-h { left: -6%; top: 46%; transform: translateX(-50%) rotate(-90deg); background: var(--paper); padding: 0 6px; }
+.dim-2 { left: 14%; bottom: -8%; transform: translateX(-100%); }
+.dims .draw { stroke-dasharray: 600; stroke-dashoffset: 600; animation: draw 1.6s cubic-bezier(.6,0,.2,1) .3s forwards; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+@keyframes fade { to { opacity: 1; } }
+.callout { position: absolute; inset-inline-start: 2%; top: 4%; display: grid; justify-items: center; gap: 6px; }
+.callout .bubble { width: clamp(96px, 13vw, 138px); aspect-ratio: 1; border-radius: 50%; border: 1.5px solid var(--red); overflow: hidden; background: var(--white); }
+.callout .bubble img { width: 140%; max-width: none; margin: -6% -20%; mix-blend-mode: multiply; }
+.callout span { color: var(--red); }
+.notes-row { display: flex; flex-wrap: wrap; gap: 6px 18px; color: var(--ink-2); }
+.notes-row b { color: var(--red); font-weight: 400; }
+.titleblock { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--ink); margin: 0 calc(-1 * clamp(18px, 3vw, 36px)) calc(-1 * clamp(18px, 3vw, 36px)); }
+.titleblock div { padding: 8px 12px; border-inline-end: 1px solid var(--rule); display: grid; gap: 2px; }
+.titleblock div:last-child { border-inline-end: 0; }
+.titleblock small { color: var(--ink-2); font-size: .7rem; }
+.titleblock b { font-weight: 700; font-size: .9rem; }
+.config { padding: clamp(20px, 3vw, 40px); display: flex; flex-direction: column; gap: 18px; }
+.config h1 { font: 700 clamp(2rem, 3.6vw, 3rem)/1.2 var(--f-display); margin: 0; text-wrap: balance; }
+.config h1 em { font-style: normal; color: var(--red); }
+.config .lead { margin: 0; color: var(--ink-2); max-width: 46ch; }
+.step-lbl { display: flex; align-items: baseline; gap: 10px; margin: 0 0 8px; font-weight: 700; }
+.step-lbl .mono { color: var(--red); }
+.patterns { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.pat { display: grid; gap: 6px; padding: 6px; border: 1px solid var(--rule); background: var(--white); text-align: center; font-size: .78rem; line-height: 1.35; }
+.pat img { width: 100%; aspect-ratio: 1.08; object-fit: cover; object-position: 50% 25%; mix-blend-mode: multiply; }
+.pat[aria-checked="true"] { border-color: var(--red); box-shadow: inset 0 0 0 1px var(--red); }
+.mats { display: grid; gap: 8px; }
+.mat { display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: center; min-height: 60px; padding: 10px 14px; border: 1px solid var(--rule); background: var(--white); text-align: start; }
+.mat[aria-checked="true"] { border-color: var(--red); box-shadow: inset 0 0 0 1px var(--red); }
+.mat .code { width: 30px; height: 30px; border: 1px solid var(--ink); display: grid; place-items: center; font-family: var(--f-mono); font-size: .8rem; }
+.mat[aria-checked="true"] .code { background: var(--red); border-color: var(--red); color: var(--white); }
+.mat b { display: block; font-weight: 700; }
+.mat small { color: var(--ink-2); }
+.mat .p { font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.buy { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; padding-top: 6px; border-top: 1px dashed var(--rule); }
+.buy .mini { width: 56px; height: 56px; object-fit: cover; object-position: 50% 30%; border: 1px solid var(--ink); background: var(--white); }
+.buy .total { font: 700 1.8rem/1 var(--f-display); font-variant-numeric: tabular-nums; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 50px; padding: 0 26px; border: 0; background: var(--ink); color: var(--paper); font-weight: 700; }
+.btn:hover { background: var(--red); }
+.btn.ghost { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+.btn.ghost:hover { background: var(--ink); color: var(--paper); }
+.full { width: 100%; }
+.small-note { margin: 0; color: var(--ink-2); font-size: .82rem; }
+@media (max-width: 980px) {
+  .sheet-frame { grid-template-columns: 1fr; }
+  .drawing { border-inline-end: 0; border-top: 1px solid var(--ink); min-height: 0; }
+  .config { order: -1; }
+  .plate { min-height: 340px; }
+}
+@media (max-width: 560px) {
+  .dim-2 { display: none; }
+  .patterns { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .titleblock { grid-template-columns: 1fr 1fr; }
+  .titleblock div:nth-child(2) { border-inline-end: 0; }
+  .titleblock div:nth-child(-n+2) { border-bottom: 1px solid var(--rule); }
+  .callout .bubble { width: 84px; }
+}
+
+/* section headings like drawing labels */
+.sec { padding-block: clamp(44px, 6vw, 84px); }
+.sec-head { display: flex; justify-content: space-between; align-items: end; gap: 16px; flex-wrap: wrap; margin-bottom: 26px; padding-bottom: 12px; border-bottom: 1px solid var(--ink); }
+.sec-head h2 { font: 700 clamp(1.7rem, 3vw, 2.5rem)/1.2 var(--f-display); margin: 0; }
+.sec-head p { margin: 0; color: var(--ink-2); max-width: 48ch; }
+
+/* process strip */
+.process { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0; border: 1px solid var(--ink); }
+.process li { display: grid; grid-template-rows: auto auto 1fr; border-inline-end: 1px solid var(--rule); background: var(--white); }
+.process li:last-child { border-inline-end: 0; }
+.process .ph { aspect-ratio: 4 / 5; overflow: hidden; border-bottom: 1px solid var(--rule); }
+.process img { width: 100%; height: 100%; object-fit: cover; }
+.process .cap { padding: 12px 14px 16px; display: grid; gap: 4px; }
+.process .cap .mono { color: var(--red); }
+.process .cap b { font: 600 1.05rem/1.3 var(--f-display); }
+.process .cap span { color: var(--ink-2); font-size: .86rem; }
+@media (max-width: 900px) { .process { grid-auto-flow: column; grid-auto-columns: 62%; grid-template-columns: none; overflow-x: auto; scroll-snap-type: x mandatory; } .process li { scroll-snap-align: start; } }
+
+/* catalogue sheets */
+.filters { display: flex; gap: 0; border: 1px solid var(--ink); }
+.filters button { min-height: 44px; padding: 0 16px; border: 0; background: transparent; font-size: .9rem; }
+.filters button + button { border-inline-start: 1px solid var(--ink); }
+.filters button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.sheets { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 22px; }
+.sheet-card { position: relative; border: 1px solid var(--ink); background: var(--white); display: grid; }
+.sheet-card .ph { position: relative; aspect-ratio: 1; overflow: hidden; border-bottom: 1px solid var(--ink); background: var(--white); }
+.sheet-card .ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity .45s, transform .8s cubic-bezier(.2,.8,.2,1); }
+.sheet-card .ph img.cut { object-fit: contain; padding: 8%; background: var(--paper); }
+.sheet-card .ph .alt { opacity: 0; }
+@media (hover: hover) { .sheet-card:hover .ph .alt { opacity: 1; } .sheet-card:hover .ph img:first-child { transform: scale(1.03); } }
+.sheet-card .no { position: absolute; top: 8px; inset-inline-start: 8px; z-index: 2; background: var(--paper); border: 1px solid var(--ink); padding: 1px 8px; }
+.sheet-card .new { position: absolute; top: 8px; inset-inline-end: 8px; z-index: 2; background: var(--red); color: var(--white); font-size: .74rem; padding: 2px 10px; }
+.sheet-card .open { position: absolute; inset: 0; z-index: 1; background: none; border: 0; }
+.tb { display: grid; grid-template-columns: 1fr auto; }
+.tb > div { padding: 10px 12px; display: grid; gap: 2px; }
+.tb > div + div { border-inline-start: 1px solid var(--rule); align-content: center; justify-items: end; }
+.tb b { font: 600 1.08rem/1.35 var(--f-display); }
+.tb small { color: var(--ink-2); font-size: .78rem; }
+.tb .price { font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.tb .add { position: relative; z-index: 2; min-height: 44px; min-width: 44px; margin-top: 6px; padding: 0 12px; border: 1px solid var(--ink); background: transparent; font-size: .82rem; }
+.tb .add:hover { background: var(--ink); color: var(--paper); }
+
+/* sketchbook */
+.sketches { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.sketch { border: 1px dashed var(--ink-2); background: var(--white); padding: 14px; display: grid; gap: 8px; justify-items: center; text-align: center; }
+.sketch img { height: 180px; width: auto; object-fit: contain; }
+.sketch b { font: 600 1rem var(--f-display); }
+.sketch span { color: var(--red); font-size: .78rem; }
+@media (max-width: 760px) { .sketches { grid-template-columns: 1fr 1fr; } }
+
+/* founder */
+.founder { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); border: 1px solid var(--ink); background: var(--white); }
+.founder .ph { border-inline-end: 1px solid var(--ink); }
+.founder .ph img { width: 100%; height: 100%; object-fit: cover; }
+.founder .txt { padding: clamp(22px, 4vw, 48px); display: grid; gap: 16px; align-content: center; }
+.founder blockquote { margin: 0; font: 500 clamp(1.3rem, 2.4vw, 1.8rem)/1.5 var(--f-display); text-wrap: balance; }
+.founder blockquote::before { content: "”"; color: var(--red); margin-inline-end: 4px; }
+html[lang="en"] .founder blockquote::before { content: "“"; }
+.founder .who b { font-weight: 700; } .founder .who span { color: var(--ink-2); }
+.facts { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--rule); }
+.facts li { padding: 12px 10px 0 0; display: grid; gap: 2px; }
+.facts b { font: 700 1.3rem/1 var(--f-display); color: var(--red); }
+.facts span { font-size: .82rem; color: var(--ink-2); }
+@media (max-width: 760px) { .founder { grid-template-columns: 1fr; } .founder .ph { border-inline-end: 0; border-bottom: 1px solid var(--ink); aspect-ratio: 4 / 3; } }
+
+footer { border-top: 1.5px solid var(--ink); background: var(--paper-2); }
+footer .wrap { display: grid; grid-template-columns: auto 1fr auto; gap: 20px; align-items: center; padding-block: 26px; }
+footer .brand img { height: 14px; }
+footer p { margin: 0; color: var(--ink-2); font-size: .86rem; }
+footer .val { color: var(--ink); direction: ltr; unicode-bidi: isolate; font-variant-numeric: tabular-nums; }
+@media (max-width: 760px) { footer .wrap { grid-template-columns: 1fr; } }
+
+/* product sheet + bag */
+.psheet, .drawer { position: fixed; inset: 0; z-index: 50; background: rgba(51,52,47,.55); display: flex; opacity: 0; transition: opacity .25s; }
+.is-open { opacity: 1; }
+.psheet { align-items: center; justify-content: center; padding: 16px; }
+.p-card { position: relative; width: min(960px, 100%); max-height: calc(100% - 16px); overflow: auto; display: grid; grid-template-columns: 1.1fr 1fr; background: var(--paper); border: 1.5px solid var(--ink); transform: translateY(14px); transition: transform .3s cubic-bezier(.2,.8,.2,1); }
+.is-open .p-card { transform: none; }
+.p-art { position: relative; aspect-ratio: 1; background: var(--white); border-inline-end: 1px solid var(--ink); }
+.p-art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.p-art canvas { position: absolute; inset: 8%; width: 84%; height: 84%; }
+.p-thumbs { position: absolute; bottom: 10px; inset-inline-start: 10px; display: flex; gap: 6px; z-index: 2; }
+.p-thumbs button { width: 52px; height: 52px; padding: 0; border: 1px solid var(--ink); background: var(--white); overflow: hidden; }
+.p-thumbs button[aria-pressed="true"] { border-color: var(--red); box-shadow: 0 0 0 1px var(--red); }
+.p-thumbs img { width: 100%; height: 100%; object-fit: cover; }
+.p-info { padding: 30px 26px; display: flex; flex-direction: column; gap: 12px; }
+.p-info h2 { font: 700 1.9rem/1.25 var(--f-display); margin: 0; }
+.p-info .cat { margin: 0; color: var(--red); }
+.p-info .price { margin: 0; font-size: 1.3rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+.p-info .desc { margin: 0; color: var(--ink-2); }
+fieldset { border: 0; padding: 0; margin: 0; }
+legend { font-weight: 700; margin-bottom: 8px; padding: 0; }
+[data-sheet-tones] { display: flex; gap: 8px; flex-wrap: wrap; }
+.tone { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 14px; border: 1px solid var(--ink); background: var(--white); }
+.tone[aria-checked="true"] { background: var(--ink); color: var(--paper); }
+.tone-dot { width: 14px; height: 14px; border-radius: 50%; }
+.err { color: var(--red-ink); font-size: .86rem; margin: 2px 0 0; min-height: 1em; }
+.x { position: absolute; top: 10px; inset-inline-end: 10px; z-index: 3; width: 44px; height: 44px; border: 1px solid var(--ink); background: var(--paper); display: grid; place-items: center; }
+.x svg { width: 18px; height: 18px; }
+@media (max-width: 760px) {
+  .psheet { align-items: end; padding: 0; }
+  .p-card { grid-template-columns: 1fr; max-height: 94%; border-inline: 0; border-bottom: 0; transform: translateY(40px); }
+  .p-art { border-inline-end: 0; border-bottom: 1px solid var(--ink); }
+  .p-info { padding: 18px 18px calc(22px + env(safe-area-inset-bottom, 0px)); }
+}
+.drawer { justify-content: flex-end; }
+.d-card { width: min(430px, 100%); height: 100%; overflow: auto; background: var(--paper); border-inline-start: 1.5px solid var(--ink); padding: calc(18px + env(safe-area-inset-top, 0px)) 22px calc(24px + env(safe-area-inset-bottom, 0px)); transform: translateX(40px); transition: transform .3s cubic-bezier(.2,.8,.2,1); }
+[dir="rtl"] .d-card { transform: translateX(-40px); }
+.drawer.is-open .d-card { transform: none; }
+.d-head { display: flex; align-items: center; gap: 10px; padding-bottom: 12px; margin-bottom: 16px; border-bottom: 1px solid var(--ink); }
+.d-head h2 { margin: 0; font: 700 1.6rem/1 var(--f-display); }
+.d-head span { color: var(--ink-2); font-size: .9rem; }
+.d-head .x { position: static; margin-inline-start: auto; }
+.empty { color: var(--ink-2); padding: 24px 0; text-align: center; display: grid; gap: 14px; justify-items: center; }
+[data-cart-list] { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
+.ci { display: grid; grid-template-columns: 76px 1fr auto; gap: 12px; padding-bottom: 14px; border-bottom: 1px solid var(--rule); }
+.ci-img { position: relative; width: 76px; height: 76px; background: var(--white); border: 1px solid var(--rule); overflow: hidden; }
+.ci-img img { width: 100%; height: 100%; object-fit: cover; }
+.ci-name { margin: 0; font-weight: 700; }
+.ci-meta { margin: 2px 0 8px; color: var(--ink-2); font-size: .82rem; }
+.ci-row { display: flex; gap: 10px; align-items: center; }
+.ci-qty { display: inline-flex; align-items: center; border: 1px solid var(--ink); }
+.ci-qty button { width: 44px; height: 44px; border: 0; background: none; font-size: 1.05rem; }
+.ci-qty output { min-width: 18px; text-align: center; font-variant-numeric: tabular-nums; }
+.ci-remove { border: 0; background: none; color: var(--ink-2); text-decoration: underline; text-underline-offset: 3px; min-height: 44px; font-size: .84rem; }
+.ci-price { margin: 0; font-weight: 700; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.sums { margin: 18px 0; display: grid; gap: 8px; font-variant-numeric: tabular-nums; }
+.sums div { display: flex; justify-content: space-between; } .sums dd { margin: 0; } .sums dt { color: var(--ink-2); }
+.sums .grand { padding-top: 10px; border-top: 1px solid var(--ink); font-weight: 700; font-size: 1.15rem; } .sums .grand dt { color: var(--ink); }
+.form { display: grid; gap: 14px; }
+.form label { display: block; font-size: .86rem; font-weight: 700; margin-bottom: 5px; }
+.form input, .form select, .form textarea { width: 100%; min-height: 50px; padding: 10px 14px; border: 1px solid var(--ink); background: var(--white); }
+.form textarea { min-height: 80px; resize: vertical; }
+.form [aria-invalid="true"] { border-color: var(--red); box-shadow: inset 0 0 0 1px var(--red); }
+.form input[type="tel"] { direction: ltr; }
+[dir="rtl"] .form input[type="tel"] { text-align: right; }
+::placeholder { color: color-mix(in srgb, var(--ink) 55%, var(--white)); opacity: 1; }
+[data-pay-list] { display: grid; border: 1px solid var(--ink); }
+.pay { display: flex; gap: 12px; padding: 14px; cursor: pointer; background: var(--white); }
+.pay + .pay { border-top: 1px solid var(--rule); }
+.pay:has(input:checked) { background: var(--paper-2); }
+.pay input { width: 18px; height: 18px; min-height: 0; margin: 4px 0 0; accent-color: var(--red); }
+.pay-body { display: grid; } .pay-name { font-weight: 700; } .pay-note { color: var(--ink-2); font-size: .84rem; }
+.fee-hint { color: var(--ink-2); font-size: .84rem; margin: -6px 0 0; }
+.link-btn { border: 0; background: none; color: var(--ink-2); text-decoration: underline; min-height: 44px; }
+.ok { text-align: center; padding: 40px 0; display: grid; gap: 12px; justify-items: center; }
+.ok svg { width: 70px; height: 72px; color: var(--red); }
+.ok h3 { font: 700 1.9rem/1.2 var(--f-display); margin: 0; }
+.toast { position: fixed; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); inset-inline: 0; margin: 0 auto; width: max-content; max-width: calc(100% - 32px); z-index: 60; background: var(--ink); color: var(--paper); padding: 12px 18px; transform: translateY(20px); opacity: 0; transition: .3s; pointer-events: none; }
+.toast.is-on { transform: none; opacity: 1; }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } .dims .draw { stroke-dashoffset: 0; } .dim { opacity: 1; } }
+</style>
+
+<p class="demo" data-t="demo_note"></p>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Asala"><span id="mark-top"></span><img src="brand/wordmark-dark.png" alt="ASALA"></a>
+    <nav class="nav" aria-label="Main">
+      <button type="button" data-go="hero" data-t="n_dome"></button>
+      <button type="button" data-go="sheets" data-t="n_shop"></button>
+      <button type="button" data-go="process" data-t="n_process"></button>
+      <button type="button" data-go="founder" data-t="n_founder"></button>
+    </nav>
+    <div class="tools">
+      <button class="lang" type="button" data-lang-toggle data-t="lang_switch"></button>
+      <button class="icon" type="button" data-open-cart data-ta="cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="count" data-cart-count hidden>0</span></button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" id="hero">
+    <div class="wrap">
+      <div class="sheet-frame">
+        <div class="drawing">
+          <div class="label"><span class="mono">A-01 · FRONT VIEW</span><span data-t="front_view"></span></div>
+          <div class="plate">
+            <div class="callout"><div class="bubble"><img id="detail" src="brand/pat-geometric.jpg" alt=""></div><span class="mono" data-t="detail_a"></span></div>
+            <div class="render">
+              <img id="render" src="brand/dome-render.jpg" alt="">
+              <svg class="dims" viewBox="0 0 100 120" preserveAspectRatio="none" aria-hidden="true">
+                <line class="draw" x1="4" y1="113" x2="96" y2="113"/>
+                <line class="draw" x1="4" y1="108" x2="4" y2="117"/><line class="draw" x1="96" y1="108" x2="96" y2="117"/>
+                <line class="draw" x1="-6" y1="6" x2="-6" y2="104"/>
+                <line class="draw" x1="-10" y1="6" x2="-2" y2="6"/><line class="draw" x1="-10" y1="104" x2="-2" y2="104"/>
+                <path class="draw" d="M30 84 L18 96"/>
+              </svg>
+              <span class="dim fade dim-w">24.00 mm</span>
+              <span class="dim fade dim-h">28.00 mm</span>
+              <span class="dim fade dim-2">Ø 2.00 RINGS</span>
+            </div>
+          </div>
+          <div class="notes-row"><span><b>01</b> <span data-t="note1"></span></span><span><b>02</b> <span data-t="note2"></span></span><span><b>03</b> <span data-t="note3"></span></span></div>
+          <div class="titleblock">
+            <div><small data-t="tb_project"></small><b data-t="dome_name"></b></div>
+            <div><small data-t="tb_coll"></small><b data-t="dome_coll"></b></div>
+            <div><small data-t="tb_scale"></small><b class="mono" style="font-size:.85rem">24 × 28 mm</b></div>
+            <div><small data-t="tb_by"></small><b data-t="tb_by_v"></b></div>
+          </div>
+        </div>
+        <div class="config">
+          <h1><span data-t="h1a"></span> <em data-t="h1b"></em></h1>
+          <p class="lead" data-t="lead"></p>
+          <div>
+            <p class="step-lbl"><span class="mono">01</span><span data-t="pick_pattern"></span></p>
+            <div class="patterns" role="radiogroup" aria-label="Pattern" id="patterns"></div>
+          </div>
+          <div>
+            <p class="step-lbl"><span class="mono">02</span><span data-t="pick_mat"></span></p>
+            <div class="mats" role="radiogroup" aria-label="Material" id="mats"></div>
+          </div>
+          <div class="buy">
+            <img class="mini" id="mini" src="brand/dome-render.jpg" alt="">
+            <span class="total" id="total"></span>
+            <button class="btn" type="button" id="add-dome" data-t="add"></button>
+            <button class="btn ghost" type="button" data-open="dome" data-t="see_photos"></button>
+          </div>
+          <p class="small-note" data-t="cod_note"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="process" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head"><h2 data-t="process_h"></h2><p data-t="process_p"></p></div>
+      <ol class="process">
+        <li><div class="ph"><img src="brand/sketch-dome.jpg" alt=""></div><div class="cap"><span class="mono">01</span><b data-t="p1"></b><span data-t="p1d"></span></div></li>
+        <li><div class="ph"><img src="brand/sketch-plan.jpg" alt=""></div><div class="cap"><span class="mono">02</span><b data-t="p2"></b><span data-t="p2d"></span></div></li>
+        <li><div class="ph"><img src="brand/clay-balls.jpg" alt=""></div><div class="cap"><span class="mono">03</span><b data-t="p3"></b><span data-t="p3d"></span></div></li>
+        <li><div class="ph"><img src="brand/clay-cut.jpg" alt=""></div><div class="cap"><span class="mono">04</span><b data-t="p4"></b><span data-t="p4d"></span></div></li>
+        <li><div class="ph"><img src="brand/dome-teal.jpg" alt=""></div><div class="cap"><span class="mono">05</span><b data-t="p5"></b><span data-t="p5d"></span></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec" id="sheets" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2 data-t="sheets_h"></h2>
+        <div class="filters" role="group" aria-label="Collections" id="filters"></div>
+      </div>
+      <div class="sheets" id="grid"></div>
+    </div>
+  </section>
+
+  <section class="sec" style="padding-top:0">
+    <div class="wrap">
+      <div class="sec-head"><h2 data-t="sketch_h"></h2><p data-t="sketch_p"></p></div>
+      <div class="sketches" id="sketches"></div>
+    </div>
+  </section>
+
+  <section class="sec" id="founder" style="padding-top:0">
+    <div class="wrap">
+      <div class="founder">
+        <div class="ph"><img src="brand/founder.jpg" alt=""></div>
+        <div class="txt">
+          <blockquote data-t="quote"></blockquote>
+          <p class="who"><b>Amna Utt</b> · <span data-t="who"></span></p>
+          <ul class="facts">
+            <li><b data-t="f1"></b><span data-t="f1d"></span></li>
+            <li><b data-t="f2"></b><span data-t="f2d"></span></li>
+            <li><b data-t="f3"></b><span data-t="f3d"></span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Asala"><span id="mark-foot"></span><img src="brand/wordmark-dark.png" alt="ASALA"></a>
+    <p data-t="foot"></p>
+    <p><span data-t="wa"></span> <span class="val">059 000 0000</span></p>
+  </div>
+</footer>
+
+<div class="psheet" data-sheet hidden role="dialog" aria-modal="true" aria-labelledby="sheet-title">
+  <div class="p-card">
+    <button class="x" type="button" data-close data-ta="close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    <div class="p-art"><img data-sheet-photo alt="" hidden><canvas data-sheet-canvas></canvas><div class="p-thumbs" id="thumbs"></div></div>
+    <div class="p-info">
+      <p class="cat" data-sheet-cat></p>
+      <h2 id="sheet-title" data-sheet-name></h2>
+      <p class="price" data-sheet-price></p>
+      <p class="desc" data-sheet-desc></p>
+      <fieldset id="tone-field"><legend data-t="tone"></legend><div data-sheet-tones role="radiogroup"></div></fieldset>
+      <div data-sheet-custom hidden><input data-sheet-text><p class="err" data-sheet-err></p></div>
+      <button class="btn full" type="button" data-sheet-add data-t="add"></button>
+      <button class="btn ghost full" type="button" id="to-config" hidden data-t="configure"></button>
+    </div>
+  </div>
+</div>
+
+<div class="drawer" data-drawer hidden role="dialog" aria-modal="true" aria-labelledby="bag-title">
+  <div class="d-card" data-scroll>
+    <div class="d-head"><h2 id="bag-title" data-t="cart"></h2><span data-count-label></span>
+      <button class="x" type="button" data-close data-ta="close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+    <section data-step="bag">
+      <div class="empty" data-cart-empty><p data-t="bag_empty"></p><button class="btn" type="button" data-close data-t="continue"></button></div>
+      <div data-cart-filled hidden>
+        <ul data-cart-list></ul>
+        <dl class="sums"><div class="grand"><dt data-t="subtotal"></dt><dd data-subtotal></dd></div></dl>
+        <button class="btn full" type="button" data-goto="checkout" data-t="checkout"></button>
+      </div>
+    </section>
+    <section data-step="checkout" hidden>
+      <form class="form" data-checkout novalidate>
+        <div><label for="f-name" data-t="f_name"></label><input id="f-name" name="name" autocomplete="name"><p class="err" data-err="name"></p></div>
+        <div><label for="f-phone" data-t="f_phone"></label><input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" data-tp="ph_phone"><p class="err" data-err="phone"></p></div>
+        <div><label for="f-city" data-t="f_city"></label><select id="f-city" name="city" data-city-select></select><p class="err" data-err="city"></p></div>
+        <div><label for="f-address" data-t="f_address"></label><textarea id="f-address" name="address" data-tp="ph_address"></textarea><p class="err" data-err="address"></p></div>
+        <fieldset><legend data-t="f_pay"></legend><div data-pay-list></div></fieldset>
+        <dl class="sums">
+          <div><dt data-t="subtotal"></dt><dd data-subtotal></dd></div>
+          <div><dt data-t="delivery"></dt><dd data-fee></dd></div>
+          <div class="grand"><dt data-t="total"></dt><dd data-total></dd></div>
+        </dl>
+        <p class="fee-hint" data-fee-hint data-t="choose_city"></p>
+        <button class="btn full" type="submit" data-t="place_order"></button>
+        <button class="link-btn" type="button" data-goto="bag" data-t="back_to_bag"></button>
+      </form>
+    </section>
+    <section data-step="confirm" hidden>
+      <div class="ok">
+        <span id="mark-ok"></span>
+        <h3 data-t="ok_title"></h3>
+        <p><span data-t="ok_num"></span>: <b data-confirm-num></b></p>
+        <p data-confirm-body></p>
+        <button class="btn" type="button" data-shop-again data-t="ok_again"></button>
+      </div>
+    </section>
+  </div>
+</div>
+<div class="toast" data-toast role="status" aria-live="polite"></div>
+
+<script src="store.js"></script>
+<script src="brand/asala-catalog.js"></script>
+<script>
+(function () {
+  var S = window.Store, A = window.ASALA, pattern = 'geometric', mat = 'A', coll = 'all';
+  A.install(S);
+  ['mark-top', 'mark-foot', 'mark-ok'].forEach(function (id) { document.getElementById(id).innerHTML = A.MARK; });
+  S.$$('#mark-top svg, #mark-foot svg').forEach(function (s) { s.style.cssText = 'width:34px;height:36px;display:block'; });
+
+  function L(o) { return o[S.lang()]; }
+  function matObj() { return A.MATERIALS.filter(function (m) { return m.id === mat; })[0]; }
+  function patObj() { return A.PATTERNS.filter(function (p) { return p.id === pattern; })[0]; }
+  function renderConfig() {
+    document.getElementById('patterns').innerHTML = A.PATTERNS.map(function (p) {
+      return '<button class="pat" type="button" role="radio" data-pat="' + p.id + '" aria-checked="' + (p.id === pattern) + '"><img src="' + p.img + '" alt="">' + S.esc(L(p)) + '</button>';
+    }).join('');
+    document.getElementById('mats').innerHTML = A.MATERIALS.map(function (m) {
+      return '<button class="mat" type="button" role="radio" data-mat="' + m.id + '" aria-checked="' + (m.id === mat) + '"><span class="code">' + m.id + '</span><span><b>' + S.esc(L(m)) + '</b><small>' + S.esc(S.lang() === 'ar' ? m.nAr : m.nEn) + '</small></span><span class="p">' + S.money(m.price) + '</span></button>';
+    }).join('');
+    updateConfig();
+  }
+  function updateConfig() {
+    var m = matObj();
+    document.getElementById('total').textContent = S.money(m.price);
+    var src = pattern === 'geometric' ? 'brand/dome-render.jpg' : patObj().img, tint = m.tone === 'silver' ? 'grayscale(1) brightness(1.08) contrast(1.05)' : 'none';
+    document.getElementById('detail').src = patObj().img;
+    var r = document.getElementById('render'); r.src = src; r.style.filter = tint;
+    var mini = document.getElementById('mini'); mini.src = src; mini.style.filter = tint; mini.alt = L(patObj()) + ' · ' + L(m);
+    S.$$('[data-pat]').forEach(function (b) { b.setAttribute('aria-checked', String(b.getAttribute('data-pat') === pattern)); });
+    S.$$('[data-mat]').forEach(function (b) { b.setAttribute('aria-checked', String(b.getAttribute('data-mat') === mat)); });
+  }
+  function sheetCard(p, i) {
+    var img = p.cutout ? '<img class="cut" src="' + p.photo + '" alt="">' : '<img src="' + p.photo + '" alt="">';
+    var alt = p.alts && p.alts[0] ? '<img class="alt" src="' + p.alts[0] + '" alt="">' : '';
+    var c = A.COLLECTIONS[p.coll];
+    return '<article class="sheet-card"><div class="ph">' + img + alt + '<span class="no mono">A-' + String(i + 2).padStart(2, '0') + '</span>' + (p.madeToOrder ? '<span class="new">' + S.esc(S.t('mto')) + '</span>' : p.isNew ? '<span class="new">' + S.esc(S.t('new')) + '</span>' : '') + '</div>' +
+      '<button class="open" type="button" data-open="' + p.id + '" aria-label="' + S.esc(S.t('view') + ': ' + S.name(p)) + '"></button>' +
+      '<div class="tb"><div><b>' + S.esc(S.name(p)) + '</b><small>' + S.esc(L(c)) + '</small></div><div><span class="price">' + (p.configurable ? S.esc(S.t('from')) + ' ' : '') + S.money(p.price) + '</span>' +
+      (p.configurable ? '<button class="add" type="button" data-go="hero">' + S.esc(S.t('configure_short')) + '</button>' : '<button class="add" type="button" data-add="' + p.id + '" aria-label="' + S.esc(S.t('add') + ': ' + S.name(p)) + '">' + S.esc(S.t('add_short')) + '</button>') +
+      '</div></div></article>';
+  }
+  function renderGrid() {
+    document.getElementById('filters').innerHTML = ['all', 'dome', 'najma'].map(function (k) {
+      return '<button type="button" data-coll="' + k + '" aria-pressed="' + (k === coll) + '">' + S.esc(k === 'all' ? S.t('all') : L(A.COLLECTIONS[k])) + '</button>';
+    }).join('');
+    var items = S.PRODUCTS.filter(function (p) { return coll === 'all' || p.coll === coll; });
+    document.getElementById('grid').innerHTML = items.map(sheetCard).join('');
+  }
+  function render() {
+    renderConfig(); renderGrid();
+    document.getElementById('sketches').innerHTML = A.SKETCHBOOK.map(function (s) {
+      return '<figure class="sketch" style="margin:0"><img src="' + s.img + '" alt=""><b>' + S.esc(L(s)) + '</b><span>' + S.esc(S.t('in_design')) + '</span></figure>';
+    }).join('');
+  }
+
+  document.addEventListener('click', function (e) {
+    var b;
+    if ((b = e.target.closest('[data-pat]'))) { pattern = b.getAttribute('data-pat'); updateConfig(); return; }
+    if ((b = e.target.closest('[data-mat]'))) { mat = b.getAttribute('data-mat'); updateConfig(); return; }
+    if ((b = e.target.closest('[data-coll]'))) { coll = b.getAttribute('data-coll'); renderGrid(); return; }
+    if ((b = e.target.closest('[data-go]'))) { var t = document.getElementById(b.getAttribute('data-go')); if (t) t.scrollIntoView({ behavior: 'smooth' }); return; }
+    if ((b = e.target.closest('[data-thumb]'))) { document.querySelector('[data-sheet-photo]').src = b.getAttribute('data-thumb'); S.$$('[data-thumb]').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); }); return; }
+    if (e.target.closest('#add-dome')) {
+      var m = matObj(), p = patObj();
+      S.add('dome', m.tone, '', { meta: L(p) + ' · ' + L(m), photo: pattern === 'geometric' ? 'brand/dome-render.jpg' : p.img, price: m.price, noTone: true }); return;
+    }
+    if (e.target.closest('#to-config')) { document.querySelector('[data-sheet] [data-close]').click(); document.getElementById('hero').scrollIntoView({ behavior: 'smooth' }); }
+  });
+  // arrow keys inside the pattern and material groups
+  document.addEventListener('keydown', function (e) {
+    var r = e.target.closest && e.target.closest('#patterns [role="radio"], #mats [role="radio"]'); if (!r) return;
+    if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].indexOf(e.key) < 0) return;
+    e.preventDefault(); var all = S.$$('[role="radio"]', r.parentElement), i = all.indexOf(r), d = (e.key === 'ArrowDown' || e.key === 'ArrowLeft') ? 1 : -1;
+    if (S.lang() !== 'ar' && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')) d = -d;
+    var n = all[(i + d + all.length) % all.length]; n.focus(); n.click();
+  });
+  S.on('sheet', function (d) {
+    var p = d.product, photos = [p.photo].concat(p.alts || []);
+    document.getElementById('thumbs').innerHTML = photos.length > 1 ? photos.map(function (src, i) { return '<button type="button" data-thumb="' + src + '" aria-pressed="' + (i === 0) + '" aria-label="' + (i + 1) + '"><img src="' + src + '" alt=""></button>'; }).join('') : '';
+    document.getElementById('tone-field').hidden = p.tones.length < 2 || p.configurable;
+    document.querySelector('[data-sheet-add]').hidden = !!p.configurable;
+    document.getElementById('to-config').hidden = !p.configurable;
+    var ph = document.querySelector('[data-sheet-photo]'); ph.style.objectFit = p.cutout ? 'contain' : 'cover'; ph.style.background = p.cutout ? 'var(--paper)' : '';
+  });
+
+  S.boot({
+    render: render, orderPrefix: 'AS-', cartKey: 'asala-atelier',
+    strings: {
+      ar: {
+        demo_note: 'نموذج تصميم لمتجر أصالة. الصور والرسومات من دليل الهوية، والأسعار ورسوم التوصيل مؤقتة.',
+        n_dome: 'قبة الصخرة', n_shop: 'القطع', n_process: 'من الرسم إلى القطعة', n_founder: 'المصممة',
+        front_view: 'الواجهة الأمامية', detail_a: 'DETAIL A', note1: 'قص بالليزر لكل الفراغات الداخلية', note2: 'تلميع CNC للحواف', note3: 'حلقات وصل قطر 2 مم',
+        tb_project: 'المشروع', dome_name: 'أقراط قبة الصخرة', tb_coll: 'المجموعة', dome_coll: 'القبة', tb_scale: 'المقاس', tb_by: 'التصميم', tb_by_v: 'آمنة · أصالة',
+        h1a: 'قبة الصخرة،', h1b: 'مرسومة لتُلبس.', lead: 'صمّمتها معمارية: قبة مخرّمة فوق أربعة أقواس وثلاث معيّنات متدلية. اختاري النقش والمعدن، وتصلك القطعة بالمقاس الذي رُسمت به.',
+        pick_pattern: 'اختاري نقش القبة', pick_mat: 'اختاري المعدن', add: 'أضيفي إلى السلة', see_photos: 'صور القطعة', cod_note: 'تُصنع حسب الطلب · الدفع عند الاستلام · المعاينة بالفضي تقريبية · الأسعار مؤقتة', mto: 'حسب الطلب',
+        process_h: 'من الرسم إلى القطعة', process_p: 'كل قطعة تبدأ بخط على ورق، ثم مخطط، ثم طين يُقصّ بقوالب مطبوعة.',
+        p1: 'الرسم', p1d: 'قبة الصخرة بالقلم، من الذاكرة.', p2: 'المخطط', p2d: 'تقسيم القبة والأقواس إلى قطع.', p3: 'الطين', p3d: 'ألوان الطين قبل التشكيل.', p4: 'القص', p4d: 'قوالب مطبوعة بالأبعاد.', p5: 'القطعة', p5d: 'أقراط القبة الفيروزية.',
+        sheets_h: 'لوحات القطع', all: 'الكل', from: 'من', configure_short: 'صمّميها', add_short: 'أضيفي', configure: 'اختاري النقش والمعدن',
+        sketch_h: 'على طاولة الرسم', sketch_p: 'تصاميم من دفتر أصالة، لم تُنفَّذ بعد.', in_design: 'قيد التصميم',
+        quote: 'أن تمتلك المرأة قطعة فريدة وذات قيمة، تُحفظ معها أو مع من تحب، قيمتها تأتي من العمارة الإسلامية القديمة.', vision: 'رؤية أصالة',
+        who: 'معمارية، مصممة، ومؤسسة أصالة', f1: 'العمارة', f1d: 'خلفية أكاديمية ومهنية', f2: 'الطين والمعدن', f2d: 'طين البوليمر والنحاس والفضة', f3: 'القدس', f3d: 'أول مصدر للإلهام',
+        foot: 'أصالة · قطع فريدة بروح شرقية. نموذج تصميم.', wa: 'واتساب'
+      },
+      en: {
+        demo_note: 'Design demo for Asala. Photos and drawings from the brand book; prices and delivery fees are placeholders.',
+        n_dome: 'Dome of the Rock', n_shop: 'Pieces', n_process: 'Sketch to piece', n_founder: 'The designer',
+        front_view: 'Front view', detail_a: 'DETAIL A', note1: 'All inner voids laser cut', note2: 'CNC polished edges', note3: '2 mm jump rings',
+        tb_project: 'Project', dome_name: 'Dome of the Rock earrings', tb_coll: 'Collection', dome_coll: 'The Dome', tb_scale: 'Size', tb_by: 'Design', tb_by_v: 'Amna · Asala',
+        h1a: 'The Dome of the Rock,', h1b: 'drawn to be worn.', lead: 'Designed by an architect: a pierced dome over four arches and three hanging diamonds. Choose the pattern and the metal; it arrives at the size it was drawn.',
+        pick_pattern: 'Choose the dome pattern', pick_mat: 'Choose the metal', add: 'Add to bag', see_photos: 'Photos', cod_note: 'Made to order · cash on delivery · silver preview is approximate · prices are placeholders', mto: 'Made to order',
+        process_h: 'From sketch to piece', process_p: 'Every piece starts as a line on paper, then a plan, then clay cut with printed moulds.',
+        p1: 'The sketch', p1d: 'The Dome of the Rock in pencil, from memory.', p2: 'The plan', p2d: 'Dome and arches split into parts.', p3: 'The clay', p3d: 'Clay colours before shaping.', p4: 'The cut', p4d: 'Moulds printed to size.', p5: 'The piece', p5d: 'Turquoise dome earrings.',
+        sheets_h: 'The sheets', all: 'All', from: 'from', configure_short: 'Design it', add_short: 'Add', configure: 'Choose pattern and metal',
+        sketch_h: 'On the drawing table', sketch_p: 'Designs from the Asala sketchbook, not made yet.', in_design: 'In design',
+        quote: 'To give women a piece that is unique and of real value, kept with them or with someone they love, its value drawn from ancient Islamic architecture.', vision: 'The Asala vision',
+        who: 'architect, designer and founder of Asala', f1: 'Architecture', f1d: 'Academic and professional', f2: 'Clay & metal', f2d: 'Polymer clay, brass and silver', f3: 'Jerusalem', f3d: 'The first inspiration',
+        foot: 'Asala · unique pieces with an oriental feel. Design demo.', wa: 'WhatsApp'
+      }
+    }
+  });
+})();
+</script>
+
+</body>
+</html>

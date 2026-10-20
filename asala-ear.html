@@ -1,0 +1,965 @@
+<!doctype html>
+<html lang="ar">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Asala Ear Edit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alexandria:wght@200;300;400;500&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&display=swap">
+<style>
+/* Layout: an earring specialist that sells by the look on the ear. Edge-to-edge ear photography with red hotspots,
+   wide light display type, soft rounded frames, a style finder and a filterable grid. Ivory, sand and charcoal grounds;
+   red is reserved for the hotspots, the active choice and the one badge. */
+:root {
+  --ivory: #F5F1E9; --sand: #EAE2D4; --sand-2: #DFD4C1; --paper: #FFFCF6;
+  --char: #33342F; --char-2: #5A5A53; --char-3: #2A2B27; --line: rgba(51,52,47,.15); --line-2: rgba(51,52,47,.32);
+  --red: #C6383C; --red-ink: #A52A2E; --gold: #B08A3E;
+  --on-dark: #F5F1E9; --on-dark-2: #CFC9BD; --line-dark: rgba(245,241,233,.18);
+  --f-display: "Alexandria", "IBM Plex Sans Arabic", sans-serif; --f-body: "IBM Plex Sans Arabic", "Segoe UI", Tahoma, sans-serif;
+  --gutter: clamp(16px, 4vw, 56px);
+  --r-lg: 22px; --r-md: 14px; --r-sm: 10px;
+  --shadow-1: 0 2px 10px rgba(51,52,47,.22);
+  --shadow-2: 0 16px 40px rgba(51,52,47,.24);
+  --ease: cubic-bezier(.16,1,.3,1);
+  --jewel-shadow: rgba(51,52,47,.2);
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html.panel-open { overflow: hidden; }
+body { margin: 0; background: var(--ivory); color: var(--char); font: 400 1rem/1.75 var(--f-body); caret-color: var(--red); accent-color: var(--red); }
+::selection { background: var(--red); color: var(--paper); }
+:focus-visible { outline: 2px solid var(--red-ink); outline-offset: 3px; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+img { display: block; max-width: 100%; }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 300; margin: 0; text-wrap: balance; }
+html[lang="en"] h1, html[lang="en"] h2 { letter-spacing: -.02em; }
+p { margin: 0; }
+.wrap { max-width: 1320px; margin: 0 auto; padding-inline: var(--gutter); }
+.sr { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; margin: -1px; padding: 0; border: 0; }
+section[id] { scroll-margin-top: 124px; }
+html { scrollbar-color: var(--char-2) var(--sand); }
+
+.demo { background: var(--char); color: var(--on-dark); text-align: center; font-size: .78rem; line-height: 1.5; padding: 7px var(--gutter); }
+
+/* ---------- header ---------- */
+.top { position: sticky; top: 0; z-index: 30; background: color-mix(in srgb, var(--ivory) 94%, transparent); backdrop-filter: saturate(1.2) blur(8px); border-bottom: 1px solid var(--line); }
+.top-row { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; min-height: 64px; }
+.top-row > :last-child { justify-self: end; }
+.brand { display: inline-flex; align-items: center; gap: 10px; min-height: 44px; color: var(--char); text-decoration: none; }
+.brand .mk svg { width: 26px; height: 28px; display: block; }
+.brand img { height: 14px; width: auto; }
+.lang { min-height: 44px; padding: 0 16px; border: 1px solid var(--line-2); border-radius: 999px; background: transparent; font-size: .85rem; }
+.lang:hover { border-color: var(--char); }
+.bag { position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; min-width: 44px; padding: 0 6px 0 10px; border: 0; background: none; font-size: .9rem; }
+.bag svg { width: 22px; height: 22px; }
+.bag-lbl { display: none; }
+.count { min-width: 20px; height: 20px; padding: 0 5px; border-radius: 10px; background: var(--red); color: var(--paper); font-size: .7rem; display: grid; place-items: center; font-variant-numeric: tabular-nums; }
+@media (min-width: 720px) { .bag-lbl { display: inline; } }
+.styles-nav { display: flex; justify-content: center; align-items: center; gap: 2px; overflow-x: auto; scrollbar-width: none; padding-bottom: 4px; }
+.styles-nav::-webkit-scrollbar { display: none; }
+.styles-nav button { flex: none; min-height: 44px; min-width: 44px; padding: 0 14px; border: 0; background: none; color: var(--char-2); font-size: .92rem; white-space: nowrap; border-radius: 999px; }
+.styles-nav button:hover { color: var(--char); background: var(--sand); }
+.styles-nav .sep { flex: none; width: 1px; height: 18px; background: var(--line-2); margin-inline: 8px; }
+.styles-nav .feat { color: var(--char); font-weight: 500; }
+@media (max-width: 760px) { .styles-nav { justify-content: flex-start; margin-inline: calc(-1 * var(--gutter)); padding-inline: 10px; } }
+
+/* ---------- shoppable frames + hotspots ---------- */
+.frame { position: relative; overflow: hidden; background: var(--sand); }
+.frame > img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; }
+.spot { position: absolute; z-index: 2; width: 44px; height: 44px; margin: -22px 0 0 -22px; padding: 0; border: 0; background: none; display: grid; place-items: center; border-radius: 50%; }
+.spot::before { content: ""; position: absolute; inset: 7px; border-radius: 50%; border: 2px solid var(--paper); opacity: 0; animation: ring 2.6s var(--ease) infinite; }
+.spot .dot { position: relative; width: 30px; height: 30px; border-radius: 50%; background: var(--red); box-shadow: 0 0 0 2px var(--paper), var(--shadow-1); transition: transform .35s var(--ease), background .2s; }
+.spot .dot::before, .spot .dot::after { content: ""; position: absolute; inset: 0; margin: auto; width: 12px; height: 2px; border-radius: 1px; background: var(--paper); }
+.spot .dot::after { transform: rotate(90deg); }
+.spot:hover .dot { transform: scale(1.1); }
+.spot[aria-expanded="true"] .dot { transform: rotate(45deg); background: var(--char); }
+.spot[aria-expanded="true"]::before { animation: none; }
+.spot:focus-visible { outline: 2px solid var(--paper); outline-offset: 0; box-shadow: 0 0 0 4px var(--char); }
+.spot-tag { position: absolute; left: 40px; top: 50%; transform: translateY(-50%); white-space: nowrap; background: var(--paper); color: var(--char); font-size: .8rem; line-height: 1.3; padding: 7px 12px; border-radius: 999px; box-shadow: var(--shadow-1); pointer-events: none; display: none; }
+.spot-tag.before { left: auto; right: 40px; }
+.spot[aria-expanded="true"] .spot-tag { display: none; }
+.spot-tag b { font-weight: 600; font-variant-numeric: tabular-nums; }
+@keyframes ring { 0% { transform: scale(.85); opacity: .9; } 70%, 100% { transform: scale(1.6); opacity: 0; } }
+.pop { position: absolute; z-index: 3; width: 300px; max-width: calc(100% - 20px); background: var(--paper); color: var(--char); border-radius: var(--r-md); box-shadow: var(--shadow-2); padding: 12px; display: grid; gap: 10px; animation: popin .35s var(--ease); }
+.pop.inline { position: relative; width: auto; max-width: none; box-shadow: 0 0 0 1px var(--line), 0 8px 24px rgba(51,52,47,.12); }
+.hero .pop.inline { margin: 12px var(--gutter) 0; }
+@keyframes popin { from { opacity: 0; transform: translateY(6px) scale(.98); } }
+.pop-top { display: grid; grid-template-columns: 64px 1fr; gap: 12px; align-items: center; }
+.pop-top img { width: 64px; height: 64px; object-fit: cover; border-radius: var(--r-sm); background: var(--sand); }
+.pop-top img.cut { object-fit: contain; padding: 4px; }
+.pop b { display: block; font-weight: 600; line-height: 1.35; }
+.pop small { display: block; color: var(--char-2); font-size: .8rem; line-height: 1.4; }
+.pop .pp { display: block; margin-top: 2px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.pop-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+
+/* ---------- buttons ---------- */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 24px; border: 0; border-radius: 999px; background: var(--char); color: var(--paper); font-weight: 500; text-decoration: none; transition: background .2s, color .2s, box-shadow .2s; }
+.btn:hover { background: var(--red); }
+.btn.ghost { background: transparent; color: var(--char); box-shadow: inset 0 0 0 1px var(--line-2); }
+.btn.ghost:hover { box-shadow: inset 0 0 0 1px var(--char); background: var(--paper); }
+.btn.sm { min-height: 44px; padding: 0 16px; font-size: .88rem; }
+.btn.full { width: 100%; }
+.link-btn { border: 0; background: none; padding: 0 4px; min-height: 44px; color: var(--char-2); text-decoration: underline; text-underline-offset: 4px; text-decoration-color: var(--line-2); }
+.link-btn:hover { color: var(--char); text-decoration-color: var(--red); }
+
+/* ---------- hero ---------- */
+@media (min-width: 861px) {
+  .hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; max-width: 1440px; margin: 0 auto; }
+  .hero .hero-frame { aspect-ratio: 4 / 5 !important; max-height: 84vh !important; }
+  .hero .hero-copy { grid-template-columns: 1fr !important; align-items: start; }
+}
+.hero-frame { aspect-ratio: 1584 / 624; max-height: 74vh; min-height: 340px; width: 100%; }
+.hero-frame > img { object-position: 50% 45%; }
+.hero-copy { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 24px 56px; align-items: end; padding-block: clamp(28px, 4vw, 52px) clamp(48px, 7vw, 96px); }
+.hero h1 { font-size: clamp(2.5rem, 6.4vw, 5.4rem); line-height: 1.12; font-weight: 200; }
+html[lang="en"] .hero h1 { line-height: 1.02; }
+.hero h1 span { display: block; }
+.hero h1 .accent { color: var(--red); font-weight: 300; }
+.hero-side { display: grid; gap: 22px; max-width: 46ch; }
+.hero-side p { color: var(--char-2); font-size: 1.05rem; }
+.ctas { display: flex; flex-wrap: wrap; gap: 10px; }
+@media (min-width: 900px) { .spot-tag { display: block; } .looks .spot-tag { display: none; } }
+@media (max-width: 860px) {
+  .hero-frame { aspect-ratio: 4 / 5; max-height: 78vh; }
+  .hero-frame > img { object-position: 45% 50%; }
+  .hero-copy { grid-template-columns: 1fr; }
+}
+
+/* ---------- section heads ---------- */
+.sec { padding-block: clamp(56px, 8vw, 112px); }
+.sec-head { display: flex; justify-content: space-between; align-items: end; gap: 12px 32px; flex-wrap: wrap; margin-bottom: clamp(24px, 3vw, 40px); }
+.sec-head h2 { font-size: clamp(2rem, 4.2vw, 3.4rem); line-height: 1.15; }
+.sec-head p { color: var(--char-2); max-width: 52ch; }
+
+/* ---------- shop the look ---------- */
+.looks { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr); gap: 20px; align-items: end; }
+.look { margin: 0; display: grid; gap: 12px; }
+.look .frame { border-radius: var(--r-lg); aspect-ratio: 3 / 4; }
+.look:first-child .frame { aspect-ratio: 4 / 5; }
+.look figcaption { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding-inline: 4px; }
+.cap-name { border: 0; background: none; padding: 0; min-height: 44px; text-align: start; font-weight: 500; font-size: 1rem; text-decoration: underline; text-decoration-color: transparent; text-underline-offset: 5px; transition: text-decoration-color .2s; }
+.cap-name:hover { text-decoration-color: var(--red); }
+.cap-meta { color: var(--char-2); font-size: .85rem; white-space: nowrap; font-variant-numeric: tabular-nums; }
+@media (max-width: 860px) {
+  .looks { display: flex; align-items: flex-start; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px; margin-inline: calc(-1 * var(--gutter)); padding-inline: var(--gutter); scroll-padding-inline: var(--gutter); padding-bottom: 6px; scrollbar-width: none; }
+  .looks::-webkit-scrollbar { display: none; }
+  .look { flex: 0 0 80%; scroll-snap-align: start; }
+  .look .frame, .look:first-child .frame { aspect-ratio: 4 / 5; }
+}
+
+/* ---------- style finder ---------- */
+.finder { background: var(--sand); }
+.finder-grid { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(20px, 4vw, 56px); align-items: stretch; }
+.face { border-radius: var(--r-lg); background: var(--paper); display: grid; place-items: center; padding: 24px; min-height: 100%; }
+.face img { width: min(100%, 300px); height: auto; aspect-ratio: 320 / 392; object-fit: cover; object-position: 50% 0; }
+.finder-copy { display: grid; gap: 10px; margin-bottom: 26px; }
+.finder-copy h2 { font-size: clamp(2rem, 4.2vw, 3.4rem); line-height: 1.15; }
+.finder-copy p { color: var(--char-2); max-width: 50ch; }
+.quiz { background: var(--paper); border-radius: var(--r-lg); padding: clamp(20px, 3vw, 36px); display: grid; gap: 16px; align-content: start; min-height: 360px; }
+.q-of { color: var(--char-2); font-size: .85rem; font-variant-numeric: tabular-nums; }
+.q-steps { display: flex; gap: 6px; }
+.q-steps i { flex: 1; height: 3px; border-radius: 2px; background: var(--sand-2); }
+.q-steps i.on { background: var(--red); }
+.q-h { font-size: clamp(1.5rem, 2.6vw, 2.1rem); line-height: 1.3; outline: none; }
+.q-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.q-opt { display: grid; gap: 4px; align-content: start; text-align: start; min-height: 112px; padding: 18px; border: 1px solid var(--line-2); border-radius: var(--r-md); background: var(--ivory); transition: border-color .2s, background .2s, transform .3s var(--ease); }
+.q-opt b { font: 400 1.25rem/1.3 var(--f-display); }
+.q-opt span { color: var(--char-2); font-size: .88rem; line-height: 1.5; }
+.q-opt:hover { border-color: var(--char); background: var(--paper); }
+.q-opt:active { transform: scale(.985); }
+.q-opt[aria-pressed="true"] { border-color: var(--red); box-shadow: inset 0 0 0 1px var(--red); background: var(--paper); }
+.res { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.res li { display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 14px; align-items: start; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+.res li:last-child { border-bottom: 0; padding-bottom: 0; }
+.res li.first { grid-template-columns: 140px minmax(0, 1fr); }
+.res img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: var(--r-sm); background: var(--sand); }
+.res img.cut { object-fit: contain; padding: 6px; }
+.res .rank { display: inline-grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--sand); font-size: .8rem; font-weight: 600; margin-inline-end: 8px; vertical-align: 2px; font-variant-numeric: tabular-nums; }
+.res li.first .rank { background: var(--red); color: var(--paper); }
+.res .rn { font-weight: 600; }
+.res li.first .rn { font: 400 1.35rem/1.3 var(--f-display); }
+.res .why { color: var(--char); font-size: .92rem; margin-top: 4px; }
+.res .match { color: var(--char-2); font-size: .84rem; margin-top: 2px; }
+.res .act { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; margin-top: 8px; }
+.res .pr { font-weight: 600; font-variant-numeric: tabular-nums; }
+.res-foot { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; }
+.res-foot p { color: var(--char-2); font-size: .84rem; }
+@media (max-width: 860px) {
+  .finder-grid { grid-template-columns: 1fr; }
+  .face { display: none; }
+}
+@media (max-width: 480px) {
+  .q-opts { grid-template-columns: 1fr; }
+  .q-opt { min-height: 0; }
+  .res li.first { grid-template-columns: 96px minmax(0, 1fr); }
+  .res li { grid-template-columns: 72px minmax(0, 1fr); }
+}
+
+/* ---------- grid ---------- */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { min-height: 44px; padding: 0 18px; border: 1px solid var(--line-2); border-radius: 999px; background: transparent; font-size: .9rem; transition: background .2s, border-color .2s, color .2s; }
+.chip:hover { border-color: var(--char); }
+.chip[aria-pressed="true"] { background: var(--char); border-color: var(--char); color: var(--paper); }
+.chip .n { opacity: .7; margin-inline-start: 6px; font-variant-numeric: tabular-nums; }
+.grid-meta { color: var(--char-2); font-size: .88rem; margin: 18px 0 14px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 28px 20px; }
+.card { display: grid; gap: 12px; align-content: start; }
+.card .ph { position: relative; aspect-ratio: 4 / 5; border-radius: var(--r-lg); overflow: hidden; background: var(--sand); }
+.card .ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity .5s var(--ease), transform .9s var(--ease); }
+.card .ph.cut img.main { object-fit: contain; padding: 10%; }
+.card .ph .alt { opacity: 0; }
+.card.show-alt .ph .alt { opacity: 1; }
+@media (hover: hover) { .card.has-alt .ph:hover .alt { opacity: 1; } .card .ph:hover img.main { transform: scale(1.03); } }
+.card .open { position: absolute; inset: 0; z-index: 1; border: 0; background: none; padding: 0; }
+.badge { position: absolute; top: 12px; inset-inline-start: 12px; z-index: 2; background: var(--red); color: var(--paper); font-size: .76rem; font-weight: 500; line-height: 1; padding: 8px 12px; border-radius: 999px; }
+.flip { position: absolute; bottom: 10px; inset-inline-end: 10px; z-index: 2; width: 44px; height: 44px; border: 0; border-radius: 50%; background: color-mix(in srgb, var(--paper) 92%, transparent); display: grid; place-items: center; box-shadow: var(--shadow-1); }
+.flip svg { width: 20px; height: 20px; }
+.flip[aria-pressed="true"] { background: var(--char); color: var(--paper); }
+.info { display: grid; gap: 2px; padding-inline: 4px; }
+.info .nm { border: 0; background: none; padding: 0; text-align: start; font: 400 1.12rem/1.4 var(--f-display); min-height: 44px; }
+.info .nm:hover { color: var(--red-ink); }
+.info .sub { color: var(--char-2); font-size: .85rem; line-height: 1.5; }
+.info .row { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 8px; flex-wrap: wrap; }
+.info .pr { font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.info .pr small { font-weight: 400; color: var(--char-2); }
+.qadd { min-height: 44px; padding: 0 16px; border: 1px solid var(--char); border-radius: 999px; background: transparent; font-size: .86rem; font-weight: 500; white-space: nowrap; transition: background .2s, color .2s; }
+.qadd:hover { background: var(--char); color: var(--paper); }
+@media (max-width: 560px) {
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 12px; }
+  .card .ph { border-radius: var(--r-md); }
+  .badge { top: 8px; inset-inline-start: 8px; font-size: .7rem; padding: 6px 9px; }
+  .info .nm { font-size: 1rem; }
+  .info .row { margin-top: 6px; }
+  .qadd { width: 100%; }
+}
+
+/* ---------- how they're made (dark band) ---------- */
+.made { background: var(--char); color: var(--on-dark); }
+.made :focus-visible { outline-color: var(--on-dark); }
+.made .sec-head p { color: var(--on-dark-2); }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; }
+.steps li { display: grid; gap: 12px; align-content: start; }
+.steps .ph { aspect-ratio: 4 / 5; border-radius: var(--r-md); overflow: hidden; background: var(--char-3); }
+.steps img { width: 100%; height: 100%; object-fit: cover; }
+.steps b { font: 400 1.15rem/1.3 var(--f-display); display: block; }
+.steps span { color: var(--on-dark-2); font-size: .9rem; }
+.care { margin-top: clamp(36px, 5vw, 64px); padding-top: clamp(28px, 4vw, 40px); border-top: 1px solid var(--line-dark); display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 2fr); gap: 20px 48px; }
+.care h3 { font-size: clamp(1.5rem, 2.6vw, 2.1rem); line-height: 1.3; }
+.care-note { color: var(--on-dark-2); font-size: .84rem; margin-top: 8px; }
+.care ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 14px 32px; }
+.care li { display: grid; grid-template-columns: 22px 1fr; gap: 12px; align-items: start; }
+.care li svg { width: 22px; height: 23px; color: var(--gold); margin-top: 3px; }
+@media (max-width: 860px) {
+  .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 12px; }
+  .care { grid-template-columns: 1fr; }
+  .care ul { grid-template-columns: 1fr; }
+}
+
+/* ---------- gift ---------- */
+.gift-grid { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 64px); align-items: center; }
+.gift-ph { position: relative; margin: 0; border-radius: var(--r-lg); overflow: hidden; aspect-ratio: 1594 / 987; background: var(--sand); }
+.gift-ph img { width: 100%; height: 100%; object-fit: cover; }
+.gift-ph figcaption { position: absolute; bottom: 12px; inset-inline-start: 12px; background: var(--paper); color: var(--char); font-size: .8rem; line-height: 1.3; padding: 8px 14px; border-radius: 999px; box-shadow: var(--shadow-1); }
+.gift-copy { display: grid; gap: 18px; }
+.gift-copy h2 { font-size: clamp(2rem, 4.2vw, 3.4rem); line-height: 1.15; }
+.gift-copy > p { color: var(--char-2); }
+.gift-facts { margin: 0; display: grid; gap: 0; border-top: 1px solid var(--line); }
+.gift-facts div { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.gift-facts dt { color: var(--char-2); }
+.gift-facts dd { margin: 0; text-align: end; }
+.gift-facts .num { direction: ltr; unicode-bidi: isolate; font-variant-numeric: tabular-nums; }
+.seals { display: inline-flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+.seal { display: inline-flex; align-items: center; gap: 6px; font-size: .88rem; }
+.seal i { width: 16px; height: 16px; border-radius: 50%; box-shadow: inset 0 0 0 1px var(--line-2); }
+@media (max-width: 860px) { .gift-grid { grid-template-columns: 1fr; } }
+
+/* ---------- footer ---------- */
+footer { background: var(--sand); border-top: 1px solid var(--line); }
+.foot { display: grid; grid-template-columns: auto 1fr auto; gap: 16px 40px; align-items: center; padding-block: 32px; }
+.foot p { color: var(--char-2); font-size: .88rem; }
+.foot-links { display: flex; flex-wrap: wrap; gap: 0 4px; }
+.foot-links button { min-height: 44px; padding: 0 10px; border: 0; background: none; color: var(--char-2); font-size: .88rem; }
+.foot-links button:hover { color: var(--char); text-decoration: underline; text-decoration-color: var(--red); text-underline-offset: 4px; }
+@media (max-width: 860px) { .foot { grid-template-columns: 1fr; } .foot-links { margin-inline: -10px; } }
+
+/* ---------- product sheet ---------- */
+.psheet, .drawer { position: fixed; inset: 0; z-index: 50; background: rgba(42,43,39,.58); display: flex; opacity: 0; transition: opacity .25s; }
+.is-open { opacity: 1; }
+.psheet { align-items: center; justify-content: center; padding: 16px; }
+.p-card { position: relative; width: min(1000px, 100%); max-height: calc(100% - 16px); overflow: auto; display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); background: var(--ivory); border-radius: var(--r-lg); transform: translateY(14px); transition: transform .35s var(--ease); overscroll-behavior: contain; }
+.is-open .p-card { transform: none; }
+.p-gal { padding: 14px; display: grid; gap: 10px; align-content: start; }
+.p-main { position: relative; aspect-ratio: 4 / 5; border-radius: var(--r-md); overflow: hidden; background: var(--sand); }
+.p-main img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: filter .4s; }
+.p-thumbs { display: flex; gap: 8px; flex-wrap: wrap; }
+.p-thumbs button { width: 60px; height: 60px; padding: 0; border: 0; border-radius: var(--r-sm); overflow: hidden; background: var(--sand); box-shadow: inset 0 0 0 1px var(--line); }
+.p-thumbs button[aria-pressed="true"] { box-shadow: 0 0 0 2px var(--ivory), 0 0 0 4px var(--char); }
+.p-thumbs img { width: 100%; height: 100%; object-fit: cover; }
+.p-info { padding: 30px 28px 28px 14px; display: flex; flex-direction: column; gap: 16px; }
+[dir="rtl"] .p-info { padding: 30px 14px 28px 28px; }
+.p-style { color: var(--char-2); font-size: .88rem; }
+.p-info h2 { font-size: clamp(1.7rem, 3vw, 2.3rem); line-height: 1.25; margin-top: -8px; }
+.p-price { font-size: 1.35rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+.p-price small { font-size: .88rem; font-weight: 400; color: var(--char-2); margin-inline-start: 6px; }
+.p-desc { color: var(--char-2); }
+fieldset { border: 0; padding: 0; margin: 0; min-width: 0; }
+legend { font-weight: 600; margin-bottom: 8px; padding: 0; font-size: .92rem; }
+.seg { display: grid; grid-template-columns: 1fr 1fr; gap: 0; padding: 4px; border-radius: 999px; background: var(--sand); }
+.seg label { position: relative; display: grid; place-items: center; min-height: 44px; padding: 0 10px; border-radius: 999px; cursor: pointer; text-align: center; font-size: .9rem; line-height: 1.3; transition: background .2s, color .2s; }
+.seg label small { font-variant-numeric: tabular-nums; color: var(--char-2); font-size: .78rem; display: block; }
+.seg label:has(input:checked) { background: var(--char); color: var(--paper); }
+.seg label:has(input:checked) small { color: var(--on-dark-2); }
+.seg label:has(input:focus-visible), .mats label:has(input:focus-visible), .pats label:has(input:focus-visible) { outline: 2px solid var(--red-ink); outline-offset: 2px; }
+.hint { color: var(--char-2); font-size: .8rem; margin-top: 6px; line-height: 1.5; }
+.mats { display: grid; gap: 8px; }
+.mats label { display: grid; grid-template-columns: 40px 1fr auto; gap: 12px; align-items: center; min-height: 56px; padding: 8px 14px 8px 8px; border-radius: var(--r-md); background: var(--paper); box-shadow: inset 0 0 0 1px var(--line); cursor: pointer; }
+[dir="rtl"] .mats label { padding: 8px 8px 8px 14px; }
+.mats label:has(input:checked) { box-shadow: inset 0 0 0 2px var(--char); }
+.mats img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
+.mats b { display: block; font-weight: 500; font-size: .92rem; line-height: 1.35; }
+.mats small { color: var(--char-2); font-size: .8rem; }
+.mats .mp { font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.pats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.pats label { display: grid; gap: 4px; padding: 5px 5px 8px; border-radius: var(--r-md); background: var(--paper); box-shadow: inset 0 0 0 1px var(--line); cursor: pointer; text-align: center; font-size: .74rem; line-height: 1.3; }
+.pats label:has(input:checked) { box-shadow: inset 0 0 0 2px var(--char); }
+.pats img { width: 100%; aspect-ratio: 1.08; object-fit: cover; border-radius: 8px; mix-blend-mode: multiply; }
+.facts { margin: 0; display: grid; border-top: 1px solid var(--line); }
+.facts div { display: grid; grid-template-columns: 110px 1fr; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: .9rem; }
+.facts dt { color: var(--char-2); }
+.facts dd { margin: 0; }
+.facts .num { direction: ltr; unicode-bidi: isolate; font-variant-numeric: tabular-nums; }
+.x { position: absolute; top: 22px; inset-inline-end: 22px; z-index: 3; width: 44px; height: 44px; border: 0; border-radius: 50%; background: var(--paper); box-shadow: var(--shadow-1); display: grid; place-items: center; }
+.x svg { width: 18px; height: 18px; }
+@media (max-width: 760px) {
+  .psheet { align-items: end; padding: 0; }
+  .p-card { grid-template-columns: 1fr; max-height: 94%; border-radius: var(--r-lg) var(--r-lg) 0 0; transform: translateY(40px); }
+  .p-gal { padding: 10px 10px 0; }
+  .p-main { aspect-ratio: 1; }
+  .p-info, [dir="rtl"] .p-info { padding: 16px 16px calc(24px + env(safe-area-inset-bottom, 0px)); }
+  .x { top: 18px; inset-inline-end: 18px; }
+}
+@media (max-width: 420px) { .pats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* ---------- bag drawer ---------- */
+.drawer { justify-content: flex-end; }
+.d-card { width: min(440px, 100%); height: 100%; overflow: auto; background: var(--ivory); padding: calc(18px + env(safe-area-inset-top, 0px)) 22px calc(24px + env(safe-area-inset-bottom, 0px)); transform: translateX(40px); transition: transform .35s var(--ease); overscroll-behavior: contain; }
+[dir="rtl"] .d-card { transform: translateX(-40px); }
+.drawer.is-open .d-card { transform: none; }
+.d-head { display: flex; align-items: center; gap: 10px; padding-bottom: 14px; margin-bottom: 16px; border-bottom: 1px solid var(--line); }
+.d-head h2 { font-size: 1.7rem; line-height: 1.2; }
+.d-head span { color: var(--char-2); font-size: .9rem; }
+.d-head .x { position: static; margin-inline-start: auto; box-shadow: inset 0 0 0 1px var(--line); }
+.empty { color: var(--char-2); padding: 24px 0; text-align: center; display: grid; gap: 14px; justify-items: center; }
+[data-cart-list] { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
+.ci { display: grid; grid-template-columns: 76px 1fr auto; gap: 12px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
+.ci-img { position: relative; width: 76px; height: 76px; background: var(--sand); border-radius: var(--r-sm); overflow: hidden; }
+.ci-img img { width: 100%; height: 100%; object-fit: cover; }
+.ci-name { margin: 0; font-weight: 600; line-height: 1.4; }
+.ci-meta { margin: 2px 0 8px; color: var(--char-2); font-size: .82rem; line-height: 1.5; }
+.ci-row { display: flex; gap: 10px; align-items: center; }
+.ci-qty { display: inline-flex; align-items: center; border-radius: 999px; box-shadow: inset 0 0 0 1px var(--line-2); }
+.ci-qty button { width: 44px; height: 44px; border: 0; background: none; font-size: 1.05rem; border-radius: 50%; }
+.ci-qty output { min-width: 18px; text-align: center; font-variant-numeric: tabular-nums; }
+.ci-remove { border: 0; background: none; color: var(--char-2); text-decoration: underline; text-underline-offset: 3px; min-height: 44px; font-size: .84rem; }
+.ci-price { margin: 0; font-weight: 600; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.sums { margin: 18px 0; display: grid; gap: 8px; font-variant-numeric: tabular-nums; }
+.sums div { display: flex; justify-content: space-between; } .sums dd { margin: 0; } .sums dt { color: var(--char-2); }
+.sums .grand { padding-top: 10px; border-top: 1px solid var(--line-2); font-weight: 600; font-size: 1.15rem; } .sums .grand dt { color: var(--char); }
+.form { display: grid; gap: 14px; }
+.form label { display: block; font-size: .86rem; font-weight: 600; margin-bottom: 5px; }
+.form input, .form select, .form textarea { width: 100%; min-height: 50px; padding: 10px 14px; border: 1px solid var(--line-2); border-radius: var(--r-sm); background: var(--paper); }
+.form input:focus-visible, .form select:focus-visible, .form textarea:focus-visible { border-color: var(--char); }
+.form textarea { min-height: 84px; resize: vertical; }
+.form [aria-invalid="true"] { border-color: var(--red); box-shadow: inset 0 0 0 1px var(--red); }
+.form input[type="tel"] { direction: ltr; }
+[dir="rtl"] .form input[type="tel"] { text-align: right; }
+::placeholder { color: #77776f; opacity: 1; }
+.err { color: var(--red-ink); font-size: .86rem; margin: 3px 0 0; min-height: 1em; }
+[data-pay-list] { display: grid; border-radius: var(--r-md); overflow: hidden; box-shadow: inset 0 0 0 1px var(--line-2); }
+.pay { display: flex; gap: 12px; padding: 14px; cursor: pointer; background: var(--paper); }
+.pay + .pay { border-top: 1px solid var(--line); }
+.pay:has(input:checked) { background: var(--sand); }
+.pay input { width: 18px; height: 18px; min-height: 0; margin: 4px 0 0; accent-color: var(--red); }
+.pay-body { display: grid; } .pay-name { font-weight: 600; } .pay-note { color: var(--char-2); font-size: .84rem; }
+.fee-hint { color: var(--char-2); font-size: .84rem; margin: -6px 0 0; }
+.ok { text-align: center; padding: 40px 0; display: grid; gap: 12px; justify-items: center; }
+.ok svg { width: 64px; height: 66px; color: var(--red); }
+.ok h3 { font-size: 2rem; line-height: 1.2; outline: none; }
+.toast { position: fixed; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); inset-inline: 0; margin: 0 auto; width: max-content; max-width: calc(100% - 32px); z-index: 60; background: var(--char); color: var(--paper); padding: 12px 20px; border-radius: 999px; box-shadow: var(--shadow-2); transform: translateY(20px); opacity: 0; transition: .35s var(--ease); pointer-events: none; }
+.toast.is-on { transform: none; opacity: 1; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
+</style>
+
+<p class="demo" data-t="demo_note"></p>
+
+<header class="top">
+  <div class="wrap">
+    <div class="top-row">
+      <div><button class="lang" type="button" data-lang-toggle data-t="lang_switch"></button></div>
+      <a class="brand" href="#top" aria-label="Asala"><span class="mk" id="mark-top"></span><img src="brand/wordmark-dark.png" alt="ASALA"></a>
+      <button class="bag" type="button" data-open-cart data-ta="cart"><span class="bag-lbl" data-t="cart" aria-hidden="true"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="count" data-cart-count hidden>0</span></button>
+    </div>
+    <nav class="styles-nav" id="styles-nav" data-ta="nav_label"></nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" aria-labelledby="hero-h">
+    <div class="frame hero-frame" data-look="hero"><img src="brand/cover-ear.jpg" alt=""></div>
+    <div class="wrap hero-copy">
+      <h1 id="hero-h"><span data-t="h1a"></span><span class="accent" data-t="h1b"></span></h1>
+      <div class="hero-side">
+        <p data-t="hero_p"></p>
+        <div class="ctas"><button class="btn" type="button" data-go="look" data-t="cta_look"></button><button class="btn ghost" type="button" data-go="finder" data-t="cta_finder"></button></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="look" style="padding-top:0" aria-labelledby="look-h">
+    <div class="wrap">
+      <div class="sec-head"><h2 id="look-h" data-t="look_h"></h2><p data-t="look_p"></p></div>
+      <div class="looks">
+        <figure class="look"><div class="frame" data-look="dome"><img src="brand/dome-worn.jpg" alt=""></div><figcaption data-cap="dome"></figcaption></figure>
+        <figure class="look"><div class="frame" data-look="arch"><img src="brand/woman-arch.jpg" alt=""></div><figcaption data-cap="horseshoe"></figcaption></figure>
+        <figure class="look"><div class="frame" data-look="horseshoe"><img src="brand/horseshoe-close.jpg" alt=""></div><figcaption data-cap="horseshoe"></figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec finder" id="finder" aria-labelledby="finder-h">
+    <div class="wrap finder-grid">
+      <div class="face"><img src="brand/ill-face.png" alt="" style="mix-blend-mode:multiply"></div>
+      <div>
+        <div class="finder-copy"><h2 id="finder-h" data-t="finder_h"></h2><p data-t="finder_p"></p></div>
+        <div class="quiz" id="quiz" aria-live="polite"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="shop" aria-labelledby="shop-h">
+    <div class="wrap">
+      <div class="sec-head"><h2 id="shop-h" data-t="shop_h"></h2><div class="chips" role="group" id="chips"></div></div>
+      <p class="grid-meta" id="grid-meta" aria-live="polite"></p>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <section class="sec made" id="made" aria-labelledby="made-h">
+    <div class="wrap">
+      <div class="sec-head"><h2 id="made-h" data-t="made_h"></h2><p data-t="made_p"></p></div>
+      <ol class="steps">
+        <li><div class="ph"><img src="brand/sketch-dome.jpg" alt=""></div><div><b data-t="m1"></b><span data-t="m1d"></span></div></li>
+        <li><div class="ph"><img src="brand/sketch-plan.jpg" alt=""></div><div><b data-t="m2"></b><span data-t="m2d"></span></div></li>
+        <li><div class="ph"><img src="brand/clay-balls.jpg" alt=""></div><div><b data-t="m3"></b><span data-t="m3d"></span></div></li>
+        <li><div class="ph"><img src="brand/clay-cut.jpg" alt=""></div><div><b data-t="m4"></b><span data-t="m4d"></span></div></li>
+      </ol>
+      <div class="care">
+        <div><h3 data-t="care_h"></h3><p class="care-note" data-t="care_note"></p></div>
+        <ul id="care"></ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="gift" aria-labelledby="gift-h">
+    <div class="wrap gift-grid">
+      <figure class="gift-ph"><img src="brand/packaging-family.jpg" alt="" id="gift-img"><figcaption data-t="gift_cap"></figcaption></figure>
+      <div class="gift-copy">
+        <h2 id="gift-h" data-t="gift_h"></h2>
+        <p data-t="gift_p"></p>
+        <dl class="gift-facts" id="gift-facts"></dl>
+        <div><button class="btn ghost" type="button" data-go="finder" data-t="gift_cta"></button></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <a class="brand" href="#top" aria-label="Asala"><span class="mk" id="mark-foot"></span><img src="brand/wordmark-dark.png" alt="ASALA"></a>
+    <p data-t="foot"></p>
+    <nav class="foot-links" id="foot-links" data-ta="nav_label"></nav>
+  </div>
+</footer>
+
+<div class="psheet" data-sheet hidden role="dialog" aria-modal="true" aria-labelledby="sheet-title">
+  <div class="p-card">
+    <button class="x" type="button" data-close data-ta="close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    <div class="p-gal">
+      <div class="p-main"><img data-sheet-photo alt="" hidden></div>
+      <div class="p-thumbs" id="thumbs"></div>
+    </div>
+    <div class="p-info">
+      <p class="p-style" id="p-style"></p>
+      <h2 id="sheet-title" data-sheet-name></h2>
+      <p class="p-price" id="p-price"></p>
+      <p class="p-desc" data-sheet-desc></p>
+      <div id="p-opts"></div>
+      <dl class="facts" id="p-facts"></dl>
+      <button class="btn full" type="button" id="sheet-add" data-t="add_bag"></button>
+    </div>
+  </div>
+</div>
+
+<div class="drawer" data-drawer hidden role="dialog" aria-modal="true" aria-labelledby="bag-title">
+  <div class="d-card" data-scroll>
+    <div class="d-head"><h2 id="bag-title" data-t="cart"></h2><span data-count-label></span>
+      <button class="x" type="button" data-close data-ta="close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+    <section data-step="bag">
+      <div class="empty" data-cart-empty><p data-t="bag_empty"></p><button class="btn" type="button" data-close data-t="continue"></button></div>
+      <div data-cart-filled hidden>
+        <ul data-cart-list></ul>
+        <dl class="sums"><div class="grand"><dt data-t="subtotal"></dt><dd data-subtotal></dd></div></dl>
+        <button class="btn full" type="button" data-goto="checkout" data-t="checkout"></button>
+      </div>
+    </section>
+    <section data-step="checkout" hidden>
+      <form class="form" data-checkout novalidate>
+        <div><label for="f-name" data-t="f_name"></label><input id="f-name" name="name" autocomplete="name"><p class="err" data-err="name"></p></div>
+        <div><label for="f-phone" data-t="f_phone"></label><input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" data-tp="ph_phone"><p class="err" data-err="phone"></p></div>
+        <div><label for="f-city" data-t="f_city"></label><select id="f-city" name="city" data-city-select></select><p class="err" data-err="city"></p></div>
+        <div><label for="f-address" data-t="f_address"></label><textarea id="f-address" name="address" data-tp="ph_address"></textarea><p class="err" data-err="address"></p></div>
+        <fieldset><legend data-t="f_pay"></legend><div data-pay-list></div></fieldset>
+        <dl class="sums">
+          <div><dt data-t="subtotal"></dt><dd data-subtotal></dd></div>
+          <div><dt data-t="delivery"></dt><dd data-fee></dd></div>
+          <div class="grand"><dt data-t="total"></dt><dd data-total></dd></div>
+        </dl>
+        <p class="fee-hint" data-fee-hint data-t="choose_city"></p>
+        <button class="btn full" type="submit" data-t="place_order"></button>
+        <button class="link-btn" type="button" data-goto="bag" data-t="back_to_bag"></button>
+      </form>
+    </section>
+    <section data-step="confirm" hidden>
+      <div class="ok">
+        <span id="mark-ok"></span>
+        <h3 data-t="ok_title"></h3>
+        <p><span data-t="ok_num"></span>: <b data-confirm-num></b></p>
+        <p data-confirm-body></p>
+        <button class="btn" type="button" data-shop-again data-t="ok_again"></button>
+      </div>
+    </section>
+  </div>
+</div>
+<div class="toast" data-toast role="status" aria-live="polite"></div>
+
+<script src="store.js"></script>
+<script src="brand/asala-catalog.js"></script>
+<script>
+(function () {
+  var S = window.Store, A = window.ASALA;
+  A.install(S);
+  var $ = S.$, $$ = S.$$, esc = S.esc, t = S.t;
+  ['mark-top', 'mark-foot', 'mark-ok'].forEach(function (id) { document.getElementById(id).innerHTML = A.MARK; });
+  function ar() { return S.lang() === 'ar'; }
+  function L(o) { return o[S.lang()]; }
+  function two(pair) { return pair[ar() ? 0 : 1]; }
+
+  // ---------- data derived from the catalogue ----------
+  var STYLES = ['filigree', 'arches', 'clay', 'wire', 'pendant'];
+  var STYLE = { dome: ['filigree'], 'dome-teal': ['filigree', 'clay'], arcs: ['clay', 'arches'], mihrab: ['clay', 'arches'], horseshoe: ['arches'], branch: ['wire'], lotus: ['pendant'] };
+  var COPY = {
+    dome: { m: ['نحاس مطلي بالذهب أو فضة 925', 'Gold-plated brass or 925 silver'],
+      why: ['قبة مخرّمة وثلاث معيّنات متدلية: قطعة تحمل الإطلالة وحدها.', 'A pierced dome with three hanging diamonds: a piece that carries the look on its own.'],
+      wear: ['وحدها، والشعر خلف الأذن، لتظهر الأقواس والمعيّنات.', 'On its own, with hair tucked back so the arches and diamonds show.'] },
+    'dome-teal': { m: ['طين البوليمر وذهبي', 'Polymer clay and gold tone'],
+      why: ['ذهب مخرّم فوق أقواس فيروزية: لون واضح لمناسبة.', 'Pierced gold over turquoise arches: clear colour for an occasion.'],
+      wear: ['مع لون واحد هادئ في اللباس، ليبقى الفيروز هو اللون.', 'With one calm colour in your outfit, so the turquoise leads.'] },
+    arcs: { m: ['طين البوليمر وقضيب ذهبي', 'Polymer clay, gold bar'],
+      why: ['قوس عاجي يعبره قضيب ذهبي: هادئة ليوم طويل.', 'An ivory arc crossed by a gold bar: calm for a long day.'],
+      wear: ['مع الشعر المرفوع أو المنسدل، للأيام العادية.', 'Hair up or down; made for ordinary days.'] },
+    mihrab: { m: ['طين البوليمر', 'Polymer clay'],
+      why: ['الوردي والفيروزي بشكل المحراب: مرحة وملوّنة.', 'Rose and turquoise in a mihrab shape: playful and full of colour.'],
+      wear: ['مع الأبيض أو الكتان، ليبرز الوردي والفيروزي.', 'With white or linen, so the rose and turquoise stand out.'] },
+    horseshoe: { m: ['ذهبي وفضي', 'Gold and silver tones'],
+      why: ['قوس حدوة بخطوط واضحة: يناسب النهار والسهرة.', 'A clean horseshoe arch: works by day and by night.'],
+      wear: ['مع الشعر خلف الأذن، أو مع قلادة ناعمة.', 'With hair behind the ear, or next to a fine necklace.'] },
+    branch: { m: ['سلك فضي', 'Silver wire'],
+      why: ['سلك فضي رفيع كغصن زيتون: أهدأ قطعة في المجموعة.', 'A fine silver wire like an olive branch: the quietest piece here.'],
+      wear: ['مع الشعر المنسدل؛ السلك الطويل يتحرك معه.', 'With hair down; the long wire moves with it.'] },
+    lotus: { m: ['ذهبي، على سلسلة رفيعة', 'Gold tone, on a fine chain'],
+      why: ['', ''],
+      wear: ['وحدها، أو مع أقراط ناعمة من المجموعة نفسها.', 'On its own, or with a quiet pair from the same collection.'] }
+  };
+  // How each earring answers the three finder questions (0 = no, 1 = partly, 2 = yes)
+  var TRAITS = {
+    dome:        { use: { everyday: 1, occasion: 2 }, say: { delicate: 0, bold: 2 }, metal: { gold: 2, silver: 2 } },
+    'dome-teal': { use: { everyday: 1, occasion: 2 }, say: { delicate: 0, bold: 2 }, metal: { gold: 2, silver: 0 } },
+    arcs:        { use: { everyday: 2, occasion: 1 }, say: { delicate: 1, bold: 1 }, metal: { gold: 2, silver: 0 } },
+    mihrab:      { use: { everyday: 2, occasion: 1 }, say: { delicate: 0, bold: 2 }, metal: { gold: 2, silver: 0 } },
+    horseshoe:   { use: { everyday: 2, occasion: 2 }, say: { delicate: 1, bold: 1 }, metal: { gold: 2, silver: 1 } },
+    branch:      { use: { everyday: 2, occasion: 1 }, say: { delicate: 2, bold: 0 }, metal: { gold: 0, silver: 2 } }
+  };
+  // Shoppable photos: natural size and where the piece sits (fractions of the photo). Each tags only the piece it shows.
+  var LOOKS = {
+    hero: { w: 1200, h: 1600, spots: [{ id: 'branch', x: .445, y: .62 }], alt: ['قرط الغصن الفضي على الأذن', 'The silver branch earring on the ear'] },
+    dome: { w: 660, h: 585, spots: [{ id: 'dome', x: .62, y: .46 }], alt: ['قرط قبة الصخرة على الأذن', 'The Dome of the Rock earring on the ear'] },
+    arch: { w: 760, h: 624, spots: [{ id: 'horseshoe', x: .605, y: .70 }], alt: ['امرأة تلبس أقراط قوس الحدوة أمام قوس ونخيل', 'A woman wearing the horseshoe arch earrings in front of an arch and palm trees'] },
+    horseshoe: { w: 460, h: 660, spots: [{ id: 'horseshoe', x: .5, y: .56 }], alt: ['قرط قوس الحدوة على الأذن', 'The horseshoe arch earring on the ear'] }
+  };
+  var CARE_ICON = '<svg viewBox="0 0 100 104" fill="none" aria-hidden="true"><path d="M50 8 L92 52 L50 96 L8 52 Z" stroke="currentColor" stroke-width="6"/><path d="M50 34 L68 52 L50 70 L32 52 Z" fill="currentColor"/></svg>';
+  var FLIP_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3.5" y="6.5" width="12" height="13" rx="2.5"/><path d="M8.5 4.5h9a2.5 2.5 0 0 1 2.5 2.5v10"/></svg>';
+
+  var styleFilter = 'all';
+  var sel = { qty: 'pair', mat: 'A', pat: 'geometric', img: 0 };
+  var quiz = { step: 0, ans: {} };
+
+  function isEar(p) { return p.cat === 'earrings'; }
+  function matObj(id) { return A.MATERIALS.filter(function (m) { return m.id === (id || sel.mat); })[0]; }
+  function patObj() { return A.PATTERNS.filter(function (p) { return p.id === sel.pat; })[0]; }
+  function styleNames(p) { return STYLE[p.id].map(function (s) { return t('s_' + s); }).join(' · '); }
+  function single(price) { return Math.round(price * 0.6); }
+  function priceLine(p) {
+    if (p.configurable) return esc(t('from')) + ' ' + S.money(A.MATERIALS[0].price) + ' <small>' + esc(t('per_pair')) + '</small>';
+    return S.money(p.price) + (isEar(p) ? ' <small>' + esc(t('per_pair')) + '</small>' : '');
+  }
+  function addLabel(p) { return p.configurable ? t('choose_metal') : isEar(p) ? t('add_pair') : t('add_short'); }
+  function resetSel() { sel = { qty: 'pair', mat: 'A', pat: 'geometric', img: 0 }; }
+  function scrollToId(id) { var el = document.getElementById(id); if (el) el.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }); }
+
+  function quickAdd(id) {
+    var p = S.byId(id); if (!p) return;
+    if (p.configurable) { resetSel(); S.openProduct(id); return; }
+    S.add(id, p.tones[0], '', { meta: isEar(p) ? t('pair') : '', photo: p.photo, price: p.price, noTone: true });
+  }
+
+  // ---------- nav ----------
+  function renderNav() {
+    var styles = STYLES.map(function (s) { return '<button type="button" data-style="' + s + '">' + esc(t('s_' + s)) + '</button>'; }).join('');
+    $('#styles-nav').innerHTML = styles + '<span class="sep" aria-hidden="true"></span>' +
+      '<button type="button" class="feat" data-go="look">' + esc(t('n_look')) + '</button><button type="button" class="feat" data-go="finder">' + esc(t('n_finder')) + '</button>';
+    $('#foot-links').innerHTML = STYLES.map(function (s) { return '<button type="button" data-style="' + s + '">' + esc(t('s_' + s)) + '</button>'; }).join('') +
+      '<button type="button" data-go="made">' + esc(t('made_h')) + '</button>';
+  }
+
+  // ---------- hotspots ----------
+  function pct(v, d) { return v && v.indexOf('%') > -1 ? parseFloat(v) / 100 : d; }
+  function layoutFrame(frame) {
+    var Lk = LOOKS[frame.getAttribute('data-look')], img = frame.querySelector('img');
+    var W = frame.clientWidth, H = frame.clientHeight; if (!W || !H) return;
+    var s = Math.max(W / Lk.w, H / Lk.h), rw = Lk.w * s, rh = Lk.h * s;
+    var op = getComputedStyle(img).objectPosition.split(' ');
+    var ox = (W - rw) * pct(op[0], .5), oy = (H - rh) * pct(op[1], .5);
+    $$('.spot', frame).forEach(function (b, i) {
+      var sp = Lk.spots[i], x = ox + sp.x * rw, y = oy + sp.y * rh;
+      b.style.left = x + 'px'; b.style.top = y + 'px';
+      b.hidden = x < 22 || x > W - 22 || y < 22 || y > H - 22;
+      var tag = b.querySelector('.spot-tag'); if (tag) tag.classList.toggle('before', x + tag.offsetWidth + 60 > W);
+    });
+    var pop = $('.pop', frame); if (pop) placePop(frame, pop);
+  }
+  function renderSpots() {
+    closePop();
+    $$('.frame[data-look]').forEach(function (frame) {
+      var key = frame.getAttribute('data-look'), Lk = LOOKS[key];
+      $$('.spot', frame).forEach(function (b) { b.remove(); });
+      frame.querySelector('img').alt = two(Lk.alt);
+      Lk.spots.forEach(function (sp) {
+        var p = S.byId(sp.id);
+        var b = document.createElement('button');
+        b.type = 'button'; b.className = 'spot'; b.setAttribute('data-spot', sp.id); b.setAttribute('aria-expanded', 'false');
+        b.setAttribute('aria-label', t('spot_label', { name: S.name(p) }));
+        b.innerHTML = '<span class="dot" aria-hidden="true"></span>' + (key === 'hero' ? '<span class="spot-tag" aria-hidden="true">' + esc(S.name(p)) + ' · <b>' + S.money(p.price) + '</b></span>' : '');
+        frame.appendChild(b);
+      });
+      layoutFrame(frame);
+    });
+    $$('[data-cap]').forEach(function (c) {
+      var p = S.byId(c.getAttribute('data-cap'));
+      c.innerHTML = '<button type="button" class="cap-name" data-open="' + p.id + '">' + esc(S.name(p)) + '</button><span class="cap-meta">' + esc(styleNames(p)) + ' · ' + priceLine(p).replace(/<small>.*<\/small>/, '').trim() + '</span>';
+    });
+  }
+  function closePop(refocus) {
+    var pop = $('.pop'); if (!pop) return;
+    var spot = pop.__spot; pop.remove();
+    if (spot) { spot.setAttribute('aria-expanded', 'false'); if (refocus) spot.focus(); }
+  }
+  function placePop(frame, pop) {
+    var W = frame.clientWidth, H = frame.clientHeight, spot = pop.__spot;
+    var x = parseFloat(spot.style.left), y = parseFloat(spot.style.top), pw = pop.offsetWidth, ph = pop.offsetHeight;
+    var left, top;
+    if (W < 440) { left = (W - pw) / 2; top = H - ph - 10; if (y > top - 30) top = Math.max(10, y - ph - 34); }
+    else if (x + 34 + pw <= W - 10) { left = x + 34; top = y - ph / 2; }
+    else if (x - 34 - pw >= 10) { left = x - 34 - pw; top = y - ph / 2; }
+    else { left = x - pw / 2; top = y + 34 + ph <= H - 10 ? y + 34 : y - 34 - ph; }
+    left = Math.max(10, Math.min(left, W - pw - 10)); top = Math.max(10, Math.min(top, H - ph - 10));
+    pop.style.left = left + 'px'; pop.style.top = top + 'px';
+  }
+  function openPop(spot) {
+    var frame = spot.closest('.frame'), p = S.byId(spot.getAttribute('data-spot'));
+    closePop();
+    var pop = document.createElement('div');
+    pop.className = 'pop'; pop.setAttribute('role', 'group'); pop.setAttribute('aria-label', S.name(p)); pop.id = 'pop-' + p.id;
+    pop.innerHTML = '<div class="pop-top"><img' + (p.cutout ? ' class="cut"' : '') + ' src="' + p.photo + '" alt=""><div><b>' + esc(S.name(p)) + '</b><small>' + esc(styleNames(p)) + ' · ' + esc(two(COPY[p.id].m)) + '</small><span class="pp">' + priceLine(p) + '</span></div></div>' +
+      '<div class="pop-btns"><button class="btn ghost sm" type="button" data-open="' + p.id + '">' + esc(t('pop_view')) + '</button>' +
+      '<button class="btn sm" type="button" data-qadd="' + p.id + '">' + esc(p.configurable ? t('choose_metal') : t('add_pair')) + '</button></div>';
+    pop.__spot = spot;
+    // on narrow photos the card sits under the photo so it never covers the piece or its dot
+    if (frame.clientWidth < 440) { pop.classList.add('inline'); frame.after(pop); } else spot.after(pop);
+    spot.setAttribute('aria-expanded', 'true'); spot.setAttribute('aria-controls', pop.id);
+    if (!pop.classList.contains('inline')) placePop(frame, pop);
+  }
+  var ro = 'ResizeObserver' in window ? new ResizeObserver(function (es) { es.forEach(function (e) { layoutFrame(e.target); }); }) : null;
+  $$('.frame[data-look]').forEach(function (f) { if (ro) ro.observe(f); });
+  if (!ro) window.addEventListener('resize', function () { $$('.frame[data-look]').forEach(layoutFrame); });
+
+  // ---------- style finder ----------
+  var Q = [{ k: 'use', o: ['everyday', 'occasion'] }, { k: 'say', o: ['delicate', 'bold'] }, { k: 'metal', o: ['gold', 'silver'] }];
+  function ranked() {
+    var a = quiz.ans, list = S.PRODUCTS.filter(function (p) { return TRAITS[p.id]; });
+    return list.map(function (p, i) {
+      var T = TRAITS[p.id];
+      return { p: p, i: i, s: T.use[a.use] + T.say[a.say] + T.metal[a.metal] * 1.5 };
+    }).sort(function (x, y) { return y.s - x.s || x.i - y.i; }).slice(0, 3);
+  }
+  function reason(p) {
+    var a = quiz.ans, T = TRAITS[p.id], hits = [];
+    Q.forEach(function (q) { if (T[q.k][a[q.k]] >= 2) hits.push(t('a_' + a[q.k])); });
+    var note = '';
+    if (p.id === 'dome' && a.metal === 'silver') note = t('dome_silver');
+    else if (T.metal[a.metal] === 0) note = a.metal === 'silver' ? t('gold_only') : t('silver_only');
+    else if (T.metal[a.metal] === 1) note = t('mixed');
+    return (hits.length ? t('match', { list: hits.join(ar() ? '، ' : ', ') }) : '') + (note ? (hits.length ? ' · ' : '') + note : '');
+  }
+  function quizPick(p) { return p.configurable ? matObj(quiz.ans.metal === 'silver' ? 'B' : 'A') : null; }
+  function renderQuiz(focus) {
+    var box = $('#quiz'), html;
+    if (quiz.step < 3) {
+      var q = Q[quiz.step];
+      html = '<div class="q-steps" aria-hidden="true">' + Q.map(function (_, i) { return '<i class="' + (i <= quiz.step ? 'on' : '') + '"></i>'; }).join('') + '</div>' +
+        '<p class="q-of">' + esc(t('q_of', { n: quiz.step + 1 })) + '</p>' +
+        '<h3 class="q-h" tabindex="-1">' + esc(t('q' + (quiz.step + 1))) + '</h3>' +
+        '<div class="q-opts">' + q.o.map(function (o) {
+          return '<button type="button" class="q-opt" data-ans="' + o + '" aria-pressed="' + (quiz.ans[q.k] === o) + '"><b>' + esc(t('a_' + o)) + '</b><span>' + esc(t('a_' + o + '_d')) + '</span></button>';
+        }).join('') + '</div>' +
+        (quiz.step ? '<div><button type="button" class="link-btn" data-qback>' + esc(t('q_back')) + '</button></div>' : '');
+    } else {
+      html = '<h3 class="q-h" tabindex="-1">' + esc(t('res_h')) + '</h3><ol class="res">' + ranked().map(function (r, i) {
+        var p = r.p, m = quizPick(p), price = m ? m.price : p.price;
+        return '<li class="' + (i === 0 ? 'first' : '') + '"><img' + (p.cutout ? ' class="cut"' : '') + ' src="' + p.photo + '" alt=""' + (m && m.tone === 'silver' ? ' style="filter:grayscale(1) brightness(1.07) contrast(1.05)"' : '') + '>' +
+          '<div><p><span class="rank">' + (i + 1) + '</span><span class="rn">' + esc(S.name(p)) + '</span></p>' +
+          '<p class="why">' + esc(two(COPY[p.id].why)) + '</p><p class="match">' + esc(reason(p)) + '</p>' +
+          '<div class="act"><span class="pr">' + S.money(price) + ' <small>' + esc(t('per_pair')) + '</small></span>' +
+          '<button class="btn sm" type="button" data-quiz-add="' + p.id + '" aria-label="' + esc(t('add_pair') + ': ' + S.name(p)) + '">' + esc(t('add_pair')) + '</button>' +
+          '<button class="link-btn" type="button" data-open="' + p.id + '">' + esc(t('pop_view')) + '</button></div></div></li>';
+      }).join('') + '</ol><div class="res-foot"><p>' + esc(t('res_p')) + '</p><button class="btn ghost sm" type="button" data-qreset>' + esc(t('res_again')) + '</button></div>';
+    }
+    box.innerHTML = html;
+    if (focus) { var h = $('.q-h', box); if (h) h.focus({ preventScroll: true }); }
+  }
+
+  // ---------- grid ----------
+  function renderGrid() {
+    var counts = { all: S.PRODUCTS.length };
+    STYLES.forEach(function (s) { counts[s] = S.PRODUCTS.filter(function (p) { return STYLE[p.id].indexOf(s) > -1; }).length; });
+    $('#chips').setAttribute('aria-label', t('nav_label'));
+    $('#chips').innerHTML = ['all'].concat(STYLES).map(function (s) {
+      return '<button type="button" class="chip" data-chip="' + s + '" aria-pressed="' + (s === styleFilter) + '">' + esc(s === 'all' ? t('s_all') : t('s_' + s)) + '<span class="n">' + counts[s] + '</span></button>';
+    }).join('');
+    var items = S.PRODUCTS.filter(function (p) { return styleFilter === 'all' || STYLE[p.id].indexOf(styleFilter) > -1; });
+    var n = items.length;
+    $('#grid-meta').textContent = ar() ? (n === 1 ? 'قطعة واحدة' : n === 2 ? 'قطعتان' : n + ' قطع') : (n === 1 ? '1 piece' : n + ' pieces');
+    $('#grid').innerHTML = items.map(function (p) {
+      var alt = p.alts && p.alts[0];
+      return '<article class="card' + (alt ? ' has-alt' : '') + '">' +
+        '<div class="ph' + (p.cutout ? ' cut' : '') + '"><img class="main" src="' + p.photo + '" alt="">' + (alt ? '<img class="alt" src="' + alt + '" alt="">' : '') +
+        (p.madeToOrder ? '<span class="badge">' + esc(t('mto')) + '</span>' : '') +
+        '<button class="open" type="button" data-open="' + p.id + '" tabindex="-1" aria-hidden="true"></button>' +
+        (alt ? '<button class="flip" type="button" data-flip aria-pressed="false" aria-label="' + esc(t('alt_show', { name: S.name(p) })) + '">' + FLIP_ICON + '</button>' : '') + '</div>' +
+        '<div class="info"><h3><button class="nm" type="button" data-open="' + p.id + '">' + esc(S.name(p)) + '</button></h3>' +
+        '<p class="sub">' + esc(styleNames(p)) + ' · ' + esc(two(COPY[p.id].m)) + '</p>' +
+        '<div class="row"><span class="pr">' + priceLine(p) + '</span>' +
+        '<button class="qadd" type="button" data-qadd="' + p.id + '" aria-label="' + esc(addLabel(p) + ': ' + S.name(p)) + '">' + esc(addLabel(p)) + '</button></div></div></article>';
+    }).join('');
+  }
+
+  // ---------- static bands ----------
+  function renderBands() {
+    $('#care').innerHTML = [1, 2, 3, 4].map(function (i) { return '<li>' + CARE_ICON + '<span>' + esc(t('care' + i)) + '</span></li>'; }).join('');
+    var box = A.BOXES[0];
+    $('#gift-img').alt = t('gift_alt');
+    $('#gift-facts').innerHTML =
+      '<div><dt>' + esc(t('gift_box')) + '</dt><dd>' + esc(L(box)) + ' · <span class="num">' + box.dims + ' mm</span></dd></div>' +
+      '<div><dt>' + esc(t('gift_insert')) + '</dt><dd>' + esc(ar() ? box.dAr : box.dEn) + '</dd></div>' +
+      '<div><dt>' + esc(t('gift_seal')) + '</dt><dd><span class="seals">' + A.SEALS.map(function (s) { return '<span class="seal"><i style="background:' + s.color + '"></i>' + esc(L(s)) + '</span>'; }).join('') + '</span></dd></div>';
+  }
+
+  // ---------- product sheet ----------
+  function gallery(p) {
+    var first = p.configurable ? (sel.pat === 'geometric' ? p.photo : patObj().img) : p.photo;
+    return [first].concat(p.alts || []);
+  }
+  function unitPrice(p) { var base = p.configurable ? matObj().price : p.price; return sel.qty === 'single' && isEar(p) ? single(base) : base; }
+  function paintPhoto() {
+    var p = S.current(); if (!p) return;
+    var g = gallery(p), ph = $('[data-sheet-photo]'); if (sel.img >= g.length) sel.img = 0;
+    ph.src = g[sel.img]; ph.alt = S.name(p);
+    ph.style.objectFit = p.cutout && sel.img === 0 ? 'contain' : 'cover'; ph.style.padding = p.cutout && sel.img === 0 ? '8%' : '0';
+    ph.style.filter = p.configurable && sel.img === 0 && matObj().tone === 'silver' ? 'grayscale(1) brightness(1.07) contrast(1.05)' : 'none';
+    $('#thumbs').innerHTML = g.length > 1 ? g.map(function (src, i) {
+      return '<button type="button" data-thumb="' + i + '" aria-pressed="' + (i === sel.img) + '" aria-label="' + esc(t('photo_n', { n: i + 1 })) + '"><img src="' + src + '" alt=""></button>';
+    }).join('') : '';
+  }
+  function paintPrice() {
+    var p = S.current(); if (!p) return;
+    var u = unitPrice(p);
+    $('#p-price').innerHTML = S.money(u) + (isEar(p) ? ' <small>' + esc(sel.qty === 'single' ? t('per_single') : t('per_pair')) + '</small>' : '');
+    $$('[data-qty-price]').forEach(function (el) {
+      var base = p.configurable ? matObj().price : p.price;
+      el.textContent = S.money(el.getAttribute('data-qty-price') === 'single' ? single(base) : base);
+    });
+    $('#sheet-add').textContent = t('add_bag') + ' · ' + S.money(u);
+  }
+  function renderSheet() {
+    var p = S.current(); if (!p) return;
+    var c = A.COLLECTIONS[p.coll];
+    $('#p-style').textContent = styleNames(p) + ' · ' + L(c);
+    var h = '';
+    if (isEar(p)) {
+      h += '<fieldset style="margin-bottom:16px"><legend>' + esc(t('qty_legend')) + '</legend><div class="seg">' +
+        ['pair', 'single'].map(function (q) {
+          return '<label><input class="sr" type="radio" name="qty" value="' + q + '"' + (sel.qty === q ? ' checked' : '') + '><span>' + esc(t(q)) + '<small data-qty-price="' + q + '"></small></span></label>';
+        }).join('') + '</div><p class="hint">' + esc(t('qty_note')) + '</p></fieldset>';
+    }
+    if (p.configurable) {
+      h += '<fieldset style="margin-bottom:16px"><legend>' + esc(t('mat_legend')) + '</legend><div class="mats">' + A.MATERIALS.map(function (m) {
+        var fin = A.FINISHES.filter(function (f) { return f.id === (m.tone === 'silver' ? 'silver-matte' : 'gold-shiny'); })[0];
+        return '<label><input class="sr" type="radio" name="mat" value="' + m.id + '"' + (sel.mat === m.id ? ' checked' : '') + '><img src="' + fin.img + '" alt=""><span><b>' + esc(L(m)) + '</b><small>' + esc(ar() ? m.nAr : m.nEn) + '</small></span><span class="mp">' + S.money(m.price) + '</span></label>';
+      }).join('') + '</div><p class="hint">' + esc(t('silver_preview')) + '</p></fieldset>';
+      h += '<fieldset style="margin-bottom:4px"><legend>' + esc(t('pat_legend')) + '</legend><div class="pats">' + A.PATTERNS.map(function (pt) {
+        return '<label><input class="sr" type="radio" name="pat" value="' + pt.id + '"' + (sel.pat === pt.id ? ' checked' : '') + '><img src="' + pt.img + '" alt="">' + esc(L(pt)) + '</label>';
+      }).join('') + '</div></fieldset>';
+    }
+    $('#p-opts').innerHTML = h;
+    var size = p.id === 'dome' ? '<span class="num">24 × 28 mm</span>' : esc(isEar(p) ? t('size_tbc') : t('chain_tbc'));
+    $('#p-facts').innerHTML =
+      '<div><dt>' + esc(t('size')) + '</dt><dd>' + size + '</dd></div>' +
+      '<div><dt>' + esc(t('wear')) + '</dt><dd>' + esc(two(COPY[p.id].wear)) + '</dd></div>' +
+      (p.madeToOrder ? '<div><dt>' + esc(t('mto')) + '</dt><dd>' + esc(t('mto_note')) + '</dd></div>' : '');
+    paintPhoto(); paintPrice();
+  }
+  S.on('sheet', renderSheet);
+
+  function render() {
+    renderNav(); renderSpots(); renderQuiz(false); renderGrid(); renderBands();
+  }
+
+  // ---------- events ----------
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('[data-open]')) resetSel();
+  }, true);
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('button');
+    if (!e.target.closest('.pop, .spot, [data-sheet], [data-drawer]')) closePop();
+    if (!b) return;
+    if (b.classList.contains('spot')) { if (b.getAttribute('aria-expanded') === 'true') closePop(); else openPop(b); return; }
+    if (b.hasAttribute('data-style')) { styleFilter = b.getAttribute('data-style'); renderGrid(); scrollToId('shop'); return; }
+    if (b.hasAttribute('data-go')) { scrollToId(b.getAttribute('data-go')); return; }
+    if (b.hasAttribute('data-chip')) { styleFilter = b.getAttribute('data-chip'); renderGrid(); var c = $('[data-chip="' + styleFilter + '"]'); if (c) c.focus(); return; }
+    if (b.hasAttribute('data-flip')) { var card = b.closest('.card'), on = !card.classList.contains('show-alt'); card.classList.toggle('show-alt', on); b.setAttribute('aria-pressed', String(on)); return; }
+    if (b.hasAttribute('data-qadd')) { quickAdd(b.getAttribute('data-qadd')); return; }
+    if (b.hasAttribute('data-ans')) { quiz.ans[Q[quiz.step].k] = b.getAttribute('data-ans'); quiz.step++; renderQuiz(true); return; }
+    if (b.hasAttribute('data-qback')) { quiz.step = Math.max(0, quiz.step - 1); renderQuiz(true); return; }
+    if (b.hasAttribute('data-qreset')) { quiz = { step: 0, ans: {} }; renderQuiz(true); return; }
+    if (b.hasAttribute('data-quiz-add')) {
+      var p = S.byId(b.getAttribute('data-quiz-add')), m = quizPick(p);
+      if (m) S.add(p.id, m.tone, '', { meta: [t('pair'), L(A.PATTERNS[0]), L(m)].join(' · '), photo: p.photo, price: m.price, noTone: true });
+      else S.add(p.id, p.tones[0], '', { meta: t('pair'), photo: p.photo, price: p.price, noTone: true });
+      return;
+    }
+    if (b.hasAttribute('data-thumb')) { sel.img = Number(b.getAttribute('data-thumb')); paintPhoto(); var tb = $('[data-thumb="' + sel.img + '"]'); if (tb) tb.focus(); return; }
+    if (b.id === 'sheet-add') {
+      var cp = S.current(), parts = [], mo = cp.configurable ? matObj() : null;
+      if (isEar(cp)) parts.push(t(sel.qty));
+      if (mo) parts.push(L(patObj()), L(mo));
+      S.add(cp.id, mo ? mo.tone : cp.tones[0], '', { meta: parts.join(' · '), photo: cp.configurable ? gallery(cp)[0] : cp.photo, price: unitPrice(cp), noTone: true });
+      $('[data-sheet] [data-close]').click();
+    }
+  });
+  document.addEventListener('change', function (e) {
+    var n = e.target.name;
+    if (n === 'qty') { sel.qty = e.target.value; paintPrice(); }
+    if (n === 'mat') { sel.mat = e.target.value; sel.img = 0; paintPhoto(); paintPrice(); }
+    if (n === 'pat') { sel.pat = e.target.value; sel.img = 0; paintPhoto(); }
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && $('.pop') && !$('[data-sheet].is-open, [data-drawer].is-open')) closePop(true);
+  });
+
+  S.boot({
+    render: render, orderPrefix: 'AS-', cartKey: 'asala-ear',
+    strings: {
+      ar: {
+        demo_note: 'نموذج تصميم لمتجر أصالة. الصور من دليل الهوية، والأسعار ورسوم التوصيل وسعر القرط المفرد مقترحات مؤقتة.',
+        nav_label: 'الأقراط حسب النوع', s_all: 'الكل', s_filigree: 'مخرّمة', s_arches: 'أقواس', s_clay: 'طين', s_wire: 'سلك', s_pendant: 'قلادة',
+        n_look: 'تسوّقي الإطلالة', n_finder: 'اكتشفي أسلوبك',
+        h1a: 'أقراط تُختار', h1b: 'على الأذن.',
+        hero_p: 'قباب وأقواس ومشربيات من القدس والعمارة الإسلامية، مقصوصة بالليزر أو مشكّلة من طين البوليمر. اضغطي على النقطة في أي صورة لتري القطعة وسعرها.',
+        cta_look: 'تسوّقي الإطلالة', cta_finder: 'اكتشفي أسلوبك في ثلاثة أسئلة',
+        spot_label: 'القطعة في الصورة: {name}', pop_view: 'التفاصيل',
+        look_h: 'تسوّقي الإطلالة', look_p: 'كل صورة تُظهر قطعة من أصالة على الأذن. اضغطي على النقطة لتعرفي أي قطعة هي.',
+        add_pair: 'أضيفي الزوج', add_short: 'أضيفي', choose_metal: 'اختاري المعدن', add_bag: 'أضيفي إلى السلة',
+        pair: 'زوج', single: 'قرط مفرد', per_pair: 'للزوج', per_single: 'للقرط المفرد', from: 'من', mto: 'حسب الطلب',
+        finder_h: 'اكتشفي أسلوبك', finder_p: 'ثلاثة أسئلة سريعة، ثم نرتّب لك أقراط أصالة من الأقرب إلى ذوقك.',
+        q_of: 'السؤال {n} من 3', q1: 'متى ستلبسينها أكثر؟', q2: 'كم تريدينها أن تلفت النظر؟', q3: 'ذهبي أم فضي؟',
+        a_everyday: 'كل يوم', a_everyday_d: 'للعمل والجامعة واليوم الطويل', a_occasion: 'في المناسبات', a_occasion_d: 'أعراس وعزائم وأعياد',
+        a_delicate: 'ناعمة', a_delicate_d: 'خفيفة وهادئة', a_bold: 'جريئة', a_bold_d: 'قطعة تُرى من بعيد',
+        a_gold: 'ذهبي', a_gold_d: 'نحاس مطلي بالذهب، أو طين بلمسة ذهبية', a_silver: 'فضي', a_silver_d: 'فضة 925 أو سلك فضي',
+        q_back: 'السؤال السابق', res_h: 'ترتيبك', res_p: 'مرتّبة من 6 أقراط في كتالوج أصالة حسب إجاباتك.', res_again: 'أعيدي الأسئلة',
+        match: 'تناسب: {list}', gold_only: 'متوفرة بالذهبي فقط', silver_only: 'متوفرة بالفضي فقط', dome_silver: 'تأتي بفضة 925 (الخيار B)', mixed: 'تجمع الذهبي والفضي',
+        shop_h: 'تسوّقي حسب النوع', alt_show: 'الصورة الثانية: {name}',
+        qty_legend: 'قرط مفرد أو زوج', qty_note: 'سعر القرط المفرد اقتراح للمتجر: 60% من سعر الزوج.',
+        mat_legend: 'المعدن', pat_legend: 'نقش القبة', silver_preview: 'معاينة الفضي على الصورة تقريبية.',
+        size: 'المقاس', size_tbc: 'يُؤكَّد لاحقاً', chain_tbc: 'طول السلسلة يُؤكَّد لاحقاً', wear: 'كيف تُلبس', mto_note: 'تُصنع بعد الطلب.', photo_n: 'الصورة {n}',
+        made_h: 'كيف تُصنع', made_p: 'كل زوج يبدأ برسم معماري، ثم مخطط، ثم طين يُشكَّل باليد أو معدن يُقصّ بالليزر.',
+        m1: 'الرسم', m1d: 'قبة الصخرة بالقلم.', m2: 'المخطط', m2d: 'القبة والأقواس مقسّمة إلى قطع.', m3: 'الطين', m3d: 'ألوان الطين قبل التشكيل.', m4: 'القص', m4d: 'قوالب بالأبعاد الدقيقة.',
+        care_h: 'العناية بالأقراط', care_note: 'إرشادات عامة يراجعها المتجر قبل النشر.',
+        care1: 'انزعيها قبل الماء والعطر والرياضة.', care2: 'امسحيها بقطعة قماش ناعمة وجافة.', care3: 'احفظي كل زوج في علبته أو كيسه، بعيداً عن الشمس.', care4: 'طين البوليمر خفيف، لكنه قد ينكسر إذا انثنى بقوة.',
+        gift_h: 'جاهزة للإهداء', gift_p: 'نقترح أن يصل كل زوج في علبة الأقراط من دليل الهوية، مختومة بلون تختارينه.',
+        gift_cap: 'تغليف مقترح من دليل الهوية', gift_alt: 'علب أصالة السوداء بحشوات عاجية وختم أحمر', gift_box: 'العلبة', gift_insert: 'من الداخل', gift_seal: 'الختم',
+        gift_cta: 'اختاري زوجاً للإهداء',
+        foot: 'أصالة · أقراط مصنوعة يدوياً بروح شرقية، من فلسطين. نموذج تصميم.', continue: 'متابعة التسوق'
+      },
+      en: {
+        demo_note: 'Design demo for Asala. Photos from the brand book; prices, delivery fees and single-earring pricing are placeholder proposals.',
+        nav_label: 'Earrings by style', s_all: 'All', s_filigree: 'Filigree', s_arches: 'Arches', s_clay: 'Clay', s_wire: 'Wire', s_pendant: 'Pendant',
+        n_look: 'Shop the look', n_finder: 'Style finder',
+        h1a: 'Earrings, chosen', h1b: 'on the ear.',
+        hero_p: 'Domes, arches and mashrabiya from Jerusalem and Islamic architecture, laser cut or shaped in polymer clay. Tap the dot on any photo to see the piece and its price.',
+        cta_look: 'Shop the look', cta_finder: 'Find your style in 3 questions',
+        spot_label: 'Piece in this photo: {name}', pop_view: 'Details',
+        look_h: 'Shop the look', look_p: 'Each photo shows an Asala piece on the ear. Tap the dot to see which one.',
+        add_pair: 'Add pair', add_short: 'Add', choose_metal: 'Choose metal', add_bag: 'Add to bag',
+        pair: 'Pair', single: 'Single earring', per_pair: 'pair', per_single: 'single', from: 'from', mto: 'Made to order',
+        finder_h: 'Find your style', finder_p: 'Three quick questions, then we rank the Asala earrings from closest to your taste.',
+        q_of: 'Question {n} of 3', q1: 'When will you wear them most?', q2: 'How much should they stand out?', q3: 'Gold or silver?',
+        a_everyday: 'Every day', a_everyday_d: 'Work, classes, long days', a_occasion: 'Occasions', a_occasion_d: 'Weddings, dinners, Eid',
+        a_delicate: 'Delicate', a_delicate_d: 'Light and quiet', a_bold: 'Bold', a_bold_d: 'A piece seen from across the room',
+        a_gold: 'Gold', a_gold_d: 'Gold-plated brass, or clay with gold', a_silver: 'Silver', a_silver_d: '925 silver or silver wire',
+        q_back: 'Previous question', res_h: 'Your edit', res_p: 'Ranked from the 6 earrings in the Asala catalogue by your answers.', res_again: 'Start again',
+        match: 'Matches: {list}', gold_only: 'Gold only', silver_only: 'Silver only', dome_silver: 'Comes in 925 silver (option B)', mixed: 'Mixes gold and silver tones',
+        shop_h: 'Shop by style', alt_show: 'Second photo: {name}',
+        qty_legend: 'Single or pair', qty_note: 'Single price is a proposal for the shop: 60% of the pair price.',
+        mat_legend: 'Metal', pat_legend: 'Dome pattern', silver_preview: 'The silver preview on the photo is approximate.',
+        size: 'Size', size_tbc: 'To be confirmed', chain_tbc: 'Chain length to be confirmed', wear: 'How to wear', mto_note: 'Made after you order.', photo_n: 'Photo {n}',
+        made_h: 'How they’re made', made_p: 'Every pair starts as an architect’s drawing, then a plan, then clay shaped by hand or metal cut by laser.',
+        m1: 'The sketch', m1d: 'The Dome of the Rock in pencil.', m2: 'The plan', m2d: 'Dome and arches split into parts.', m3: 'The clay', m3d: 'Clay colours before shaping.', m4: 'The cut', m4d: 'Moulds cut to exact size.',
+        care_h: 'Earring care', care_note: 'General guidance for the shop to review before launch.',
+        care1: 'Take them off before water, perfume and sport.', care2: 'Wipe with a soft, dry cloth.', care3: 'Keep each pair in its box or pouch, out of the sun.', care4: 'Polymer clay is light, but can snap if bent hard.',
+        gift_h: 'Ready to give', gift_p: 'We propose every pair arrives in the earring box from the brand book, sealed in the colour you choose.',
+        gift_cap: 'Proposed packaging from the brand book', gift_alt: 'Black Asala boxes with ivory inserts and a red seal', gift_box: 'Box', gift_insert: 'Inside', gift_seal: 'Seal',
+        gift_cta: 'Pick a pair to give',
+        foot: 'Asala · handcrafted earrings with an oriental feel, from Palestine. Design demo.', continue: 'Keep shopping'
+      }
+    }
+  });
+})();
+</script>
+
+</body>
+</html>

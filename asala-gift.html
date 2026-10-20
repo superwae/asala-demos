@@ -1,0 +1,571 @@
+<!doctype html>
+<html lang="ar">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Asala Gift Box</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Readex+Pro:wght@300;400;500;600&family=Marcellus&display=swap">
+<style>
+/* Layout: the Asala packaging, as a store. Matte charcoal ground with the diamond tissue pattern, ivory inserts,
+   red seals. The hero box opens; the gift builder assembles piece, box, seal and card with a live preview. */
+:root {
+  --char: #33342F; --char-2: #2a2b27; --char-3: #3d3e38; --ivory: #F5F1E9; --ivory-2: #E8E0D2; --red: #C6383C; --red-2: #d9555a;
+  --text: #F2EEE6; --muted: #bdb8ad; --line: rgba(245,241,233,.16); --edge: rgba(245,241,233,.45);
+  --f-display: "Amiri", "Readex Pro", serif; --f-body: "Readex Pro", "Segoe UI", Tahoma, sans-serif;
+  --gutter: clamp(16px, 4vw, 48px);
+  --jewel-shadow: rgba(0,0,0,.5);
+  --lattice: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='44' height='44' viewBox='0 0 44 44'%3E%3Cg fill='none' stroke='%23F5F1E9' stroke-opacity='.07' stroke-width='1'%3E%3Cpath d='M22 2 L42 22 L22 42 L2 22 Z'/%3E%3Cpath d='M22 7 L37 22 L22 37 L7 22 Z'/%3E%3C/g%3E%3C/svg%3E");
+  color-scheme: dark;
+}
+html[lang="en"] { --f-display: "Marcellus", "Amiri", serif; }
+* { box-sizing: border-box; }
+html.panel-open { overflow: hidden; }
+body { margin: 0; background: var(--char) var(--lattice); color: var(--text); font: 300 1rem/1.75 var(--f-body); }
+::selection { background: var(--red); color: var(--ivory); }
+:focus-visible { outline: 2px solid var(--red-2); outline-offset: 3px; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+img { display: block; max-width: 100%; }
+.wrap { max-width: 1240px; margin: 0 auto; padding-inline: var(--gutter); }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+section[id] { scroll-margin-top: 80px; }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 700; margin: 0; text-wrap: balance; }
+
+.demo { margin: 0; background: var(--char-2); color: var(--muted); text-align: center; font-size: .78rem; padding: 7px var(--gutter); }
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: color-mix(in srgb, var(--char) 92%, transparent); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+.top .wrap { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 18px; min-height: 70px; }
+.brand { display: flex; align-items: center; gap: 12px; min-height: 44px; color: var(--ivory); text-decoration: none; }
+.brand .m svg { width: 34px; height: 36px; display: block; }
+.brand img { height: 15px; width: auto; }
+.nav { display: flex; justify-content: center; gap: 2px; }
+.nav button { background: none; border: 0; min-height: 44px; padding: 0 12px; color: var(--muted); }
+.nav button:hover { color: var(--ivory); }
+.tools { display: flex; align-items: center; gap: 4px; }
+.lang { min-height: 44px; padding: 0 12px; border: 1px solid var(--edge); background: transparent; font-size: .82rem; color: var(--ivory); }
+.icon { position: relative; width: 44px; height: 44px; display: grid; place-items: center; background: none; border: 0; color: var(--ivory); }
+.icon svg { width: 21px; height: 21px; }
+.count { position: absolute; top: 4px; inset-inline-end: 0; min-width: 18px; height: 18px; padding: 0 4px; border-radius: 9px; background: var(--red); color: var(--ivory); font-size: .66rem; display: grid; place-items: center; font-variant-numeric: tabular-nums; }
+@media (max-width: 860px) { .nav { display: none; } .top .wrap { grid-template-columns: 1fr auto; } }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 50px; padding: 0 28px; border: 0; background: var(--red); color: var(--ivory); font-weight: 500; }
+.btn:hover { background: var(--red-2); }
+.btn.ghost { background: transparent; box-shadow: inset 0 0 0 1px var(--edge); }
+.btn.ghost:hover { box-shadow: inset 0 0 0 1px var(--ivory); }
+.btn.ivory { background: var(--ivory); color: var(--char); }
+.full { width: 100%; }
+
+/* hero: the box */
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(24px, 5vw, 70px); align-items: center; padding-block: clamp(30px, 6vw, 80px); }
+.stage { position: relative; aspect-ratio: 1; max-width: 520px; width: 100%; margin-inline: auto; perspective: 1400px; }
+.box-base { position: absolute; inset: 12% 8% 10%; background: #2c2d29; box-shadow: 0 40px 60px rgba(0,0,0,.45), inset 0 0 0 1px rgba(255,255,255,.04); }
+.box-base::before { content: ""; position: absolute; inset: 7%; background: radial-gradient(ellipse at 50% 40%, #f2ebdf, var(--ivory-2) 70%); box-shadow: inset 0 6px 16px rgba(0,0,0,.25); }
+.box-base::after { content: ""; position: absolute; inset: 7%; border: 3px solid var(--red); opacity: .85; pointer-events: none; }
+.box-piece { position: absolute; inset: 22% 22% 20%; display: grid; place-items: center; transform: translateY(14px) scale(.96); opacity: 0; transition: transform 1s cubic-bezier(.2,.8,.2,1) .35s, opacity .8s ease .35s; }
+.box-piece img { max-height: 100%; width: auto; filter: drop-shadow(0 10px 14px rgba(0,0,0,.25)); }
+.box-lid { position: absolute; inset: 8% 4% 6%; background: #383934 var(--lattice); box-shadow: 0 30px 50px rgba(0,0,0,.4), inset 0 0 0 1px rgba(255,255,255,.05); display: grid; place-items: center; align-content: center; gap: 18px; transform-origin: 50% 0%; transition: transform 1.1s cubic-bezier(.6,0,.2,1), opacity .8s ease .3s; color: var(--ivory); }
+.box-lid .m svg { width: 30%; min-width: 96px; height: auto; display: block; margin: 0 auto; }
+.box-lid img { width: 40%; }
+.stage.open .box-lid { transform: translateY(-58%) rotateX(68deg); opacity: .0; }
+.stage.open .box-piece { transform: none; opacity: 1; }
+.seal { position: absolute; bottom: 3%; inset-inline-end: 6%; width: 22%; aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center; box-shadow: 0 8px 14px rgba(0,0,0,.35); z-index: 3; transition: transform .6s cubic-bezier(.3,1.5,.5,1); }
+.seal .m svg { width: 56%; height: auto; display: block; margin: 0 auto; }
+.stage.open .seal { transform: translate(10%, 10%) rotate(-12deg); }
+.hero-copy { display: grid; gap: 18px; }
+.hero-copy h1 { font-size: clamp(2.4rem, 5.2vw, 4.2rem); line-height: 1.15; }
+.hero-copy h1 em { font-style: normal; color: var(--red-2); }
+.hero-copy p { margin: 0; color: var(--muted); max-width: 42ch; font-size: 1.05rem; }
+.hero-copy .btns { display: flex; gap: 12px; flex-wrap: wrap; }
+@media (max-width: 860px) { .hero .wrap { grid-template-columns: 1fr; } .stage { max-width: 380px; } }
+
+/* occasions */
+.occ { padding-block: 0 clamp(40px, 6vw, 80px); }
+.occ ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border: 1px solid var(--line); }
+.occ li + li { border-inline-start: 1px solid var(--line); }
+.occ button { width: 100%; min-height: 110px; padding: 18px; background: transparent; border: 0; text-align: start; display: grid; gap: 4px; align-content: center; }
+.occ button:hover { background: rgba(245,241,233,.04); }
+.occ b { font: 700 1.35rem/1.2 var(--f-display); color: var(--ivory); }
+.occ span { color: var(--muted); font-size: .88rem; }
+@media (max-width: 760px) { .occ ul { grid-template-columns: 1fr 1fr; } .occ li:nth-child(3) { border-inline-start: 0; } .occ li:nth-child(n+3) { border-top: 1px solid var(--line); } }
+
+/* builder */
+.build { background: var(--ivory); color: var(--char); padding-block: clamp(44px, 6vw, 84px); }
+.build-head { display: flex; justify-content: space-between; align-items: end; flex-wrap: wrap; gap: 14px; margin-bottom: 26px; }
+.build-head h2 { font-size: clamp(2rem, 4vw, 3rem); line-height: 1.15; }
+.build-head p { margin: 0; color: #5e5e57; max-width: 44ch; }
+.build-grid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: clamp(20px, 4vw, 48px); align-items: start; }
+.steps { display: grid; gap: 28px; }
+.step h3 { font-size: 1.45rem; display: flex; align-items: baseline; gap: 10px; margin-bottom: 12px; }
+.step h3 .n { font: 500 .85rem var(--f-body); color: var(--ivory); background: var(--char); width: 28px; height: 28px; border-radius: 50%; display: inline-grid; place-items: center; }
+.pieces { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
+.piece { display: grid; gap: 6px; padding: 8px; border: 1px solid rgba(51,52,47,.2); background: #fff; text-align: start; font-size: .86rem; line-height: 1.35; }
+.piece .ph { aspect-ratio: 1; overflow: hidden; background: var(--ivory-2); }
+.piece img { width: 100%; height: 100%; object-fit: cover; }
+.piece img.cut { object-fit: contain; padding: 8%; }
+.piece small { color: #5e5e57; font-variant-numeric: tabular-nums; }
+.piece[aria-checked="true"] { border-color: var(--red); box-shadow: inset 0 0 0 2px var(--red); }
+.boxes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.boxopt { display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: center; padding: 12px; border: 1px solid rgba(51,52,47,.2); background: #fff; text-align: start; }
+.boxopt[aria-checked="true"] { border-color: var(--red); box-shadow: inset 0 0 0 2px var(--red); }
+.boxopt[aria-disabled="true"] { cursor: not-allowed; border-style: dashed; background: #f3efe6; }
+.boxopt[aria-disabled="true"] .shape { opacity: .35; }
+.boxopt .shape { background: var(--char); box-shadow: 0 3px 8px rgba(51,52,47,.25); }
+.boxopt b { display: block; font-weight: 600; font-size: .92rem; }
+.boxopt small { display: block; color: #5e5e57; font-size: .78rem; direction: ltr; text-align: start; unicode-bidi: plaintext; }
+.boxopt .fit { color: var(--red); font-size: .76rem; }
+.seals { display: flex; gap: 14px; flex-wrap: wrap; }
+.sealopt { display: grid; justify-items: center; gap: 6px; background: none; border: 0; padding: 4px; font-size: .84rem; }
+.sealopt .disc { width: 64px; height: 64px; border-radius: 50%; display: grid; place-items: center; box-shadow: 0 4px 8px rgba(0,0,0,.18); outline: 2px solid transparent; outline-offset: 3px; }
+.sealopt .disc svg { width: 58%; height: auto; display: block; }
+.sealopt[aria-checked="true"] .disc { outline-color: var(--char); }
+.card-fields { display: grid; gap: 10px; }
+.card-fields label { font-size: .86rem; font-weight: 500; }
+.card-fields textarea, .card-fields input { width: 100%; padding: 10px 12px; min-height: 48px; border: 1px solid rgba(51,52,47,.35); background: #fff; color: var(--char); font: 400 1.05rem var(--f-display); }
+.card-fields textarea { min-height: 90px; resize: vertical; }
+.card-fields .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.card-fields .cnt { font-size: .78rem; color: #5e5e57; text-align: end; }
+.preview { position: sticky; top: 90px; display: grid; gap: 14px; }
+.p-box { position: relative; aspect-ratio: 4 / 3; background: #2c2d29 var(--lattice); display: grid; place-items: center; color: var(--ivory); box-shadow: 0 20px 40px rgba(0,0,0,.25); }
+.p-box .m svg { width: 26%; height: auto; display: block; margin: 0 auto; }
+.p-box .dims { position: absolute; top: 10px; right: 12px; font-size: .74rem; color: var(--muted); direction: ltr; }
+.p-box .seal { width: 20%; bottom: -6%; box-shadow: 0 0 0 2px rgba(245,241,233,.7), 0 8px 14px rgba(0,0,0,.35); }
+.p-box { max-height: 420px; margin-inline: auto; width: 100%; }
+.m-card, .m-bar { display: none; }
+.p-card { position: relative; background: #fffdf8; color: var(--char); padding: 22px 22px 18px; box-shadow: 0 12px 24px rgba(0,0,0,.14); transform: rotate(-1.4deg); margin: -26px 16% 0 4%; display: grid; gap: 8px; min-height: 170px; }
+.p-card .head { display: flex; align-items: center; gap: 10px; color: var(--red); }
+.p-card .head .m svg { width: 26px; height: 27px; display: block; }
+.p-card .head img { height: 9px; filter: none; }
+.p-card .msg { font: 700 1.5rem/1.45 var(--f-display); white-space: pre-wrap; overflow-wrap: anywhere; }
+.p-card .sig { color: #5e5e57; font-size: .86rem; }
+.p-sum { display: grid; gap: 6px; padding: 14px 16px; background: #fff; border: 1px solid rgba(51,52,47,.15); }
+.p-sum div { display: flex; justify-content: space-between; gap: 10px; font-size: .9rem; }
+.p-sum dt { color: #5e5e57; } .p-sum dd { margin: 0; font-variant-numeric: tabular-nums; text-align: end; }
+.p-sum .grand { border-top: 1px solid rgba(51,52,47,.15); padding-top: 8px; font-weight: 600; font-size: 1.1rem; }
+.gift-err { color: #a52a2e; font-size: .86rem; min-height: 1.2em; margin: 0; }
+@media (max-width: 900px) {
+  .build-grid { grid-template-columns: 1fr; } .preview { position: static; } .boxes { grid-template-columns: 1fr; }
+  .preview #add-gift { display: none; }
+  .m-card { display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: center; margin-top: 8px; padding: 14px; background: #fffdf8; box-shadow: 0 8px 18px rgba(0,0,0,.1); color: var(--char); }
+  .m-card .m svg { width: 26px; height: 27px; display: block; color: var(--red); }
+  .m-card p { margin: 0; font: 700 1.2rem/1.4 var(--f-display); white-space: pre-wrap; overflow-wrap: anywhere; }
+  .m-bar { display: flex; position: sticky; bottom: 0; z-index: 15; align-items: center; justify-content: space-between; gap: 12px; margin-top: 22px; padding: 10px 14px calc(10px + env(safe-area-inset-bottom, 0px)); background: var(--char); color: var(--ivory); box-shadow: 0 -8px 20px rgba(0,0,0,.18); }
+  .m-bar span { display: grid; line-height: 1.2; } .m-bar small { color: var(--muted); } .m-bar b { font-size: 1.2rem; font-variant-numeric: tabular-nums; }
+}
+
+/* what arrives */
+.arrive { padding-block: clamp(44px, 6vw, 84px); }
+.arrive .head { margin-bottom: 24px; display: grid; gap: 8px; }
+.arrive .head h2 { font-size: clamp(1.9rem, 3.6vw, 2.8rem); }
+.arrive .head p { margin: 0; color: var(--muted); max-width: 52ch; }
+.arrive .grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 12px; }
+.arrive figure { margin: 0; position: relative; overflow: hidden; background: var(--char-2); }
+.arrive figure img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 4 / 3; }
+.arrive figure:first-child img { aspect-ratio: auto; height: 100%; }
+.arrive figcaption { position: absolute; inset-inline: 0; bottom: 0; padding: 14px 16px; background: linear-gradient(to top, rgba(0,0,0,.65), transparent); color: var(--ivory); font-size: .92rem; }
+@media (max-width: 760px) { .arrive .grid { grid-template-columns: 1fr; } }
+
+/* pieces shelf */
+.shelf { padding-block: 0 clamp(44px, 6vw, 84px); }
+.shelf .head { display: flex; justify-content: space-between; align-items: end; gap: 12px; margin-bottom: 20px; }
+.shelf h2 { font-size: clamp(1.7rem, 3vw, 2.4rem); }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; }
+.card { position: relative; display: grid; gap: 6px; }
+.card .ph { position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: var(--ivory-2); }
+.card .ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .8s cubic-bezier(.2,.8,.2,1); }
+.card .ph img.cut { object-fit: contain; padding: 10%; }
+.card:hover .ph img { transform: scale(1.03); }
+.card .open { position: absolute; inset: 0; z-index: 1; background: none; border: 0; }
+.card h3 { font-size: 1.2rem; margin-top: 8px; }
+.card .row { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+.card .price { color: var(--muted); font-variant-numeric: tabular-nums; }
+.card .gift { position: relative; z-index: 2; min-height: 44px; padding: 0 14px; border: 1px solid var(--edge); background: transparent; color: var(--ivory); font-size: .84rem; }
+.card .gift:hover { background: var(--red); border-color: var(--red); }
+
+footer { border-top: 1px solid var(--line); background: var(--char-2); }
+footer .wrap { display: grid; grid-template-columns: auto 1fr auto; gap: 20px; align-items: center; padding-block: 26px; }
+footer p { margin: 0; color: var(--muted); font-size: .86rem; }
+footer .val { color: var(--ivory); direction: ltr; unicode-bidi: isolate; font-variant-numeric: tabular-nums; }
+@media (max-width: 760px) { footer .wrap { grid-template-columns: 1fr; } }
+
+/* product sheet + bag (ivory panels) */
+.psheet, .drawer { position: fixed; inset: 0; z-index: 50; background: rgba(0,0,0,.6); display: flex; opacity: 0; transition: opacity .25s; }
+.is-open { opacity: 1; }
+.psheet { align-items: center; justify-content: center; padding: 16px; }
+.p-sheet { position: relative; width: min(920px, 100%); max-height: calc(100% - 16px); overflow: auto; display: grid; grid-template-columns: 1.1fr 1fr; background: var(--ivory); color: var(--char); transform: translateY(14px); transition: transform .3s cubic-bezier(.2,.8,.2,1); }
+.is-open .p-sheet { transform: none; }
+.p-art { position: relative; aspect-ratio: 1; background: var(--ivory-2); }
+.p-art img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.p-art canvas { position: absolute; inset: 8%; width: 84%; height: 84%; }
+.p-info { padding: 30px 26px; display: flex; flex-direction: column; gap: 12px; }
+.p-info h2 { font-size: 2rem; line-height: 1.25; }
+.p-info .cat { margin: 0; color: var(--red); font-size: .88rem; }
+.p-info .price { margin: 0; font-size: 1.25rem; font-weight: 500; font-variant-numeric: tabular-nums; }
+.p-info .desc { margin: 0; color: #5e5e57; }
+fieldset { border: 0; padding: 0; margin: 0; }
+legend { font-weight: 500; margin-bottom: 8px; padding: 0; }
+[data-sheet-tones] { display: flex; gap: 8px; flex-wrap: wrap; }
+.tone { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 14px; border: 1px solid rgba(51,52,47,.4); background: #fff; color: var(--char); }
+.tone[aria-checked="true"] { background: var(--char); color: var(--ivory); }
+.tone-dot { width: 14px; height: 14px; border-radius: 50%; }
+.err { color: #a52a2e; font-size: .86rem; margin: 2px 0 0; min-height: 1em; }
+.x { position: absolute; top: 10px; inset-inline-end: 10px; z-index: 3; width: 44px; height: 44px; border: 0; background: var(--ivory); color: var(--char); display: grid; place-items: center; }
+.x svg { width: 18px; height: 18px; }
+@media (max-width: 760px) {
+  .psheet { align-items: end; padding: 0; }
+  .p-sheet { grid-template-columns: 1fr; max-height: 94%; transform: translateY(40px); }
+  .p-info { padding: 18px 18px calc(22px + env(safe-area-inset-bottom, 0px)); }
+}
+.drawer { justify-content: flex-end; }
+.d-card { width: min(430px, 100%); height: 100%; overflow: auto; background: var(--ivory); color: var(--char); padding: calc(18px + env(safe-area-inset-top, 0px)) 22px calc(24px + env(safe-area-inset-bottom, 0px)); transform: translateX(40px); transition: transform .3s cubic-bezier(.2,.8,.2,1); }
+[dir="rtl"] .d-card { transform: translateX(-40px); }
+.drawer.is-open .d-card { transform: none; }
+.d-head { display: flex; align-items: center; gap: 10px; padding-bottom: 12px; margin-bottom: 16px; border-bottom: 1px solid rgba(51,52,47,.2); }
+.d-head h2 { font-size: 1.7rem; line-height: 1; }
+.d-head span { color: #5e5e57; font-size: .9rem; }
+.d-head .x { position: static; margin-inline-start: auto; background: var(--ivory-2); }
+.empty { color: #5e5e57; padding: 24px 0; text-align: center; display: grid; gap: 14px; justify-items: center; }
+[data-cart-list] { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; }
+.ci { display: grid; grid-template-columns: 76px 1fr auto; gap: 12px; padding-bottom: 14px; border-bottom: 1px solid rgba(51,52,47,.15); }
+.ci-img { position: relative; width: 76px; height: 90px; background: var(--ivory-2); overflow: hidden; }
+.ci-img img { width: 100%; height: 100%; object-fit: cover; }
+.ci-name { margin: 0; font-weight: 500; }
+.ci-meta { margin: 2px 0 8px; color: #5e5e57; font-size: .82rem; }
+.ci-row { display: flex; gap: 10px; align-items: center; }
+.ci-qty { display: inline-flex; align-items: center; border: 1px solid rgba(51,52,47,.4); }
+.ci-qty button { width: 44px; height: 44px; border: 0; background: none; font-size: 1.05rem; }
+.ci-qty output { min-width: 18px; text-align: center; font-variant-numeric: tabular-nums; }
+.ci-remove { border: 0; background: none; color: #5e5e57; text-decoration: underline; text-underline-offset: 3px; min-height: 44px; font-size: .84rem; }
+.ci-price { margin: 0; font-weight: 500; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.sums { margin: 18px 0; display: grid; gap: 8px; font-variant-numeric: tabular-nums; }
+.sums div { display: flex; justify-content: space-between; } .sums dd { margin: 0; } .sums dt { color: #5e5e57; }
+.sums .grand { padding-top: 10px; border-top: 1px solid rgba(51,52,47,.25); font-weight: 600; font-size: 1.15rem; } .sums .grand dt { color: var(--char); }
+.form { display: grid; gap: 14px; }
+.form label { display: block; font-size: .86rem; font-weight: 500; margin-bottom: 5px; }
+.form input, .form select, .form textarea { width: 100%; min-height: 50px; padding: 10px 14px; border: 1px solid rgba(51,52,47,.4); background: #fff; color: var(--char); }
+.form textarea { min-height: 80px; resize: vertical; }
+.form [aria-invalid="true"] { border-color: var(--red); box-shadow: inset 0 0 0 1px var(--red); }
+.form input[type="tel"] { direction: ltr; }
+[dir="rtl"] .form input[type="tel"] { text-align: right; }
+::placeholder { color: #85847c; opacity: 1; }
+[data-pay-list] { display: grid; border: 1px solid rgba(51,52,47,.3); }
+.pay { display: flex; gap: 12px; padding: 14px; cursor: pointer; background: #fff; }
+.pay + .pay { border-top: 1px solid rgba(51,52,47,.12); }
+.pay:has(input:checked) { background: var(--ivory-2); }
+.pay input { width: 18px; height: 18px; min-height: 0; margin: 4px 0 0; accent-color: var(--red); }
+.pay-body { display: grid; } .pay-name { font-weight: 500; } .pay-note { color: #5e5e57; font-size: .84rem; }
+.fee-hint { color: #5e5e57; font-size: .84rem; margin: -6px 0 0; }
+.link-btn { border: 0; background: none; color: #5e5e57; text-decoration: underline; min-height: 44px; }
+.ok { text-align: center; padding: 34px 0; display: grid; gap: 12px; justify-items: center; }
+.ok .m svg { width: 70px; height: 72px; color: var(--red); display: block; }
+.ok h3 { font-size: 2rem; }
+.toast { position: fixed; bottom: calc(18px + env(safe-area-inset-bottom, 0px)); inset-inline: 0; margin: 0 auto; width: max-content; max-width: calc(100% - 32px); z-index: 60; background: var(--ivory); color: var(--char); padding: 12px 18px; box-shadow: 0 12px 30px rgba(0,0,0,.35); transform: translateY(20px); opacity: 0; transition: .3s; pointer-events: none; }
+.toast.is-on { transform: none; opacity: 1; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+
+<p class="demo" data-t="demo_note"></p>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Asala"><span class="m mark"></span><img src="brand/wordmark-white.png" alt="ASALA"></a>
+    <nav class="nav" aria-label="Main">
+      <button type="button" data-go="build" data-t="n_build"></button>
+      <button type="button" data-go="shelf" data-t="n_pieces"></button>
+      <button type="button" data-go="arrive" data-t="n_arrive"></button>
+    </nav>
+    <div class="tools">
+      <button class="lang" type="button" data-lang-toggle data-t="lang_switch"></button>
+      <button class="icon" type="button" data-open-cart data-ta="cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M5 8h14l-1 12H6L5 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="count" data-cart-count hidden>0</span></button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div class="stage" id="stage">
+        <div class="box-base"></div>
+        <div class="box-piece"><img src="brand/pink-teal.png" alt=""></div>
+        <div class="box-lid"><span class="m mark"></span><img src="brand/wordmark-white.png" alt=""></div>
+        <div class="seal" style="background:#C6383C;color:#F5F1E9"><span class="m mark"></span></div>
+      </div>
+      <div class="hero-copy">
+        <h1><span data-t="h1a"></span><br><em data-t="h1b"></em></h1>
+        <p data-t="lead"></p>
+        <div class="btns">
+          <button class="btn" type="button" id="open-box" aria-pressed="false" data-t="open_box"></button>
+          <button class="btn ghost" type="button" data-go="build" data-t="make_gift"></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="occ" aria-labelledby="occ-h">
+    <div class="wrap">
+      <h2 class="sr" id="occ-h" data-t="occ_h"></h2>
+      <ul id="occ"></ul>
+    </div>
+  </section>
+
+  <section class="build" id="build" aria-labelledby="build-h">
+    <div class="wrap">
+      <div class="build-head"><h2 id="build-h" data-t="build_h"></h2><p data-t="build_p"></p></div>
+      <div class="build-grid">
+        <div class="steps">
+          <div class="step"><h3><span class="n">1</span><span data-t="s1"></span></h3><div class="pieces" role="radiogroup" id="pieces"></div></div>
+          <div class="step"><h3><span class="n">2</span><span data-t="s2"></span></h3><div class="boxes" role="radiogroup" id="boxes"></div></div>
+          <div class="step"><h3><span class="n">3</span><span data-t="s3"></span></h3><div class="seals" role="radiogroup" id="seals"></div></div>
+          <div class="step"><h3><span class="n">4</span><span data-t="s4"></span></h3>
+            <div class="card-fields">
+              <label for="msg" data-t="msg_lbl"></label>
+              <textarea id="msg" maxlength="120"></textarea>
+              <span class="cnt" id="msg-cnt"></span>
+              <div class="m-card" aria-hidden="true"><span class="m mark"></span><p id="pv-msg-m"></p></div>
+              <div class="row">
+                <div><label for="to" data-t="to_lbl"></label><input id="to" maxlength="30" autocomplete="off"></div>
+                <div><label for="from" data-t="from_lbl"></label><input id="from" maxlength="30" autocomplete="off"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="preview" aria-live="polite">
+          <div class="p-box"><span class="m mark"></span><span class="dims" id="pv-dims"></span><div class="seal" id="pv-seal"><span class="m mark"></span></div></div>
+          <div class="p-card"><div class="head"><span class="m mark"></span><img src="brand/wordmark-dark.png" alt="ASALA"></div><p class="msg" id="pv-msg"></p><p class="sig" id="pv-sig"></p></div>
+          <dl class="p-sum" id="pv-sum"></dl>
+          <p class="gift-err" id="gift-err"></p>
+          <button class="btn full" type="button" id="add-gift" data-t="add_gift"></button>
+        </div>
+      </div>
+      <div class="m-bar"><span><small data-t="gift_total"></small><b id="bar-total"></b></span><button class="btn" type="button" id="add-gift-m" data-t="add_gift"></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="arrive" id="arrive" aria-labelledby="arr-h">
+    <div class="wrap">
+      <div class="head"><h2 id="arr-h" data-t="arr_h"></h2><p data-t="arr_p"></p></div>
+      <div class="grid">
+        <figure><img src="brand/packaging-family.jpg" alt=""><figcaption data-t="arr1"></figcaption></figure>
+        <figure><img src="brand/pouch.jpg" alt=""><figcaption data-t="arr2"></figcaption></figure>
+        <figure><img src="brand/thank-card.jpg" alt=""><figcaption data-t="arr3"></figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="shelf" id="shelf" aria-labelledby="sh-h">
+    <div class="wrap">
+      <div class="head"><h2 id="sh-h" data-t="sh_h"></h2></div>
+      <div class="cards" id="cards"></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Asala"><span class="m mark"></span><img src="brand/wordmark-white.png" alt="ASALA"></a>
+    <p data-t="foot"></p>
+    <p><span data-t="wa"></span> <span class="val">059 000 0000</span></p>
+  </div>
+</footer>
+
+<div class="psheet" data-sheet hidden role="dialog" aria-modal="true" aria-labelledby="sheet-title">
+  <div class="p-sheet">
+    <button class="x" type="button" data-close data-ta="close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+    <div class="p-art"><img data-sheet-photo alt="" hidden><canvas data-sheet-canvas></canvas></div>
+    <div class="p-info">
+      <p class="cat" data-sheet-cat></p>
+      <h2 id="sheet-title" data-sheet-name></h2>
+      <p class="price" data-sheet-price></p>
+      <p class="desc" data-sheet-desc></p>
+      <fieldset id="tone-field"><legend data-t="tone"></legend><div data-sheet-tones role="radiogroup"></div></fieldset>
+      <div data-sheet-custom hidden><input data-sheet-text><p class="err" data-sheet-err></p></div>
+      <button class="btn full" type="button" data-sheet-add data-t="add_plain"></button>
+      <button class="btn ghost full" type="button" id="gift-this" style="color:var(--char);box-shadow:inset 0 0 0 1px var(--char)" data-t="gift_this"></button>
+    </div>
+  </div>
+</div>
+
+<div class="drawer" data-drawer hidden role="dialog" aria-modal="true" aria-labelledby="bag-title">
+  <div class="d-card" data-scroll>
+    <div class="d-head"><h2 id="bag-title" data-t="cart"></h2><span data-count-label></span>
+      <button class="x" type="button" data-close data-ta="close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+    <section data-step="bag">
+      <div class="empty" data-cart-empty><p data-t="bag_empty"></p><button class="btn" type="button" data-close data-t="continue"></button></div>
+      <div data-cart-filled hidden>
+        <ul data-cart-list></ul>
+        <dl class="sums"><div class="grand"><dt data-t="subtotal"></dt><dd data-subtotal></dd></div></dl>
+        <button class="btn full" type="button" data-goto="checkout" data-t="checkout"></button>
+      </div>
+    </section>
+    <section data-step="checkout" hidden>
+      <form class="form" data-checkout novalidate>
+        <div><label for="f-name" data-t="f_name"></label><input id="f-name" name="name" autocomplete="name"><p class="err" data-err="name"></p></div>
+        <div><label for="f-phone" data-t="f_phone"></label><input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" data-tp="ph_phone"><p class="err" data-err="phone"></p></div>
+        <div><label for="f-city" data-t="f_city"></label><select id="f-city" name="city" data-city-select></select><p class="err" data-err="city"></p></div>
+        <div><label for="f-address" data-t="f_address"></label><textarea id="f-address" name="address" data-tp="ph_address"></textarea><p class="err" data-err="address"></p></div>
+        <fieldset><legend data-t="f_pay"></legend><div data-pay-list></div></fieldset>
+        <dl class="sums">
+          <div><dt data-t="subtotal"></dt><dd data-subtotal></dd></div>
+          <div><dt data-t="delivery"></dt><dd data-fee></dd></div>
+          <div class="grand"><dt data-t="total"></dt><dd data-total></dd></div>
+        </dl>
+        <p class="fee-hint" data-fee-hint data-t="choose_city"></p>
+        <button class="btn full" type="submit" data-t="place_order"></button>
+        <button class="link-btn" type="button" data-goto="bag" data-t="back_to_bag"></button>
+      </form>
+    </section>
+    <section data-step="confirm" hidden>
+      <div class="ok"><span class="m mark"></span><h3 data-t="ok_title"></h3><p><span data-t="ok_num"></span>: <b data-confirm-num></b></p><p data-confirm-body></p><button class="btn" type="button" data-shop-again data-t="ok_again"></button></div>
+    </section>
+  </div>
+</div>
+<div class="toast" data-toast role="status" aria-live="polite"></div>
+
+<script src="store.js"></script>
+<script src="brand/asala-catalog.js"></script>
+<script>
+(function () {
+  var S = window.Store, A = window.ASALA;
+  A.install(S);
+  S.$$('.mark').forEach(function (el) { el.innerHTML = A.MARK; });
+  var BOXES = A.BOXES.filter(function (b) { return b.id !== 'bracelet'; });
+  var st = { piece: 'mihrab', box: 'ring', seal: 'red', msg: '', to: '', from: '', touched: false };
+  var OCC = [
+    { id: 'wedding', ar: 'زفاف', en: 'A wedding', dAr: 'هدية للعروس', dEn: 'For the bride', mAr: 'مبارك، ودامت الأفراح.', mEn: 'Congratulations, and many happy days.' },
+    { id: 'grad', ar: 'تخرّج', en: 'Graduation', dAr: 'لمن تعب وأنجز', dEn: 'For the hard work', mAr: 'مبروك التخرّج، والقادم أجمل.', mEn: 'Congratulations, the best is ahead.' },
+    { id: 'thanks', ar: 'شكر', en: 'A thank you', dAr: 'لمن وقف معك', dEn: 'For someone who was there', mAr: 'شكراً من قلبي لقلبك.', mEn: 'Thank you, from my heart to yours.' },
+    { id: 'self', ar: 'لنفسك', en: 'For yourself', dAr: 'لأنك تستحقين', dEn: 'Because you deserve it', mAr: 'لي أنا، قطعة من حكايتي.', mEn: 'For me, a piece of my story.' }
+  ];
+  function L(o, k) { return k ? o[k + (S.lang() === 'ar' ? 'Ar' : 'En')] : o[S.lang()]; }
+  function boxFits(boxId, p) { if (boxId === 'gift') return true; if (p.cat === 'necklace') return boxId === 'necklace'; return boxId === 'ring'; }
+  function defaultBox(p) { return p.cat === 'necklace' ? 'necklace' : 'ring'; }
+  function sealStyle(id) { var s = A.SEALS.filter(function (x) { return x.id === id; })[0]; return 'background:' + s.color + ';color:' + s.ink; }
+
+  function renderSteps() {
+    document.getElementById('pieces').innerHTML = S.PRODUCTS.map(function (p) {
+      return '<button class="piece" type="button" role="radio" data-piece="' + p.id + '" aria-checked="' + (p.id === st.piece) + '"><span class="ph"><img' + (p.cutout ? ' class="cut"' : '') + ' src="' + p.photo + '" alt=""></span><span>' + S.esc(S.name(p)) + '</span><small>' + (p.configurable ? S.esc(S.t('from')) + ' ' : '') + S.money(p.price) + '</small></button>';
+    }).join('');
+    var p = S.byId(st.piece);
+    document.getElementById('boxes').innerHTML = BOXES.map(function (b) {
+      var fits = boxFits(b.id, p), d = b.dims.split(' × ').map(Number), w = Math.max(22, d[0] / 6), h = Math.max(16, d[1] / 6);
+      return '<button class="boxopt" type="button" role="radio" data-box="' + b.id + '" aria-checked="' + (b.id === st.box) + '"' + (fits ? '' : ' aria-disabled="true"') + '><span class="shape" style="width:' + Math.min(w, 46) + 'px;height:' + Math.min(h, 46) + 'px"></span><span><b>' + S.esc(L(b)) + '</b><small>' + b.dims + ' mm</small>' +
+        '<span class="fit">' + S.esc(fits ? (b.price ? '+ ' + S.money(b.price) : S.t('included')) : S.t('not_fit')) + '</span></span></button>';
+    }).join('');
+    document.getElementById('seals').innerHTML = A.SEALS.map(function (s) {
+      return '<button class="sealopt" type="button" role="radio" data-seal="' + s.id + '" aria-checked="' + (s.id === st.seal) + '"><span class="disc" style="background:' + s.color + ';color:' + s.ink + '">' + A.MARK + '</span>' + S.esc(L(s)) + '</button>';
+    }).join('');
+  }
+  function renderPreview() {
+    var p = S.byId(st.piece), b = A.BOXES.filter(function (x) { return x.id === st.box; })[0], total = p.price + b.price;
+    var msg = st.touched ? st.msg : (st.msg || S.t('default_msg'));
+    document.getElementById('pv-msg').textContent = msg || '…';
+    var sig = [st.to ? S.t('to_word') + ' ' + st.to : '', st.from ? S.t('from_word') + ' ' + st.from : ''].filter(Boolean).join(' · ');
+    document.getElementById('pv-sig').textContent = sig || S.t('sig_hint');
+    document.getElementById('pv-dims').textContent = b.dims + ' mm';
+    document.getElementById('pv-seal').setAttribute('style', sealStyle(st.seal));
+    var n = st.touched ? st.msg.length : 0;
+    document.getElementById('msg-cnt').textContent = S.lang() === 'ar' ? n + ' من 120 حرفاً' : n + ' of 120 characters';
+    var d = b.dims.split(' × ').map(Number);
+    document.querySelector('.p-box').style.aspectRatio = (d[0] / d[1]).toFixed(3);
+    document.getElementById('pv-msg-m').textContent = msg || '…';
+    document.getElementById('bar-total').textContent = S.money(total);
+    document.getElementById('pv-sum').innerHTML =
+      '<div><dt>' + S.esc(S.name(p)) + '</dt><dd>' + S.money(p.price) + '</dd></div>' +
+      '<div><dt>' + S.esc(L(b)) + '</dt><dd>' + (b.price ? S.money(b.price) : S.esc(S.t('included'))) + '</dd></div>' +
+      '<div><dt>' + S.esc(S.t('card_seal')) + '</dt><dd>' + S.esc(S.t('included')) + '</dd></div>' +
+      '<div class="grand"><dt>' + S.esc(S.t('gift_total')) + '</dt><dd>' + S.money(total) + '</dd></div>';
+  }
+  function renderShelf() {
+    document.getElementById('cards').innerHTML = S.PRODUCTS.map(function (p) {
+      return '<article class="card"><div class="ph"><img' + (p.cutout ? ' class="cut"' : '') + ' src="' + p.photo + '" alt=""></div>' +
+        '<button class="open" type="button" data-open="' + p.id + '" aria-label="' + S.esc(S.t('view') + ': ' + S.name(p)) + '"></button>' +
+        '<h3>' + S.esc(S.name(p)) + '</h3><div class="row"><span class="price">' + (p.configurable ? S.esc(S.t('from')) + ' ' : '') + S.money(p.price) + '</span>' +
+        '<button class="gift" type="button" data-gift="' + p.id + '">' + S.esc(S.t('gift_it')) + '</button></div></article>';
+    }).join('');
+  }
+  function render() {
+    document.getElementById('occ').innerHTML = OCC.map(function (o) { return '<li><button type="button" data-occ="' + o.id + '"><b>' + S.esc(L(o)) + '</b><span>' + S.esc(L(o, 'd')) + '</span></button></li>'; }).join('');
+    document.getElementById('msg').setAttribute('placeholder', S.t('default_msg'));
+    renderSteps(); renderPreview(); renderShelf();
+    var ob = document.getElementById('open-box'), isOpen = document.getElementById('stage').classList.contains('open');
+    ob.textContent = S.t(isOpen ? 'close_box' : 'open_box'); ob.setAttribute('aria-pressed', String(isOpen));
+  }
+  function choosePiece(id) { st.piece = id; var p = S.byId(id); if (!boxFits(st.box, p)) st.box = defaultBox(p); renderSteps(); renderPreview(); }
+
+  document.getElementById('open-box').addEventListener('click', function () {
+    var stage = document.getElementById('stage'), open = !stage.classList.contains('open');
+    stage.classList.toggle('open', open); this.setAttribute('aria-pressed', String(open)); this.textContent = S.t(open ? 'close_box' : 'open_box');
+  });
+  document.addEventListener('click', function (e) {
+    var b;
+    if ((b = e.target.closest('[data-go]'))) { document.getElementById(b.getAttribute('data-go')).scrollIntoView({ behavior: 'smooth' }); return; }
+    if ((b = e.target.closest('[data-piece]'))) { choosePiece(b.getAttribute('data-piece')); return; }
+    if ((b = e.target.closest('[data-box]'))) { if (b.getAttribute('aria-disabled') === 'true') { document.getElementById('gift-err').textContent = S.t('not_fit_long'); return; } document.getElementById('gift-err').textContent = ''; st.box = b.getAttribute('data-box'); renderSteps(); renderPreview(); return; }
+    if ((b = e.target.closest('[data-seal]'))) { st.seal = b.getAttribute('data-seal'); renderSteps(); renderPreview(); return; }
+    if ((b = e.target.closest('[data-occ]'))) {
+      var o = OCC.filter(function (x) { return x.id === b.getAttribute('data-occ'); })[0];
+      st.msg = L(o, 'm'); st.touched = true; document.getElementById('msg').value = st.msg; renderPreview();
+      document.getElementById('build').scrollIntoView({ behavior: 'smooth' }); return;
+    }
+    if ((b = e.target.closest('[data-gift]'))) { choosePiece(b.getAttribute('data-gift')); document.getElementById('build').scrollIntoView({ behavior: 'smooth' }); return; }
+    if (e.target.closest('#gift-this')) { var cur = S.current(); document.querySelector('[data-sheet] [data-close]').click(); if (cur) choosePiece(cur.id); document.getElementById('build').scrollIntoView({ behavior: 'smooth' }); return; }
+    if (e.target.closest('#add-gift, #add-gift-m')) {
+      var p = S.byId(st.piece), bx = A.BOXES.filter(function (x) { return x.id === st.box; })[0], seal = A.SEALS.filter(function (x) { return x.id === st.seal; })[0];
+      var msg = st.touched ? st.msg : (st.msg || S.t('default_msg'));
+      var names = [st.to ? S.t('to_word') + ' ' + st.to : '', st.from ? S.t('from_word') + ' ' + st.from : ''].filter(Boolean).join('، ');
+      S.add(p.id, p.tones[0], '', { meta: [S.t('gift_word'), L(bx), L(seal), msg ? '«' + msg.slice(0, 40) + (msg.length > 40 ? '…' : '') + '»' : '', names].filter(Boolean).join(' · '), price: p.price + bx.price, photo: p.cutout ? '' : p.photo });
+    }
+  });
+  ['msg', 'to', 'from'].forEach(function (id) {
+    document.getElementById(id).addEventListener('input', function (e) { st[id] = e.target.value; if (id === 'msg') st.touched = true; renderPreview(); });
+  });
+  document.addEventListener('keydown', function (e) {
+    var r = e.target.closest && e.target.closest('#pieces [role="radio"], #boxes [role="radio"], #seals [role="radio"]'); if (!r) return;
+    if (['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].indexOf(e.key) < 0) return;
+    e.preventDefault(); var all = S.$$('[role="radio"]', r.parentElement), i = all.indexOf(r), d = (e.key === 'ArrowDown' || e.key === 'ArrowLeft') ? 1 : -1;
+    if (S.lang() !== 'ar' && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')) d = -d;
+    var n = all[(i + d + all.length) % all.length]; n.focus(); n.click();
+  });
+  S.on('sheet', function (d) { document.getElementById('tone-field').hidden = d.product.tones.length < 2; var ph = document.querySelector('[data-sheet-photo]'); ph.style.objectFit = d.product.cutout ? 'contain' : 'cover'; });
+
+  S.boot({
+    render: render, orderPrefix: 'AS-', cartKey: 'asala-gift',
+    strings: {
+      ar: {
+        demo_note: 'نموذج تصميم لمتجر أصالة. الصور والتغليف من دليل الهوية، والأسعار مؤقتة.',
+        n_build: 'اصنعي هدية', n_pieces: 'القطع', n_arrive: 'ما يصلك',
+        h1a: 'قطعة من التراث،', h1b: 'صارت جزءاً من حكايتك.', lead: 'صُمّم تغليف أصالة ليصل في علبة فحمية مطفية، بورق مزخرف بالمعيّنات، وختم أحمر، وبطاقة بكلماتك.',
+        open_box: 'افتحي العلبة', close_box: 'أغلقي العلبة', make_gift: 'اصنعي هديتك', occ_h: 'المناسبات',
+        build_h: 'اصنعي الهدية', build_p: 'أربع خطوات، وترين الهدية كما ستصل.',
+        s1: 'القطعة', s2: 'العلبة', s3: 'الختم', s4: 'البطاقة', included: 'مشمولة', not_fit: 'لا تناسب هذه القطعة', not_fit_long: 'هذه العلبة لا تناسب القطعة المختارة. اختاري علبة أخرى أو صندوق الهدية.',
+        msg_lbl: 'رسالتك على البطاقة', to_lbl: 'إلى', from_lbl: 'من', to_word: 'إلى', from_word: 'من', sig_hint: 'أضيفي الاسمين إن أحببتِ', default_msg: 'شكراً من قلبي لقلبك.',
+        card_seal: 'البطاقة والختم', gift_total: 'مجموع الهدية', add_gift: 'أضيفي الهدية إلى السلة', gift_word: 'هدية', from: 'من',
+        arr_h: 'ما يصلك', arr_p: 'من العلبة الخارجية حتى لحظة الفتح، بنفس الهندسة ونفس الألوان. التغليف تصميم مقترح من دليل الهوية.', arr1: 'عائلة العلب المقترحة: الخاتم والسوار والقلادة وصندوق الهدية', arr2: 'كيس قماشي بالشعار الأحمر (مقترح)', arr3: 'بطاقة شكر (مقترحة)',
+        sh_h: 'القطع', gift_it: 'اجعليها هدية', add_plain: 'أضيفي إلى السلة', gift_this: 'اجعليها هدية',
+        foot: 'أصالة · قطع فريدة بروح شرقية. نموذج تصميم.', wa: 'واتساب'
+      },
+      en: {
+        demo_note: 'Design demo for Asala. Photos and packaging from the brand book; prices are placeholders.',
+        n_build: 'Make a gift', n_pieces: 'Pieces', n_arrive: 'What arrives',
+        h1a: 'A piece of heritage,', h1b: 'made part of your story.', lead: 'Asala packaging is designed to arrive in a matte charcoal box, wrapped in diamond-patterned tissue, with a red seal and a card in your words.',
+        open_box: 'Open the box', close_box: 'Close the box', make_gift: 'Make your gift', occ_h: 'Occasions',
+        build_h: 'Make the gift', build_p: 'Four steps, and you see the gift exactly as it arrives.',
+        s1: 'The piece', s2: 'The box', s3: 'The seal', s4: 'The card', included: 'Included', not_fit: 'Does not fit this piece', not_fit_long: 'That box does not fit the chosen piece. Pick another box or the gift box.',
+        msg_lbl: 'Your message on the card', to_lbl: 'To', from_lbl: 'From', to_word: 'To', from_word: 'From', sig_hint: 'Add both names if you like', default_msg: 'Thank you, from my heart to yours.',
+        card_seal: 'Card and seal', gift_total: 'Gift total', add_gift: 'Add the gift to bag', gift_word: 'Gift', from: 'from',
+        arr_h: 'What arrives', arr_p: 'From the outer box to the moment it opens, the same geometry and the same colours. The packaging is a proposed design from the brand book.', arr1: 'The proposed box family: ring, bracelet, necklace and gift box', arr2: 'A cloth pouch with the red mark (proposed)', arr3: 'A thank-you card (proposed)',
+        sh_h: 'The pieces', gift_it: 'Make it a gift', add_plain: 'Add to bag', gift_this: 'Make it a gift',
+        foot: 'Asala · unique pieces with an oriental feel. Design demo.', wa: 'WhatsApp'
+      }
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
