@@ -9,12 +9,12 @@
     { id: 'dome', cat: 'earrings', coll: 'dome', price: 180, tones: ['gold', 'silver'], photo: IMG + 'dome-render.jpg', photoTone: 'gold',
       alts: [IMG + 'dome-worn.jpg', IMG + 'dome-stone.jpg'], madeToOrder: true, configurable: true,
       ar: 'أقراط القبة', en: 'Dome earrings',
-      dAr: 'مستوحاة من قبة الصخرة: قبة مخرّمة بنقش هندسي فوق أربعة أقواس، تتدلى منها ثلاث معيّنات. مقاس 24 × 28 مم، قص بالليزر وتلميع للحواف.',
-      dEn: 'Inspired by the Dome of the Rock: a pierced geometric dome over four arches, with three hanging diamonds. 24 × 28 mm, laser cut with polished edges.' },
+      dAr: 'مستوحاة من قبة الصخرة: قبة مخرّمة بنقش هندسي فوق أربعة أقواس، تتدلى منها ثلاث معيّنات. مقاس 24 × 28 مم، مقصوصة بالليزر وحوافها مشطّبة باليد.',
+      dEn: 'Inspired by the Dome of the Rock: a pierced geometric dome over four arches, with three hanging diamonds. 24 × 28 mm, laser cut, edges finished by hand.' },
     { id: 'dome-teal', cat: 'earrings', coll: 'najma', price: 95, tones: ['gold'], photo: IMG + 'dome-teal.jpg', photoTone: 'gold',
       alts: [IMG + 'sketch-plan.jpg'],
       ar: 'أقراط القبة الفيروزية', en: 'Turquoise dome earrings',
-      dAr: 'نصف قبة ذهبية مخرّمة فوق أقواس بلون الفيروز، بطين البوليمر، تتدلى منها مربعات بيضاء.', dEn: 'A pierced gold half-dome over turquoise arches in polymer clay, with white hanging squares.' },
+      dAr: 'نصف قبة ذهبية مخرّمة فوق أقواس فيروزية من طين البوليمر، تتدلى منها مربعات بيضاء.', dEn: 'A pierced gold half-dome over turquoise arches in polymer clay, with white hanging squares.' },
     { id: 'arcs', cat: 'earrings', coll: 'najma', price: 70, tones: ['gold'], photo: IMG + 'clay-arcs.jpg', photoTone: 'gold',
       ar: 'أقراط الأقواس', en: 'Arc earrings',
       dAr: 'قوس مزدوج من طين البوليمر بلون العاج، يعبره قضيب ذهبي.', dEn: 'A double arc in ivory polymer clay, crossed by a gold bar.' },
@@ -23,7 +23,7 @@
       dAr: 'قطعتان بلون الورد بشكل المحراب، تجمعهما قطعة فيروزية منقّطة.', dEn: 'Two rose pieces shaped like a mihrab, joined by a speckled turquoise band.' },
     { id: 'horseshoe', cat: 'earrings', coll: 'dome', price: 85, tones: ['gold'], photo: IMG + 'horseshoe-close.jpg', photoTone: 'gold', alts: [IMG + 'woman-arch.jpg'],
       ar: 'أقراط قوس الحدوة', en: 'Horseshoe arch earrings',
-      dAr: 'قوس على شكل حدوة الحصان من الذهبي والفضي، مستوحى من بوابات الأفنية.', dEn: 'A horseshoe arch in gold and silver tones, drawn from courtyard gateways.' },
+      dAr: 'قوس على شكل حدوة الحصان بلونَي الذهب والفضة، مستوحى من بوابات الأفنية.', dEn: 'A horseshoe arch in gold and silver tones, drawn from courtyard gateways.' },
     { id: 'branch', cat: 'earrings', coll: 'najma', price: 90, tones: ['silver'], photo: IMG + 'cover-ear.jpg', photoTone: 'silver',
       ar: 'أقراط الغصن', en: 'Branch earrings',
       dAr: 'سلك فضي رفيع ينحني كغصن زيتون.', dEn: 'A fine silver wire that bends like an olive branch.' },
@@ -41,8 +41,8 @@
   ];
 
   var COLLECTIONS = {
-    dome:  { ar: 'مجموعة القبة', en: 'The Dome collection', dAr: 'زخارف القدس وأقواسها، مقصوصة بالليزر.', dEn: 'Jerusalem patterns and arches, cut by laser.' },
-    najma: { ar: 'مجموعة النجمة', en: 'The Najma collection', dAr: 'أقراط من طين البوليمر، رسمت أشكالها من العمارة الإسلامية.', dEn: 'Polymer-clay earrings, their shapes drawn from Islamic architecture.' }
+    dome:  { ar: 'مجموعة القبة', en: 'The Dome collection', dAr: 'زخارف قبة الصخرة والأقواس، مقصوصة بالليزر.', dEn: 'Dome of the Rock patterns and arches, laser cut.' },
+    najma: { ar: 'مجموعة النجمة', en: 'The Najma collection', dAr: 'أقراط من طين البوليمر والفضة، بأشكال من العمارة الإسلامية.', dEn: 'Polymer-clay and silver earrings, shaped by Islamic architecture.' }
   };
 
   // The four pattern studies on the Dome of the Rock design board
@@ -50,7 +50,7 @@
     { id: 'geometric', img: IMG + 'pat-geometric.jpg', ar: 'نمط هندسي إسلامي', en: 'Islamic geometric' },
     { id: 'star', img: IMG + 'pat-star.jpg', ar: 'نجمة ثمانية', en: 'Eight-point star' },
     { id: 'mashrabiya', img: IMG + 'pat-mashrabiya.jpg', ar: 'مشربية إسلامية', en: 'Mashrabiya' },
-    { id: 'tatreez', img: IMG + 'pat-tatreez.jpg', ar: 'وحدة تطريز فلسطينية', en: 'Palestinian tatreez' }
+    { id: 'tatreez', img: IMG + 'pat-tatreez.jpg', ar: 'نقش التطريز الفلسطيني', en: 'Palestinian tatreez' }
   ];
   // Material options A/B/C from the manufacturing notes (prices are placeholders)
   var MATERIALS = [

@@ -438,7 +438,7 @@ legend { font-weight: 500; margin-bottom: 8px; padding: 0; }
     { id: 'wedding', ar: 'زفاف', en: 'A wedding', dAr: 'هدية للعروس', dEn: 'For the bride', mAr: 'مبارك، ودامت الأفراح.', mEn: 'Congratulations, and many happy days.' },
     { id: 'grad', ar: 'تخرّج', en: 'Graduation', dAr: 'لمن تعب وأنجز', dEn: 'For the hard work', mAr: 'مبروك التخرّج، والقادم أجمل.', mEn: 'Congratulations, the best is ahead.' },
     { id: 'thanks', ar: 'شكر', en: 'A thank you', dAr: 'لمن وقف معك', dEn: 'For someone who was there', mAr: 'شكراً من قلبي لقلبك.', mEn: 'Thank you, from my heart to yours.' },
-    { id: 'self', ar: 'لنفسك', en: 'For yourself', dAr: 'لأنك تستحقين', dEn: 'Because you deserve it', mAr: 'لي أنا، قطعة من حكايتي.', mEn: 'For me, a piece of my story.' }
+    { id: 'self', ar: 'لنفسك', en: 'For yourself', dAr: 'لأنك تستحقين', dEn: 'Because you deserve it', mAr: 'هدية صغيرة لي أنا.', mEn: 'A small gift, just for me.' }
   ];
   function L(o, k) { return k ? o[k + (S.lang() === 'ar' ? 'Ar' : 'En')] : o[S.lang()]; }
   function boxFits(boxId, p) { if (boxId === 'gift') return true; if (p.cat === 'necklace') return boxId === 'necklace'; return boxId === 'ring'; }
@@ -537,29 +537,29 @@ legend { font-weight: 500; margin-bottom: 8px; padding: 0; }
     strings: {
       ar: {
         demo_note: 'نموذج تصميم لمتجر أصالة. الصور والتغليف من دليل الهوية، والأسعار مؤقتة.',
-        n_build: 'اصنعي هدية', n_pieces: 'القطع', n_arrive: 'ما يصلك',
-        h1a: 'قطعة من التراث،', h1b: 'صارت جزءاً من حكايتك.', lead: 'صُمّم تغليف أصالة ليصل في علبة فحمية مطفية، بورق مزخرف بالمعيّنات، وختم أحمر، وبطاقة بكلماتك.',
-        open_box: 'افتحي العلبة', close_box: 'أغلقي العلبة', make_gift: 'اصنعي هديتك', occ_h: 'المناسبات',
-        build_h: 'اصنعي الهدية', build_p: 'أربع خطوات، وترين الهدية كما ستصل.',
+        n_build: 'جهّزي هدية', n_pieces: 'القطع', n_arrive: 'ما يصلك',
+        h1a: 'أقراط من نابلس،', h1b: 'في علبة تليق بالإهداء.', lead: 'تصل كل قطعة في علبة مطفية بلون الفحم، ملفوفة بورق مزخرف بالمعيّنات، مع ختم بلون تختارينه وبطاقة بكلماتك.',
+        open_box: 'افتحي العلبة', close_box: 'أغلقي العلبة', make_gift: 'جهّزي هديتك', occ_h: 'المناسبات',
+        build_h: 'جهّزي الهدية', build_p: 'أربع خطوات، وترين الهدية كما ستصل.',
         s1: 'القطعة', s2: 'العلبة', s3: 'الختم', s4: 'البطاقة', included: 'مشمولة', not_fit: 'لا تناسب هذه القطعة', not_fit_long: 'هذه العلبة لا تناسب القطعة المختارة. اختاري علبة أخرى أو صندوق الهدية.',
         msg_lbl: 'رسالتك على البطاقة', to_lbl: 'إلى', from_lbl: 'من', to_word: 'إلى', from_word: 'من', sig_hint: 'أضيفي الاسمين إن أحببتِ', default_msg: 'شكراً من قلبي لقلبك.',
         card_seal: 'البطاقة والختم', gift_total: 'مجموع الهدية', add_gift: 'أضيفي الهدية إلى السلة', gift_word: 'هدية', from: 'من',
-        arr_h: 'ما يصلك', arr_p: 'من العلبة الخارجية حتى لحظة الفتح، بنفس الهندسة ونفس الألوان. التغليف تصميم مقترح من دليل الهوية.', arr1: 'عائلة العلب المقترحة: الأقراط والقلادة وصندوق الهدية', arr2: 'كيس قماشي بالشعار الأحمر (مقترح)', arr3: 'بطاقة شكر (مقترحة)',
+        arr_h: 'ما يصلك', arr_p: 'من العلبة الخارجية إلى البطاقة في داخلها، الألوان نفسها والنقش نفسه. التغليف تصميم مقترح من دليل الهوية.', arr1: 'عائلة العلب المقترحة: الأقراط والقلادة وصندوق الهدية', arr2: 'كيس قماشي بالشعار الأحمر (مقترح)', arr3: 'بطاقة شكر (مقترحة)',
         sh_h: 'القطع', gift_it: 'اجعليها هدية', add_plain: 'أضيفي إلى السلة', gift_this: 'اجعليها هدية',
-        foot: 'أصالة · قطع فريدة بروح شرقية، من نابلس. نموذج تصميم.', wa: 'واتساب'
+        foot: 'أصالة · أقراط فريدة بروح شرقية، مصنوعة يدوياً في نابلس. نموذج تصميم.', wa: 'واتساب'
       },
       en: {
         demo_note: 'Design demo for Asala. Photos and packaging from the brand book; prices are placeholders.',
         n_build: 'Make a gift', n_pieces: 'Pieces', n_arrive: 'What arrives',
-        h1a: 'A piece of heritage,', h1b: 'made part of your story.', lead: 'Asala packaging is designed to arrive in a matte charcoal box, wrapped in diamond-patterned tissue, with a red seal and a card in your words.',
+        h1a: 'Earrings from Nablus,', h1b: 'boxed and sealed to give.', lead: 'Every piece arrives in a matte charcoal box, wrapped in diamond-patterned tissue, with a seal in the colour you choose and a card in your words.',
         open_box: 'Open the box', close_box: 'Close the box', make_gift: 'Make your gift', occ_h: 'Occasions',
         build_h: 'Make the gift', build_p: 'Four steps, and you see the gift exactly as it arrives.',
         s1: 'The piece', s2: 'The box', s3: 'The seal', s4: 'The card', included: 'Included', not_fit: 'Does not fit this piece', not_fit_long: 'That box does not fit the chosen piece. Pick another box or the gift box.',
         msg_lbl: 'Your message on the card', to_lbl: 'To', from_lbl: 'From', to_word: 'To', from_word: 'From', sig_hint: 'Add both names if you like', default_msg: 'Thank you, from my heart to yours.',
         card_seal: 'Card and seal', gift_total: 'Gift total', add_gift: 'Add the gift to bag', gift_word: 'Gift', from: 'from',
-        arr_h: 'What arrives', arr_p: 'From the outer box to the moment it opens, the same geometry and the same colours. The packaging is a proposed design from the brand book.', arr1: 'The proposed box family: earring, necklace and gift box', arr2: 'A cloth pouch with the red mark (proposed)', arr3: 'A thank-you card (proposed)',
+        arr_h: 'What arrives', arr_p: 'From the outer box to the card inside, the same colours and the same pattern. The packaging is a proposed design from the brand book.', arr1: 'The proposed box family: earring, necklace and gift box', arr2: 'A cloth pouch with the red mark (proposed)', arr3: 'A thank-you card (proposed)',
         sh_h: 'The pieces', gift_it: 'Make it a gift', add_plain: 'Add to bag', gift_this: 'Make it a gift',
-        foot: 'Asala · unique pieces with an oriental feel, from Nablus. Design demo.', wa: 'WhatsApp'
+        foot: 'Asala · unique earrings with an oriental feel, handmade in Nablus. Design demo.', wa: 'WhatsApp'
       }
     }
   });

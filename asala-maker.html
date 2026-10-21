@@ -659,7 +659,7 @@ legend { font-weight: 600; font-size: .88rem; margin-bottom: 6px; padding: 0; }
     'arcs':      { mAr: 'طين البوليمر، قضيب بلون الذهب', mEn: 'Polymer clay, gold-tone bar' },
     'mihrab':    { mAr: 'طين البوليمر', mEn: 'Polymer clay' },
     'horseshoe': { mAr: 'معدن مقصوص بالليزر بلوني الذهب والفضة', mEn: 'Laser-cut metal in gold and silver tones' },
-    'branch':    { mAr: 'سلك بلون الفضة', mEn: 'Silver-tone wire' },
+    'branch':    { mAr: 'سلك فضي', mEn: 'Silver wire' },
     'lotus':     { mAr: 'معدن مقصوص بالليزر بلون الذهب، سلسلة رفيعة', mEn: 'Laser-cut gold-tone metal, fine chain' }
   };
 
@@ -735,7 +735,7 @@ legend { font-weight: 600; font-size: .88rem; margin-bottom: 6px; padding: 0; }
     hint.innerHTML = sec === 'all' && !q ? '<div class="hint-row"><div><span class="thumbs">' + A.SKETCHBOOK.map(function (k) { return '<img src="' + k.img + '" alt="">'; }).join('') + '</span><span>' + S.esc(S.t('hint_sketch')) + '</span></div><button class="link" type="button" data-sec="sketch">' + S.esc(S.t('hint_go')) + IC.chev + '</button></div>' : (isSk ? '<p class="hint-row" style="margin-top:22px">' + S.esc(S.t('sketch_note')) + '</p>' : '');
   }
   function memberCard(where) {
-    return '<div class="maker"><span class="av" aria-hidden="true">' + A.MARK + '</span><b>Amna Utt</b><p class="role">' + S.esc(S.t('maker_role')) + '</p>' +
+    return '<div class="maker"><span class="av" aria-hidden="true">' + A.MARK + '</span><b>' + S.esc(S.t('shop_name')) + '</b><p class="role">' + S.esc(S.t('maker_role')) + '</p>' +
       '<div class="acts"><button class="btn ghost" type="button" data-msg-toggle="' + where + '" aria-expanded="false" aria-controls="msg-' + where + '">' + IC.msg + S.esc(S.t('msg_btn')) + '</button>' +
       (where === 'lp' ? '<button class="link" type="button" data-about>' + S.esc(S.t('about_link')) + IC.chev + '</button>' : '') + '</div>' +
       '<form class="msg-form" id="msg-' + where + '" hidden novalidate><label for="msg-t-' + where + '">' + S.esc(S.t('msg_label')) + '</label>' +
@@ -936,7 +936,7 @@ legend { font-weight: 600; font-size: .88rem; margin-bottom: 6px; padding: 0; }
       ar: {
         demo_note: 'نموذج تصميم لمتجر أصالة. الصور والرسومات من دليل الهوية، والأسعار ورسوم التوصيل ومدة التجهيز مؤقتة.',
         skip: 'انتقلي إلى القطع', banner_alt: 'أقراط قوس الحدوة على امرأة أمام قوس',
-        shop_name: 'أصالة', shop_line: 'أقراط مصنوعة يدوياً بروح شرقية، مرسومة من تخريم قبة الصخرة وأقواسها ومشربياتها.',
+        shop_name: 'أصالة', shop_line: 'أقراط مصنوعة يدوياً في نابلس، مستوحاة من تخريم قبة الصخرة والأقواس والمشربيات.',
         loc: 'نابلس، فلسطين', handmade: 'صناعة يدوية', cod: 'الدفع عند الاستلام',
         ann_h: 'إعلان المتجر', ann_p: 'أقراط القبة تُصنع حسب الطلب بعد أن تختاري المعدن والنقش، وتُشحن خلال {X} أيام. للإهداء، اكتبي ملاحظتك للصانعة في صفحة القطعة.',
         tbd: 'يحدده المتجر', tbd_policy: 'سياسة يحددها المتجر', to_confirm: 'للتأكيد',
@@ -949,27 +949,27 @@ legend { font-weight: 600; font-size: .88rem; margin-bottom: 6px; padding: 0; }
         no_match_h: 'لا نتائج', no_match: 'لا قطع تطابق «{q}». جرّبي كلمة أخرى مثل قبة أو قوس.', clear: 'مسح البحث',
         hint_sketch: 'أربعة تصاميم جديدة في دفتر الرسم، لم تُنفَّذ بعد.', hint_go: 'شاهدي الرسومات', sketch_note: 'رسومات من دفتر أصالة. ليست للبيع بعد، وقد تتغير قبل التنفيذ.',
         reviews_h: 'التقييمات', rev_empty_h: 'لا تقييمات بعد', rev_empty_p: 'المتجر جديد. ستظهر هنا تقييمات المشتريات الحقيقية بعد وصول أول الطلبات.', no_reviews: 'لا تقييمات بعد',
-        about_h: 'عن أصالة', about_p1: 'أصالة أقراط يدوية تصممها آمنة، وهي معمارية من نابلس. تبدأ كل قطعة برسم من العمارة الإسلامية: تخريم قبة الصخرة، والأقواس، والمشربية.',
-        about_p2: 'بعض القطع من طين البوليمر مع لمسات ذهبية، وبعضها من النحاس والفضة المقصوصة بالليزر.',
+        about_h: 'عن أصالة', about_p1: 'أصالة أقراط يدوية تصممها معمارية من نابلس. تبدأ كل قطعة برسم من العمارة الإسلامية: تخريم قبة الصخرة، والأقواس، والمشربية.',
+        about_p2: 'بعض القطع من طين البوليمر مع لمسات ذهبية، وبعضها من النحاس المطلي بالذهب أو الفضة، مقصوصة بالليزر ومشطّبة باليد.',
         pr1: 'الرسم', pr1d: 'قبة الصخرة بالقلم.', pr1_alt: 'رسم بالقلم لقبة الصخرة',
         pr2: 'المخطط', pr2d: 'تقسيم القبة والأقواس إلى قطع.', pr2_alt: 'مخطط القطع بالأبعاد',
         pr3: 'الطين', pr3d: 'ألوان الطين قبل التشكيل.', pr3_alt: 'كرات من طين البوليمر الملون',
         pr4: 'القص', pr4d: 'قص الأشكال بالمقاس المرسوم.', pr4_alt: 'قطع طين مقصوصة بشكل الأقواس',
-        vision_h: 'رؤية أصالة', vision: 'أن تمتلك المرأة قطعة فريدة وذات قيمة، تُحفظ معها أو مع من تحب، قيمتها تأتي من العمارة الإسلامية القديمة.',
-        maker_role: 'معمارية ومصممة، صاحبة أصالة', msg_btn: 'راسلي الصانعة', msg_label: 'رسالتك إلى آمنة', msg_send: 'إرسال', cancel: 'إلغاء',
+        vision_h: 'رؤية أصالة', vision: 'أن تقتني المرأة قطعة فريدة ذات قيمة، تحتفظ بها أو تهديها لمن تحب، وتستمدّ قيمتها من العمارة الإسلامية العريقة.',
+        maker_role: 'معمارية من نابلس، مصممة أصالة ومؤسستها', msg_btn: 'راسلي الصانعة', msg_label: 'رسالتك إلى الصانعة', msg_send: 'إرسال', cancel: 'إلغاء',
         msg_demo: 'نموذج تصميم: الرسالة لا تُرسل فعلياً.', msg_toast: 'نموذج تصميم: لم تُرسل الرسالة.', about_link: 'قصة أصالة',
         pol_h: 'سياسات المتجر', pol_ship_h: 'التوصيل', pol_ship_p: 'نوصل داخل فلسطين، والدفع نقداً للمندوب عند الاستلام. رسوم التوصيل حسب المدينة (مؤقتة):',
         pol_time_h: 'مدة التجهيز', pol_time_p: 'القطع الجاهزة: {X} أيام عمل. القطع حسب الطلب: {Y} أيام عمل.', pol_time_p2: 'سنتصل بك لتأكيد كل طلب قبل الشحن.',
         pol_ret_h: 'الاستبدال والإرجاع', pol_ret_p: '{X}. ستُكتب هنا شروط الاستبدال ومدته، وحكم القطع المصنوعة حسب الطلب أو التي عليها ملاحظة.',
         pol_pay_h: 'الدفع',
-        foot: 'أصالة · أقراط يدوية بروح شرقية من نابلس، فلسطين. نموذج تصميم: الأسعار ومدة التجهيز وسياسة الاستبدال مؤقتة.',
+        foot: 'أصالة · أقراط فريدة بروح شرقية، مصنوعة يدوياً في نابلس، فلسطين. نموذج تصميم: الأسعار ومدة التجهيز وسياسة الاستبدال مؤقتة.',
         back: 'العودة إلى المتجر', photos_l: 'صور القطعة', prev_img: 'الصورة السابقة', next_img: 'الصورة التالية', photo_n: 'صورة {i} من {n}',
         price_by_mat: 'حسب المعدن', mat_help: 'يتغير السعر حسب المعدن.', silver_note: 'معاينة الفضي تقريبية',
         mto_ships: 'تُصنع حسب الطلب، وتُشحن خلال {X} أيام', ships_in: 'تُجهَّز وتُشحن خلال {X} أيام',
         opt_mat: 'المعدن', metal_tone: 'لون المعدن', opt_pat: 'نقش القبة', select_ph: 'اختاري…', e_select: 'اختاري {f} قبل الإضافة.',
         pers_h: 'ملاحظة للصانعة (اختياري)', pers_hint: 'مثلاً رسالة إهداء، أو اسم من ستُهدى له القطعة.', count_n: '{n}/{max}', note_meta: 'ملاحظة:',
         add: 'أضيفي إلى السلة', added: 'أُضيفت للسلة', view_bag: 'عرض السلة', cod_line: 'الدفع عند الاستلام · سنتصل لتأكيد الطلب',
-        details_h: 'تفاصيل القطعة', d_made: 'الصنع', d_made_v: 'يدوياً، قطعة قطعة', d_mat: 'المواد', d_size: 'المقاس', d_coll: 'المجموعة',
+        details_h: 'تفاصيل القطعة', d_made: 'الصنع', d_made_v: 'تشطيب يدوي لكل قطعة', d_mat: 'المواد', d_size: 'المقاس', d_coll: 'المجموعة',
         ship_h: 'التوصيل والاستبدال', s_time: 'التجهيز', s_from: 'تُشحن من', s_ret: 'الاستبدال',
         deliver_to: 'التوصيل إلى', choose_city_short: 'اختاري المدينة…', est_fee: 'رسوم التوصيل إلى {C}: {F}، والدفع عند الاستلام.', est_none: 'اختاري المدينة لتظهر رسوم التوصيل.',
         maker_h: 'تعرّفي على الصانعة', more_h: 'المزيد من أصالة', see_all: 'كل القطع', continue: 'متابعة التسوق'
@@ -977,7 +977,7 @@ legend { font-weight: 600; font-size: .88rem; margin-bottom: 6px; padding: 0; }
       en: {
         demo_note: 'Design demo for Asala. Photos and drawings from the brand book; prices, delivery fees and making times are placeholders.',
         skip: 'Skip to the pieces', banner_alt: 'Horseshoe arch earrings worn in front of an arch',
-        shop_name: 'Asala', shop_line: 'Handmade earrings with an oriental feel, drawn from the filigree, arches and mashrabiya of the Dome of the Rock.',
+        shop_name: 'Asala', shop_line: 'Handmade earrings from Nablus, inspired by the Dome of the Rock’s filigree, arches and mashrabiya.',
         loc: 'Nablus, Palestine', handmade: 'Handmade', cod: 'Cash on delivery',
         ann_h: 'Shop announcement', ann_p: 'The Dome earrings are made to order once you choose the metal and pattern, and ship in {X} days. For a gift, leave a note for the maker on the piece’s page.',
         tbd: 'set by the shop', tbd_policy: 'policy set by the shop', to_confirm: 'to be confirmed',
@@ -990,27 +990,27 @@ legend { font-weight: 600; font-size: .88rem; margin-bottom: 6px; padding: 0; }
         no_match_h: 'No results', no_match: 'Nothing matches “{q}”. Try another word, such as dome or arch.', clear: 'Clear search',
         hint_sketch: 'Four new designs in the sketchbook, not made yet.', hint_go: 'See the drawings', sketch_note: 'Drawings from the Asala sketchbook. Not for sale yet, and they may change before they are made.',
         reviews_h: 'Reviews', rev_empty_h: 'No reviews yet', rev_empty_p: 'This shop is new. Reviews from real orders will appear here once the first pieces arrive.', no_reviews: 'No reviews yet',
-        about_h: 'About Asala', about_p1: 'Asala is handmade earrings designed by Amna, an architect from Nablus. Every piece starts as a drawing from Islamic architecture: the Dome of the Rock’s filigree, arches and mashrabiya.',
-        about_p2: 'Some pieces are polymer clay with gold accents; others are brass and silver cut by laser.',
+        about_h: 'About Asala', about_p1: 'Asala makes handmade earrings designed by an architect from Nablus. Every piece starts as a drawing from Islamic architecture: the filigree of the Dome of the Rock, arches and mashrabiya.',
+        about_p2: 'Some pieces are polymer clay with gold accents; others are gold-plated brass or silver, laser cut and finished by hand.',
         pr1: 'The sketch', pr1d: 'The Dome of the Rock in pencil.', pr1_alt: 'Pencil sketch of the Dome of the Rock',
         pr2: 'The plan', pr2d: 'Dome and arches split into parts.', pr2_alt: 'Measured plan of the parts',
         pr3: 'The clay', pr3d: 'Clay colours before shaping.', pr3_alt: 'Balls of coloured polymer clay',
         pr4: 'The cut', pr4d: 'Shapes cut to the drawn size.', pr4_alt: 'Clay pieces cut into arch shapes',
-        vision_h: 'The Asala vision', vision: 'To give women a piece that is unique and of real value, kept with them or with someone they love, its value drawn from ancient Islamic architecture.',
-        maker_role: 'Architect, designer and owner of Asala', msg_btn: 'Message the maker', msg_label: 'Your message to Amna', msg_send: 'Send', cancel: 'Cancel',
+        vision_h: 'The Asala vision', vision: 'For a woman to own a unique piece of real value, to keep or to give to someone she loves, its value drawn from historic Islamic architecture.',
+        maker_role: 'Architect from Nablus, designer and founder of Asala', msg_btn: 'Message the maker', msg_label: 'Your message to the maker', msg_send: 'Send', cancel: 'Cancel',
         msg_demo: 'Design demo: the message is not actually sent.', msg_toast: 'Design demo: the message was not sent.', about_link: 'The Asala story',
         pol_h: 'Shop policies', pol_ship_h: 'Delivery', pol_ship_p: 'We deliver within Palestine; pay the courier in cash on arrival. Delivery fee by city (placeholder):',
         pol_time_h: 'Making time', pol_time_p: 'Ready pieces: {X} working days. Made-to-order pieces: {Y} working days.', pol_time_p2: 'We call to confirm every order before it ships.',
         pol_ret_h: 'Exchanges and returns', pol_ret_p: '{X}. The exchange terms, time limit, and what applies to made-to-order or personalised pieces will go here.',
         pol_pay_h: 'Payment',
-        foot: 'Asala · handmade earrings with an oriental feel, from Nablus, Palestine. Design demo: prices, making times and the exchange policy are placeholders.',
+        foot: 'Asala · unique earrings with an oriental feel, handmade in Nablus, Palestine. Design demo: prices, making times and the exchange policy are placeholders.',
         back: 'Back to the shop', photos_l: 'Photos of the piece', prev_img: 'Previous photo', next_img: 'Next photo', photo_n: 'Photo {i} of {n}',
         price_by_mat: 'by metal', mat_help: 'The price depends on the metal.', silver_note: 'Silver preview is approximate',
         mto_ships: 'Made to order, ships in {X} days', ships_in: 'Ready to ship in {X} days',
         opt_mat: 'Metal', metal_tone: 'Metal colour', opt_pat: 'Dome pattern', select_ph: 'Select an option', e_select: 'Select an option for “{f}” first.',
         pers_h: 'Add a note for the maker (optional)', pers_hint: 'For example a gift message, or the name of the person it is for.', count_n: '{n}/{max}', note_meta: 'Note:',
         add: 'Add to bag', added: 'Added to bag', view_bag: 'View bag', cod_line: 'Cash on delivery · we call to confirm your order',
-        details_h: 'Item details', d_made: 'Made', d_made_v: 'By hand, one piece at a time', d_mat: 'Materials', d_size: 'Size', d_coll: 'Collection',
+        details_h: 'Item details', d_made: 'Made', d_made_v: 'Finished by hand, piece by piece', d_mat: 'Materials', d_size: 'Size', d_coll: 'Collection',
         ship_h: 'Delivery and exchanges', s_time: 'Making', s_from: 'Ships from', s_ret: 'Exchanges',
         deliver_to: 'Deliver to', choose_city_short: 'Choose a city…', est_fee: 'Delivery to {C}: {F}, cash on delivery.', est_none: 'Choose a city to see the delivery fee.',
         maker_h: 'Meet the maker', more_h: 'More from Asala', see_all: 'All items', continue: 'Keep shopping'

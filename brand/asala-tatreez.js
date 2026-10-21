@@ -159,13 +159,13 @@
   var STR = {
     ar: {
       demo_note: 'نموذج تصميم: الأسعار ورسوم التوصيل مؤقتة. الصور والشعار من كتاب هوية أصالة.',
-      continue: 'متابعة التسوق', tz_made: 'تُقصّ وتُشطَّب يدوياً في نابلس', tz_box: 'تصلكِ في علبة أصالة مختومة بالأحمر', tz_cod: 'الدفع عند الاستلام',
+      continue: 'متابعة التسوق', tz_made: 'تُقصّ بالليزر وتُشطَّب يدوياً في نابلس', tz_box: 'تصلكِ في علبة أصالة مع ختم وبطاقة شكر', tz_cod: 'الدفع عند الاستلام',
       add: 'أضيفي إلى السلة', view: 'عرض القطعة', quick_add: 'إضافة سريعة', shop_all: 'تسوّقي كل القطع', from: 'من',
       c_earrings: 'أقراط', c_necklace: 'قلائد', c_gifts: 'هدايا', c_all: 'الكل', search: 'بحث', menu: 'القائمة', our_story: 'حكايتنا'
     },
     en: {
       demo_note: 'Design demo: prices and delivery fees are placeholders. Photos and logo are from the Asala brand book.',
-      continue: 'Keep shopping', tz_made: 'Cut and finished by hand in Nablus', tz_box: 'Arrives in an Asala box, sealed in red', tz_cod: 'Cash on delivery',
+      continue: 'Keep shopping', tz_made: 'Laser cut, finished by hand in Nablus', tz_box: 'Arrives in an Asala box with a seal and a card', tz_cod: 'Cash on delivery',
       add: 'Add to bag', view: 'View piece', quick_add: 'Quick add', shop_all: 'Shop all pieces', from: 'From',
       c_earrings: 'Earrings', c_necklace: 'Necklaces', c_gifts: 'Gifts', c_all: 'All', search: 'Search', menu: 'Menu', our_story: 'Our story'
     }
