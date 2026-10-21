@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Asala · Gallery</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Noto+Naskh+Arabic:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="brand/asala-tatreez.css">
+<style>
+/* Layout: an ultra-minimal gallery jewellery site. Pure white, small serif type, objects photographed simply,
+   tiny captions. The only tatreez is "one stitch": a single red cross-stitch star by the logo and a hairline
+   running stitch under the header (repeated as the underline of the active category). */
+:root {
+  --red: #C6383C; --red-2: #A92D31; --ink: #33342F; --muted: #6A6862; --line: #E7E5E1; --white: #FFFFFF;
+  --f: "EB Garamond", "Noto Naskh Arabic", Georgia, serif;
+  --gutter: clamp(16px, 3.4vw, 48px);
+  --tz-bg: #FFFFFF; --tz-panel: #FFFFFF; --tz-ink: var(--ink); --tz-muted: var(--muted); --tz-line: var(--line);
+  --tz-font: var(--f); --tz-font-d: var(--f); --tz-radius: 0px; --tz-btn-radius: 0px;
+}
+* { box-sizing: border-box; }
+html { background: var(--white); }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+body { margin: 0; background: var(--white); color: var(--ink); font: 400 15px/1.6 var(--f); -webkit-font-smoothing: antialiased; }
+html[lang="ar"] body { font-size: 16px; line-height: 1.85; }
+img { max-width: 100%; display: block; }
+button { font: inherit; color: inherit; cursor: pointer; background: none; border: 0; padding: 0; }
+a { color: inherit; }
+::selection { background: var(--red); color: var(--white); }
+:focus-visible { outline: 1px solid var(--red); outline-offset: 3px; }
+.wrap { max-width: 1320px; margin: 0 auto; padding-inline: var(--gutter); }
+.demo { margin: 0; color: var(--muted); font-size: 14px; text-align: center; padding: 6px var(--gutter); }
+.muted { color: var(--muted); }
+section[id] { scroll-margin-top: 76px; }
+
+/* header: small logo + one star at one corner, text nav at the other */
+.top { position: sticky; top: 0; z-index: 30; background: var(--white); }
+.bar { display: flex; align-items: center; gap: 24px; min-height: 64px; }
+.brand { display: inline-flex; align-items: center; gap: 12px; min-height: 44px; text-decoration: none; }
+.brand img { height: 22px; width: auto; }
+.brand canvas { width: 15px; height: 15px; flex: none; }
+.nav { display: flex; align-items: center; gap: clamp(14px, 2vw, 28px); margin-inline-start: auto; }
+.nav a, .nav button, .tools button { display: inline-flex; align-items: center; min-height: 44px; font-size: 15px; text-decoration: none; white-space: nowrap; }
+.nav a:hover, .nav button:hover, .tools button:hover { color: var(--red); }
+.tools { display: flex; align-items: center; gap: 18px; }
+.bag [data-cart-count][hidden] { display: inline !important; } /* the kit hides the count at 0; this page shows "Bag (0)" */
+.bag .n { font-variant-numeric: tabular-nums; }
+.menu-btn { display: none !important; }
+.run { display: block; width: 100%; height: 6px; }
+@media (max-width: 860px) {
+  .menu-btn { display: inline-flex !important; }
+  .tools { margin-inline-start: auto; }
+  .nav { display: none; position: absolute; top: 100%; inset-inline: 0; flex-direction: column; align-items: stretch; gap: 0; margin: 0;
+    background: var(--white); border-bottom: 1px solid var(--line); padding: 6px var(--gutter) 14px; }
+  .top.menu-open .nav { display: flex; }
+  .nav a, .nav button { min-height: 48px; font-size: 16px; border-bottom: 1px solid var(--line); }
+  .nav > :last-child { border-bottom: 0; }
+}
+
+/* opening: one object, lots of white */
+.open { padding-block: clamp(48px, 9vw, 128px) clamp(56px, 10vw, 140px); text-align: center; }
+.hero { display: inline-grid; justify-items: center; gap: 16px; }
+.hero img { width: min(440px, 76vw); height: auto; aspect-ratio: 780 / 929; object-fit: cover; }
+.hero span { font-size: 15px; }
+.hero:hover span { color: var(--red); }
+
+/* section titles */
+.sec { padding-block: clamp(48px, 8vw, 112px); }
+.h { margin: 0; font: 400 15px/1.5 var(--f); }
+html[lang="ar"] .h { font-size: 16px; }
+.lede { margin: 10px 0 0; color: var(--muted); max-width: 52ch; }
+
+/* jewellery index */
+.ixhead { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 32px; margin-bottom: clamp(24px, 4vw, 44px); }
+.filters, .views { display: flex; align-items: center; gap: 22px; }
+.filters { margin-inline-start: auto; }
+.fl { position: relative; min-height: 44px; display: inline-flex; align-items: center; color: var(--muted); }
+.fl[aria-pressed="true"] { color: var(--ink); }
+.fl:hover { color: var(--ink); }
+.fl canvas { position: absolute; inset-inline-start: -3px; bottom: 5px; width: calc(100% + 6px); height: 6px; }
+.views { gap: 8px; }
+.views .sep { color: var(--line); }
+.vw { min-height: 44px; color: var(--muted); }
+.vw[aria-pressed="true"] { color: var(--ink); text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 1px; }
+.vw:hover { color: var(--ink); }
+
+.grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: clamp(16px, 3vw, 48px); row-gap: clamp(36px, 5vw, 72px); }
+.tile { display: grid; gap: 14px; width: 100%; text-align: center; }
+.ph { position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: var(--white); }
+.ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity .5s ease; }
+.ph img.fit { object-fit: contain; padding: 9%; }
+.ph img.b { opacity: 0; }
+.tile:hover .ph img.b, .tile:focus-visible .ph img.b { opacity: 1; }
+.tile.has-b:hover .ph img.a, .tile.has-b:focus-visible .ph img.a { opacity: 0; }
+.cap { font-size: 15px; }
+.cap .pr { color: var(--muted); }
+.tile:hover .cap .nm { color: var(--red); }
+@media (max-width: 700px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 14px; row-gap: 34px; } .cap { font-size: 14px; } .tile { gap: 10px; } }
+
+.index { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--ink); }
+.lh, .row { display: grid; grid-template-columns: minmax(0, 1fr) 200px 120px; align-items: center; gap: 16px; }
+.lh { padding: 8px 0; font-size: 14px; color: var(--muted); border-bottom: 1px solid var(--line); }
+.lh :last-child, .row .p { text-align: end; }
+.row { position: relative; width: 100%; min-height: 56px; padding: 12px 0; border-bottom: 1px solid var(--line); text-align: start; font-size: 16px; }
+.row .c, .row .p { color: var(--muted); }
+.row .cm { display: none; }
+.row:hover .n, .row:focus-visible .n { color: var(--red); }
+.row .th { position: absolute; top: 50%; inset-inline-start: 40%; width: 112px; aspect-ratio: 4 / 5; object-fit: cover; background: var(--white);
+  transform: translateY(-50%); opacity: 0; pointer-events: none; transition: opacity .25s ease; z-index: 2; }
+.row .th.fit { object-fit: contain; }
+.row:hover .th, .row:focus-visible .th { opacity: 1; }
+@media (max-width: 700px) {
+  .lh { display: none; }
+  .row { grid-template-columns: 52px minmax(0, 1fr) auto; gap: 14px; padding: 10px 0; }
+  .row .th { position: static; width: 52px; transform: none; opacity: 1; grid-row: 1; grid-column: 1; }
+  .row .c { display: none; }
+  .row .cm { display: block; font-size: 14px; color: var(--muted); }
+}
+
+/* the dome in four patterns */
+.pats { list-style: none; margin: clamp(24px, 4vw, 44px) 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(14px, 2.4vw, 36px); }
+.pt { display: grid; gap: 12px; width: 100%; text-align: center; font-size: 15px; }
+.pt img { width: 100%; aspect-ratio: 416 / 384; object-fit: cover; }
+.pt:hover span { color: var(--red); }
+.order { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; margin-top: clamp(22px, 3vw, 34px); }
+.tlink { min-height: 44px; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 6px; }
+.tlink:hover { color: var(--red); }
+.order small { font-size: 14px; color: var(--muted); }
+@media (max-width: 700px) { .pats { grid-template-columns: repeat(2, minmax(0, 1fr)); } .pt { font-size: 14px; } }
+
+.lb { border: 1px solid var(--line); padding: 0; width: min(620px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); background: var(--white); color: var(--ink); font-family: var(--f); }
+.lb::backdrop { background: rgba(255, 255, 255, .92); }
+.lb-in { position: relative; padding: 56px clamp(16px, 4vw, 40px) 24px; display: grid; gap: 14px; }
+.lb-x { position: absolute; top: 6px; inset-inline-end: 10px; min-height: 44px; padding: 0 6px; font-size: 15px; }
+.lb-x:hover { color: var(--red); }
+.lb img { width: 100%; aspect-ratio: 416 / 384; object-fit: contain; background: var(--white); }
+.lb-cap { margin: 0; text-align: center; font-size: 15px; }
+.lb-cap bdi { color: var(--muted); }
+.lb-nav { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px 18px; border-top: 1px solid var(--line); padding-top: 8px; }
+.lb-nav button { min-height: 44px; font-size: 15px; }
+.lb-nav button:hover { color: var(--red); }
+.lb-nav .go { text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 1px; }
+
+/* packaging */
+.pack { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: clamp(28px, 6vw, 96px); align-items: start; }
+.pack img { width: 100%; height: auto; aspect-ratio: 1594 / 987; object-fit: cover; }
+.pack p { margin: 12px 0 22px; max-width: 46ch; }
+table { width: 100%; border-collapse: collapse; font-size: 15px; }
+th { text-align: start; font-weight: 400; color: var(--muted); font-size: 14px; padding: 6px 0; border-bottom: 1px solid var(--ink); }
+td { padding: 10px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+th:last-child, td:last-child { text-align: end; white-space: nowrap; padding-inline-start: 16px; }
+.tnote { margin: 10px 0 0 !important; font-size: 14px; color: var(--muted); }
+@media (max-width: 760px) { .pack { grid-template-columns: 1fr; } }
+
+/* about */
+.about { display: grid; grid-template-columns: 200px minmax(0, 52ch); gap: clamp(28px, 6vw, 96px); align-items: start; justify-content: center; }
+.about figure { margin: 0; }
+.about img { width: 100%; height: auto; aspect-ratio: 333 / 414; object-fit: cover; }
+.about figcaption { margin-top: 8px; font-size: 14px; color: var(--muted); }
+.about p { margin: 12px 0 0; }
+@media (max-width: 640px) { .about { grid-template-columns: 1fr; } .about figure { width: 160px; } }
+
+/* footer */
+footer { border-top: 1px solid var(--line); margin-top: clamp(24px, 4vw, 48px); }
+footer .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 6px 28px; padding-block: 18px 26px; font-size: 14px; }
+footer nav { display: flex; flex-wrap: wrap; gap: 0 20px; }
+footer a { display: inline-flex; align-items: center; min-height: 44px; text-decoration: none; }
+footer a:hover { color: var(--red); }
+footer .notes { display: flex; flex-wrap: wrap; gap: 0 18px; color: var(--muted); }
+
+/* the kit, made gallery-like: white veil, thin lines, small serif */
+.tz-sheet, .tz-drawer { background: rgba(255, 255, 255, .86); }
+.tz-sheet-card { width: min(880px, 100%); border: 1px solid var(--line); }
+.tz-sheet canvas.tz-sheet-frame { display: none; }
+.tz-sheet-art { background: var(--white); border-inline-end: 1px solid var(--line); }
+.tz-sheet-info { gap: 10px; padding: 48px 32px 28px; }
+.tz-sheet-cat { color: var(--muted); font-weight: 400; font-size: 14px; }
+.tz-sheet-info h2 { font: 400 22px/1.35 var(--f); }
+.tz-sheet-price { font: 400 16px/1.4 var(--f); }
+.tz-sheet-desc { font-size: 15px; }
+.tz-fs legend { font-weight: 400; font-size: 14px; color: var(--muted); }
+.tz-tones .tone { font-size: 14px; }
+.tz-tones .tone[aria-checked="true"] { box-shadow: none; }
+.tz-btn { font: 400 15px/1 var(--f); min-height: 48px; border-width: 1px; }
+.tz-notes { border-top: 1px solid var(--line); font-size: 14px; }
+.tz-d-card { border-inline-start: 1px solid var(--line); }
+.tz-d-band { height: 6px; margin-top: 0; }
+.tz-d-head h2 { font: 400 20px/1.3 var(--f); }
+.tz-cart .ci-name { font-weight: 500; }
+.tz-sums .grand { border-top: 1px solid var(--ink); font-weight: 500; }
+.tz-form label { font-weight: 400; font-size: 14px; }
+.tz-pay .pay-name { font-weight: 500; }
+.tz-ok h3 { font: 400 22px/1.3 var(--f); }
+.tz-empty canvas, .tz-ok canvas { width: 22px; height: 22px; }
+.tz-toast { font-size: 14px; }
+@media (max-width: 720px) { .tz-sheet-art { border-inline-end: 0; border-bottom: 1px solid var(--line); } .tz-sheet-card { border-inline: 0; border-bottom: 0; } }
+@media (prefers-reduced-motion: reduce) { .ph img, .row .th { transition: none; } }
+</style>
+</head>
+<body>
+<p class="demo" data-t="demo_note"></p>
+
+<header class="top" id="top-bar">
+  <div class="wrap bar">
+    <a class="brand" href="#top" aria-label="Asala"><img src="brand/wordmark-dark.png" alt="ASALA" width="147" height="22"><canvas data-stitch="star" data-palette="red"></canvas></a>
+    <nav class="nav" id="nav" data-ta="menu">
+      <a href="#jewellery" data-t="n_jewellery"></a>
+      <a href="#dome" data-t="n_dome"></a>
+      <a href="#packaging" data-t="n_pack"></a>
+      <a href="#about" data-t="n_about"></a>
+      <button type="button" data-lang-toggle data-t="lang_switch"></button>
+    </nav>
+    <div class="tools">
+      <button class="menu-btn" type="button" id="menu-btn" aria-expanded="false" aria-controls="nav" data-t="menu"></button>
+      <button class="bag" type="button" data-open-cart><span data-t="cart"></span>&nbsp;(<span class="n" data-cart-count>0</span>)</button>
+    </div>
+  </div>
+  <canvas class="run" data-stitch="run" data-cell="3" data-c1="#C6383C" data-c2="transparent"></canvas>
+</header>
+
+<main id="top">
+  <section class="open">
+    <button class="hero" type="button" data-open="dome"><img src="brand/dome-render.jpg" alt="" width="780" height="929"><span id="hero-cap"></span></button>
+  </section>
+
+  <section class="sec" id="jewellery" style="padding-top:0">
+    <div class="wrap">
+      <div class="ixhead">
+        <h2 class="h" data-t="n_jewellery"></h2>
+        <div class="filters" id="filters" role="group" data-ta="cat_label"></div>
+        <div class="views" id="views" role="group" data-ta="view_label">
+          <button class="vw" type="button" data-view="grid" data-t="view_grid"></button><span class="sep" aria-hidden="true">/</span><button class="vw" type="button" data-view="list" data-t="view_list"></button>
+        </div>
+      </div>
+      <div id="index"></div>
+    </div>
+  </section>
+
+  <section class="sec" id="dome">
+    <div class="wrap">
+      <h2 class="h" data-t="dome_h"></h2>
+      <p class="lede" data-t="dome_p"></p>
+      <ul class="pats" id="pats"></ul>
+      <div class="order"><button class="tlink" type="button" data-open="dome" id="order-dome"></button><small data-t="pat_note"></small></div>
+    </div>
+  </section>
+
+  <section class="sec" id="packaging">
+    <div class="wrap pack">
+      <img src="brand/packaging-family.jpg" alt="" width="1594" height="987" loading="lazy">
+      <div>
+        <h2 class="h" data-t="n_pack"></h2>
+        <p data-t="pack_p"></p>
+        <table>
+          <thead><tr><th scope="col" data-t="th_box"></th><th scope="col" data-t="th_size"></th></tr></thead>
+          <tbody id="boxes"></tbody>
+        </table>
+        <p class="tnote" data-t="pack_note"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="about">
+    <div class="wrap about">
+      <figure><img src="brand/sketch-dome.jpg" alt="" width="333" height="414" loading="lazy"><figcaption data-t="sketch_cap"></figcaption></figure>
+      <div>
+        <h2 class="h" data-t="n_about"></h2>
+        <p data-t="about_p1"></p>
+        <p data-t="about_p2"></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <nav data-ta="foot_nav">
+      <a href="#jewellery" data-t="n_jewellery"></a>
+      <a href="#dome" data-t="n_dome"></a>
+      <a href="#packaging" data-t="n_pack"></a>
+      <a href="#about" data-t="n_about"></a>
+    </nav>
+    <div class="notes"><span data-t="tz_cod"></span><span data-t="tz_made"></span><span data-t="foot_c"></span></div>
+  </div>
+</footer>
+
+<dialog class="lb" id="lb" aria-labelledby="lb-cap">
+  <div class="lb-in">
+    <button class="lb-x" type="button" id="lb-x" data-t="close"></button>
+    <img id="lb-img" src="brand/pat-tatreez.jpg" alt="">
+    <p class="lb-cap" id="lb-cap"></p>
+    <div class="lb-nav">
+      <button type="button" id="lb-prev" data-t="prev"></button>
+      <button type="button" class="go" id="lb-order"></button>
+      <button type="button" id="lb-next" data-t="next"></button>
+    </div>
+  </div>
+</dialog>
+
+<script src="store.js"></script>
+<script src="brand/asala-catalog.js"></script>
+<script src="brand/asala-tatreez.js"></script>
+<script>
+(function () {
+  var S = window.Store, A = window.ASALA, TZ = window.TZ;
+  A.install(S); TZ.shell();
+  var $ = S.$, $$ = S.$$, esc = S.esc, t = S.t;
+  var cat = 'all', view = 'grid', pi = 0;
+  try { if (localStorage.getItem('asala-20-view') === 'list') view = 'list'; } catch (e) {}
+
+  // one stitch in the bag too: the drawer band becomes the same hairline running stitch
+  var band = document.querySelector('.tz-d-band');
+  if (band) { band.setAttribute('data-stitch', 'run'); band.setAttribute('data-cell', '3'); band.setAttribute('data-c1', '#C6383C'); band.setAttribute('data-c2', 'transparent'); }
+
+  var STR = {
+    ar: {
+      n_jewellery: 'الحُليّ', n_dome: 'القبة بنقش التطريز', n_pack: 'التغليف', n_about: 'عن أصالة',
+      from_lc: 'من', cat_label: 'التصنيف', view_label: 'طريقة العرض', view_grid: 'شبكة', view_list: 'قائمة',
+      col_piece: 'القطعة', col_cat: 'الصنف', col_price: 'السعر',
+      dome_h: 'القبة بأربعة نقوش', dome_p: 'أربع دراسات لنقش القبة من لوحة تصميم أقراط قبة الصخرة في كتاب الهوية. اضغطي على النقش لتكبيره.',
+      order_dome: 'اطلبي أقراط القبة', pat_note: 'اختيار النقش عند تأكيد الطلب (للتأكيد)',
+      prev: 'السابق', next: 'التالي',
+      pack_p: 'تصل كل قطعة في علبة أصالة الفحمية، مختومة بالأحمر، مع بطاقة شكر. للعلب أربعة مقاسات:',
+      th_box: 'العلبة', th_size: 'المقاس (مم)', pack_note: 'مقاسات خارجية تقريبية.',
+      sketch_cap: 'رسمٌ لقبة', about_p1: 'أسّست أصالة مهندسةٌ معمارية من نابلس. تبدأ كل قطعة رسماً لقبة أو بوابة أو مشربية.',
+      about_p2: 'ثم تُقصّ الرسمة بالليزر، وتُشطَّب حوافّها يدوياً.',
+      foot_nav: 'روابط', foot_c: '© 2026 أصالة', per_pair: 'للزوج'
+    },
+    en: {
+      n_jewellery: 'Jewellery', n_dome: 'The dome in tatreez', n_pack: 'Packaging', n_about: 'About',
+      from_lc: 'from', cat_label: 'Category', view_label: 'View', view_grid: 'Grid', view_list: 'List',
+      col_piece: 'Piece', col_cat: 'Category', col_price: 'Price',
+      dome_h: 'The dome in four patterns', dome_p: 'Four pattern studies for the dome, from the Dome of the Rock earrings design board in the brand book. Select a pattern to enlarge it.',
+      order_dome: 'Order the dome earrings', pat_note: 'Pattern chosen when we confirm your order (to confirm)',
+      prev: 'Previous', next: 'Next',
+      pack_p: 'Each piece arrives in a charcoal Asala box, sealed in red, with a thank-you card. The boxes come in four sizes:',
+      th_box: 'Box', th_size: 'Size (mm)', pack_note: 'External dimensions, indicative.',
+      sketch_cap: 'Sketch of a dome', about_p1: 'Asala was founded by an architect from Nablus. Every piece begins as a drawing of a dome, a gateway or a window screen.',
+      about_p2: 'The drawing is then laser cut, and its edges are finished by hand.',
+      foot_nav: 'Links', foot_c: '© 2026 Asala', per_pair: 'per pair'
+    }
+  };
+
+  // grid photos: [main, hover]; ".fit" = object on white, shown whole
+  var PICS = {
+    dome: ['brand/dome-stone.jpg', 'brand/dome-worn.jpg'],
+    lotus: ['brand/lotus-45.jpg', 'brand/lotus-pendant.jpg']
+  };
+  var FIT = { 'brand/pink-teal.png': 1, 'brand/lotus-pendant.jpg': 1 };
+  function pics(p) { return PICS[p.id] || [p.photo, p.alts && p.alts[0]]; }
+  function im(src, cls) { return '<img class="' + cls + (FIT[src] ? ' fit' : '') + '" src="' + src + '" alt="" loading="lazy">'; }
+  function price(p) { return p.configurable ? t('from_lc') + ' ' + S.money(A.MATERIALS[0].price) : S.money(p.price); }
+  function list() { return S.PRODUCTS.filter(function (p) { return cat === 'all' || p.cat === cat; }); }
+
+  function tile(p) {
+    var ph = pics(p);
+    return '<li><button class="tile' + (ph[1] ? ' has-b' : '') + '" type="button" data-open="' + p.id + '">' +
+      '<span class="ph">' + im(ph[0], 'a') + (ph[1] ? im(ph[1], 'b') : '') + '</span>' +
+      '<span class="cap"><span class="nm">' + esc(S.name(p)) + '</span> · <span class="pr">' + esc(price(p)) + '</span></span></button></li>';
+  }
+  function row(p) {
+    var c = S.CATS[p.cat][S.lang()];
+    return '<li><button class="row" type="button" data-open="' + p.id + '">' +
+      '<span class="n">' + esc(S.name(p)) + '<span class="cm">' + esc(c) + '</span></span>' +
+      '<span class="c">' + esc(c) + '</span><span class="p">' + esc(price(p)) + '</span>' + im(pics(p)[0], 'th') + '</button></li>';
+  }
+  function renderIndex() {
+    $('#filters').innerHTML = ['all', 'earrings', 'necklace'].map(function (c) {
+      var on = c === cat;
+      return '<button class="fl" type="button" data-cat="' + c + '" aria-pressed="' + on + '"><span>' + esc(t('c_' + c)) + '</span>' +
+        (on ? '<canvas data-stitch="run" data-cell="3" data-c1="#C6383C" data-c2="transparent"></canvas>' : '') + '</button>';
+    }).join('');
+    $$('#views [data-view]').forEach(function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-view') === view)); });
+    var items = list();
+    $('#index').innerHTML = view === 'grid'
+      ? '<ul class="grid">' + items.map(tile).join('') + '</ul>'
+      : '<div class="lh" aria-hidden="true"><span>' + esc(t('col_piece')) + '</span><span>' + esc(t('col_cat')) + '</span><span>' + esc(t('col_price')) + '</span></div><ul class="index">' + items.map(row).join('') + '</ul>';
+    TZ.mount($('#filters'));
+  }
+  function renderPats() {
+    $('#pats').innerHTML = A.PATTERNS.map(function (p, i) {
+      return '<li><button class="pt" type="button" data-pat="' + i + '" aria-haspopup="dialog"><img src="' + p.img + '" alt="" loading="lazy"><span>' + esc(p[S.lang()]) + '</span></button></li>';
+    }).join('');
+    var dome = S.byId('dome');
+    $('#order-dome').textContent = t('order_dome') + ' — ' + price(dome);
+    $('#lb-order').textContent = t('order_dome') + ' — ' + price(dome);
+    renderLB();
+  }
+  function renderLB() {
+    var p = A.PATTERNS[pi];
+    $('#lb-img').src = p.img; $('#lb-img').alt = p[S.lang()];
+    $('#lb-cap').innerHTML = esc(p[S.lang()]) + ' &nbsp;<bdi dir="ltr">' + (pi + 1) + ' / ' + A.PATTERNS.length + '</bdi>';
+  }
+  function renderBoxes() {
+    $('#boxes').innerHTML = A.BOXES.map(function (b) {
+      return '<tr><td>' + esc(b[S.lang()]) + '</td><td><bdi dir="ltr">' + esc(b.dims) + '</bdi></td></tr>';
+    }).join('');
+  }
+  function render() {
+    var d = S.byId('dome');
+    $('#hero-cap').textContent = S.name(d) + ' — ' + price(d);
+    renderIndex(); renderPats(); renderBoxes();
+  }
+
+  // the sheet: "From" for the configurable dome; cut-outs and wide photos shown whole on white
+  S.on('sheet', function (d) {
+    var p = d.product, sheet = $('[data-sheet]');
+    if (p.configurable) $$('[data-sheet-price]', sheet).forEach(function (el) { el.textContent = price(p).replace(/^from/, 'From'); });
+    var ph = $('[data-sheet-photo]', sheet);
+    if (ph) { var fit = FIT[p.photo]; ph.style.objectFit = fit ? 'contain' : ''; ph.style.padding = fit ? '8%' : ''; }
+  });
+
+  var lb = $('#lb');
+  function openLB(i) { pi = i; renderLB(); if (lb.showModal) lb.showModal(); else lb.setAttribute('open', ''); }
+  function closeLB() { if (lb.close) lb.close(); else lb.removeAttribute('open'); }
+  function step(d) { pi = (pi + d + A.PATTERNS.length) % A.PATTERNS.length; renderLB(); }
+  lb.addEventListener('click', function (e) { if (e.target === lb) closeLB(); });
+  lb.addEventListener('keydown', function (e) {
+    if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+    var fwd = (e.key === 'ArrowRight') === (S.lang() !== 'ar'); step(fwd ? 1 : -1);
+  });
+
+  var top = $('#top-bar'), mb = $('#menu-btn');
+  function menu(on) { top.classList.toggle('menu-open', on); mb.setAttribute('aria-expanded', String(on)); }
+
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('button, a'); if (!b) return;
+    if (b.id === 'menu-btn') { menu(mb.getAttribute('aria-expanded') !== 'true'); return; }
+    if (b.closest('#nav') && b.tagName === 'A') { menu(false); return; }
+    if (b.hasAttribute('data-cat')) { cat = b.getAttribute('data-cat'); renderIndex(); var f = $('#filters [data-cat="' + cat + '"]'); if (f) f.focus(); return; }
+    if (b.hasAttribute('data-view')) { view = b.getAttribute('data-view'); try { localStorage.setItem('asala-20-view', view); } catch (err) {} renderIndex(); return; }
+    if (b.hasAttribute('data-pat')) { openLB(+b.getAttribute('data-pat')); return; }
+    if (b.id === 'lb-x') { closeLB(); return; }
+    if (b.id === 'lb-prev') { step(-1); return; }
+    if (b.id === 'lb-next') { step(1); return; }
+    if (b.id === 'lb-order') { closeLB(); S.openProduct('dome'); return; }
+  });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && top.classList.contains('menu-open')) { menu(false); mb.focus(); } });
+  matchMedia('(min-width: 861px)').addEventListener('change', function () { menu(false); });
+
+  S.boot({ strings: TZ.strings(STR), render: render, cartKey: 'asala-20-cart', orderPrefix: 'AS-' });
+  render(); TZ.mount(document);
+})();
+</script>
+</body>
+</html>

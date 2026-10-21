@@ -1,0 +1,920 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Asala · The Edit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Alexandria:wght@300;400;500;600&display=swap">
+<link rel="stylesheet" href="brand/asala-tatreez.css">
+<style>
+/* Layout: a fashion-led demi-fine store (rotating announcement bar, centred logo with mega menu, campaign hero,
+   edit tiles, tabbed product rail with metal dots, shop-the-look hotspots, photo wall), in the Asala identity.
+   Tatreez lives in the details: diamonds between menu items, chain bands between sections, stitched stars on
+   titles, an "x" stitch on button hover, dashed stitched badges and a stitched border in the footer. */
+:root {
+  --linen: #F4F3F1; --line: #E3DFD8; --red: #C6383C; --red-2: #A92D31; --ink: #33342F; --muted: #5F5D55; --teal: #3FA59A; --pink: #F2C9C0; --white: #fff;
+  --f: "Jost", "Alexandria", "Segoe UI", Tahoma, sans-serif;
+  --gutter: clamp(16px, 3vw, 40px);
+  --tz-bg: var(--linen); --tz-panel: #fff; --tz-line: var(--line); --tz-font: var(--f); --tz-font-d: var(--f);
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--white); color: var(--ink); font: 400 1rem/1.65 var(--f); overflow-x: hidden; }
+img { max-width: 100%; display: block; }
+button, input { font: inherit; color: inherit; }
+button { cursor: pointer; }
+::selection { background: var(--red); color: var(--white); }
+:focus-visible { outline: 2px dashed var(--red); outline-offset: 3px; }
+.wrap { max-width: 1400px; margin: 0 auto; padding-inline: var(--gutter); }
+.demo { margin: 0; background: var(--ink); color: #DAD5CC; font-size: .78rem; text-align: center; padding: 6px var(--gutter); }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* tracked uppercase labels: Latin only (letter-spacing breaks Arabic joins) */
+.tr { font-size: .8rem; font-weight: 500; }
+html[lang="en"] .tr { text-transform: uppercase; letter-spacing: .14em; font-size: .74rem; }
+
+/* buttons: an "x" stitch appears on both sides on hover */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 50px; padding: 0 26px; border: 1.5px solid var(--ink); background: var(--ink); color: var(--white); font-weight: 500; text-decoration: none; transition: background .2s, color .2s, border-color .2s; }
+html[lang="en"] .btn { text-transform: uppercase; letter-spacing: .14em; font-size: .8rem; }
+.btn::before, .btn::after { content: ""; width: 9px; height: 9px; flex: none; transform: scale(0) rotate(-90deg); transition: transform .3s var(--tz-ease);
+  background: linear-gradient(45deg, transparent 40%, currentColor 40% 60%, transparent 60%), linear-gradient(-45deg, transparent 40%, currentColor 40% 60%, transparent 60%); }
+.btn:hover::before, .btn:hover::after, .btn:focus-visible::before, .btn:focus-visible::after { transform: none; }
+.btn:hover { background: var(--red); border-color: var(--red); }
+.btn.line { background: transparent; color: var(--ink); }
+.btn.line:hover { background: var(--ink); color: var(--white); border-color: var(--ink); }
+.btn.light { background: var(--white); border-color: var(--white); color: var(--ink); }
+.btn.light:hover { background: var(--red); border-color: var(--red); color: var(--white); }
+
+/* section titles with a small stitched star */
+.ttl { display: flex; align-items: center; gap: 12px; margin: 0; font: 400 clamp(1.5rem, 2.6vw, 2.1rem)/1.25 var(--f); }
+html[lang="en"] .ttl { text-transform: uppercase; letter-spacing: .08em; }
+.ttl canvas { width: 18px; height: 18px; flex: none; }
+.sub { margin: 6px 0 0; color: var(--muted); }
+.sec { padding-block: clamp(36px, 6vw, 72px); }
+.band { width: 100%; height: 22px; }
+.sec-band { display: block; max-width: 1400px; margin: 0 auto; padding-inline: var(--gutter); }
+
+/* 1. announcement bar */
+.ann { background: var(--red); color: var(--white); }
+.ann .wrap { display: flex; align-items: center; justify-content: center; gap: 6px; min-height: 44px; }
+.ann button { width: 44px; height: 44px; border: 0; background: none; color: inherit; display: grid; place-items: center; flex: none; }
+.ann svg { width: 16px; height: 16px; }
+[dir="rtl"] .ann svg { transform: scaleX(-1); }
+.ann p { margin: 0; min-width: 0; flex: 0 1 460px; text-align: center; font-size: .86rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+html[lang="en"] .ann p { text-transform: uppercase; letter-spacing: .12em; font-size: .74rem; }
+.ann p span { display: inline-block; animation: annIn .45s var(--tz-ease); }
+@keyframes annIn { from { opacity: 0; transform: translateY(6px); } }
+
+/* 2. header: nav at the start, small logo in the centre, icons at the end */
+.top { position: sticky; top: 0; z-index: 40; background: var(--white); border-bottom: 1px solid var(--line); }
+.top .bar { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; min-height: 72px; gap: 12px; }
+.logo { display: inline-flex; align-items: center; min-height: 44px; justify-self: center; }
+.logo img { height: 22px; width: auto; }
+.nav { display: flex; align-items: center; flex-wrap: nowrap; }
+.nav > button { min-height: 44px; padding: 0 9px; border: 0; background: none; white-space: nowrap; position: relative; }
+.nav > button::after { content: ""; position: absolute; inset-inline: 9px; bottom: 8px; height: 0; border-bottom: 1.5px dashed var(--red); transform: scaleX(0); transition: transform .25s; }
+.nav > button:hover, .nav > button[aria-expanded="true"] { color: var(--red); }
+.nav > button:hover::after, .nav > button[aria-expanded="true"]::after { transform: none; }
+.nav .dia { width: 9px; height: 9px; flex: none; }
+.icons { display: flex; justify-content: flex-end; align-items: center; gap: 2px; }
+.ic { position: relative; min-width: 44px; height: 44px; padding: 0 8px; border: 0; background: none; display: inline-grid; place-items: center; }
+.ic svg { width: 21px; height: 21px; }
+.ic:hover { color: var(--red); }
+.ic.lang { font-size: .86rem; font-weight: 500; }
+.ic .count { position: absolute; top: 4px; inset-inline-end: 2px; min-width: 18px; height: 18px; padding: 0 4px; background: var(--red); color: var(--white); font-size: .68rem; font-weight: 600; line-height: 18px; text-align: center; border-radius: 9px; font-variant-numeric: tabular-nums; }
+.mstart { display: none; }
+@media (max-width: 1180px) { .nav { display: none; } .mstart { display: flex; } .d-only { display: none; } }
+@media (max-width: 420px) { .logo img { height: 18px; } .ic { min-width: 44px; padding: 0 4px; } }
+
+/* mega panel */
+.mega { position: absolute; inset-inline: 0; top: 100%; background: var(--white); border-top: 1px solid var(--line); box-shadow: 0 18px 30px -18px rgba(51, 52, 47, .35); }
+.mega .wrap { display: grid; grid-template-columns: repeat(2, minmax(160px, 220px)) minmax(0, 1fr); gap: 36px; padding-block: 28px 34px; }
+.mega h3 { margin: 0 0 10px; color: var(--red); }
+.mega ul { list-style: none; margin: 0; padding: 0; }
+.mega li button { border: 0; background: none; padding: 0; min-height: 36px; text-align: start; }
+.mega li button:hover { color: var(--red); text-decoration: underline dashed; text-underline-offset: 5px; }
+.mega li small { display: block; color: var(--muted); font-size: .82rem; margin-top: -4px; margin-bottom: 8px; }
+.feats { display: flex; gap: 18px; justify-content: flex-end; }
+.feat { width: 230px; border: 0; background: none; padding: 0; text-align: start; display: grid; gap: 8px; }
+.feat img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.feat:hover span { color: var(--red); }
+.msearch { grid-column: 1 / -1; }
+.msearch input { width: 100%; min-height: 52px; border: 0; border-bottom: 1.5px solid var(--ink); padding: 0 4px; font-size: 1.2rem; background: transparent; }
+.msearch input:focus { outline: none; border-bottom-color: var(--red); }
+.msearch input::-webkit-search-cancel-button { filter: grayscale(1); }
+.sres { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 16px; margin-top: 20px; }
+.sres button { border: 0; background: none; padding: 0; text-align: start; display: grid; gap: 6px; font-size: .9rem; }
+.sres img { aspect-ratio: 1; object-fit: cover; width: 100%; background: var(--linen); }
+.mmenu { grid-column: 1 / -1; }
+.mmenu details { border-bottom: 1px solid var(--line); }
+.mmenu summary { min-height: 52px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; list-style: none; font-weight: 500; }
+.mmenu summary::-webkit-details-marker { display: none; }
+.mmenu summary canvas { width: 10px; height: 10px; transition: transform .2s; }
+.mmenu details[open] summary canvas { transform: rotate(45deg); }
+.mmenu ul { padding-bottom: 12px; }
+.mmenu li button { min-height: 44px; }
+@media (max-width: 1180px) {
+  .mega { position: fixed; top: var(--mtop, 120px); bottom: 0; overflow: auto; overscroll-behavior: contain; }
+  .mega .wrap { grid-template-columns: 1fr; gap: 0; padding-block: 8px 30px; }
+}
+
+/* 3. campaign hero */
+.hero { position: relative; background: #EFEAE3; }
+.hero img { width: 100%; height: clamp(420px, 46vw, 680px); object-fit: cover; object-position: 70% 40%; }
+.hero::before { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(255,255,255,.82) 0%, rgba(255,255,255,.45) 34%, rgba(255,255,255,0) 52%); pointer-events: none; }
+.hero .copy { position: absolute; left: max(var(--gutter), calc((100% - 1400px) / 2 + var(--gutter))); top: 50%; transform: translateY(-50%); width: min(44%, 560px); }
+.hero .k { display: flex; align-items: center; gap: 10px; margin: 0 0 12px; color: var(--red); }
+.hero .k canvas { width: 16px; height: 16px; }
+.hero h1 { margin: 0 0 14px; font: 300 clamp(2.4rem, 4.6vw, 4.2rem)/1.08 var(--f); }
+html[lang="en"] .hero h1 { text-transform: uppercase; letter-spacing: .04em; }
+html[lang="ar"] .hero h1 { font-weight: 400; line-height: 1.3; }
+.hero p.d { margin: 0 0 24px; max-width: 40ch; color: #45463F; font-size: 1.05rem; }
+.hero .btns { display: flex; gap: 12px; flex-wrap: wrap; }
+@media (max-width: 760px) {
+  .hero::before { display: none; }
+  .hero img { height: auto; aspect-ratio: 4 / 5; object-position: 74% 50%; }
+  .hero .copy { position: static; transform: none; width: auto; padding: 22px var(--gutter) 6px; background: var(--white); }
+  .hero .btns .btn { flex: 1 1 100%; }
+}
+
+/* split promo: the gift edit */
+.promo { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); background: var(--linen); max-width: 1400px; margin: clamp(16px, 2vw, 24px) auto 0; }
+.promo-wrap { padding-inline: var(--gutter); }
+.promo img { width: 100%; height: 100%; min-height: 300px; max-height: 440px; object-fit: cover; }
+.promo .txt { padding: clamp(26px, 4vw, 56px); display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 6px; }
+.promo h2 { margin: 0; font: 300 clamp(1.9rem, 3.2vw, 2.8rem)/1.15 var(--f); }
+html[lang="en"] .promo h2 { text-transform: uppercase; letter-spacing: .05em; }
+.promo p { margin: 0 0 18px; color: var(--muted); max-width: 40ch; }
+.promo .k { color: var(--red); margin: 0; }
+@media (max-width: 760px) { .promo { grid-template-columns: 1fr; } .promo img { min-height: 0; aspect-ratio: 16 / 10; } }
+
+/* 4. shop the edit tiles */
+.tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(10px, 1.6vw, 20px); margin-top: 26px; }
+.tile { position: relative; border: 0; padding: 0; background: var(--linen); overflow: hidden; text-align: start; }
+.tile img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; transition: transform .7s var(--tz-ease); }
+.tile:hover img { transform: scale(1.04); }
+.tile .lb { position: absolute; inset-inline: 10px; bottom: 10px; display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 46px; padding: 0 14px; background: var(--white); }
+.tile .lb::after { content: ""; width: 9px; height: 9px; flex: none; background: linear-gradient(45deg, transparent 40%, var(--red) 40% 60%, transparent 60%), linear-gradient(-45deg, transparent 40%, var(--red) 40% 60%, transparent 60%); }
+.tile[aria-pressed="true"] .lb { background: var(--ink); color: var(--white); }
+.tile[aria-pressed="true"] .lb::after { background: linear-gradient(45deg, transparent 40%, var(--pink) 40% 60%, transparent 60%), linear-gradient(-45deg, transparent 40%, var(--pink) 40% 60%, transparent 60%); }
+@media (max-width: 860px) { .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } .tile .lb { inset-inline: 6px; bottom: 6px; padding: 0 10px; font-size: .78rem; } }
+
+/* 5. product rail with tabs */
+.rail-head { display: flex; flex-wrap: wrap; gap: 14px 30px; align-items: center; justify-content: space-between; }
+.tabs { display: flex; flex-wrap: wrap; gap: 4px 6px; }
+.tabs button { min-height: 44px; padding: 0 14px; border: 0; background: none; position: relative; color: var(--muted); }
+.tabs button[aria-selected="true"] { color: var(--ink); font-weight: 500; }
+.tabs button[aria-selected="true"]::after { content: ""; position: absolute; inset-inline: 14px; bottom: 6px; border-bottom: 2px dashed var(--red); }
+.tabs button:hover { color: var(--red); }
+.chip { display: flex; align-items: center; gap: 10px; margin: 14px 0 0; font-size: .9rem; }
+.chip b { font-weight: 500; }
+.chip button { min-height: 44px; border: 0; background: none; text-decoration: underline; text-underline-offset: 4px; color: var(--muted); padding: 0 6px; }
+.rail-wrap { position: relative; margin-top: 22px; }
+.rail { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; padding-bottom: 6px; }
+.rail::-webkit-scrollbar { display: none; }
+.arrows { display: flex; gap: 6px; }
+.arrows button { width: 46px; height: 46px; border: 1.5px solid var(--ink); background: var(--white); display: grid; place-items: center; }
+.arrows button:hover { background: var(--ink); color: var(--white); }
+.arrows button:disabled { opacity: .3; cursor: default; background: var(--white); color: var(--ink); }
+.arrows svg { width: 18px; height: 18px; }
+[dir="rtl"] .arrows svg { transform: scaleX(-1); }
+.count-line { margin: 0; color: var(--muted); font-size: .88rem; }
+
+.pc { flex: 0 0 calc((100% - 60px) / 4); scroll-snap-align: start; min-width: 0; }
+.pc-media { position: relative; aspect-ratio: 4 / 5; background: var(--linen); overflow: hidden; }
+.pc-media .open { position: absolute; inset: 0; border: 0; padding: 0; background: none; width: 100%; }
+.pc-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: var(--tint, none); transition: opacity .5s, transform .8s var(--tz-ease), filter .35s; }
+.pc-media img.cut { object-fit: contain; background: var(--ink); }
+.pc-media img.alt { opacity: 0; }
+.pc:hover .pc-media img.alt { opacity: 1; }
+.pc:hover .pc-media img { transform: scale(1.03); }
+.badge { position: absolute; top: 12px; inset-inline-start: 12px; z-index: 2; pointer-events: none; padding: 5px 9px; background: var(--white); color: var(--red); border: 1.5px dashed var(--red); outline: 3px solid var(--white); font-size: .72rem; font-weight: 600; line-height: 1.2; }
+html[lang="en"] .badge { text-transform: uppercase; letter-spacing: .12em; font-size: .64rem; }
+.badge.teal { color: #2C7C73; border-color: var(--teal); }
+.qadd { position: absolute; inset-inline: 10px; bottom: 10px; z-index: 2; min-height: 46px; border: 0; background: rgba(255,255,255,.95); display: flex; align-items: center; justify-content: center; gap: 10px; transform: translateY(calc(100% + 14px)); transition: transform .35s var(--tz-ease), background .2s, color .2s; }
+html[lang="en"] .qadd { text-transform: uppercase; letter-spacing: .12em; font-size: .74rem; }
+.qadd::before, .qadd::after { content: ""; width: 8px; height: 8px; background: linear-gradient(45deg, transparent 38%, currentColor 38% 62%, transparent 62%), linear-gradient(-45deg, transparent 38%, currentColor 38% 62%, transparent 62%); }
+.pc:hover .qadd, .qadd:focus-visible { transform: none; }
+.qadd:hover { background: var(--ink); color: var(--white); }
+@media (hover: none) { .qadd { transform: none; inset-inline: auto; inset-inline-end: 8px; bottom: 8px; width: 44px; height: 44px; min-height: 44px; padding: 0; } .qadd span, .qadd::after { display: none; } .qadd::before { width: 12px; height: 12px; background: linear-gradient(currentColor, currentColor) center / 100% 1.6px no-repeat, linear-gradient(currentColor, currentColor) center / 1.6px 100% no-repeat; } }
+.pc-info { padding-top: 10px; display: grid; gap: 2px; }
+.tones { display: flex; gap: 0; margin-inline-start: -14px; margin-block: -2px; }
+.tones button { width: 44px; height: 44px; border: 0; background: none; padding: 0; display: grid; place-items: center; }
+.tones i { width: 16px; height: 16px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15); }
+.tones button[aria-checked="true"] i { box-shadow: 0 0 0 2px var(--white), 0 0 0 3.5px var(--ink); }
+.pc h3 { margin: 0; font: 500 1rem/1.4 var(--f); }
+.pc h3 button { border: 0; background: none; padding: 0; text-align: start; min-height: 32px; }
+.pc h3 button:hover { color: var(--red); }
+.pc .lab { margin: 0; color: var(--muted); font-size: .86rem; }
+.pc .lab em { font-style: normal; color: var(--red); }
+.pc .pr { margin: 2px 0 0; font-weight: 500; font-variant-numeric: tabular-nums; }
+.pc .pr small { color: var(--muted); font-weight: 400; }
+@media (max-width: 1020px) { .pc { flex-basis: calc((100% - 40px) / 3); } }
+@media (max-width: 680px) { .rail { gap: 12px; } .pc { flex-basis: 68%; } .rail-head .arrows { display: none; } .rail-head > div:first-child { width: 100%; } .tabs { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; margin-inline: calc(-1 * var(--gutter)); padding-inline: calc(var(--gutter) - 14px); width: calc(100% + 2 * var(--gutter)); } .tabs::-webkit-scrollbar { display: none; } .tabs button { flex: none; } }
+
+/* 6. shop the look */
+.look-grid { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr); gap: clamp(14px, 2vw, 26px); margin-top: 26px; align-items: start; }
+.look-fig { position: relative; margin: 0; }
+.look-fig img { width: 100%; height: auto; }
+.hot { position: absolute; width: 44px; height: 44px; margin: -22px 0 0 -22px; border: 0; padding: 0; background: none; display: grid; place-items: center; z-index: 2; }
+.hot i { position: relative; width: 26px; height: 26px; border-radius: 50%; background: var(--white); box-shadow: 0 2px 10px rgba(0,0,0,.25); display: grid; place-items: center; }
+.hot i::before { content: ""; width: 10px; height: 10px; background: linear-gradient(45deg, transparent 38%, var(--red) 38% 62%, transparent 62%), linear-gradient(-45deg, transparent 38%, var(--red) 38% 62%, transparent 62%); }
+.hot i::after { content: ""; position: absolute; inset: -6px; border-radius: 50%; border: 1.5px dashed var(--white); animation: spin 9s linear infinite; }
+.hot[aria-expanded="true"] i { background: var(--red); }
+.hot[aria-expanded="true"] i::before { background: linear-gradient(45deg, transparent 38%, #fff 38% 62%, transparent 62%), linear-gradient(-45deg, transparent 38%, #fff 38% 62%, transparent 62%); }
+@keyframes spin { to { transform: rotate(360deg); } }
+.pop { position: absolute; z-index: 3; width: 250px; background: var(--white); box-shadow: 0 14px 34px rgba(0,0,0,.22); padding: 12px; display: grid; grid-template-columns: 74px 1fr; gap: 6px 12px; }
+.pop img { width: 74px; height: 92px; object-fit: cover; grid-row: span 2; }
+.pop img.cut { object-fit: contain; background: var(--ink); }
+.pop b { font-weight: 500; line-height: 1.35; padding-inline-end: 30px; }
+.pop .pp { margin: 0; color: var(--muted); font-size: .9rem; }
+.pop .pa { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 4px; }
+.pop .pa .btn { min-height: 44px; padding: 0 10px; font-size: .8rem; gap: 6px; }
+.pop .px { position: absolute; top: 2px; inset-inline-end: 2px; width: 40px; height: 40px; border: 0; background: none; display: grid; place-items: center; }
+.pop .px svg { width: 16px; height: 16px; }
+.look-side { display: grid; gap: 18px; }
+.inlook { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.inlook li { display: grid; grid-template-columns: 64px 1fr auto; gap: 12px; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.inlook img { width: 64px; height: 76px; object-fit: cover; }
+.inlook button.n { border: 0; background: none; padding: 0; text-align: start; font-weight: 500; min-height: 32px; }
+.inlook button.n:hover { color: var(--red); }
+.inlook span { display: block; color: var(--muted); font-size: .88rem; }
+.inlook .add { width: 44px; height: 44px; border: 1.5px solid var(--ink); background: none; display: grid; place-items: center; }
+.inlook .add:hover { background: var(--ink); color: var(--white); }
+.inlook .add svg { width: 18px; height: 18px; }
+@media (max-width: 860px) { .look-grid { grid-template-columns: 1fr; } }
+
+/* 7. values */
+.values { background: var(--linen); }
+.vals { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; list-style: none; margin: 0; padding: 0; }
+.vals li { display: grid; justify-items: center; text-align: center; gap: 6px; }
+.vals svg { width: 34px; height: 34px; color: var(--red); }
+.vals b { font-weight: 500; }
+.vals span { color: var(--muted); font-size: .88rem; max-width: 26ch; }
+@media (max-width: 760px) { .vals { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 14px; } }
+
+/* 8. #WearAsala wall */
+.wall { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; margin-top: 24px; }
+.wall button { position: relative; border: 0; padding: 0; background: var(--linen); overflow: hidden; }
+.wall img { width: 100%; aspect-ratio: 1; object-fit: cover; transition: transform .7s var(--tz-ease); }
+.wall button:hover img { transform: scale(1.05); }
+.wall .wl { position: absolute; inset-inline-start: 8px; bottom: 8px; padding: 3px 8px; background: rgba(255,255,255,.92); font-size: .7rem; color: var(--muted); }
+.wall .ws { position: absolute; inset: 0; display: grid; place-items: center; background: rgba(51,52,47,.45); color: var(--white); opacity: 0; transition: opacity .25s; font-weight: 500; }
+.wall button:hover .ws, .wall button:focus-visible .ws { opacity: 1; }
+.wall-note { display: flex; align-items: center; gap: 10px; margin: 14px 0 0; color: var(--muted); font-size: .9rem; }
+.wall-note canvas { width: 14px; height: 14px; flex: none; }
+@media (max-width: 760px) { .wall { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+
+/* 9. story teaser */
+.story { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: clamp(24px, 5vw, 70px); }
+.story figure { margin: 0; position: relative; padding: 18px; }
+.story figure canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.story img { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; }
+.story .k { color: var(--red); margin: 0 0 10px; }
+.story p.f { margin: 14px 0 0; color: var(--muted); max-width: 46ch; font-size: 1.05rem; }
+.story .btn { margin-top: 26px; }
+@media (max-width: 760px) { .story { grid-template-columns: 1fr; } .story figure { max-width: 420px; } }
+
+/* 10. newsletter */
+.news { background: var(--linen); text-align: center; }
+.news .ttl { justify-content: center; }
+.news form { display: flex; max-width: 520px; margin: 22px auto 0; gap: 0; }
+.news input { flex: 1; min-width: 0; min-height: 52px; border: 1.5px solid var(--ink); border-inline-end: 0; padding: 0 16px; background: var(--white); }
+.news input[aria-invalid="true"] { border-color: var(--red); }
+.news .btn { flex: none; }
+.news .msg { min-height: 1.6em; margin: 10px 0 0; font-size: .9rem; color: var(--muted); }
+.news .msg.err { color: var(--red); }
+@media (max-width: 480px) { .news form { flex-direction: column; gap: 10px; } .news input { border-inline-end: 1.5px solid var(--ink); } }
+
+/* 11. footer */
+footer { background: var(--white); border-top: 1px solid var(--line); }
+footer .hem { width: 100%; height: 48px; background: var(--linen); }
+.fcols { display: grid; grid-template-columns: 1.4fr repeat(3, minmax(0, 1fr)); gap: 30px; padding-block: 40px 30px; }
+.fcols .logo { justify-self: start; }
+/* metal choice for the Dome inside the shared product sheet */
+.mats { display: grid; gap: 6px; }
+.mats button { display: flex; justify-content: space-between; align-items: center; gap: 10px; min-height: 48px; padding: 6px 14px; border: 1px solid var(--line); background: none; text-align: start; }
+.mats button[aria-checked="true"] { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+.mats small { display: block; color: var(--muted); font-size: .8rem; }
+.mats b { font-weight: 500; white-space: nowrap; }
+.fcols .logo img { height: 20px; }
+.fcols p { margin: 14px 0 0; color: var(--muted); font-size: .92rem; max-width: 34ch; }
+footer h4 { margin: 0 0 10px; }
+footer ul { list-style: none; margin: 0; padding: 0; }
+footer li button { border: 0; background: none; padding: 0; min-height: 40px; text-align: start; color: var(--muted); }
+footer li button:hover { color: var(--red); }
+.fline { border-top: 1px solid var(--line); }
+.fline .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 22px; padding-block: 10px 14px; font-size: .86rem; color: var(--muted); }
+.fline .opts { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 18px; }
+.fline button { min-height: 44px; border: 0; background: none; padding: 0; text-decoration: underline dashed; text-underline-offset: 5px; color: var(--ink); }
+@media (max-width: 860px) { .fcols { grid-template-columns: 1fr 1fr; } .fcols > div:first-child { grid-column: 1 / -1; } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  html { scroll-behavior: auto; }
+}
+</style>
+</head>
+<body>
+<p class="demo" data-t="demo_note"></p>
+
+<div class="ann" role="region" data-ta="ann_label">
+  <div class="wrap">
+    <button type="button" id="ann-prev" data-ta="prev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <p aria-live="polite"><span id="ann-text"></span></p>
+    <button type="button" id="ann-next" data-ta="next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+  </div>
+</div>
+
+<header class="top" id="top">
+  <div class="wrap bar">
+    <div>
+      <nav class="nav" id="nav" data-ta="menu"></nav>
+      <div class="mstart"><button class="ic burger" type="button" id="burger" aria-expanded="false" aria-controls="mega" data-ta="menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 7h18M3 12h18M3 17h18"/></svg></button>
+      <button class="ic js-search" type="button" aria-expanded="false" aria-controls="mega" data-ta="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></button></div>
+    </div>
+    <a class="logo" href="#main" aria-label="Asala"><img src="brand/wordmark-dark.png" alt="ASALA" width="147" height="22"></a>
+    <div class="icons">
+      <button class="ic js-search d-only" type="button" aria-expanded="false" aria-controls="mega" data-ta="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></button>
+      <button class="ic lang" type="button" data-lang-toggle data-t="lang_switch"></button>
+      <button class="ic" type="button" data-open-cart data-ta="cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 8h14l-1.2 12H6.2z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg><span class="count" data-cart-count hidden>0</span></button>
+    </div>
+  </div>
+  <div class="mega" id="mega" hidden><div class="wrap" id="mega-in"></div></div>
+</header>
+
+<main id="main">
+  <section class="hero" aria-labelledby="hero-h">
+    <img src="brand/woman-arch-hero.jpg" alt="" width="1264" height="624">
+    <div class="copy">
+      <p class="k tr"><canvas data-stitch="star"></canvas><span data-t="hero_k"></span></p>
+      <h1 id="hero-h" data-t="hero_h"></h1>
+      <p class="d" data-t="hero_p"></p>
+      <div class="btns">
+        <button class="btn" type="button" data-edit="coll-dome" data-t="hero_cta"></button>
+        <button class="btn line" type="button" data-open="dome" data-t="hero_cta2"></button>
+      </div>
+    </div>
+  </section>
+
+  <div class="promo-wrap">
+    <section class="promo" id="gift" aria-labelledby="gift-h">
+      <img src="brand/packaging-family.jpg" alt="" loading="lazy" width="1594" height="987">
+      <div class="txt">
+        <p class="k tr" data-t="gift_k"></p>
+        <h2 id="gift-h" data-t="gift_h"></h2>
+        <p data-t="gift_p"></p>
+        <button class="btn" type="button" data-edit="gifts" data-t="gift_cta"></button>
+      </div>
+    </section>
+  </div>
+
+  <section class="sec" aria-labelledby="edit-h">
+    <div class="wrap">
+      <h2 class="ttl" id="edit-h"><canvas data-stitch="star"></canvas><span data-t="edit_h"></span></h2>
+      <p class="sub" data-t="edit_p"></p>
+      <div class="tiles" id="tiles" role="group" aria-labelledby="edit-h"></div>
+    </div>
+  </section>
+
+  <div class="sec-band"><canvas class="band" data-stitch="chain" data-cell="3"></canvas></div>
+
+  <section class="sec" id="rail-sec" aria-labelledby="rail-h">
+    <div class="wrap">
+      <div class="rail-head">
+        <div>
+          <h2 class="ttl" id="rail-h"><canvas data-stitch="star"></canvas><span data-t="rail_h"></span></h2>
+        </div>
+        <div class="tabs" id="tabs" role="tablist" aria-labelledby="rail-h"></div>
+        <div class="arrows"><button type="button" id="r-prev" data-ta="prev"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button><button type="button" id="r-next" data-ta="next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button></div>
+      </div>
+      <p class="chip" id="chip" hidden></p>
+      <div class="rail-wrap"><div class="rail" id="rail" role="tabpanel" aria-labelledby="rail-h" tabindex="-1"></div></div>
+      <p class="count-line" id="rail-count" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <div class="sec-band"><canvas class="band" data-stitch="chain" data-cell="3"></canvas></div>
+
+  <section class="sec" id="look" aria-labelledby="look-h">
+    <div class="wrap">
+      <h2 class="ttl" id="look-h"><canvas data-stitch="star"></canvas><span data-t="look_h"></span></h2>
+      <p class="sub" data-t="look_p"></p>
+      <div class="look-grid">
+        <figure class="look-fig" id="fig-a"><img src="brand/woman-arch.jpg" alt="" width="760" height="624" loading="lazy"></figure>
+        <div class="look-side">
+          <figure class="look-fig" id="fig-b"><img src="brand/dome-worn.jpg" alt="" width="660" height="585" loading="lazy"></figure>
+          <div><h3 class="tr" data-t="in_look" style="margin:0 0 8px"></h3><ul class="inlook" id="inlook"></ul></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec values" aria-label="Asala">
+    <div class="wrap">
+      <ul class="vals">
+        <li><svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="4" y="10" width="28" height="17"/><circle cx="18" cy="18.5" r="4"/><path d="M8 14h2M26 23h2"/></svg><b data-t="v_cod"></b><span data-t="v_cod_d"></span></li>
+        <li><svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="5" y="14" width="26" height="17"/><path d="M3 9h30v5H3zM18 9v22"/><path d="M15 21l6 6M21 21l-6 6" stroke-width="1.6"/></svg><b data-t="v_box"></b><span data-t="v_box_d"></span></li>
+        <li><svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M6 32V17a12 12 0 0 1 24 0v15"/><path d="M12 32V19a6 6 0 0 1 12 0v13M3 32h30"/></svg><b data-t="v_made"></b><span data-t="v_made_d"></span></li>
+        <li><svg viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M6 30l2-6a12 12 0 1 1 4.5 4.3z"/><path d="M14 14c0 5 3 8 8 8l1.5-2.5-3-1.5-1 1.5c-1.5-.5-3-2-3.5-3.5l1.5-1-1.5-3z"/></svg><b data-t="v_wa"></b><span data-t="v_wa_d"></span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec" id="wall" aria-labelledby="wall-h">
+    <div class="wrap">
+      <h2 class="ttl" id="wall-h"><canvas data-stitch="star"></canvas><span dir="ltr">#WearAsala</span></h2>
+      <p class="sub" data-t="wall_p"></p>
+      <div class="wall" id="wall-grid"></div>
+      <p class="wall-note"><canvas data-stitch="rose" data-palette="red"></canvas><span data-t="wall_note"></span></p>
+    </div>
+  </section>
+
+  <div class="sec-band"><canvas class="band" data-stitch="chain" data-cell="3"></canvas></div>
+
+  <section class="sec" id="story" aria-labelledby="story-h">
+    <div class="wrap story">
+      <figure><canvas data-stitch="frame" data-sew data-cell="4"></canvas><img src="brand/sketch-dome.jpg" alt="" loading="lazy" width="333" height="414"></figure>
+      <div>
+        <p class="k tr" data-t="story_k"></p>
+        <h2 class="ttl" id="story-h"><canvas data-stitch="star"></canvas><span data-t="story_h"></span></h2>
+        <p class="f" data-t="story_1"></p>
+        <p class="f" data-t="story_2"></p>
+        <button class="btn line" type="button" data-open="dome" data-t="story_cta"></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec news" aria-labelledby="news-h">
+    <div class="wrap">
+      <h2 class="ttl" id="news-h"><canvas data-stitch="star"></canvas><span data-t="nl_h"></span></h2>
+      <p class="sub" data-t="nl_p"></p>
+      <form id="nl" novalidate>
+        <label class="sr" for="nl-email" data-t="nl_label"></label>
+        <input id="nl-email" type="email" autocomplete="email" data-tp="nl_label" aria-describedby="nl-msg">
+        <button class="btn" type="submit" data-t="nl_btn"></button>
+      </form>
+      <p class="msg" id="nl-msg" aria-live="polite"></p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <canvas class="hem" data-stitch="hem" data-cell="3"></canvas>
+  <div class="wrap fcols">
+    <div><a class="logo" href="#main" aria-label="Asala"><img src="brand/wordmark-dark.png" alt="ASALA" width="133" height="20"></a><p data-t="foot_p"></p></div>
+    <div><h4 class="tr" data-t="f_help"></h4><ul>
+      <li><button type="button" data-soon data-t="f_delivery"></button></li>
+      <li><button type="button" data-soon data-t="f_care"></button></li>
+      <li><button type="button" data-soon data-t="f_wa"></button></li>
+    </ul></div>
+    <div><h4 class="tr" data-t="f_about"></h4><ul>
+      <li><button type="button" data-go="story" data-t="our_story"></button></li>
+      <li><button type="button" data-go="look" data-t="look_h"></button></li>
+      <li><button type="button" data-go="wall" dir="ltr">#WearAsala</button></li>
+    </ul></div>
+    <div><h4 class="tr" data-t="f_more"></h4><ul>
+      <li><button type="button" data-go="gift" data-t="f_boxes"></button></li>
+      <li><button type="button" data-open="dome" data-t="f_materials"></button></li>
+      <li><button type="button" data-soon data-t="f_terms"></button></li>
+    </ul></div>
+  </div>
+  <div class="fline"><div class="wrap">
+    <span>© 2026 Asala · أصالة · <span data-t="f_made"></span></span>
+    <span class="opts"><span><span data-t="f_lang"></span>: <button type="button" data-lang-toggle data-t="lang_switch"></button></span><span data-t="f_cur"></span></span>
+  </div></div>
+</footer>
+
+<script src="store.js"></script>
+<script src="brand/asala-catalog.js"></script>
+<script src="brand/asala-tatreez.js"></script>
+<script>
+(function () {
+  var S = window.Store, A = window.ASALA, TZ = window.TZ;
+  A.install(S); TZ.shell();
+  var $ = S.$, $$ = S.$$, esc = S.esc, t = S.t;
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function ar() { return S.lang() === 'ar'; }
+
+  var STR = {
+    ar: {
+      ann_label: 'إعلانات', prev: 'السابق', next: 'التالي',
+      ann1: 'الدفع عند الاستلام', ann2: 'كل قطعة تصلكِ في علبة هدية', ann3: 'جديد: أقراط قبة الصخرة',
+      n_shop: 'تسوّقي الكل', n_coll: 'المجموعات', n_atelier: 'المَشغَل',
+      m_shopby: 'تسوّقي حسب', m_edits: 'التشكيلات', m_pieces: 'القطع', m_all: 'كل القطع', m_all_ear: 'كل الأقراط', m_more: 'اكتشفي',
+      s_ph: 'ابحثي عن قطعة', s_none: 'لا توجد قطعة بهذا الاسم.',
+      hero_k: 'وصلت للتو', hero_h: 'مجموعة القبة', hero_p: 'زخارف القدس وأقواسها، مقصوصة بالليزر ومشطّبة يدوياً في نابلس.',
+      hero_cta: 'تسوّقي المجموعة', hero_cta2: 'أقراط القبة',
+      gift_k: 'هدايا', gift_h: 'تشكيلة الهدايا', gift_p: 'كل قطعة تصل في علبة أصالة الفحمية مع بطاقة شكر، ومختومة بالأحمر.', gift_cta: 'تسوّقي الهدايا',
+      edit_h: 'تسوّقي التشكيلة', edit_p: 'اختاري تشكيلة لتظهر قطعها في القائمة أدناه.',
+      e_arches: 'أقواس وقباب', e_under: 'أقل من 100 ₪', e_ear: 'للأذن', e_gifts: 'مختارات للهدايا',
+      rail_h: 'الآن في أصالة', t_new: 'وصل حديثاً', showing: 'المعروض:', clear: 'عرض الأقراط', n_pieces: 'عدد القطع: {n}',
+      b_new: 'جديد', b_hand: 'يدوي الصنع', tn_gold: 'ذهبي', tn_silver: 'فضي', to_confirm: '(للتأكيد)', tone_of: '{t} · {p}',
+      mat_legend: 'المعدن', per_pair: 'للزوج', preview: 'معاينة اللون تقريبية',
+      look_h: 'تسوّقي الإطلالة', look_p: 'اضغطي على الغُرزة فوق الصورة لتري القطعة.', in_look: 'في هذه الإطلالة', hot: 'القطعة في الصورة: {p}',
+      v_cod: 'الدفع عند الاستلام', v_cod_d: 'نتصل بكِ لتأكيد الطلب قبل الشحن.', v_box: 'في علبة هدية دائماً', v_box_d: 'علبة فحمية مع بطاقة شكر.',
+      v_made: 'صُنعت في نابلس', v_made_d: 'تُقصّ وتُشطَّب يدوياً.', v_wa: 'مساعدة عبر واتساب', v_wa_d: '(للتأكيد)',
+      wall_p: 'هنا ستظهر صوركِ وأنتِ ترتدين أصالة. شاركينا بوسم ⁦#WearAsala⁩.', wall_note: 'الصور الحالية من صور العلامة، إلى أن تصلنا صوركِ.', wall_tag: 'صورة العلامة', wall_shop: 'عرض القطعة',
+      story_k: 'المَشغَل', story_h: 'تبدأ من دفتر رسم', story_1: 'أسّست أصالة مهندسةٌ معمارية من نابلس.',
+      story_2: 'كل قطعة تبدأ رسماً لقبة أو قوس، ثم تُقصّ بالليزر وتُشطَّب حوافها يدوياً.', story_cta: 'تسوّقي القبة',
+      nl_h: 'كوني أول من يعرف', nl_p: 'نكتب لكِ حين تصل قطعة جديدة.', nl_label: 'بريدكِ الإلكتروني', nl_btn: 'اشتركي',
+      nl_ok: 'شكراً! هذا نموذج تصميم، لم يُرسَل شيء.', nl_err: 'اكتبي بريداً إلكترونياً صحيحاً.',
+      foot_p: 'حُليّ من نابلس، مستوحاة من العمارة والتطريز الفلسطيني.',
+      f_help: 'مساعدة', f_about: 'عن أصالة', f_more: 'معلومات أخرى', f_delivery: 'التوصيل والدفع عند الاستلام', f_care: 'العناية بالقطع',
+      f_wa: 'واتساب للطلبات (للتأكيد)', f_boxes: 'علب الهدايا', f_materials: 'المعادن والمواد', f_terms: 'الشروط والخصوصية',
+      f_lang: 'اللغة', f_cur: 'العملة: شيكل (₪)', f_made: 'صُنعت يدوياً في نابلس', soon: 'في المتجر الكامل تُفتح هنا صفحة خاصة.'
+    },
+    en: {
+      ann_label: 'Announcements', prev: 'Previous', next: 'Next',
+      ann1: 'Cash on delivery', ann2: 'Every piece arrives gift-boxed', ann3: 'New: the Dome of the Rock earrings',
+      n_shop: 'Shop all', n_coll: 'Collections', n_atelier: 'Atelier',
+      m_shopby: 'Shop by', m_edits: 'The edits', m_pieces: 'Pieces', m_all: 'All pieces', m_all_ear: 'All earrings', m_more: 'Discover',
+      s_ph: 'Search for a piece', s_none: 'No piece by that name.',
+      hero_k: 'Just landed', hero_h: 'The Dome collection', hero_p: 'Jerusalem patterns and arches, laser cut and finished by hand in Nablus.',
+      hero_cta: 'Shop the collection', hero_cta2: 'The Dome earrings',
+      gift_k: 'Gifts', gift_h: 'The Gift Edit', gift_p: 'Every piece arrives in a charcoal Asala box with a thank-you card, sealed in red.', gift_cta: 'Shop gifts',
+      edit_h: 'Shop the edit', edit_p: 'Pick an edit to see its pieces in the rail below.',
+      e_arches: 'Arches & Domes', e_under: 'Under ₪100', e_ear: 'Play it by ear', e_gifts: 'Gift picks',
+      rail_h: 'Right now', t_new: 'New in', showing: 'Showing:', clear: 'Back to earrings', n_pieces: '{n} pieces',
+      b_new: 'New', b_hand: 'Handmade', tn_gold: 'Gold', tn_silver: 'Silver', to_confirm: '(to confirm)', tone_of: '{t} · {p}',
+      mat_legend: 'Metal', per_pair: 'per pair', preview: 'Colour preview is approximate',
+      look_h: 'Shop the look', look_p: 'Tap a stitch on the photo to see the piece.', in_look: 'In this look', hot: 'Piece in the photo: {p}',
+      v_cod: 'Cash on delivery', v_cod_d: 'We call to confirm before we ship.', v_box: 'Gift-boxed, always', v_box_d: 'A charcoal box with a thank-you card.',
+      v_made: 'Made in Nablus', v_made_d: 'Cut and finished by hand.', v_wa: 'Help on WhatsApp', v_wa_d: '(to confirm)',
+      wall_p: 'This is where your photos wearing Asala will go. Tag #WearAsala.', wall_note: 'For now these are Asala’s own brand photos, until yours arrive.', wall_tag: 'Brand photo', wall_shop: 'View piece',
+      story_k: 'Atelier', story_h: 'It starts in a sketchbook', story_1: 'Asala was founded by an architect from Nablus.',
+      story_2: 'Every piece starts as a drawing of a dome or an arch, then is laser cut and its edges finished by hand.', story_cta: 'Shop the Dome',
+      nl_h: 'Be the first to know', nl_p: 'We write when a new piece lands.', nl_label: 'Your email', nl_btn: 'Sign up',
+      nl_ok: 'Thank you! This is a design demo, nothing was sent.', nl_err: 'Please enter a valid email address.',
+      foot_p: 'Jewellery from Nablus, drawn from Palestinian architecture and tatreez.',
+      f_help: 'Help', f_about: 'About', f_more: 'More info', f_delivery: 'Delivery & cash on delivery', f_care: 'Jewellery care',
+      f_wa: 'WhatsApp orders (to confirm)', f_boxes: 'Gift boxes', f_materials: 'Metals & materials', f_terms: 'Terms & privacy',
+      f_lang: 'Language', f_cur: 'Currency: Shekel (₪)', f_made: 'Made by hand in Nablus', soon: 'In the full store this opens its own page.'
+    }
+  };
+
+  // ---------- data for this layout ----------
+  var NEW = { dome: 1, 'dome-teal': 1 };
+  var CARD_IMG = { lotus: 'brand/lotus-45.jpg' };
+  var CARD_ALT = { dome: 'brand/dome-worn.jpg', horseshoe: 'brand/woman-arch.jpg', lotus: 'brand/lotus-pendant.jpg', 'dome-teal': 'brand/sketch-plan.jpg' };
+  var EDITS = {
+    all: function () { return true; },
+    earrings: function (p) { return p.cat === 'earrings'; },
+    necklace: function (p) { return p.cat === 'necklace'; },
+    under100: function (p) { return !p.configurable && p.price < 100; },
+    'new': function (p) { return !!NEW[p.id]; },
+    arches: function (p) { return ['dome', 'dome-teal', 'arcs', 'horseshoe', 'mihrab'].indexOf(p.id) > -1; },
+    ear: function (p) { return p.cat === 'earrings'; },
+    gifts: function (p) { return ['dome', 'lotus', 'horseshoe', 'branch'].indexOf(p.id) > -1; },
+    'coll-dome': function (p) { return p.coll === 'dome'; },
+    'coll-najma': function (p) { return p.coll === 'najma'; }
+  };
+  function editLabel(k) {
+    var m = { all: 'm_all', earrings: 'c_earrings', necklace: 'c_necklace', under100: 'e_under', 'new': 't_new', arches: 'e_arches', ear: 'e_ear', gifts: 'e_gifts' };
+    if (k === 'coll-dome' || k === 'coll-najma') return A.COLLECTIONS[k.slice(5)][S.lang()];
+    return t(m[k]);
+  }
+  var TABS = ['earrings', 'necklace', 'under100', 'new'];
+  var TILES = [
+    { k: 'arches', img: 'brand/dome-stone.jpg', pos: '50% 20%' },
+    { k: 'under100', img: 'brand/clay-arcs.jpg', pos: '50% 50%' },
+    { k: 'ear', img: 'brand/horseshoe-close.jpg', pos: '50% 40%' },
+    { k: 'gifts', img: 'brand/pouch.jpg', pos: '52% 50%' }
+  ];
+  var edit = 'earrings';
+  var toneOf = {};
+  var ann = 0, annTimer = null;
+
+  // nav groups → mega panel content. Link actions: e = filter the rail, g = scroll to section, o = open piece
+  var GROUPS = [
+    { id: 'shop', key: 'n_shop', cols: [
+        { h: 'm_shopby', l: [{ e: 'all', t: 'm_all' }, { e: 'earrings', t: 'c_earrings' }, { e: 'necklace', t: 'c_necklace' }, { e: 'new', t: 't_new' }] },
+        { h: 'm_edits', l: [{ e: 'arches', t: 'e_arches' }, { e: 'under100', t: 'e_under' }, { e: 'ear', t: 'e_ear' }, { e: 'gifts', t: 'e_gifts' }] }],
+      feats: [{ img: 'brand/woman-arch.jpg', e: 'coll-dome', t: 'hero_h' }, { img: 'brand/dome-render.jpg', o: 'dome' }] },
+    { id: 'earrings', key: 'c_earrings', cols: [
+        { h: 'm_shopby', l: [{ e: 'earrings', t: 'm_all_ear' }, { e: 'arches', t: 'e_arches' }, { e: 'under100', t: 'e_under' }, { e: 'new', t: 't_new' }] },
+        { h: 'm_pieces', products: 'earrings' }],
+      feats: [{ img: 'brand/dome-teal.jpg', o: 'dome-teal' }, { img: 'brand/horseshoe-close.jpg', o: 'horseshoe' }] },
+    { id: 'necklace', key: 'c_necklace', cols: [
+        { h: 'm_shopby', l: [{ e: 'necklace', t: 'c_necklace' }, { e: 'gifts', t: 'e_gifts' }] },
+        { h: 'm_pieces', products: 'necklace' }],
+      feats: [{ img: 'brand/lotus-45.jpg', o: 'lotus' }] },
+    { id: 'coll', key: 'n_coll', cols: [{ h: 'n_coll', colls: true }, { h: 'm_more', l: [{ g: 'look', t: 'look_h' }, { e: 'arches', t: 'e_arches' }] }],
+      feats: [{ img: 'brand/dome-stone.jpg', e: 'coll-dome', c: 'dome' }, { img: 'brand/clay-arcs.jpg', e: 'coll-najma', c: 'najma' }] },
+    { id: 'gifts', key: 'c_gifts', cols: [
+        { h: 'c_gifts', l: [{ e: 'gifts', t: 'e_gifts' }, { e: 'under100', t: 'e_under' }, { g: 'gift', t: 'gift_h' }] },
+        { h: 'm_more', l: [{ g: 'gift', t: 'f_boxes' }] }],
+      feats: [{ img: 'brand/packaging-family.jpg', g: 'gift', t: 'gift_h' }, { img: 'brand/pouch.jpg', e: 'gifts', t: 'e_gifts' }] },
+    { id: 'atelier', key: 'n_atelier', cols: [
+        { h: 'n_atelier', l: [{ g: 'story', t: 'our_story' }, { g: 'look', t: 'look_h' }, { g: 'wall', raw: '#WearAsala' }] },
+        { h: 'm_more', l: [{ e: 'coll-dome', t: 'hero_h' }] }],
+      feats: [{ img: 'brand/sketch-dome.jpg', g: 'story', t: 'story_h' }] }
+  ];
+  var openGroup = null; // group id, 'search' or 'mobile'
+
+  var ICON = {
+    plus: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>',
+    x: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg>'
+  };
+
+  // ---------- helpers ----------
+  function priceFor(p, tone) {
+    if (p.configurable) { var m = A.MATERIALS.filter(function (x) { return x.tone === tone; })[0] || A.MATERIALS[0]; return m.price; }
+    return p.price;
+  }
+  function tint(p, tone) {
+    return S.photoFilter(p, tone) || (tone === 'gold' && p.photoTone === 'silver' ? 'sepia(.55) saturate(1.6) hue-rotate(-6deg) brightness(1.02)' : '');
+  }
+  function toneLabel(p, tone) {
+    if (p.configurable) { var m = A.MATERIALS.filter(function (x) { return x.tone === tone; })[0]; return esc(ar() ? m.ar : m.en); }
+    var s = esc(t('tn_' + tone));
+    if (p.tones.indexOf(tone) < 0) s += ' <em>' + esc(t('to_confirm')) + '</em>';
+    return s;
+  }
+  function attrAct(o) {
+    return o.e ? ' data-edit="' + o.e + '"' : o.g ? ' data-go="' + o.g + '"' : o.o ? ' data-open="' + o.o + '"' : '';
+  }
+  function cardImg(p) { return CARD_IMG[p.id] || p.photo; }
+  function go(id) {
+    var el = document.getElementById(id); if (!el) return;
+    var y = el.getBoundingClientRect().top + scrollY - $('.top').offsetHeight - 8;
+    scrollTo({ top: y, behavior: reduce ? 'auto' : 'smooth' });
+  }
+
+  // ---------- announcement ----------
+  function renderAnn() { $('#ann-text').textContent = t('ann' + (ann + 1)); }
+  function stepAnn(d) { ann = (ann + d + 3) % 3; renderAnn(); }
+  function startAnn() { if (!reduce && !annTimer) annTimer = setInterval(function () { stepAnn(1); }, 4500); }
+  function stopAnn() { clearInterval(annTimer); annTimer = null; }
+
+  // ---------- nav + mega ----------
+  function renderNav() {
+    $('#nav').innerHTML = GROUPS.map(function (g, i) {
+      return (i ? '<canvas class="dia" data-stitch="rose" data-palette="red"></canvas>' : '') +
+        '<button type="button" class="tr" data-group="' + g.id + '" aria-expanded="' + (openGroup === g.id) + '" aria-controls="mega">' + esc(t(g.key)) + '</button>';
+    }).join('');
+  }
+  function linkList(col) {
+    if (col.products) return S.PRODUCTS.filter(function (p) { return p.cat === col.products; }).map(function (p) {
+      return '<li><button type="button" data-open="' + p.id + '">' + esc(S.name(p)) + '</button></li>'; }).join('');
+    if (col.colls) return ['dome', 'najma'].map(function (c) {
+      var C = A.COLLECTIONS[c];
+      return '<li><button type="button" data-edit="coll-' + c + '">' + esc(C[S.lang()]) + '</button><small>' + esc(ar() ? C.dAr : C.dEn) + '</small></li>'; }).join('');
+    return col.l.map(function (o) {
+      return '<li><button type="button"' + attrAct(o) + (o.raw ? ' dir="ltr"' : '') + '>' + esc(o.raw || t(o.t)) + '</button></li>'; }).join('');
+  }
+  function groupHTML(g) {
+    return g.cols.map(function (c) { return '<div><h3 class="tr">' + esc(t(c.h)) + '</h3><ul>' + linkList(c) + '</ul></div>'; }).join('') +
+      '<div class="feats">' + g.feats.map(function (f) {
+        var label = f.o ? S.name(S.byId(f.o)) : f.c ? A.COLLECTIONS[f.c][S.lang()] : t(f.t);
+        return '<button type="button" class="feat"' + attrAct(f) + '><img src="' + f.img + '" alt="" loading="lazy"><span>' + esc(label) + '</span></button>';
+      }).join('') + '</div>';
+  }
+  function renderMega() {
+    var box = $('#mega-in'), mega = $('#mega');
+    mega.hidden = !openGroup;
+    $$('[data-group]').forEach(function (b) { b.setAttribute('aria-expanded', String(b.getAttribute('data-group') === openGroup)); });
+    $('#burger').setAttribute('aria-expanded', String(openGroup === 'mobile'));
+    $$('.js-search').forEach(function (b) { b.setAttribute('aria-expanded', String(openGroup === 'search')); });
+    if (!openGroup) { box.innerHTML = ''; return; }
+    if (openGroup === 'search') {
+      var q = $('#q') ? $('#q').value : '';
+      box.innerHTML = '<div class="msearch"><label class="sr" for="q">' + esc(t('search')) + '</label><input id="q" type="search" autocomplete="off" placeholder="' + esc(t('s_ph')) + '" value="' + esc(q) + '"><div class="sres" id="sres" aria-live="polite"></div></div>';
+      renderResults();
+    } else if (openGroup === 'mobile') {
+      box.innerHTML = '<div class="mmenu">' + GROUPS.map(function (g) {
+        return '<details><summary class="tr">' + esc(t(g.key)) + '<canvas data-stitch="rose" data-palette="red"></canvas></summary>' +
+          g.cols.map(function (c) { return '<ul>' + linkList(c) + '</ul>'; }).join('') + '</details>';
+      }).join('') + '</div>';
+    } else {
+      box.innerHTML = groupHTML(GROUPS.filter(function (g) { return g.id === openGroup; })[0]);
+    }
+    TZ.mount(box);
+  }
+  function renderResults() {
+    var el = $('#sres'); if (!el) return;
+    var q = ($('#q').value || '').trim().toLowerCase();
+    var list = S.PRODUCTS.filter(function (p) { return !q || (p.ar + ' ' + p.en).toLowerCase().indexOf(q) > -1; });
+    el.innerHTML = list.length ? list.map(function (p) {
+      return '<button type="button" data-open="' + p.id + '"><img src="' + cardImg(p) + '" alt=""' + (p.cutout ? ' style="object-fit:contain;background:#33342F"' : '') + '><span>' + esc(S.name(p)) + '</span><span style="color:var(--muted)">' + (p.configurable ? esc(t('from')) + ' ' : '') + S.money(priceFor(p, p.tones[0])) + '</span></button>';
+    }).join('') : '<p style="margin:0;color:var(--muted)">' + esc(t('s_none')) + '</p>';
+  }
+  function setGroup(g) {
+    openGroup = g;
+    if (g) document.documentElement.style.setProperty('--mtop', $('.top').getBoundingClientRect().bottom + 'px');
+    renderMega();
+    if (g === 'search') { var q = $('#q'); if (q) q.focus(); }
+  }
+
+  // ---------- tiles + rail ----------
+  function renderTiles() {
+    $('#tiles').innerHTML = TILES.map(function (x) {
+      return '<button type="button" class="tile" data-edit="' + x.k + '" aria-pressed="' + (edit === x.k) + '"><img src="' + x.img + '" alt="" loading="lazy" style="object-position:' + x.pos + '"><span class="lb tr">' + esc(editLabel(x.k)) + '</span></button>';
+    }).join('');
+  }
+  function card(p) {
+    var tone = toneOf[p.id] || p.tones[0], f = tint(p, tone);
+    var tones = ['gold', 'silver'];
+    var badge = NEW[p.id] ? '<span class="badge">' + esc(t('b_new')) + '</span>' : p.coll === 'najma' ? '<span class="badge teal">' + esc(t('b_hand')) + '</span>' : '';
+    var alt = CARD_ALT[p.id];
+    return '<article class="pc">' +
+      '<div class="pc-media" style="--tint:' + (f || 'none') + '">' + badge +
+        '<button class="open" type="button" data-open="' + p.id + '" data-open-tone="' + tone + '" aria-label="' + esc(t('view') + ': ' + S.name(p)) + '">' +
+          '<img' + (p.cutout ? ' class="cut"' : '') + ' src="' + cardImg(p) + '" alt="" loading="lazy">' +
+          (alt ? '<img class="alt" src="' + alt + '" alt="" loading="lazy">' : '') + '</button>' +
+        '<button class="qadd" type="button" data-qadd="' + p.id + '" aria-label="' + esc(t('quick_add') + ': ' + S.name(p)) + '"><span>' + esc(t('quick_add')) + '</span></button>' +
+      '</div>' +
+      '<div class="pc-info">' +
+        '<div class="tones" role="radiogroup" aria-label="' + esc(t('tone') + ': ' + S.name(p)) + '">' + tones.map(function (tn) {
+          return '<button type="button" role="radio" aria-checked="' + (tn === tone) + '" data-tone="' + tn + '" data-pid="' + p.id + '" aria-label="' + esc(t('tn_' + tn)) + '" title="' + esc(t('tn_' + tn)) + '"><i style="background:' + S.TONES[tn].swatch + '"></i></button>';
+        }).join('') + '</div>' +
+        '<h3><button type="button" data-open="' + p.id + '" data-open-tone="' + tone + '">' + esc(S.name(p)) + '</button></h3>' +
+        '<p class="lab">' + toneLabel(p, tone) + '</p>' +
+        '<p class="pr">' + (p.configurable && tone === 'gold' ? '<small>' + esc(t('from')) + '</small> ' : '') + S.money(priceFor(p, tone)) + '</p>' +
+      '</div></article>';
+  }
+  function renderRail() {
+    $('#tabs').innerHTML = TABS.map(function (k) {
+      return '<button type="button" role="tab" class="tr" aria-selected="' + (edit === k) + '" aria-controls="rail" data-edit="' + k + '">' + esc(editLabel(k)) + '</button>';
+    }).join('');
+    var chip = $('#chip'), isTab = TABS.indexOf(edit) > -1;
+    chip.hidden = isTab;
+    if (!isTab) chip.innerHTML = '<span>' + esc(t('showing')) + '</span> <b>' + esc(editLabel(edit)) + '</b><button type="button" data-edit="earrings">' + esc(t('clear')) + '</button>';
+    var list = S.PRODUCTS.filter(EDITS[edit] || EDITS.all);
+    $('#rail').innerHTML = list.map(card).join('');
+    $('#rail').scrollLeft = 0;
+    $('#rail-count').textContent = t('n_pieces', { n: list.length }) + ' · ' + t('preview');
+    updArrows();
+  }
+  function updArrows() {
+    var r = $('#rail'), max = r.scrollWidth - r.clientWidth, x = Math.abs(r.scrollLeft);
+    $('#r-prev').disabled = x < 4; $('#r-next').disabled = x > max - 4 || max < 4;
+  }
+  function slide(d) {
+    var r = $('#rail'), w = r.clientWidth * 0.8 * d * (ar() ? -1 : 1);
+    r.scrollBy({ left: w, behavior: reduce ? 'auto' : 'smooth' });
+  }
+  function setEdit(k, scroll) {
+    edit = k; renderTiles(); renderRail();
+    if (scroll) go('rail-sec');
+  }
+
+  // ---------- shop the look ----------
+  var HOTS = [
+    { fig: 'fig-a', id: 'horseshoe', x: 60.5, y: 73 },
+    { fig: 'fig-b', id: 'dome', x: 62, y: 41 }
+  ];
+  var openHot = -1;
+  function renderLook() {
+    HOTS.forEach(function (h, i) {
+      var fig = document.getElementById(h.fig), p = S.byId(h.id);
+      $$('.hot, .pop', fig).forEach(function (n) { if (n.getAttribute('data-hot') === String(i)) n.remove(); });
+      fig.insertAdjacentHTML('beforeend', '<button type="button" class="hot" data-hot="' + i + '" style="left:' + h.x + '%;top:' + h.y + '%" aria-expanded="' + (openHot === i) + '" aria-label="' + esc(t('hot', { p: S.name(p) })) + '"><i></i></button>');
+    });
+    $('#inlook').innerHTML = HOTS.map(function (h) {
+      var p = S.byId(h.id);
+      return '<li><img src="' + cardImg(p) + '" alt=""><div><button class="n" type="button" data-open="' + p.id + '">' + esc(S.name(p)) + '</button><span>' + (p.configurable ? esc(t('from')) + ' ' : '') + S.money(priceFor(p, p.tones[0])) + '</span></div>' +
+        '<button class="add" type="button" data-qadd="' + p.id + '" aria-label="' + esc(t('add') + ': ' + S.name(p)) + '">' + ICON.plus + '</button></li>';
+    }).join('');
+    if (openHot > -1) showPop(openHot, false);
+  }
+  function closePop() {
+    $$('.pop').forEach(function (n) { n.remove(); });
+    $$('.hot').forEach(function (b) { b.setAttribute('aria-expanded', 'false'); });
+    openHot = -1;
+  }
+  function showPop(i, focus) {
+    $$('.pop').forEach(function (n) { n.remove(); });
+    openHot = i;
+    var h = HOTS[i], fig = document.getElementById(h.fig), p = S.byId(h.id);
+    $$('.hot').forEach(function (b) { b.setAttribute('aria-expanded', String(b.getAttribute('data-hot') === String(i))); });
+    fig.insertAdjacentHTML('beforeend', '<div class="pop" role="dialog" aria-label="' + esc(S.name(p)) + '" data-hot="' + i + '">' +
+      '<button class="px" type="button" data-popclose aria-label="' + esc(t('close')) + '">' + ICON.x + '</button>' +
+      '<img' + (p.cutout ? ' class="cut"' : '') + ' src="' + cardImg(p) + '" alt=""><b>' + esc(S.name(p)) + '</b>' +
+      '<p class="pp">' + (p.configurable ? esc(t('from')) + ' ' : '') + S.money(priceFor(p, p.tones[0])) + '</p>' +
+      '<div class="pa"><button class="btn" type="button" data-qadd="' + p.id + '">' + esc(p.configurable ? t('view') : t('add')) + '</button><button class="btn line" type="button" data-open="' + p.id + '">' + esc(t('view')) + '</button></div></div>');
+    var pop = fig.lastElementChild, W = fig.clientWidth, H = fig.clientHeight, x = h.x / 100 * W, y = h.y / 100 * H;
+    var pw = Math.min(290, W - 16); pop.style.width = pw + 'px';
+    var ph = pop.offsetHeight;
+    pop.style.left = Math.max(8, Math.min(W - pw - 8, x - pw / 2)) + 'px';
+    pop.style.top = (y + 30 + ph < H - 8 ? y + 30 : Math.max(8, y - 30 - ph)) + 'px';
+    if (focus) pop.querySelector('.btn').focus({ preventScroll: true });
+  }
+
+  // ---------- wall ----------
+  var WALL = [
+    { img: 'brand/dome-worn.jpg', id: 'dome' }, { img: 'brand/cover-ear.jpg', id: 'branch' }, { img: 'brand/horseshoe-close.jpg', id: 'horseshoe' },
+    { img: 'brand/dome-teal.jpg', id: 'dome-teal' }, { img: 'brand/lotus-45.jpg', id: 'lotus' }, { img: 'brand/clay-arcs.jpg', id: 'arcs' }
+  ];
+  function renderWall() {
+    $('#wall-grid').innerHTML = WALL.map(function (w) {
+      var p = S.byId(w.id);
+      return '<button type="button" data-open="' + w.id + '" aria-label="' + esc(t('wall_shop') + ': ' + S.name(p)) + '"><img src="' + w.img + '" alt="" loading="lazy"><span class="wl">' + esc(t('wall_tag')) + '</span><span class="ws tr">' + esc(t('wall_shop')) + '</span></button>';
+    }).join('');
+  }
+
+  function render() {
+    renderAnn(); renderNav(); renderMega(); renderTiles(); renderRail(); renderLook(); renderWall();
+    TZ.mount(document);
+    var m = $('#nl-msg'); if (m.getAttribute('data-k')) m.textContent = t(m.getAttribute('data-k'));
+  }
+
+  // ---------- events ----------
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('button');
+    if (openGroup && !e.target.closest('.top')) setGroup(null);
+    if (openHot > -1 && !e.target.closest('.pop, .hot')) closePop();
+    if (!b) return;
+    if (b.id === 'ann-prev') { stopAnn(); stepAnn(-1); return; }
+    if (b.id === 'ann-next') { stopAnn(); stepAnn(1); return; }
+    if (b.hasAttribute('data-group')) { var g = b.getAttribute('data-group'); setGroup(openGroup === g ? null : g); return; }
+    if (b.id === 'burger') { setGroup(openGroup === 'mobile' ? null : 'mobile'); return; }
+    if (b.classList.contains('js-search')) { setGroup(openGroup === 'search' ? null : 'search'); return; }
+    if (b.hasAttribute('data-edit')) { var inRail = !!b.closest('#tabs, #chip'); setGroup(null); setEdit(b.getAttribute('data-edit'), !inRail); return; }
+    if (b.hasAttribute('data-go')) { setGroup(null); go(b.getAttribute('data-go')); return; }
+    if (b.hasAttribute('data-open')) { setGroup(null); closePop(); return; } // store.js opens the sheet
+    if (b.hasAttribute('data-soon')) { S.toast(t('soon')); return; }
+    if (b.id === 'r-prev') { slide(-1); return; }
+    if (b.id === 'r-next') { slide(1); return; }
+    if (b.hasAttribute('data-tone') && b.hasAttribute('data-pid')) {
+      var pid = b.getAttribute('data-pid'); toneOf[pid] = b.getAttribute('data-tone');
+      var art = b.closest('.pc'), tmp = document.createElement('div'); tmp.innerHTML = card(S.byId(pid));
+      art.replaceWith(tmp.firstChild);
+      var nb = $('#rail [data-pid="' + pid + '"][data-tone="' + toneOf[pid] + '"]'); if (nb) nb.focus();
+      return;
+    }
+    if (b.hasAttribute('data-hot')) { var i = +b.getAttribute('data-hot'); if (openHot === i) closePop(); else showPop(i, true); return; }
+    if (b.hasAttribute('data-popclose')) { var hi = openHot; closePop(); var hb = $('.hot[data-hot="' + hi + '"]'); if (hb) hb.focus(); return; }
+    if (b.hasAttribute('data-qadd')) {
+      var p = S.byId(b.getAttribute('data-qadd')), tone = toneOf[p.id] || p.tones[0];
+      closePop();
+      if (p.configurable) { S.openProduct(p.id, tone); return; }
+      var meta = [p.cat === 'earrings' ? t('per_pair') : '', p.tones.indexOf(tone) < 0 ? t('to_confirm') : ''].filter(Boolean).join(' ');
+      S.add(p.id, tone, '', { meta: meta });
+    }
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') {
+      if (openHot > -1) { var hi = openHot; closePop(); var hb = $('.hot[data-hot="' + hi + '"]'); if (hb) hb.focus(); }
+      if (openGroup) { var g = openGroup; setGroup(null); var ob = g === 'mobile' ? $('#burger') : g === 'search' ? $$('.js-search').filter(function (x) { return x.offsetParent; })[0] : $('[data-group="' + g + '"]'); if (ob) ob.focus(); }
+    }
+    var tb = e.target.closest && e.target.closest('#tabs [role="tab"]');
+    if (tb && (e.key === 'ArrowLeft' || e.key === 'ArrowRight')) {
+      var all = $$('#tabs [role="tab"]'), k = all.indexOf(tb), d = (e.key === 'ArrowRight') === !ar() ? 1 : -1;
+      var n = all[(k + d + all.length) % all.length]; setEdit(n.getAttribute('data-edit'), false); $('#tabs [aria-selected="true"]').focus();
+    }
+  });
+  document.addEventListener('input', function (e) { if (e.target.id === 'q') renderResults(); });
+  $('#rail').addEventListener('scroll', updArrows, { passive: true });
+  addEventListener('resize', function () { updArrows(); if (openHot > -1) showPop(openHot, false); });
+  $('.ann').addEventListener('mouseenter', stopAnn); $('.ann').addEventListener('mouseleave', startAnn);
+  $('.ann').addEventListener('focusin', stopAnn);
+  $('#nl').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var inp = $('#nl-email'), ok = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(inp.value.trim()), m = $('#nl-msg');
+    inp.setAttribute('aria-invalid', String(!ok)); m.className = 'msg' + (ok ? '' : ' err');
+    m.setAttribute('data-k', ok ? 'nl_ok' : 'nl_err'); m.textContent = t(ok ? 'nl_ok' : 'nl_err');
+    if (ok) inp.value = ''; else inp.focus();
+  });
+
+  // The shared sheet prices the Dome at its base price whatever the metal. Here the sheet gets a metal picker
+  // (materials A/B/C from the catalogue) and the add button stores the chosen metal and its price on the bag line.
+  var mat = 'A';
+  function sheetMats(p) {
+    var extra = $('[data-sheet-extra]'), fs = $('[data-sheet-tones]') && $('[data-sheet-tones]').closest('fieldset');
+    if (!extra) return;
+    if (!p || !p.configurable) { extra.innerHTML = ''; if (fs) fs.hidden = false; return; }
+    if (fs) fs.hidden = true;
+    var m = A.MATERIALS.filter(function (x) { return x.id === mat; })[0];
+    extra.innerHTML = '<fieldset class="tz-fs"><legend>' + esc(t('mat_legend')) + '</legend><div class="mats" role="radiogroup">' + A.MATERIALS.map(function (x) {
+      return '<button type="button" role="radio" data-mat="' + x.id + '" aria-checked="' + (x.id === mat) + '"><span>' + esc(ar() ? x.ar : x.en) + '<small>' + esc(ar() ? x.nAr : x.nEn) + '</small></span><b>' + S.money(x.price) + '</b></button>';
+    }).join('') + '</div></fieldset>';
+    $$('[data-sheet-price]').forEach(function (el) { el.textContent = S.money(m.price); });
+    var ph = $('[data-sheet-photo]'); if (ph) ph.style.filter = S.photoFilter(p, m.tone) || 'none';
+  }
+  S.on('sheet', function (d) {
+    var sh = $('[data-sheet]'), already = sh && !sh.hidden && sh.classList.contains('is-open');
+    if (d.product.configurable && !already) mat = d.tone === 'silver' ? 'B' : 'A';
+    sheetMats(d.product);
+  });
+  window.addEventListener('click', function (e) {
+    var b = e.target.closest && e.target.closest('button'); if (!b) return;
+    var cur = S.current();
+    if (b.hasAttribute('data-mat')) { mat = b.getAttribute('data-mat'); sheetMats(cur); var nb = $('[data-mat="' + mat + '"]'); if (nb) nb.focus(); return; }
+    if (b.hasAttribute('data-sheet-add') && cur && cur.configurable) {
+      e.stopPropagation();
+      var m = A.MATERIALS.filter(function (x) { return x.id === mat; })[0];
+      S.add(cur.id, m.tone, '', { price: m.price, meta: (ar() ? m.ar : m.en) + ' · ' + t('per_pair'), noTone: true });
+      var x = $('[data-sheet] [data-close]'); if (x) x.click();
+    }
+  }, true);
+
+  S.boot({ strings: TZ.strings(STR), render: render, cartKey: 'asala-22-cart', orderPrefix: 'AS-' });
+  render(); TZ.mount(document); startAnn();
+})();
+</script>
+</body>
+</html>

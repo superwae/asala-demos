@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@500;600;700&family=Alexandria:wght@300;400;500;600&family=Aref+Ruqaa:wght@700&display=swap">
 <style>
-/* Layout: a Ramallah linen thobe. The hero is the chest panel (qabbeh) inside a cross-stitched frame, products sit in running-stitch panels, the footer is the stitched hem. Square corners everywhere: thread follows the weave. */
+/* Layout: a linen tatreez panel. The hero sits inside a cross-stitched frame, products sit in running-stitch panels, the footer is a stitched border. Square corners everywhere: thread follows the weave. */
 :root {
   --linen: #efeee8; --linen-2: #e6e5dd; --weave: #d9d7cc;
   --red: #a3122a; --red-deep: #7a0b1e; --black: #1c1715; --green: #2d6a3a;
@@ -50,7 +50,7 @@ canvas.band { display: block; width: 100%; height: 32px; }
 @media (max-width: 760px) { .top nav { display: none; } .sq .lbl { display: none; } }
 .top-band { border-bottom: 1px solid var(--weave); }
 
-/* qabbeh: the chest panel */
+/* the hero panel */
 .qabbeh { padding-block: clamp(22px, 4vw, 52px); }
 .qabbeh .wrap { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(22px, 4vw, 56px); align-items: center; }
 .panel { position: relative; aspect-ratio: 1; max-width: 100%; padding: 34px; }
@@ -469,7 +469,7 @@ legend, .lbl-s { font-weight: 500; margin-bottom: 8px; padding: 0; display: bloc
     render: render,
     strings: {
       ar: {
-        h1a: 'اسمها على صدرها،', h1b: 'مثل غُرزة الثوب.', lead: 'اكتبي الاسم وشاهديه على القلادة قبل الطلب. تدفعين عند الاستلام.',
+        h1a: 'اسمها على صدرها،', h1b: 'مثل غُرزة التطريز.', lead: 'اكتبي الاسم وشاهديه على القلادة قبل الطلب. تدفعين عند الاستلام.',
         type_name: 'اكتبي الاسم', name_ph: 'ليان', hero_tag: 'مع السلسلة', hero_cta: 'اطلبيها بهذا الاسم',
         trust_cod: 'الدفع عند الاستلام', trust_ship: 'توصيل للضفة والقدس والداخل', trust_swap: 'تبديل خلال 7 أيام (للتأكيد)',
         panels_h: 'كل القطع', worn_h: 'كيف تُلبس', how_h: 'كيف تطلبين',
@@ -477,7 +477,7 @@ legend, .lbl-s { font-weight: 500; margin-bottom: 8px; padding: 0; display: bloc
         s3: 'ادفعي عند الاستلام', s3d: 'نقداً للمندوب، أو بالبطاقة إن فضّلتِ.', wa: 'واتساب'
       },
       en: {
-        h1a: 'Her name, worn close,', h1b: 'like a thobe stitch.', lead: 'Type a name and see it on the necklace before you order. Pay on delivery.',
+        h1a: 'Her name, worn close,', h1b: 'like a tatreez stitch.', lead: 'Type a name and see it on the necklace before you order. Pay on delivery.',
         type_name: 'Type the name', name_ph: 'ليان', hero_tag: 'chain included', hero_cta: 'Order with this name',
         trust_cod: 'Cash on delivery', trust_ship: 'Delivery to the West Bank, Jerusalem and inside', trust_swap: '7-day exchange (to confirm)',
         panels_h: 'Every piece', worn_h: 'How they are worn', how_h: 'How to order',

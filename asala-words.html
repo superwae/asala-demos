@@ -1,0 +1,726 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Asala · Words (calligraphy gifting layout)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Alexandria:wght@700&family=Reem+Kufi:wght@500;600;700&family=Readex+Pro:wght@300;400;500;600&family=Jost:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="brand/asala-tatreez.css">
+<style>
+/* Layout: a playful, typographic, gifting-led calligraphy-jewellery store. Big Arabic letterforms next to English,
+   pink and white sections, rounded pills. Asala identity + tatreez: stitched stars as separators, running-stitch
+   hovers, a cross-stitch name card and a stitched border. */
+:root {
+  --red: #C6383C; --red-2: #A92D31; --ink: #33342F; --muted: #5F5D55; --teal: #3FA59A; --linen: #F4F3F1; --white: #fff;
+  --pink: #F2C9C0; --pink-2: #F7DDD7; --mustard: #EDC56B; --line: #E4DED6;
+  --f-w: "Aref Ruqaa", "Reem Kufi", serif;           /* big Arabic letterforms */
+  --f-d: "Reem Kufi", "Readex Pro", sans-serif;      /* headings */
+  --f-b: "Readex Pro", "Segoe UI", Tahoma, sans-serif;
+  --f-en: "Jost", "Readex Pro", sans-serif;
+  --gutter: clamp(16px, 4vw, 48px); --r: 26px;
+  --tz-bg: var(--linen); --tz-panel: #FFFFFF; --tz-line: var(--line); --tz-font: var(--f-b); --tz-font-d: var(--f-d);
+  --tz-btn-radius: 999px; --tz-radius: 22px;
+}
+html[lang="en"] { --f-d: "Jost", "Readex Pro", sans-serif; --f-b: "Jost", "Readex Pro", sans-serif; }
+* { box-sizing: border-box; }
+html { scroll-padding-top: 130px; }
+body { margin: 0; background: var(--white); color: var(--ink); font: 400 1rem/1.7 var(--f-b); overflow-x: clip; }
+img { max-width: 100%; display: block; }
+button, input { font: inherit; color: inherit; }
+button { cursor: pointer; }
+::selection { background: var(--red); color: var(--white); }
+:focus-visible { outline: 2.5px dashed var(--red); outline-offset: 3px; }
+.wrap { max-width: 1280px; margin: 0 auto; padding-inline: var(--gutter); }
+.demo { margin: 0; background: var(--ink); color: #DAD5CC; font-size: .8rem; text-align: center; padding: 6px var(--gutter); }
+.en { font-family: var(--f-en); }
+.w-ar { font-family: var(--f-w); font-weight: 700; }
+
+/* pills: rounded, with a running-stitch hover inside */
+.pill { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 46px; padding: 0 20px; border-radius: 999px; border: 1.5px solid var(--ink); background: transparent; font-weight: 500; text-decoration: none; white-space: nowrap; transition: background .2s, color .2s, border-color .2s; }
+.pill:hover, .tz-btn:hover { outline: 1.5px dashed currentColor; outline-offset: -6px; }
+.pill.red { background: var(--red); border-color: var(--red); color: var(--white); }
+.pill.red:hover { background: var(--red-2); border-color: var(--red-2); }
+.pill.ink { background: var(--ink); border-color: var(--ink); color: var(--white); }
+.pill svg { width: 18px; height: 18px; flex: none; }
+.tz-btn { border-radius: 999px; }
+
+/* header */
+.top { position: sticky; top: 0; z-index: 30; background: var(--white); box-shadow: 0 1px 0 var(--line); }
+.top .wrap { display: flex; align-items: center; gap: 22px; min-height: 74px; }
+.logo { display: inline-block; padding-block: 9px; }
+.logo img { height: 26px; width: auto; }
+.top nav { display: flex; align-items: center; gap: 2px; }
+.top nav button { background: none; border: 0; min-height: 44px; padding: 0 12px; font-weight: 500; border-radius: 999px; }
+.top nav button:hover { color: var(--red); text-decoration: underline dashed 1.5px; text-underline-offset: 8px; }
+.top nav canvas { width: 11px; height: 11px; flex: none; }
+.tools { display: flex; gap: 8px; margin-inline-start: auto; }
+.count { min-width: 22px; height: 22px; padding: 0 6px; border-radius: 999px; background: var(--white); color: var(--red); font-size: .8rem; font-weight: 600; display: inline-grid; place-items: center; font-variant-numeric: tabular-nums; }
+@media (max-width: 960px) {
+  .top .wrap { flex-wrap: wrap; gap: 0 10px; min-height: 64px; }
+  .top nav { order: 3; width: calc(100% + 2 * var(--gutter)); margin-inline: calc(-1 * var(--gutter)); padding: 0 var(--gutter) 6px; overflow-x: auto; scrollbar-width: none; }
+  .top nav::-webkit-scrollbar { display: none; }
+  .top nav button { white-space: nowrap; padding: 0 10px; }
+  .tools .lbl { display: none; }
+  .logo { padding-block: 14px; }
+}
+
+/* marquee */
+.mq { position: relative; background: var(--red); color: var(--white); overflow: hidden; display: flex; align-items: center; }
+.mq-view { overflow: hidden; flex: 1; min-width: 0; direction: ltr; }
+.mq-track { display: flex; width: max-content; animation: mq 46s linear infinite; direction: ltr; }
+[dir="rtl"] .mq-track { animation-direction: reverse; }
+.mq:hover .mq-track, .mq.paused .mq-track { animation-play-state: paused; }
+.mq-item { display: inline-flex; align-items: center; gap: 12px; padding: 9px 0; white-space: nowrap; }
+.mq-item .a { font: 700 1.5rem/1.2 var(--f-w); }
+.mq-item .e { font: 500 .95rem/1 var(--f-en); color: var(--pink); letter-spacing: .06em; text-transform: uppercase; }
+.mq-item canvas { width: 14px; height: 14px; margin-inline: 22px; }
+.mq-btn { flex: none; width: 46px; height: 46px; display: grid; place-items: center; border: 0; border-inline-start: 1px solid rgba(255,255,255,.3); background: var(--red); color: var(--white); }
+.mq-btn svg { width: 16px; height: 16px; }
+@keyframes mq { to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .mq-track { animation: none; } }
+
+/* hero */
+.hero { background: var(--pink); overflow: hidden; }
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: clamp(24px, 4vw, 64px); align-items: center; padding-block: clamp(30px, 5vw, 72px); }
+.kick { display: inline-flex; align-items: center; gap: 10px; margin: 0 0 6px; font-weight: 600; color: var(--red); }
+.kick canvas { width: 20px; height: 20px; }
+[dir="ltr"] .big { text-align: left; }
+.big { margin: 0; font: 700 clamp(6.4rem, 16vw, 14.5rem)/1.05 var(--f-w); color: var(--red); letter-spacing: 0; }
+.dict { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; margin: 6px 0 14px; padding-bottom: 14px; border-bottom: 2px dashed rgba(51,52,47,.35); }
+.dict .tr { font: italic 500 1.25rem/1.2 var(--f-en); direction: ltr; unicode-bidi: isolate; }
+.dict .pos { font-size: .82rem; font-weight: 600; background: var(--ink); color: var(--pink); padding: 3px 12px; border-radius: 999px; }
+.mean { margin: 0 0 12px; font: 600 clamp(1.3rem, 2.4vw, 1.75rem)/1.4 var(--f-d); max-width: 30ch; }
+.lede { margin: 0 0 24px; color: #4A4943; max-width: 46ch; font-size: 1.04rem; }
+.btns { display: flex; gap: 10px; flex-wrap: wrap; }
+.notes { list-style: none; padding: 0; margin: 24px 0 0; display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: .9rem; }
+.notes li { display: flex; align-items: center; gap: 8px; }
+.notes canvas { width: 15px; height: 15px; flex: none; }
+.hero-art { position: relative; width: min(100%, 500px); margin-inline: auto; padding: 14px; }
+.hero-art::before { content: ""; position: absolute; inset: 0 0 0 0; border-radius: 999px 999px var(--r) var(--r); background: var(--red); transform: translate(-14px, 14px) rotate(-3deg); }
+[dir="ltr"] .hero-art::before { transform: translate(14px, 14px) rotate(3deg); }
+.arch { position: relative; border-radius: 999px 999px var(--r) var(--r); overflow: hidden; border: 6px solid var(--white); aspect-ratio: 660 / 700; background: var(--white); }
+.arch img { width: 100%; height: 100%; object-fit: cover; }
+.arch canvas { position: absolute; inset: 10px; width: calc(100% - 20px); height: calc(100% - 20px); pointer-events: none; }
+.sticker { position: absolute; top: 14%; inset-inline-start: -18px; width: 118px; height: 118px; border-radius: 50%; background: var(--ink); color: var(--white); display: grid; place-items: center; text-align: center; padding: 16px; transform: rotate(-10deg); box-shadow: 0 0 0 4px var(--pink); z-index: 2; }
+.sticker canvas { width: 22px; height: 22px; margin: 0 auto 4px; }
+.sticker span { font: 600 .82rem/1.3 var(--f-d); }
+.tag { position: absolute; bottom: 4px; inset-inline-end: -6px; z-index: 2; display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 6px 8px 6px 18px; border-radius: 999px; border: 0; background: var(--white); box-shadow: 0 8px 24px rgba(51,52,47,.18); text-align: start; }
+[dir="rtl"] .tag { padding: 6px 18px 6px 8px; }
+.tag b { font: 700 1.5rem/1 var(--f-w); color: var(--red); }
+.tag small { display: block; font-size: .78rem; color: var(--muted); line-height: 1.3; }
+.tag i { width: 38px; height: 38px; border-radius: 50%; background: var(--red); color: var(--white); display: grid; place-items: center; font-style: normal; }
+.tag i svg { width: 16px; height: 16px; }
+[dir="rtl"] .tag i svg { transform: scaleX(-1); }
+.tag:hover { outline: 1.5px dashed var(--red); outline-offset: -5px; }
+@media (max-width: 860px) {
+  .hero .wrap { grid-template-columns: 1fr; }
+  .hero-art { width: min(86%, 420px); }
+  .sticker { width: 96px; height: 96px; padding: 10px; inset-inline-start: -12px; }
+  .sticker span { font-size: .72rem; }
+}
+
+/* section heads */
+.sec { padding-block: clamp(46px, 7vw, 92px); }
+.head { display: flex; flex-wrap: wrap; gap: 16px 28px; justify-content: space-between; align-items: end; margin-bottom: clamp(22px, 3vw, 34px); }
+.head h2, .h2 { font: 700 clamp(2rem, 4.2vw, 3.2rem)/1.15 var(--f-d); margin: 0; text-wrap: balance; }
+.head p, .sub { margin: 6px 0 0; color: var(--muted); max-width: 52ch; }
+.k { display: flex; align-items: center; gap: 8px; color: var(--red); font-weight: 600; margin: 0 0 6px; font-size: .95rem; }
+.k canvas { width: 16px; height: 16px; }
+.divider { width: 100%; height: 22px; }
+
+/* shop by word */
+.tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: minmax(250px, auto); gap: 14px; }
+.tile { --bg: var(--pink); --fg: var(--red); --sub: var(--ink); position: relative; isolation: isolate; overflow: hidden; border-radius: var(--r); background: var(--bg); color: var(--fg); padding: clamp(18px, 2.4vw, 30px); display: flex; flex-direction: column; justify-content: space-between; min-width: 0; }
+.tile.t1 { grid-column: span 2; grid-row: span 2; }
+.tile.t2 { grid-column: span 2; --bg: var(--red); --fg: var(--white); --sub: var(--pink); }
+.tile.t3 { --bg: var(--linen); --fg: var(--ink); --sub: var(--red); }
+.tile.t4 { --bg: var(--white); --fg: var(--red); box-shadow: inset 0 0 0 2px var(--line); }
+.tile.t5 { grid-column: span 4; --bg: var(--ink); --fg: var(--white); --sub: var(--pink); min-height: 230px; }
+.tile .ph { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -1; opacity: 0; transform: scale(1.07); transition: opacity .45s ease, transform .9s var(--tz-ease); }
+.tile::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(to top, rgba(28,28,25,.72), rgba(28,28,25,.08) 60%); opacity: 0; transition: opacity .45s; }
+.tile .w { margin: 0; font: 700 clamp(4.4rem, 8vw, 7.4rem)/1.3 var(--f-w); direction: rtl; text-align: start; transition: color .3s; }
+[dir="ltr"] .tile .w { text-align: left; }
+.tile.t1 .w { font-size: clamp(6rem, 13vw, 12rem); }
+.tile .gl { margin: 14px 0 0; font: 500 1rem/1 var(--f-en); letter-spacing: .14em; text-transform: uppercase; color: var(--sub); direction: ltr; text-align: start; transition: color .3s; }
+.tile .pn { margin: 18px 0 0; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; font-weight: 500; transition: color .3s; color: var(--fg); }
+.tile .pn .pr { font-variant-numeric: tabular-nums; font-weight: 600; padding: 2px 12px; border-radius: 999px; border: 1.5px solid currentColor; }
+.tile .st { position: absolute; top: clamp(18px, 2.4vw, 28px); inset-inline-end: clamp(18px, 2.4vw, 28px); width: 26px; height: 26px; }
+.tile .bigst { position: absolute; bottom: -30px; inset-inline-end: -30px; width: 260px; height: 260px; z-index: -1; opacity: .35; transition: opacity .3s; }
+.tile:hover .bigst, .tile:focus-within .bigst { opacity: 0; }
+.tile .hit { position: absolute; inset: 0; z-index: 3; border: 0; background: transparent; border-radius: inherit; }
+.tile .hit:focus-visible { outline: 2.5px dashed currentColor; outline-offset: -9px; }
+.tile .chips { position: relative; z-index: 4; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.chip { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 4px 14px 4px 5px; border-radius: 999px; border: 0; background: var(--white); color: var(--ink); font-size: .88rem; font-weight: 500; }
+[dir="rtl"] .chip { padding: 4px 5px 4px 14px; }
+.chip img { width: 34px; height: 34px; border-radius: 50%; object-fit: cover; }
+.chip img.cut { object-fit: contain; background: var(--ink); }
+.chip:hover { outline: 1.5px dashed var(--red); outline-offset: -4px; }
+.tile.t5 { flex-direction: row; align-items: end; gap: 20px; }
+@media (hover: hover) {
+  .tile:hover .ph, .tile:focus-within .ph { opacity: 1; transform: none; }
+  .tile:hover::after, .tile:focus-within::after { opacity: 1; }
+  .tile:hover .w, .tile:hover .pn, .tile:focus-within .w, .tile:focus-within .pn { color: var(--white); }
+  .tile:hover .gl, .tile:focus-within .gl { color: var(--pink); }
+}
+@media (hover: none) {
+  .tile .ph { inset: auto; bottom: 14px; inset-inline-end: 14px; width: 30%; max-width: 120px; height: auto; aspect-ratio: 1; border-radius: 50%; opacity: 1; transform: none; z-index: 0; border: 3px solid var(--white); }
+}
+@media (max-width: 760px) {
+  .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: minmax(190px, auto); gap: 10px; }
+  .tile.t1 { grid-column: span 2; grid-row: span 1; min-height: 280px; }
+  .tile.t2, .tile.t5 { grid-column: span 2; }
+  .tile.t5 { flex-direction: column; align-items: stretch; }
+  .tile .w { font-size: clamp(3.6rem, 17vw, 5rem); }
+  .tile.t1 .w { font-size: clamp(5.4rem, 26vw, 8rem); }
+  .tile .pn { font-size: .88rem; }
+  .tile .bigst { width: 150px; height: 150px; bottom: -20px; inset-inline-end: -20px; }
+}
+
+/* name in cross-stitch */
+.name { background: var(--linen); }
+.name .wrap { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(26px, 5vw, 72px); align-items: center; }
+.name p.d { color: var(--muted); margin: 12px 0 22px; max-width: 46ch; }
+.field label, .legend { display: block; font-weight: 600; font-size: .92rem; margin-bottom: 6px; }
+.inrow { display: flex; align-items: center; gap: 10px; }
+.inrow input { flex: 1; min-width: 0; min-height: 56px; padding: 0 22px; border-radius: 999px; border: 2px solid var(--ink); background: var(--white); font-size: 1.25rem; font-weight: 500; }
+.inrow input:focus-visible { outline: 2.5px dashed var(--red); outline-offset: 3px; }
+.cnt { font-size: .85rem; color: var(--muted); font-variant-numeric: tabular-nums; min-width: 3.5em; text-align: center; }
+.threads { display: flex; flex-wrap: wrap; gap: 8px; margin: 20px 0 22px; border: 0; padding: 0; }
+.thread { display: inline-flex; align-items: center; gap: 8px; min-height: 46px; padding: 0 16px 0 10px; border-radius: 999px; border: 1.5px solid var(--line); background: var(--white); font-weight: 500; }
+[dir="rtl"] .thread { padding: 0 10px 0 16px; }
+.thread i { width: 22px; height: 22px; border-radius: 50%; display: block; }
+.thread[aria-pressed="true"] { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+.small { font-size: .86rem; color: var(--muted); margin: 14px 0 0; }
+.stage { position: relative; padding: clamp(18px, 3vw, 40px); border-radius: var(--r); background: var(--pink); }
+.card { position: relative; aspect-ratio: 8 / 5; border-radius: 6px; transform: rotate(-1.6deg); box-shadow: 0 2px 0 rgba(0,0,0,.04), 0 18px 40px rgba(51,52,47,.22);
+  background-color: #F6F4EF;
+  background-image: repeating-linear-gradient(0deg, transparent 0 2px, rgba(110,100,80,.07) 2px 3px), repeating-linear-gradient(90deg, transparent 0 2px, rgba(110,100,80,.07) 2px 3px); }
+.card canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.card .to, .card .from { position: absolute; inset-inline: 0; text-align: center; margin: 0; color: var(--muted); }
+.card .to { top: 12%; font: 500 clamp(.8rem, 1.6vw, 1rem)/1 var(--f-b); letter-spacing: .04em; }
+.card .from { bottom: 9%; display: grid; justify-items: center; gap: 6px; font-size: clamp(.7rem, 1.3vw, .86rem); }
+.card .from img { height: clamp(11px, 1.6vw, 16px); width: auto; opacity: .85; }
+@media (max-width: 860px) { .name .wrap { grid-template-columns: 1fr; } .stage { order: -1; } }
+
+/* gifts */
+.gifts { background: var(--pink); }
+.seg { display: flex; flex-wrap: wrap; gap: 8px; }
+.seg button { min-height: 44px; padding: 0 18px; border-radius: 999px; border: 1.5px solid var(--ink); background: transparent; font-weight: 500; }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--white); }
+.seg button:hover { outline: 1.5px dashed currentColor; outline-offset: -6px; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+.pc { position: relative; background: var(--white); border-radius: var(--r); padding: 10px 10px 16px; display: grid; grid-template-rows: auto 1fr; }
+.pc .art { position: relative; aspect-ratio: 1; border: 0; padding: 0; background: var(--linen); border-radius: 18px; overflow: hidden; width: 100%; }
+.pc .art img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--tz-ease); }
+.pc .art img.cut { object-fit: contain; background: var(--ink); }
+.pc:hover .art img { transform: scale(1.05); }
+.pc .new { position: absolute; top: 10px; inset-inline-start: 10px; z-index: 1; background: var(--teal); color: var(--white); font-size: .75rem; font-weight: 600; padding: 4px 12px; border-radius: 999px; }
+.pc .meta { padding: 12px 8px 0; display: grid; align-content: start; gap: 2px; }
+.pc .cat { margin: 0; font-size: .8rem; color: var(--red); font-weight: 500; }
+.pc h3 { margin: 0; font: 500 1.02rem/1.4 var(--f-b); }
+.pc h3 button { border: 0; background: none; padding: 0; text-align: start; min-height: 44px; display: flex; align-items: center; }
+.pc h3 button:hover { color: var(--red); }
+.pc .row { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 10px; }
+.pc .p { font: 700 1.2rem/1 var(--f-d); font-variant-numeric: tabular-nums; }
+.pc .p small { font: 400 .78rem var(--f-b); color: var(--muted); }
+.pc .add { min-height: 44px; padding: 0 16px; font-size: .9rem; }
+.empty { grid-column: 1 / -1; text-align: center; color: var(--muted); }
+.pack { margin-top: clamp(30px, 5vw, 60px); display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: clamp(22px, 4vw, 56px); align-items: center; background: var(--white); border-radius: var(--r); padding: clamp(14px, 2vw, 22px); }
+.pack-art { position: relative; border-radius: 18px; overflow: hidden; }
+.pack-art img { width: 100%; aspect-ratio: 1594 / 987; object-fit: cover; }
+.seal-badge { position: absolute; top: 16px; inset-inline-end: 16px; width: 84px; height: 84px; border-radius: 50%; display: grid; place-items: center; box-shadow: 0 0 0 4px rgba(255,255,255,.85), 0 8px 20px rgba(0,0,0,.25); transition: background .3s, color .3s; }
+.seal-badge svg { width: 46px; height: 46px; }
+.pack h3 { font: 700 clamp(1.5rem, 2.8vw, 2.1rem)/1.2 var(--f-d); margin: 0 0 8px; }
+.pack p { margin: 0 0 16px; color: var(--muted); }
+.seals { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+.seal { display: inline-flex; align-items: center; gap: 8px; min-height: 46px; padding: 0 16px 0 10px; border-radius: 999px; border: 1.5px solid var(--line); background: var(--white); font-weight: 500; }
+[dir="rtl"] .seal { padding: 0 10px 0 16px; }
+.seal i { width: 22px; height: 22px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(0,0,0,.15); }
+.seal[aria-pressed="true"] { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+.boxes { list-style: none; margin: 0 0 18px; padding: 0; display: grid; gap: 4px; font-size: .9rem; }
+.boxes li { display: flex; justify-content: space-between; gap: 10px; border-bottom: 1px dashed var(--line); padding-bottom: 4px; }
+.boxes span:last-child { color: var(--muted); direction: ltr; unicode-bidi: isolate; font-variant-numeric: tabular-nums; }
+@media (max-width: 860px) { .pack { grid-template-columns: 1fr; } }
+@media (max-width: 520px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; } .pc { padding: 6px 6px 12px; } .pc .meta { padding: 10px 4px 0; } .pc h3 { font-size: .9rem; } .pc .row { flex-direction: column; align-items: stretch; } .pc .add { width: 100%; } }
+
+/* story line */
+.story .wrap { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: clamp(24px, 5vw, 70px); align-items: center; }
+.line { margin: 0 0 18px; font: 700 clamp(1.7rem, 3.6vw, 2.9rem)/1.35 var(--f-d); text-wrap: balance; }
+.line em { font-style: normal; color: var(--red); font-family: var(--f-w); }
+html[lang="en"] .line em { font-family: var(--f-en); font-weight: 500; }
+.story p.d { color: var(--muted); max-width: 52ch; margin: 0; }
+.story figure { margin: 0; position: relative; border-radius: var(--r); overflow: hidden; background: var(--linen); padding: 14px; }
+.story figure img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 16px; }
+.story figure canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+@media (max-width: 860px) { .story .wrap { grid-template-columns: 1fr; } .story figure { max-width: 380px; } }
+
+/* #WearAsala wall */
+.wall { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: 210px; gap: 12px; }
+.wall button { position: relative; border: 0; padding: 0; border-radius: 20px; overflow: hidden; background: var(--linen); }
+.wall button.tall { grid-row: span 2; }
+.wall img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s var(--tz-ease); }
+.wall button:hover img { transform: scale(1.05); }
+.wall .lab { position: absolute; bottom: 10px; inset-inline-start: 10px; background: rgba(255,255,255,.92); color: var(--ink); font: 500 .76rem/1 var(--f-en); padding: 7px 11px; border-radius: 999px; direction: ltr; }
+.wall .lab small { font-family: var(--f-b); color: var(--muted); }
+@media (max-width: 760px) { .wall .lab small { display: none; } .wall { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: 150px; gap: 8px; } }
+
+/* footer */
+footer { background: var(--pink); color: var(--ink); }
+footer .hem { width: 100%; height: 58px; background: var(--white); }
+footer .wrap { display: grid; grid-template-columns: 1.2fr .8fr .9fr 1.4fr; gap: 28px; padding-block: 36px 40px; }
+footer .logo img { height: 22px; margin-bottom: 12px; }
+footer h4 { margin: 0 0 10px; font: 700 1.05rem var(--f-d); color: var(--red); }
+footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+footer li { min-height: 32px; display: flex; align-items: center; }
+footer ul button { border: 0; background: none; padding: 0; min-height: 44px; text-align: start; }
+footer ul button:hover { color: var(--red); text-decoration: underline dashed; text-underline-offset: 6px; }
+.nl { display: flex; gap: 8px; margin-top: 8px; }
+.nl input { flex: 1; min-width: 0; min-height: 48px; padding: 0 18px; border-radius: 999px; border: 1.5px solid var(--ink); background: var(--white); direction: ltr; }
+[dir="rtl"] .nl input { text-align: right; }
+.nl-msg { margin: 8px 0 0; min-height: 1.6em; font-size: .9rem; font-weight: 500; }
+.nl-msg.err { color: var(--red-2); }
+.legal { border-top: 1.5px dashed rgba(198,56,60,.45); }
+.legal .wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding-block: 14px; font-size: .85rem; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+@media (max-width: 960px) { footer .wrap { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { footer .wrap { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) { .tile .ph, .tile::after, .pc .art img, .wall img, .pill, .seal-badge { transition: none; } }
+</style>
+</head>
+<body>
+<p class="demo" data-t="demo_note"></p>
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Asala"><img src="brand/wordmark-dark.png" alt="ASALA" width="173" height="26"></a>
+    <nav data-ta="menu">
+      <button type="button" data-go="words" data-t="n_words"></button><canvas data-stitch="star"></canvas>
+      <button type="button" data-go="name" data-t="n_name"></button><canvas data-stitch="star"></canvas>
+      <button type="button" data-go="gifts" data-t="c_gifts"></button><canvas data-stitch="star"></canvas>
+      <button type="button" data-go="story" data-t="our_story"></button>
+    </nav>
+    <div class="tools">
+      <button class="pill" type="button" data-lang-toggle data-t="lang_switch"></button>
+      <button class="pill red" type="button" data-open-cart data-ta="cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 8h14l-1.2 12H6.2z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+        <span class="lbl" data-t="cart"></span><span class="count" data-cart-count hidden>0</span></button>
+    </div>
+  </div>
+  <div class="mq" id="mq">
+    <div class="mq-view"><div class="mq-track" id="mq-track"></div></div>
+    <button class="mq-btn" type="button" id="mq-btn" aria-pressed="false"></button>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <p class="kick"><canvas data-stitch="star" data-palette="mono"></canvas><span data-t="kick"></span></p>
+        <h1 class="big" lang="ar" dir="rtl">أصالة</h1>
+        <div class="dict"><span class="tr">aṣāla</span><span class="pos" data-t="pos"></span></div>
+        <p class="mean" data-t="mean"></p>
+        <p class="lede" data-t="lede"></p>
+        <div class="btns">
+          <button class="pill red" type="button" data-go="words" data-t="n_words"></button>
+          <button class="pill" type="button" data-go="name" data-t="cta_name"></button>
+        </div>
+        <ul class="notes">
+          <li><canvas data-stitch="star"></canvas><span data-t="tz_made"></span></li>
+          <li><canvas data-stitch="star"></canvas><span data-t="tz_box"></span></li>
+          <li><canvas data-stitch="star"></canvas><span data-t="tz_cod"></span></li>
+        </ul>
+      </div>
+      <div class="hero-art">
+        <div class="arch"><img src="brand/dome-worn.jpg" alt="" width="660" height="585"><canvas data-stitch="corners" data-palette="light" data-cell="4"></canvas></div>
+        <div class="sticker"><div><canvas data-stitch="star" data-palette="light"></canvas><span data-t="sticker"></span></div></div>
+        <button class="tag" type="button" data-open="dome" id="hero-tag"></button>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="words">
+    <div class="wrap">
+      <div class="head">
+        <div><p class="k"><canvas data-stitch="star"></canvas><span data-t="words_k"></span></p><h2 data-t="n_words"></h2><p data-t="words_p"></p></div>
+      </div>
+      <div class="tiles" id="tiles"></div>
+    </div>
+  </section>
+
+  <canvas class="divider" data-stitch="teeth" data-cell="3" data-palette="classic"></canvas>
+
+  <section class="sec name" id="name">
+    <div class="wrap">
+      <div>
+        <p class="k"><canvas data-stitch="star"></canvas><span data-t="name_k"></span></p>
+        <h2 class="h2" data-t="name_h"></h2>
+        <p class="d" data-t="name_p"></p>
+        <div class="field">
+          <label for="nm" data-t="name_label"></label>
+          <div class="inrow"><input id="nm" type="text" maxlength="10" dir="auto" autocomplete="off" spellcheck="false" data-tp="name_ph" aria-describedby="nm-cnt"><span class="cnt" id="nm-cnt" aria-live="polite"></span></div>
+        </div>
+        <fieldset class="threads" id="threads"><legend class="legend" data-t="thread"></legend></fieldset>
+        <button class="tz-btn" type="button" id="card-add" data-t="card_add"></button>
+        <p class="small" data-t="card_note"></p>
+      </div>
+      <div class="stage">
+        <div class="card">
+          <canvas id="card-cv" role="img"></canvas>
+          <p class="to" data-t="card_to"></p>
+          <div class="from"><span data-t="card_from"></span><img src="brand/wordmark-dark.png" alt="" width="107" height="16"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec gifts" id="gifts">
+    <div class="wrap">
+      <div class="head">
+        <div><p class="k"><canvas data-stitch="star" data-palette="mono"></canvas><span data-t="c_gifts"></span></p><h2 id="gifts-h"></h2><p data-t="gifts_p"></p></div>
+        <div class="seg" id="seg" role="group" data-ta="gifts_filter"></div>
+      </div>
+      <div class="grid" id="grid"></div>
+
+      <div class="pack">
+        <div class="pack-art"><img src="brand/packaging-family.jpg" alt="" width="1594" height="987" loading="lazy"><span class="seal-badge" id="seal-badge"></span></div>
+        <div>
+          <p class="k"><canvas data-stitch="star"></canvas><span data-t="pack_k"></span></p>
+          <h3 data-t="pack_h"></h3>
+          <p data-t="pack_p"></p>
+          <p class="legend" data-t="seal_legend"></p>
+          <div class="seals" id="seals" role="group" data-ta="seal_legend"></div>
+          <p class="legend" data-t="boxes_h"></p>
+          <ul class="boxes" id="boxes"></ul>
+          <button class="pill" type="button" data-go="name" data-t="pack_cta"></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec story" id="story">
+    <div class="wrap">
+      <div>
+        <p class="k"><canvas data-stitch="star"></canvas><span data-t="our_story"></span></p>
+        <p class="line"><span data-t="line_a"></span> <em data-t="line_b"></em></p>
+        <p class="d" data-t="story_p"></p>
+      </div>
+      <figure><img src="brand/sketch-dome.jpg" alt="" loading="lazy"><canvas data-stitch="corners" data-cell="4" data-sew></canvas></figure>
+    </div>
+  </section>
+
+  <section class="sec" style="padding-top:0">
+    <div class="wrap">
+      <div class="head"><div><p class="k"><canvas data-stitch="star"></canvas><span class="en" style="direction:ltr;unicode-bidi:isolate">#WearAsala</span></p><h2 data-t="wall_h"></h2><p data-t="wall_p"></p></div></div>
+      <div class="wall" id="wall"></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <canvas class="hem" data-stitch="hem" data-palette="red" data-cell="4"></canvas>
+  <div class="wrap">
+    <div><a class="logo" href="#top" aria-label="Asala"><img src="brand/wordmark-dark.png" alt="ASALA" width="147" height="22"></a><p data-t="foot_p" style="margin:0;max-width:34ch"></p></div>
+    <div><h4 data-t="foot_shop"></h4><ul>
+      <li><button type="button" data-go="words" data-t="n_words"></button></li>
+      <li><button type="button" data-go="name" data-t="n_name"></button></li>
+      <li><button type="button" data-go="gifts" data-t="c_gifts"></button></li>
+      <li><button type="button" data-go="story" data-t="our_story"></button></li></ul></div>
+    <div><h4 data-t="foot_help"></h4><ul><li data-t="tz_cod"></li><li data-t="foot_wa"></li><li data-t="foot_care"></li></ul></div>
+    <div><h4 data-t="nl_h"></h4><p data-t="nl_p" style="margin:0"></p>
+      <form class="nl" id="nl" novalidate><label for="nl-email" class="sr" data-t="nl_label"></label><input id="nl-email" type="email" autocomplete="email" data-tp="nl_ph"><button class="pill red" type="submit" data-t="nl_btn"></button></form>
+      <p class="nl-msg" id="nl-msg" aria-live="polite"></p></div>
+  </div>
+  <div class="legal"><div class="wrap"><span>© 2026 Asala · أصالة</span><span data-t="foot_made"></span></div></div>
+</footer>
+
+<script src="store.js"></script>
+<script src="brand/asala-catalog.js"></script>
+<script src="brand/asala-tatreez.js"></script>
+<script>
+(function () {
+  var S = window.Store, A = window.ASALA, TZ = window.TZ;
+  A.install(S); TZ.shell();
+  var $ = S.$, $$ = S.$$, esc = S.esc, t = S.t;
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var NEW = { 'dome-teal': 1, mihrab: 1 };
+  var cap = 100, seal = 'red', thread = 'red';
+  var ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+  var PAUSE = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14"/><rect x="14" y="5" width="4" height="14"/></svg>';
+  var PLAY = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 5l12 7-12 7z"/></svg>';
+
+  // Marquee words (shown bilingually by design): Arabic word + English gloss
+  var MQ = [['قبة', 'Dome'], ['نجمة', 'Star'], ['لوتس', 'Lotus'], ['غصن', 'Branch'], ['محراب', 'Mihrab'], ['قوس', 'Arch']];
+  // Shop-by-word tiles: Arabic word, English gloss, product (or collection) and the photo shown on hover
+  var WORDS = [
+    { w: 'قبة', g: 'dome', id: 'dome', img: 'brand/dome-stone.jpg', cls: 't1' },
+    { w: 'نجمة', g: 'star', coll: 'najma', ids: ['dome-teal', 'arcs', 'mihrab'], id: 'dome-teal', img: 'brand/dome-teal.jpg', cls: 't2' },
+    { w: 'حدوة', g: 'horseshoe', id: 'horseshoe', img: 'brand/horseshoe-close.jpg', cls: 't3' },
+    { w: 'غصن', g: 'branch', id: 'branch', img: 'brand/cover-ear.jpg', cls: 't4' },
+    { w: 'لوتس', g: 'lotus', id: 'lotus', img: 'brand/lotus-pendant.jpg', cls: 't5' }
+  ];
+  var WALL = [
+    // order T S T S T T S S packs into 4 columns x 3 rows and 2 columns x 6 rows with no holes
+    { img: 'dome-worn.jpg', id: 'dome', tall: 1 }, { img: 'clay-arcs.jpg', id: 'arcs' }, { img: 'cover-ear.jpg', id: 'branch', tall: 1 },
+    { img: 'horseshoe-close.jpg', id: 'horseshoe' }, { img: 'lotus-45.jpg', id: 'lotus', tall: 1 }, { img: 'dome-stone.jpg', id: 'dome', tall: 1 },
+    { img: 'dome-teal.jpg', id: 'dome-teal' }, { img: 'woman-arch.jpg', id: 'horseshoe' }
+  ];
+  var THREADS = [{ id: 'red', c: '#C6383C' }, { id: 'charcoal', c: '#33342F' }, { id: 'teal', c: '#3FA59A' }];
+
+  var STR = {
+    ar: {
+      n_words: 'تسوّقي بالكلمة', n_name: 'اسمكِ بالغُرزة', cta_name: 'اطرّزي اسماً',
+      mq_pause: 'إيقاف حركة الشريط', mq_play: 'تشغيل حركة الشريط',
+      kick: 'حُليّ لها أسماء عربية', pos: 'اسم',
+      mean: 'الأصل الثابت، والانتماء إلى الجذور والتراث.',
+      lede: 'لكل قطعة كلمة: قبة، نجمة، حدوة، غصن، لوتس. اختاري الكلمة التي تشبهكِ، وأهديها في علبة مختومة.',
+      sticker: 'جاهزة للإهداء', tag_small: 'أقراط قبة الصخرة · من {p}',
+      words_k: 'كلمات أصالة', words_p: 'كل قطعة تحمل اسماً عربياً. مرّري على الكلمة لتظهر القطعة، واضغطي لتفتحيها.',
+      n_pieces: '{n} قطع', view_word: '{w}: {n}',
+      name_k: 'بطاقة الشكر', name_h: 'اسمها، بغُرزة التطريز',
+      name_p: 'اكتبي اسماً بالعربية أو بالإنجليزية، حتى ١٠ أحرف، وشاهديه يتحوّل إلى غُرز تطريز على بطاقة من الكتان. هذه بطاقة الشكر التي توضع داخل علبة الهدية.',
+      name_label: 'الاسم على البطاقة', name_ph: 'مثلاً: ريم', name_ghost: 'اسمكِ', cnt: '{n}/10',
+      thread: 'لون الخيط', th_red: 'أحمر', th_charcoal: 'فحمي', th_teal: 'فيروزي',
+      stitches: '{n} غرزة',
+      card_add: 'أضيفي البطاقة إلى هديتي', card_note: 'بطاقة الاسم المطرّز فكرة للعرض فقط (للتأكيد). الزر لا يضيف شيئاً إلى السلة.',
+      card_to: 'إلى', card_from: 'مع الحب، من', card_alt: 'بطاقة شكر من الكتان، مطرّز عليها الاسم: {n}', card_alt0: 'بطاقة شكر من الكتان بانتظار اسم',
+      card_toast: 'نموذج فقط: بطاقة «{n}» لم تُضف إلى السلة (للتأكيد).', card_toast0: 'اكتبي اسماً أولاً.',
+      gifts_h: 'هدايا بأقل من {p}', gifts_all: 'كل الهدايا', gifts_p: 'كل القطع تصل في علبة أصالة مع بطاقة شكر. الأسعار مؤقتة.',
+      gifts_filter: 'تصفية حسب السعر', under: 'حتى {p}', none: 'لا قطع في هذا النطاق.',
+      choose: 'اختاري', add_s: 'أضيفي', per_pair: 'للزوج',
+      pack_k: 'التغليف', pack_h: 'علبة فحمية، وختمٌ ملوّن', pack_p: 'من عائلة علب أصالة في كتاب الهوية. القطعة تصل في علبتها مع بطاقة الشكر.',
+      seal_legend: 'لون الختم (للتأكيد)', boxes_h: 'مقاسات العلب (مم، تقريبية)', pack_cta: 'اطرّزي بطاقة الشكر',
+      line_a: 'كل قطعة كلمة،', line_b: 'وكل كلمة بدأت رسماً في دفتر مهندسة معمارية من نابلس.',
+      story_p: 'قبابٌ وأقواس وبوابات ونوافذ، تنتقل من الدفتر إلى المعدن والطين: قصٌّ بالليزر، وتشطيب يدوي للحواف، ونقشٌ يحمل ذاكرة المكان، مثل غُرزة في التطريز الفلسطيني.',
+      wall_h: 'كيف تلبسينها', wall_p: 'هذا الجدار لصوركنّ: شاركي صورتكِ مع ‎#WearAsala. الصور المعروضة الآن من أصالة.', wall_lab: 'صورة من أصالة',
+      foot_p: 'حُليّ من نابلس، لكل قطعة كلمة عربية، مستوحاة من العمارة والتطريز الفلسطيني.', foot_shop: 'تسوّقي', foot_help: 'مساعدة',
+      foot_wa: 'واتساب للطلبات (للتأكيد)', foot_care: 'العناية بالقطع', foot_made: 'صُنعت يدوياً في نابلس',
+      nl_h: 'رسائل أصالة', nl_p: 'كلمات جديدة وقطع جديدة في بريدكِ.', nl_label: 'البريد الإلكتروني', nl_ph: 'name@email.com', nl_btn: 'اشتركي',
+      nl_ok: 'شكراً لكِ! (نموذج: لم يُرسَل شيء)', nl_err: 'اكتبي بريداً إلكترونياً صحيحاً.'
+    },
+    en: {
+      n_words: 'Shop by word', n_name: 'Name in stitch', cta_name: 'Stitch a name',
+      mq_pause: 'Pause the word strip', mq_play: 'Play the word strip',
+      kick: 'Jewellery with Arabic names', pos: 'noun',
+      mean: 'Authenticity; heritage; being rooted in where you come from.',
+      lede: 'Every piece carries a word: dome, star, horseshoe, branch, lotus. Choose the word that feels like you, and gift it in a sealed box.',
+      sticker: 'Ready to gift', tag_small: 'Dome of the Rock earrings · from {p}',
+      words_k: 'Asala’s words', words_p: 'Every piece carries an Arabic name. Hover a word to see the piece; tap to open it.',
+      n_pieces: '{n} pieces', view_word: '{w}: {n}',
+      name_k: 'The thank-you card', name_h: 'Your name in cross-stitch',
+      name_p: 'Type a name in Arabic or English, up to 10 letters, and watch it turn into tatreez stitches on a linen card. This is the thank-you card that goes inside the gift box.',
+      name_label: 'Name on the card', name_ph: 'e.g. Lina', name_ghost: 'Your name', cnt: '{n}/10',
+      thread: 'Thread colour', th_red: 'Red', th_charcoal: 'Charcoal', th_teal: 'Teal',
+      stitches: '{n} stitches',
+      card_add: 'Add the card to my gift', card_note: 'The personalised name card is a demo idea only (to confirm). The button does not add anything to the bag.',
+      card_to: 'For', card_from: 'With love, from', card_alt: 'Linen thank-you card, cross-stitched with the name: {n}', card_alt0: 'Linen thank-you card waiting for a name',
+      card_toast: 'Demo only: the “{n}” card was not added to the bag (to confirm).', card_toast0: 'Type a name first.',
+      gifts_h: 'Gifts under {p}', gifts_all: 'Every gift', gifts_p: 'Every piece arrives in an Asala box with a thank-you card. Prices are placeholders.',
+      gifts_filter: 'Filter by price', under: 'Under {p}', none: 'No pieces in this range.',
+      choose: 'Choose', add_s: 'Add', per_pair: 'per pair',
+      pack_k: 'Packaging', pack_h: 'A charcoal box and a coloured seal', pack_p: 'From the Asala box family in the brand book. Your piece arrives in its box with the thank-you card.',
+      seal_legend: 'Seal colour (to confirm)', boxes_h: 'Box sizes (mm, indicative)', pack_cta: 'Stitch the thank-you card',
+      line_a: 'Every piece is a word,', line_b: 'and every word began as a drawing in the sketchbook of an architect from Nablus.',
+      story_p: 'Domes, arches, gateways and windows move from the sketchbook into metal and clay: laser cut, edges finished by hand, and a pattern that carries the memory of a place, like a stitch of Palestinian tatreez.',
+      wall_h: 'How you wear it', wall_p: 'This wall is for your photos: share yours with #WearAsala. The photos here for now are Asala’s own.', wall_lab: 'Asala photo',
+      foot_p: 'Jewellery from Nablus, each piece named by an Arabic word, drawn from Palestinian architecture and tatreez.', foot_shop: 'Shop', foot_help: 'Help',
+      foot_wa: 'WhatsApp orders (to confirm)', foot_care: 'Jewellery care', foot_made: 'Made by hand in Nablus',
+      nl_h: 'Asala letters', nl_p: 'New words and new pieces in your inbox.', nl_label: 'Email', nl_ph: 'name@email.com', nl_btn: 'Sign up',
+      nl_ok: 'Thank you! (Demo: nothing was sent.)', nl_err: 'Please enter a valid email.'
+    }
+  };
+
+  function ar() { return S.lang() === 'ar'; }
+  function base(p) { return p.configurable ? A.MATERIALS[0].price : p.price; }
+  function priceHTML(p) { return (p.configurable ? '<small>' + esc(t('from')) + '</small> ' : '') + S.money(base(p)); }
+
+  // ---------- marquee ----------
+  var mqPaused = false;
+  function renderMarquee() {
+    var one = MQ.concat(MQ).map(function (m) {
+      return '<span class="mq-item"><span class="a" lang="ar">' + m[0] + '</span><span class="e" lang="en">' + m[1] + '</span><canvas data-stitch="star" data-palette="light"></canvas></span>';
+    }).join('');
+    var tr = $('#mq-track');
+    tr.innerHTML = '<span style="display:flex">' + one + '</span><span style="display:flex" aria-hidden="true">' + one + '</span>';
+    renderMqBtn();
+  }
+  function renderMqBtn() {
+    var b = $('#mq-btn'); b.innerHTML = mqPaused ? PLAY : PAUSE; b.setAttribute('aria-label', t(mqPaused ? 'mq_play' : 'mq_pause')); b.setAttribute('aria-pressed', String(mqPaused));
+    b.hidden = reduce; $('#mq').classList.toggle('paused', mqPaused);
+  }
+
+  // ---------- hero tag ----------
+  function renderHero() {
+    var d = S.byId('dome');
+    $('#hero-tag').innerHTML = '<span><b lang="ar">قبة</b><small>' + esc(t('tag_small', { p: S.money(base(d)) })) + '</small></span><i>' + ARROW + '</i>';
+    $('#hero-tag').setAttribute('aria-label', t('view') + ': ' + S.name(d));
+  }
+
+  // ---------- shop by word ----------
+  function renderTiles() {
+    $('#tiles').innerHTML = WORDS.map(function (w) {
+      var p = S.byId(w.id), sub, chips = '';
+      if (w.coll) {
+        var ps = w.ids.map(S.byId);
+        sub = '<span>' + esc(A.COLLECTIONS[w.coll][S.lang()]) + '</span><span class="pr">' + esc(t('n_pieces', { n: ps.length })) + '</span>';
+        chips = '<div class="chips">' + ps.map(function (x) {
+          return '<button class="chip" type="button" data-open="' + x.id + '"><img' + (x.cutout ? ' class="cut"' : '') + ' src="' + x.photo + '" alt="" loading="lazy">' + esc(S.name(x)) + ' · ' + S.money(x.price) + '</button>';
+        }).join('') + '</div>';
+      } else {
+        sub = '<span>' + esc(S.name(p)) + '</span><span class="pr">' + priceHTML(p).replace(/<\/?small>/g, '') + '</span>';
+      }
+      var label = t('view_word', { w: w.w, n: w.coll ? A.COLLECTIONS[w.coll][S.lang()] : S.name(p) });
+      return '<article class="tile ' + w.cls + '">' +
+        '<img class="ph" src="' + w.img + '" alt="" loading="lazy">' +
+        '<button class="hit" type="button" data-open="' + w.id + '" aria-label="' + esc(label) + '"></button>' +
+        (w.cls === 't1' ? '<canvas class="bigst" data-stitch="star" data-palette="light" data-c1="#FFFFFF" data-c2="#C6383C" data-c3="#FFFFFF"></canvas>' : '') + '<canvas class="st" data-stitch="star"' + (w.cls === 't2' || w.cls === 't5' ? ' data-palette="light"' : '') + '></canvas>' +
+        '<div><p class="w" lang="ar">' + w.w + '</p><p class="gl" lang="en">' + w.g + '</p></div>' +
+        '<div><p class="pn">' + sub + '</p>' + chips + '</div></article>';
+    }).join('');
+  }
+
+  // ---------- gifts ----------
+  function card(p) {
+    return '<article class="pc">' +
+      '<button class="art" type="button" data-open="' + p.id + '" aria-label="' + esc(t('view') + ': ' + S.name(p)) + '">' +
+      (NEW[p.id] ? '<span class="new">' + esc(t('new')) + '</span>' : '') +
+      '<img' + (p.cutout ? ' class="cut"' : '') + ' src="' + p.photo + '" alt="" loading="lazy"></button>' +
+      '<div class="meta"><p class="cat">' + esc(S.CATS[p.cat][S.lang()]) + '</p>' +
+      '<h3><button type="button" data-open="' + p.id + '">' + esc(S.name(p)) + '</button></h3>' +
+      '<div class="row"><span class="p">' + priceHTML(p) + '</span>' +
+      '<button class="pill red add" type="button" data-qadd="' + p.id + '" aria-label="' + esc((p.configurable ? t('choose') : t('add')) + ': ' + S.name(p)) + '">' + esc(p.configurable ? t('choose') : '+ ' + t('add_s')) + '</button></div></div></article>';
+  }
+  function renderGifts() {
+    $('#gifts-h').textContent = cap ? t('gifts_h', { p: S.money(cap) }) : t('gifts_all');
+    $('#seg').innerHTML = [100, 200, 0].map(function (c) {
+      return '<button type="button" data-cap="' + c + '" aria-pressed="' + (c === cap) + '">' + esc(c ? t('under', { p: S.money(c) }) : t('c_all')) + '</button>';
+    }).join('');
+    var list = S.PRODUCTS.filter(function (p) { return !cap || base(p) <= cap; }).sort(function (a, b) { return base(a) - base(b); });
+    $('#grid').innerHTML = list.length ? list.map(card).join('') : '<p class="empty">' + esc(t('none')) + '</p>';
+  }
+  function renderSeals() {
+    $('#seals').innerHTML = A.SEALS.map(function (s) {
+      return '<button class="seal" type="button" data-seal="' + s.id + '" aria-pressed="' + (s.id === seal) + '"><i style="background:' + s.color + '"></i>' + esc(s[S.lang()]) + '</button>';
+    }).join('');
+    var s = A.SEALS.filter(function (x) { return x.id === seal; })[0], b = $('#seal-badge');
+    b.innerHTML = A.MARK; b.style.background = s.color; b.style.color = s.ink;
+    $('#boxes').innerHTML = A.BOXES.map(function (x) { return '<li><span>' + esc(x[S.lang()]) + '</span><span>' + x.dims + '</span></li>'; }).join('');
+  }
+
+  // ---------- wall ----------
+  function renderWall() {
+    $('#wall').innerHTML = WALL.map(function (w) {
+      var p = S.byId(w.id);
+      return '<button type="button" class="' + (w.tall ? 'tall' : '') + '" data-open="' + w.id + '" aria-label="' + esc(t('view') + ': ' + S.name(p)) + '">' +
+        '<img src="brand/' + w.img + '" alt="" loading="lazy"><span class="lab">#WearAsala · <small>' + esc(t('wall_lab')) + '</small></span></button>';
+    }).join('');
+  }
+
+  // ---------- name in cross-stitch ----------
+  function renderThreads() {
+    var fs = $('#threads'), leg = fs.querySelector('legend');
+    $$('.thread', fs).forEach(function (b) { b.remove(); });
+    THREADS.forEach(function (th) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'thread'; b.setAttribute('data-thread', th.id); b.setAttribute('aria-pressed', String(th.id === thread));
+      b.innerHTML = '<i style="background:' + th.c + '"></i>' + esc(t('th_' + th.id));
+      fs.appendChild(b);
+    });
+    leg.textContent = t('thread');
+  }
+  var mctx = document.createElement('canvas').getContext('2d');
+  function isArabic(s) { return /[؀-ۿݐ-ݿࢠ-ࣿﭐ-﷿ﹰ-﻿]/.test(s); }
+  // Draw the text small on an offscreen canvas, then read which pixels are filled: one cross-stitch per filled pixel.
+  function sample(txt) {
+    var a = isArabic(txt), fs = a ? 22 : 20;
+    var font = '700 ' + fs + 'px ' + (a ? '"Alexandria", "Readex Pro", sans-serif' : '"Jost", "Readex Pro", sans-serif');
+    mctx.font = font;
+    var w = Math.ceil(mctx.measureText(txt).width) + 12, h = fs * 2;
+    var o = document.createElement('canvas'); o.width = w; o.height = h;
+    var g = o.getContext('2d', { willReadFrequently: true });
+    g.font = font; g.direction = a ? 'rtl' : 'ltr'; g.textAlign = 'center'; g.textBaseline = 'middle'; g.fillStyle = '#000';
+    g.fillText(txt, w / 2, h / 2);
+    var d = g.getImageData(0, 0, w, h).data, cells = [], x0 = w, y0 = h, x1 = -1, y1 = -1, x, y;
+    for (y = 0; y < h; y++) for (x = 0; x < w; x++) if (d[(y * w + x) * 4 + 3] > 115) {
+      cells.push([x, y]); if (x < x0) x0 = x; if (x > x1) x1 = x; if (y < y0) y0 = y; if (y > y1) y1 = y;
+    }
+    if (!cells.length) return { cells: [], cols: 1, rows: 1, x0: 0, y0: 0 };
+    return { cells: cells, cols: x1 - x0 + 1, rows: y1 - y0 + 1, x0: x0, y0: y0 };
+  }
+  function xs(ctx, x, y, c, color) {
+    var p = c * 0.16;
+    ctx.strokeStyle = color; ctx.lineWidth = Math.max(0.9, c * 0.28); ctx.lineCap = 'round';
+    ctx.beginPath(); ctx.moveTo(x + p, y + p); ctx.lineTo(x + c - p, y + c - p); ctx.moveTo(x + c - p, y + p); ctx.lineTo(x + p, y + c - p); ctx.stroke();
+  }
+  function starAt(ctx, ox, oy, c, cols) {
+    TZ.MOTIFS.star.forEach(function (r, j) { for (var i = 0; i < r.length; i++) if (r[i] !== '.') xs(ctx, ox + i * c, oy + j * c, c, cols[+r[i] - 1]); });
+  }
+  function drawCard() {
+    var cv = $('#card-cv'), b = cv.getBoundingClientRect(); if (!b.width) return;
+    var W = b.width, H = b.height, dpr = Math.min(2, window.devicePixelRatio || 1);
+    cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+    var ctx = cv.getContext('2d'); ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, W, H);
+    var col = THREADS.filter(function (x) { return x.id === thread; })[0].c;
+    // running-stitch border in charcoal + corner stars
+    var cs = Math.max(2.4, Math.min(4, W / 150)), m = cs * 4.5, st = cs * 9;
+    ctx.save(); ctx.strokeStyle = '#33342F'; ctx.lineWidth = Math.max(1.2, cs * .42); ctx.lineCap = 'round'; ctx.setLineDash([cs * 1.8, cs * 1.4]);
+    ctx.beginPath();
+    ctx.moveTo(m + st, m); ctx.lineTo(W - m - st, m); ctx.moveTo(W - m, m + st); ctx.lineTo(W - m, H - m - st);
+    ctx.moveTo(W - m - st, H - m); ctx.lineTo(m + st, H - m); ctx.moveTo(m, H - m - st); ctx.lineTo(m, m + st);
+    ctx.stroke(); ctx.restore();
+    var sc = [col, thread === 'charcoal' ? '#C6383C' : '#33342F', thread === 'teal' ? '#C6383C' : '#3FA59A'], o = m - st / 2 + cs * .5;
+    [[o, o], [W - o - st, o], [W - o - st, H - o - st], [o, H - o - st]].forEach(function (p) { starAt(ctx, p[0], p[1], cs, sc); });
+    // the name
+    var val = ($('#nm').value || '').trim().slice(0, 10), ghost = !val, txt = ghost ? t('name_ghost') : val;
+    var g = sample(txt), c = Math.min((W * 0.78) / g.cols, (H * 0.40) / g.rows, 13);
+    var ox = (W - g.cols * c) / 2, oy = H * 0.50 - (g.rows * c) / 2;
+    ctx.globalAlpha = ghost ? 0.28 : 1;
+    g.cells.forEach(function (q) { xs(ctx, ox + (q[0] - g.x0) * c, oy + (q[1] - g.y0) * c, c, col); });
+    ctx.globalAlpha = 1;
+    cv.setAttribute('aria-label', ghost ? t('card_alt0') : t('card_alt', { n: val }));
+    $('#nm-cnt').textContent = t('cnt', { n: val.length }) + (ghost ? '' : ' · ' + t('stitches', { n: g.cells.length }));
+  }
+
+  function render() { renderMarquee(); renderHero(); renderTiles(); renderGifts(); renderSeals(); renderWall(); renderThreads(); drawCard(); TZ.mount(document); }
+  function go(id) { var el = document.getElementById(id); if (el) el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }); }
+
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    if (b.id === 'mq-btn') { mqPaused = !mqPaused; renderMqBtn(); return; }
+    if (b.hasAttribute('data-go')) { go(b.getAttribute('data-go')); return; }
+    if (b.hasAttribute('data-cap')) { cap = +b.getAttribute('data-cap'); renderGifts(); return; }
+    if (b.hasAttribute('data-seal')) { seal = b.getAttribute('data-seal'); renderSeals(); return; }
+    if (b.hasAttribute('data-thread')) { thread = b.getAttribute('data-thread'); $$('.thread').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); }); drawCard(); return; }
+    if (b.id === 'card-add') {
+      var v = $('#nm').value.trim();
+      if (!v) { S.toast(t('card_toast0')); $('#nm').focus(); return; }
+      S.toast(t('card_toast', { n: v })); return;
+    }
+    if (b.hasAttribute('data-qadd')) {
+      var p = S.byId(b.getAttribute('data-qadd'));
+      if (p.configurable) S.openProduct(p.id); else S.add(p.id, p.tones[0], '', { meta: p.cat === 'earrings' ? t('per_pair') : '' });
+    }
+  });
+  $('#nm').addEventListener('input', drawCard);
+  $('#nl').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var v = $('#nl-email').value.trim(), ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v), msg = $('#nl-msg');
+    msg.textContent = t(ok ? 'nl_ok' : 'nl_err'); msg.classList.toggle('err', !ok);
+    $('#nl-email').setAttribute('aria-invalid', String(!ok));
+    if (ok) e.target.reset();
+  });
+  if ('ResizeObserver' in window) new ResizeObserver(function () { drawCard(); }).observe($('#card-cv'));
+  if (document.fonts) {
+    Promise.all([document.fonts.load('700 22px "Alexandria"', 'ريم'), document.fonts.load('700 20px "Jost"', 'Lina')]).then(drawCard, drawCard);
+    document.fonts.ready.then(drawCard);
+  }
+
+  S.boot({ strings: TZ.strings(STR), render: render, cartKey: 'asala-words-cart', orderPrefix: 'AS-' });
+  render();
+})();
+</script>
+</body>
+</html>
