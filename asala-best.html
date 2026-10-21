@@ -774,7 +774,7 @@ fieldset.tones legend { padding: 0; margin-bottom: 8px; font-size: .9rem; color:
     }
   }
   function addGift(p) {
-    var box = p.cat === 'necklace' ? A.BOXES[2] : A.BOXES[0];
+    var box = p.cat === 'necklace' ? A.BOXES.filter(function (b) { return b.id === 'necklace'; })[0] : A.BOXES[0];
     S.add(p.id, p.tones[0], '', { meta: T('gift_line') + ' · ' + L(box), price: p.price + box.price, noTone: !!p.configurable });
   }
 
@@ -814,7 +814,7 @@ fieldset.tones legend { padding: 0; margin-bottom: 8px; font-size: .9rem; color:
   }
   function curTone() { var b = $('[data-tone-pick][aria-checked="true"]'); return b ? b.getAttribute('data-tone-pick') : S.current().tones[0]; }
   function curPrice() { var p = S.current(); return p.configurable ? mat().price : p.price; }
-  function wrapPrice() { var p = S.current(); return $('#g-wrap').checked ? (p.cat === 'necklace' ? A.BOXES[2].price : A.BOXES[0].price) : 0; }
+  function wrapPrice() { var p = S.current(); return $('#g-wrap').checked ? (p.cat === 'necklace' ? A.BOXES.filter(function (b) { return b.id === 'necklace'; })[0].price : A.BOXES[0].price) : 0; }
   function updatePrice() { var v = curPrice(); $('#sheet-price').textContent = S.money(v); $('#sb-price').textContent = S.money(v + wrapPrice()); }
   function renderDomeOpts() {
     $('#pats').innerHTML = A.PATTERNS.map(function (p) { return '<button class="pat" type="button" role="radio" data-pat="' + p.id + '" aria-checked="' + (p.id === dome.pattern) + '" aria-label="' + S.esc(L(p)) + '"><img src="' + PAT_IMG[p.id] + '" alt=""></button>'; }).join('');
@@ -864,7 +864,7 @@ fieldset.tones legend { padding: 0; margin-bottom: 8px; font-size: .9rem; color:
   function addCurrent() {
     var p = S.current(), tone = p.configurable ? mat().tone : curTone(), meta = [], wrap = $('#g-wrap').checked, msg = $('#g-msg').value.trim();
     if (p.configurable) meta.push(L(pat()), L(mat()));
-    if (wrap) { var box = p.cat === 'necklace' ? A.BOXES[2] : A.BOXES[0]; meta.push(T('gift_line') + ' · ' + L(box) + (msg ? ' · «' + msg + '»' : '')); }
+    if (wrap) { var box = p.cat === 'necklace' ? A.BOXES.filter(function (b) { return b.id === 'necklace'; })[0] : A.BOXES[0]; meta.push(T('gift_line') + ' · ' + L(box) + (msg ? ' · «' + msg + '»' : '')); }
     S.add(p.id, tone, '', { meta: meta.join(' · '), photo: p.configurable ? PAT_IMG[dome.pattern] : '', price: curPrice() + wrapPrice(), noTone: !!p.configurable });
   }
   $('#buy').addEventListener('click', addCurrent);

@@ -8,9 +8,9 @@
   var PRODUCTS = [
     { id: 'dome', cat: 'earrings', coll: 'dome', price: 180, tones: ['gold', 'silver'], photo: IMG + 'dome-render.jpg', photoTone: 'gold',
       alts: [IMG + 'dome-worn.jpg', IMG + 'dome-stone.jpg'], madeToOrder: true, configurable: true,
-      ar: 'أقراط قبة الصخرة', en: 'Dome of the Rock earrings',
-      dAr: 'قبة مخرّمة بنقش هندسي فوق أربعة أقواس، تتدلى منها ثلاث معيّنات. مقاس 24 × 28 مم، قص بالليزر وتلميع للحواف.',
-      dEn: 'A pierced geometric dome over four arches, with three hanging diamonds. 24 × 28 mm, laser cut with polished edges.' },
+      ar: 'أقراط القبة', en: 'Dome earrings',
+      dAr: 'مستوحاة من قبة الصخرة: قبة مخرّمة بنقش هندسي فوق أربعة أقواس، تتدلى منها ثلاث معيّنات. مقاس 24 × 28 مم، قص بالليزر وتلميع للحواف.',
+      dEn: 'Inspired by the Dome of the Rock: a pierced geometric dome over four arches, with three hanging diamonds. 24 × 28 mm, laser cut with polished edges.' },
     { id: 'dome-teal', cat: 'earrings', coll: 'najma', price: 95, tones: ['gold'], photo: IMG + 'dome-teal.jpg', photoTone: 'gold',
       alts: [IMG + 'sketch-plan.jpg'],
       ar: 'أقراط القبة الفيروزية', en: 'Turquoise dome earrings',
@@ -66,8 +66,7 @@
   ];
   // Packaging family from the brand book (external dimensions in mm, sizing indicative)
   var BOXES = [
-    { id: 'ring', dims: '70 × 70 × 50', price: 0, ar: 'علبة الخاتم والأقراط', en: 'Ring & earring box', dAr: 'غطاء صلب، حشوة عاجية من المخمل.', dEn: 'Rigid lift-off lid, ivory microsuede insert.' },
-    { id: 'bracelet', dims: '230 × 60 × 35', price: 10, ar: 'علبة السوار', en: 'Bracelet box', dAr: 'درج بشريط سحب أحمر.', dEn: 'Drawer box with a red pull tab.' },
+    { id: 'ring', dims: '70 × 70 × 50', price: 0, ar: 'علبة الأقراط', en: 'Earring box', dAr: 'غطاء صلب، حشوة عاجية من المخمل.', dEn: 'Rigid lift-off lid, ivory microsuede insert.' },
     { id: 'necklace', dims: '180 × 220 × 40', price: 10, ar: 'علبة القلادة', en: 'Necklace box', dAr: 'علبة عرض بمكان للدلاية.', dEn: 'Presentation box with a pendant space.' },
     { id: 'gift', dims: '260 × 260 × 90', price: 25, ar: 'صندوق الهدية الكبير', en: 'Large gift box', dAr: 'غطاء مغناطيسي وحجيرات قابلة للتعديل.', dEn: 'Magnetic flap and adjustable compartments.' }
   ];

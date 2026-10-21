@@ -795,7 +795,7 @@ bdi { unicode-bidi: isolate; }
       <p class="lead" data-t="svc_sub"></p>
       <div class="svc-grid">
         <article class="svc"><div class="ph"><img src="brand/sketch-dome.jpg" alt="" style="object-position:50% 40%"><span class="tag" data-t="proposed"></span></div><h3 data-t="sv1"></h3><p data-t="sv1d"></p><button class="link-arrow" type="button" data-service="commission"><span data-t="sv1b"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button></article>
-        <article class="svc"><div class="ph"><img src="brand/lotus-pendant.jpg" alt=""><span class="tag" data-t="proposed"></span></div><h3 data-t="sv2"></h3><p data-t="sv2d"></p><button class="link-arrow" type="button" id="word-btn" aria-haspopup="dialog"><span data-t="sv2b"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button></article>
+        <article class="svc"><div class="ph"><img src="brand/pat-tatreez.jpg" alt=""><span class="tag" data-t="proposed"></span></div><h3 data-t="sv2"></h3><p data-t="sv2d"></p><button class="link-arrow" type="button" id="word-btn"><span data-t="sv2b"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button></article>
         <article class="svc"><div class="ph"><img src="brand/dome-stone.jpg" alt="" style="object-position:50% 18%"><span class="tag" data-t="proposed"></span></div><h3 data-t="sv3"></h3><p data-t="sv3d"></p><button class="link-arrow" type="button" data-service="care"><span data-t="sv3b"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button></article>
       </div>
     </div>
@@ -1505,7 +1505,7 @@ bdi { unicode-bidi: isolate; }
     if (!document.fonts || !document.fonts.load) return Promise.resolve();
     return Promise.all(['700 40px "Aref Ruqaa"', '700 40px "Reem Kufi"', '700 40px "Amiri"'].map(function (f) { return document.fonts.load(f, 'أصالة كلمة'); })).catch(function () {});
   }
-  $('word-btn').addEventListener('click', function () { renderWordOpts(); openDlg($('word'), this); setTimeout(drawWord, 80); loadScripts().then(drawWord); });
+  $('word-btn').addEventListener('click', function () { S.openProduct('dome'); });
   $('word-req').addEventListener('click', function () {
     var opener = $('word-btn'), v = ($('word-in').value.trim() || 'أصالة').slice(0, 8);
     closeDlg($('word'), true);
@@ -1582,7 +1582,7 @@ bdi { unicode-bidi: isolate; }
       menu: 'القائمة', search: 'بحث', search_ph: 'ابحثي: قبة، قوس، لوتس، فضة…', no_results: 'لا نتائج. جرّبي كلمة أخرى.', account: 'الحساب', cart: 'السلة', wishlist: 'المفضلة', nav_lbl: 'القائمة الرئيسية',
       acc_note: 'لا حاجة لحساب: نؤكد كل طلب باتصال هاتفي.',
       n_jewel: 'المجوهرات', n_coll: 'المجموعات', n_dome: 'القبة', n_gift: 'الإهداء', n_atelier: 'المشغل', n_story: 'حكايتنا',
-      m_bycat: 'حسب النوع', m_pieces: 'القطع', m_all: 'كل المجوهرات', n_dome_tile: 'أقراط قبة الصخرة', shop_coll: 'تسوّقي المجموعة',
+      m_bycat: 'حسب النوع', m_pieces: 'القطع', m_all: 'كل المجوهرات', n_dome_tile: 'أقراط القبة', shop_coll: 'تسوّقي المجموعة',
       c_dome: 'مجموعة القبة', c_najma: 'مجموعة النجمة', c_dome_short: 'القبة', c_najma_short: 'النجمة',
       c_dome_d: 'زخارف القدس وأقواسها، مقصوصة بالليزر.', c_najma_d: 'أقراط من طين البوليمر، رُسمت أشكالها من العمارة الإسلامية.',
       hero_lbl: 'قطع مختارة', slide_n: '{n} من {m}', go_slide: 'الشريحة {n}', pause: 'إيقاف التبديل', play: 'تشغيل التبديل',
@@ -1601,14 +1601,14 @@ bdi { unicode-bidi: isolate; }
       campaign: 'الحملة', view_campaign: 'شاهدي الحملة', shop_piece: 'تسوّقي القطعة', camp_sub: 'صور الحملة بالأبيض والأسود. كل صورة تفتح القطعة التي تظهر فيها.',
       svc_h: 'خدمات المشغل', svc_sub: 'أبعد من المجموعة: قطع تُصنع لشخص واحد. (خدمات مقترحة، للتأكيد مع أصالة)', proposed: 'خدمة مقترحة',
       sv1: 'اطلبي قطعة خاصة', sv1d: 'أحضري لنا مبنى يعني لك شيئاً، ونرسمه لك دلاية أو زوج أقراط.', sv1b: 'ابدئي الطلب',
-      sv2: 'كلمتك، بالعربية', sv2d: 'أضيفي اسماً أو كلمة بالخط العربي إلى دلاية تُصنع حسب الطلب.', sv2b: 'جرّبي كلمتك',
+      sv2: 'قبتك، بنقشك', sv2d: 'اختاري واحداً من أربعة نقوش ومعدناً من ثلاثة لأقراط القبة، وتُصنع لكِ حسب الطلب.', sv2b: 'اختاري النقش',
       sv3: 'العناية والإصلاح', sv3d: 'تلميع وإعادة طلاء وتركيبات جديدة لكل قطعة من أصالة.', sv3b: 'احجزي موعد عناية',
       svc_note: 'خدمة مقترحة. في المتجر الحقيقي تتواصل أصالة معك لتأكيد السعر والمدة.', sv_msg_comm: 'ما المبنى، وأي قطعة تتخيّلين؟', sv_msg_care: 'أي قطعة، وماذا تحتاج؟', sv_msg_word: 'تفاصيل الطلب',
       sv_send: 'أرسلي الطلب', sv_ok: 'وصل طلبك. (نموذج: لم يُرسل شيء فعلياً.)', e_msg: 'اكتبي بضع كلمات عن طلبك.',
       word_sub: 'معاينة مباشرة. الشكل النهائي والسعر تؤكدهما أصالة.', word_lbl: 'الكلمة أو الاسم', word_hint: 'حتى 8 أحرف، بالعربية.', word_font: 'الخط', word_req: 'اطلبي هذه القطعة',
       word_prefill: 'دلاية بكلمة «{w}» بخط {f}، {t}.',
       gift_h: 'فنّ الإهداء', gift_p: 'تجربة فتح مدروسة: علبة فحمية مطفية، ورق عاجي، وختم أحمر يُضغط باليد، وبطاقة بكلماتك. كل طلب يخرج من المشغل بهذا الشكل.',
-      box_lbl: 'العلبة', box_ring: 'علبة الخاتم والأقراط', box_necklace: 'علبة القلادة', box_gift: 'صندوق الهدية الكبير', included: 'مشمولة', not_fit: 'لا تناسب', not_fit_long: 'هذه العلبة لا تناسب القطعة المختارة. اختاري علبة أخرى أو قطعة أخرى.',
+      box_lbl: 'العلبة', box_ring: 'علبة الأقراط', box_necklace: 'علبة القلادة', box_gift: 'صندوق الهدية الكبير', included: 'مشمولة', not_fit: 'لا تناسب', not_fit_long: 'هذه العلبة لا تناسب القطعة المختارة. اختاري علبة أخرى أو قطعة أخرى.',
       build_box: 'صمّمي علبة هدية', b_piece: 'القطعة', b_seal: 'لون الختم', b_msg: 'رسالة البطاقة', b_msg_hint: 'اختياري', b_cnt: '{n} من 120',
       b_add: 'أضيفي العلبة إلى السلة', card_seal: 'البطاقة والختم', gift_total: 'مجموع الهدية', gift_word: 'هدية', no_card_msg: 'بطاقة بلا رسالة',
       pack_note: 'التغليف من مقترح كتاب الهوية، للتأكيد قبل الإنتاج.', gift_this: 'أهديها في علبة',
@@ -1622,7 +1622,7 @@ bdi { unicode-bidi: isolate; }
       news_ok: 'تم الاشتراك. (نموذج: لم يُرسل شيء فعلياً.)', news_err: 'اكتبي بريداً إلكترونياً صحيحاً.',
       f_copy: '© 2026 أصالة · الأسعار بالشيكل', demo_note2: 'نموذج تصميم: الصور من كتاب هوية أصالة، والأسعار ورسوم التوصيل والخدمات مؤقتة.',
       i_ship_p: 'التوصيل داخل الضفة الغربية والقدس والداخل. الرسوم حسب المدينة وتظهر قبل تأكيد الطلب:', i_placeholder: 'الرسوم مؤقتة إلى أن يؤكدها المتجر.',
-      i_sizes_p: 'أقراط قبة الصخرة: 24 × 28 مم. مقاسات القطع الأخرى وأطوال السلاسل تُضاف بعد أن تؤكدها أصالة.',
+      i_sizes_p: 'أقراط القبة: 24 × 28 مم. مقاسات القطع الأخرى وأطوال السلاسل تُضاف بعد أن تؤكدها أصالة.',
       i_care_p: 'أبعدي القطع عن العطر والماء والحرارة، وامسحيها بقطعة قماش ناعمة، واحفظي كل قطعة في كيسها. القطع الطينية خفيفة لكنها تُكسر إن سقطت.',
       i_returns_p: 'سياسة الإرجاع والتبديل قيد الإعداد مع أصالة. القطع المصنوعة حسب الطلب قد لا تُرجع.', i_privacy_p: 'سياسة الخصوصية قيد الإعداد. في هذا النموذج لا يُرسل أي شيء: السلة والمفضلة محفوظتان على جهازك فقط.', i_terms_p: 'شروط البيع قيد الإعداد مع أصالة.',
       i_q1: 'كيف أدفع؟', i_a1: 'نقداً للمندوب عند الاستلام. الدفع بالبطاقة أو المحفظة للتأكيد.', i_q2: 'متى يصل طلبي؟', i_a2: 'نتصل بك لتأكيد الطلب قبل الشحن، ونخبرك بالموعد حينها.',
@@ -1643,7 +1643,7 @@ bdi { unicode-bidi: isolate; }
       menu: 'Menu', search: 'Search', search_ph: 'Search: dome, arch, lotus, silver…', no_results: 'No results. Try another word.', account: 'Account', cart: 'Bag', wishlist: 'Wishlist', nav_lbl: 'Main',
       acc_note: 'No account needed: we confirm every order by phone.',
       n_jewel: 'Jewellery', n_coll: 'Collections', n_dome: 'The Dome', n_gift: 'Gifting', n_atelier: 'Atelier', n_story: 'Our story',
-      m_bycat: 'By category', m_pieces: 'Pieces', m_all: 'All jewellery', n_dome_tile: 'Dome of the Rock earrings', shop_coll: 'Shop the collection',
+      m_bycat: 'By category', m_pieces: 'Pieces', m_all: 'All jewellery', n_dome_tile: 'Dome earrings', shop_coll: 'Shop the collection',
       c_dome: 'The Dome collection', c_najma: 'The Najma collection', c_dome_short: 'The Dome', c_najma_short: 'Najma',
       c_dome_d: 'Jerusalem patterns and arches, cut by laser.', c_najma_d: 'Polymer-clay earrings, their shapes drawn from Islamic architecture.',
       hero_lbl: 'Featured', slide_n: '{n} of {m}', go_slide: 'Show slide {n}', pause: 'Pause slideshow', play: 'Play slideshow',
@@ -1662,14 +1662,14 @@ bdi { unicode-bidi: isolate; }
       campaign: 'Campaign', view_campaign: 'View the campaign', shop_piece: 'Shop the piece', camp_sub: 'The campaign in black and white. Every photo opens the piece it shows.',
       svc_h: 'Atelier services', svc_sub: 'Beyond the collection: pieces made for one person. (Proposed services, to confirm with Asala.)', proposed: 'Proposed service',
       sv1: 'Commission a piece', sv1d: 'Bring us a building that matters to you; we draw it into a pendant or a pair.', sv1b: 'Start a commission',
-      sv2: 'Your word, in Arabic', sv2d: 'Add a name or a word in Arabic calligraphy to a pendant made to order.', sv2b: 'Personalise',
+      sv2: 'Your Dome, your pattern', sv2d: 'Choose one of four patterns and one of three metals for the Dome earrings, made to order for you.', sv2b: 'Choose a pattern',
       sv3: 'Care and repair', sv3d: 'Polishing, re-plating and new fittings for every Asala piece.', sv3b: 'Book a care visit',
       svc_note: 'A proposed service. In the live store, Asala would get back to you to confirm price and timing.', sv_msg_comm: 'Which building, and what piece do you imagine?', sv_msg_care: 'Which piece, and what does it need?', sv_msg_word: 'Request details',
       sv_send: 'Send request', sv_ok: 'Request received. (Demo: nothing was actually sent.)', e_msg: 'Write a few words about your request.',
       word_sub: 'A live preview. Asala confirms the final shape and price.', word_lbl: 'Word or name', word_hint: 'Up to 8 letters, in Arabic.', word_font: 'Script', word_req: 'Request this piece',
       word_prefill: 'A pendant with the word “{w}” in {f} script, {t}.',
       gift_h: 'The art of gifting', gift_p: 'A considered unboxing: matte charcoal board, ivory tissue, a red seal pressed by hand and a card in your words. Every order leaves the atelier this way.',
-      box_lbl: 'Box', box_ring: 'Ring and earring box', box_necklace: 'Necklace box', box_gift: 'Large gift set', included: 'Included', not_fit: 'Does not fit', not_fit_long: 'That box does not fit the piece you chose. Pick another box or another piece.',
+      box_lbl: 'Box', box_ring: 'Earring box', box_necklace: 'Necklace box', box_gift: 'Large gift set', included: 'Included', not_fit: 'Does not fit', not_fit_long: 'That box does not fit the piece you chose. Pick another box or another piece.',
       build_box: 'Build a gift box', b_piece: 'Piece', b_seal: 'Seal colour', b_msg: 'Card message', b_msg_hint: 'Optional', b_cnt: '{n} of 120',
       b_add: 'Add gift box to bag', card_seal: 'Card and seal', gift_total: 'Gift total', gift_word: 'Gift', no_card_msg: 'Card left blank',
       pack_note: 'Packaging as proposed in the brand book, to confirm before production.', gift_this: 'Gift it in a box',
@@ -1683,7 +1683,7 @@ bdi { unicode-bidi: isolate; }
       news_ok: 'Subscribed. (Demo: nothing was actually sent.)', news_err: 'Enter a valid email address.',
       f_copy: '© 2026 Asala Jewelry · Prices in ₪', demo_note2: 'Design demo: images from the Asala brand book; prices, delivery fees and services are placeholders.',
       i_ship_p: 'Delivery across the West Bank, Jerusalem and inside the Green Line. Fees depend on the city and show before you confirm:', i_placeholder: 'Fees are placeholders until the shop confirms them.',
-      i_sizes_p: 'Dome of the Rock earrings: 24 × 28 mm. Sizes for the other pieces and chain lengths will be added once Asala confirms them.',
+      i_sizes_p: 'Dome earrings: 24 × 28 mm. Sizes for the other pieces and chain lengths will be added once Asala confirms them.',
       i_care_p: 'Keep pieces away from perfume, water and heat, wipe them with a soft cloth and store each one in its pouch. Clay pieces are light but can break if dropped.',
       i_returns_p: 'The returns and exchange policy is being written with Asala. Made-to-order pieces may not be returnable.', i_privacy_p: 'The privacy policy is being written. In this demo nothing is sent anywhere: your bag and wishlist stay on your device.', i_terms_p: 'Terms of sale are being written with Asala.',
       i_q1: 'How do I pay?', i_a1: 'In cash to the courier when it arrives. Card or wallet payment is to be confirmed.', i_q2: 'When will my order arrive?', i_a2: 'We call you to confirm the order before it ships and give you the date then.',
