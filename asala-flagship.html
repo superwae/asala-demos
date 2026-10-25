@@ -1,0 +1,1829 @@
+<!doctype html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>أصالة · ASALA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&display=swap">
+<style>
+/* ASALA flagship demo (25 Oct 2026 meeting): dark 3D hero over a light store, Shop by menu,
+   the Asala assistant (gift finder, talk to the maker, custom design), most-requested ranked by orders. */
+:root {
+  --night: #12110e; --night2: #1b1a16; --night3: #26241f;
+  --gold: #d6ad69; --gold2: #b38946; --goldhi: #f1d9a6;
+  --ivory: #f5f1e9; --paper: #faf8f3; --ink: #24231f; --ink2: #56524a; --muted: #7b766c;
+  --red: #c6383c; --wine: #6e3442; --olive: #5d6450;
+  --bg: var(--paper); --fg: var(--ink); --fg2: var(--ink2); --mut: var(--muted); --line: rgba(36,35,31,.12);
+  --panel: #ffffff; --soft: var(--ivory); --tile: #f1ece2;
+  --f-ld: "Cormorant Garamond", "Times New Roman", serif; --f-l: "Jost", system-ui, sans-serif;
+  --f-ad: "Noto Naskh Arabic", "Cormorant Garamond", serif; --f-a: "IBM Plex Sans Arabic", "Jost", system-ui, sans-serif;
+  --fd: var(--f-ad); --fb: var(--f-a);
+  --r: 14px; --ease: cubic-bezier(.2,.7,.2,1);
+  color-scheme: light;
+}
+html[lang="en"] { --fd: var(--f-ld); --fb: var(--f-l); }
+html[data-theme="dark"] {
+  --bg: #15140f; --fg: #eee8dc; --fg2: #c2baa9; --mut: #988f80; --line: rgba(238,232,220,.13);
+  --panel: #1e1d18; --soft: #1b1a15; --tile: #23211b; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: var(--fb); font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+img { max-width: 100%; display: block; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; background: none; border: 0; padding: 0; }
+a { color: inherit; }
+[hidden] { display: none !important; }
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.wrap { width: min(1240px, 100% - 40px); margin-inline: auto; }
+h1, h2, h3 { font-family: var(--fd); font-weight: 500; margin: 0; line-height: 1.2; text-wrap: balance; }
+html[lang="en"] h1, html[lang="en"] h2 { font-weight: 500; letter-spacing: -.005em; }
+p { margin: 0; }
+.caps { font-family: var(--f-l); text-transform: uppercase; letter-spacing: .22em; font-size: .72rem; font-weight: 400; }
+html[lang="ar"] .caps { font-family: var(--f-a); letter-spacing: 0; text-transform: none; font-size: .86rem; }
+.ic { width: 20px; height: 20px; flex: none; stroke: currentColor; fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+[dir="rtl"] .flip-rtl { transform: scaleX(-1); }
+[dir="ltr"] .flip-ltr { transform: scaleX(-1); }
+
+/* ---------- buttons ---------- */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 48px; padding: 0 26px; border-radius: 999px; font-size: .95rem; font-weight: 500; transition: background .25s, color .25s, border-color .25s, transform .25s var(--ease); text-decoration: none; white-space: nowrap; }
+.btn:active { transform: scale(.98); }
+.btn-gold { background: var(--gold); color: #1a160e; }
+.btn-gold:hover { background: var(--goldhi); }
+.btn-line { border: 1px solid rgba(241,217,166,.45); color: var(--ivory); }
+.btn-line:hover { border-color: var(--gold); color: var(--goldhi); }
+.btn-dark { background: var(--ink); color: var(--ivory); }
+html[data-theme="dark"] .btn-dark { background: var(--gold); color: #1a160e; }
+.btn-dark:hover { opacity: .9; }
+.btn-ghost { border: 1px solid var(--line); color: var(--fg); }
+.btn-ghost:hover { border-color: var(--fg); }
+.btn .ic { width: 18px; height: 18px; }
+.link { display: inline-flex; align-items: center; gap: 8px; font-size: .92rem; text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 2px; }
+
+/* ---------- header ---------- */
+.hdr { position: fixed; inset: 0 0 auto 0; z-index: 40; color: var(--ivory); transition: background .35s, color .35s, box-shadow .35s; }
+.hdr.solid { background: rgba(250,248,243,.94); color: var(--ink); box-shadow: 0 1px 0 var(--line); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+html[data-theme="dark"] .hdr.solid { background: rgba(21,20,15,.94); color: var(--fg); }
+.hdr-in { height: 84px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 16px; }
+.hdr-side { display: flex; align-items: center; gap: 6px; }
+.hdr-end { justify-content: flex-end; }
+.ibtn { width: 44px; height: 44px; display: inline-grid; place-items: center; border-radius: 50%; position: relative; transition: background .2s; }
+.ibtn:hover { background: rgba(255,255,255,.08); }
+.hdr.solid .ibtn:hover { background: rgba(0,0,0,.05); }
+.tbtn { text-decoration: none; height: 44px; padding: 0 10px; display: inline-flex; align-items: center; gap: 6px; font-size: .9rem; border-radius: 22px; }
+.tbtn:hover { color: var(--gold); }
+.hdr.solid .tbtn:hover { color: var(--gold2); }
+.tbtn .chev { width: 14px; height: 14px; transition: transform .25s; }
+.tbtn[aria-expanded="true"] .chev { transform: rotate(180deg); }
+.brand { display: grid; justify-items: center; gap: 2px; text-decoration: none; }
+.brand img { height: 21px; width: auto; }
+.brand .wm-dark { display: none; }
+.hdr.solid .brand .wm-light { display: none; }
+.hdr.solid .brand .wm-dark { display: block; }
+html[data-theme="dark"] .hdr.solid .brand .wm-light { display: block; }
+html[data-theme="dark"] .hdr.solid .brand .wm-dark { display: none; }
+.brand small { font-family: var(--f-ad); font-size: .82rem; color: var(--gold); display: flex; align-items: center; gap: 8px; line-height: 1; }
+.brand small::before, .brand small::after { content: ""; width: 16px; height: 1px; background: currentColor; opacity: .7; }
+.hdr.solid .brand small { color: var(--gold2); }
+.count { position: absolute; top: 5px; inset-inline-end: 4px; min-width: 17px; height: 17px; border-radius: 9px; background: var(--gold); color: #1a160e; font: 600 .66rem/17px var(--f-l); text-align: center; padding: 0 4px; }
+.hide-sm { }
+@media (max-width: 860px) { .hide-sm { display: none !important; } .hdr-in { height: 68px; } }
+
+/* shop-by mega menu */
+.mega { position: absolute; inset: 100% 0 auto 0; background: var(--panel); color: var(--fg); box-shadow: 0 30px 60px -30px rgba(0,0,0,.35); border-top: 1px solid var(--line); opacity: 0; transform: translateY(-6px); pointer-events: none; transition: opacity .25s, transform .25s var(--ease); }
+.mega.open { opacity: 1; transform: none; pointer-events: auto; }
+.mega-in { display: grid; grid-template-columns: 260px 1fr 300px; gap: 40px; padding: 34px 0 40px; }
+.mg-groups { display: grid; align-content: start; border-inline-end: 1px solid var(--line); padding-inline-end: 24px; }
+.mg-groups button { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; font-family: var(--fd); font-size: 1.28rem; text-align: start; color: var(--fg2); transition: color .2s; }
+html[lang="en"] .mg-groups button { font-size: 1.45rem; }
+.mg-groups button[aria-selected="true"], .mg-groups button:hover { color: var(--fg); }
+.mg-groups button .ic { width: 16px; height: 16px; opacity: .5; }
+.mg-groups button[aria-selected="true"] .ic { opacity: 1; color: var(--gold2); }
+.mg-opts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 30px; align-content: start; }
+.mg-opts a { display: flex; align-items: center; gap: 14px; padding: 10px 0; text-decoration: none; border-bottom: 1px solid var(--line); font-size: .98rem; }
+.mg-opts a:hover { color: var(--gold2); }
+.mg-opts a img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; background: var(--tile); }
+.mg-opts a .n { margin-inline-start: auto; color: var(--mut); font-size: .8rem; font-family: var(--f-l); }
+.mg-feat { border-radius: var(--r); overflow: hidden; position: relative; min-height: 260px; background: var(--night); color: var(--ivory); text-decoration: none; display: flex; align-items: flex-end; }
+.mg-feat img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .8; transition: transform .6s var(--ease); }
+.mg-feat:hover img { transform: scale(1.04); }
+.mg-feat span { position: relative; padding: 20px; background: linear-gradient(transparent, rgba(0,0,0,.65)); width: 100%; font-family: var(--fd); font-size: 1.25rem; }
+
+/* ---------- hero ---------- */
+.hero { position: relative; background: radial-gradient(120% 90% at 70% 40%, #2a2721 0%, var(--night) 58%); color: var(--ivory); min-height: max(680px, 100svh); overflow: hidden; isolation: isolate; }
+[dir="rtl"] .hero { background: radial-gradient(120% 90% at 30% 40%, #2a2721 0%, var(--night) 58%); }
+.hero::after { content: ""; position: absolute; inset: auto 0 0 0; height: 140px; background: linear-gradient(transparent, rgba(0,0,0,.35)); pointer-events: none; z-index: -1; }
+.hero-in { position: relative; min-height: inherit; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr); align-items: center; gap: 30px; padding-top: 96px; padding-bottom: 40px; }
+.hero-copy { max-width: 520px; }
+.eyebrow { display: flex; align-items: center; gap: 14px; color: rgba(245,241,233,.7); margin-bottom: 26px; }
+.eyebrow::after { content: ""; width: 54px; height: 1px; background: var(--gold); opacity: .7; }
+.hero h1 { font-size: clamp(3rem, 6.4vw, 5.6rem); line-height: 1.08; font-weight: 500; }
+html[lang="ar"] .hero h1 { font-size: clamp(2.8rem, 6vw, 5.2rem); line-height: 1.25; }
+.hero h1 .g { color: var(--gold); display: block; }
+.hero-p { margin-top: 24px; color: rgba(245,241,233,.78); font-size: 1.05rem; max-width: 460px; }
+.hero-cta { margin-top: 34px; display: flex; flex-wrap: wrap; gap: 14px; }
+.slides { margin-top: 46px; display: flex; gap: 6px; align-items: center; }
+.slides button { display: flex; align-items: center; gap: 12px; padding: 10px 0; color: rgba(245,241,233,.45); font: 400 .82rem var(--f-l); letter-spacing: .1em; transition: color .3s; }
+.slides button i { display: block; width: 64px; height: 1px; background: rgba(245,241,233,.25); position: relative; overflow: hidden; }
+.slides button i::after { content: ""; position: absolute; inset: 0; background: var(--gold); transform: scaleX(0); transform-origin: left; }
+[dir="rtl"] .slides button i::after { transform-origin: right; }
+.slides button[aria-current="true"] { color: var(--gold); }
+.slides button[aria-current="true"] i::after { animation: fill var(--dur, 8s) linear forwards; }
+.slides.paused button[aria-current="true"] i::after { animation-play-state: paused; }
+@keyframes fill { to { transform: scaleX(1); } }
+.slides button:last-child i { display: none; }
+.scroll-cue { margin-top: 40px; display: inline-flex; align-items: center; gap: 16px; color: rgba(245,241,233,.6); text-decoration: none; }
+.scroll-cue span:first-child { width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(214,173,105,.55); display: grid; place-items: center; color: var(--gold); }
+.scroll-cue .ic { width: 18px; height: 18px; animation: bob 2.4s ease-in-out infinite; }
+@keyframes bob { 50% { transform: translateY(4px); } }
+
+/* the stage: a lit arch niche, the 3D piece, its pedestal */
+.stage { position: relative; height: min(78vh, 720px); min-height: 520px; }
+.niche { position: absolute; inset: 4% 14% 12% 14%; border-radius: 999px 999px 0 0; background: linear-gradient(180deg, #2b2822 0%, #1a1814 70%, #13120f 100%); box-shadow: inset 0 0 80px rgba(0,0,0,.6); }
+.niche::before { content: ""; position: absolute; inset: -14px; border-radius: 999px 999px 0 0; border: 1.5px solid rgba(214,173,105,.55); border-bottom: 0; filter: drop-shadow(0 0 6px rgba(214,173,105,.35)); }
+.niche::after { content: ""; position: absolute; inset: 0; border-radius: inherit; background: radial-gradient(60% 45% at 50% 38%, rgba(255,226,170,.16), transparent 70%); }
+.floor { position: absolute; inset: auto -20% 0 -20%; height: 26%; background: radial-gradient(50% 60% at 50% 0%, rgba(214,173,105,.12), transparent 70%); }
+#hero-canvas { position: absolute; inset: 0; width: 100%; height: 100%; touch-action: pan-y; cursor: grab; z-index: 1; }
+#hero-canvas:active { cursor: grabbing; }
+.fallback { position: absolute; inset: 14% 24% 22%; display: none; z-index: 1; }
+.fallback img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 30px 40px rgba(0,0,0,.6)); }
+html.no3d .fallback { display: block; }
+html.no3d #hero-canvas { display: none; }
+.cap { position: absolute; inset-inline: 0; bottom: -7%; z-index: 2; display: flex; justify-content: center; }
+.cap button { display: grid; justify-items: center; gap: 2px; color: var(--ivory); padding: 6px 16px; }
+.cap b { font-family: var(--fd); font-weight: 500; font-size: 1.3rem; }
+html[lang="en"] .cap b { font-size: 1.5rem; }
+.cap small { color: rgba(245,241,233,.6); font-size: .82rem; display: inline-flex; gap: 6px; align-items: center; }
+.cap button:hover small { color: var(--gold); }
+.drag { position: absolute; top: 10%; inset-inline-start: 0; z-index: 2; color: rgba(245,241,233,.55); font-size: .8rem; display: flex; align-items: center; gap: 8px; transition: opacity .5s; }
+.drag.gone { opacity: 0; }
+.rail { position: absolute; top: 50%; inset-inline-end: 0; transform: translateY(-50%); z-index: 3; display: grid; justify-items: center; gap: 10px; }
+.rail-btn { width: 46px; height: 46px; border-radius: 50%; border: 1px solid rgba(214,173,105,.5); color: var(--gold); display: grid; place-items: center; background: rgba(18,17,14,.5); }
+.rail-btn[aria-expanded="true"] { background: var(--gold); color: #1a160e; }
+.rail-list { display: grid; gap: 10px; padding: 12px 8px; border-radius: 30px; background: rgba(18,17,14,.65); border: 1px solid rgba(214,173,105,.25); transform-origin: center; animation: pop .25s var(--ease); }
+@keyframes pop { from { opacity: 0; transform: scale(.92); } }
+.sw { width: 30px; height: 30px; border-radius: 50%; border: 2px solid transparent; box-shadow: inset 0 0 0 1px rgba(255,255,255,.25); }
+.sw[aria-pressed="true"] { border-color: var(--goldhi); }
+.sw.A { background: radial-gradient(circle at 35% 30%, #fff1c9, #d7a948 55%, #8a6420); }
+.sw.B { background: radial-gradient(circle at 35% 30%, #ffffff, #c9ced3 55%, #7b8086); }
+.sw.C { background: radial-gradient(circle at 35% 30%, #fde3c0, #d9a465 55%, #8c5d2c); }
+.rail-list hr { width: 18px; border: 0; border-top: 1px solid rgba(214,173,105,.3); margin: 2px auto; }
+.pt { width: 30px; height: 30px; border-radius: 50%; overflow: hidden; border: 2px solid transparent; }
+.pt img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(.2) contrast(1.1); }
+.pt[aria-pressed="true"] { border-color: var(--goldhi); }
+
+@media (max-width: 900px) {
+  .hero-in { grid-template-columns: 1fr; padding-top: 76px; gap: 0; }
+  .stage { order: -1; height: 56svh; min-height: 380px; margin-bottom: 64px; }
+  .cap { bottom: -58px; }
+  .niche { inset: 6% 18% 14% 18%; }
+  .hero-copy { max-width: none; padding-bottom: 20px; }
+  .eyebrow { margin-bottom: 14px; }
+  .hero-p { font-size: 1rem; }
+  .slides { margin-top: 28px; }
+  .scroll-cue { display: none; }
+  .rail { top: auto; bottom: 14%; transform: none; }
+  .drag { top: 4%; }
+}
+
+/* ---------- sections ---------- */
+.sec { padding: clamp(64px, 9vw, 120px) 0; }
+.sec-hd { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 40px; flex-wrap: wrap; }
+.sec-hd h2 { font-size: clamp(2rem, 3.6vw, 3rem); }
+html[lang="en"] .sec-hd h2 { font-size: clamp(2.3rem, 4vw, 3.4rem); }
+.sec-hd p { color: var(--fg2); max-width: 520px; margin-top: 8px; }
+.kick { color: var(--gold2); margin-bottom: 10px; display: block; }
+html[data-theme="dark"] .kick { color: var(--gold); }
+
+/* shop-by circles, right under the hero */
+.cats { padding: 44px 0 10px; }
+.cats-hd { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 22px; gap: 16px; }
+.cats-hd h2 { font-size: 1.35rem; }
+html[lang="en"] .cats-hd h2 { font-size: 1.6rem; }
+.cats-row { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 18px; }
+.cat { display: grid; justify-items: center; gap: 12px; text-decoration: none; text-align: center; font-size: .95rem; }
+.cat span.c { width: min(128px, 100%); aspect-ratio: 1; border-radius: 50%; overflow: hidden; background: var(--tile); display: block; position: relative; }
+.cat img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease); }
+.cat:hover img { transform: scale(1.07); }
+.cat span.c::after { content: ""; position: absolute; inset: 0; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(0,0,0,.05); }
+.cat:hover { color: var(--gold2); }
+@media (max-width: 900px) { .cats-row { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 10px; scrollbar-width: none; } .cats-row::-webkit-scrollbar { display: none; } .cat { flex: 0 0 96px; scroll-snap-align: start; font-size: .86rem; } }
+
+/* product cards */
+.grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 34px 22px; }
+@media (max-width: 1000px) { .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 700px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 26px 14px; } }
+.card { display: grid; gap: 12px; text-align: start; position: relative; }
+.card .ph { position: relative; aspect-ratio: 4 / 5; border-radius: var(--r); overflow: hidden; background: var(--tile); }
+.card .ph img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: opacity .5s, transform .8s var(--ease); }
+.card .ph img.alt { opacity: 0; }
+.card:hover .ph img.alt { opacity: 1; }
+.card:hover .ph img:first-child { transform: scale(1.04); }
+.card .rank { position: absolute; top: 12px; inset-inline-start: 12px; font: 500 .74rem var(--f-l); letter-spacing: .12em; color: var(--ink); background: rgba(250,248,243,.88); border-radius: 20px; padding: 3px 10px; }
+.card .new { position: absolute; top: 12px; inset-inline-end: 12px; font-size: .74rem; color: #fff; background: var(--red); border-radius: 20px; padding: 2px 10px; }
+.card .view { position: absolute; inset: auto 12px 12px 12px; min-height: 42px; border-radius: 21px; background: rgba(250,248,243,.94); color: var(--ink); font-size: .86rem; display: grid; place-items: center; opacity: 0; transform: translateY(6px); transition: opacity .3s, transform .3s var(--ease); }
+.card:hover .view, .card:focus-visible .view { opacity: 1; transform: none; }
+.card h3 { font-family: var(--fb); font-size: 1rem; font-weight: 500; line-height: 1.45; }
+.card .meta { color: var(--mut); font-size: .84rem; display: flex; gap: 10px; justify-content: space-between; }
+.card .meta b { color: var(--fg); font-weight: 500; font-family: var(--f-l); }
+.card.moved { animation: lift .9s var(--ease); }
+@keyframes lift { 0% { box-shadow: 0 0 0 0 rgba(214,173,105,.0); } 30% { box-shadow: 0 0 0 4px rgba(214,173,105,.55); border-radius: var(--r); } 100% { box-shadow: 0 0 0 0 rgba(214,173,105,0); } }
+.auto-note { display: inline-flex; align-items: center; gap: 8px; color: var(--mut); font-size: .84rem; }
+.auto-note i { width: 7px; height: 7px; border-radius: 50%; background: #3f9b6a; box-shadow: 0 0 0 4px rgba(63,155,106,.15); }
+
+/* made + care: the one dark band below the hero */
+.made { background: var(--night2); color: var(--ivory); }
+.made .sec-hd p { color: rgba(245,241,233,.7); }
+.made .kick { color: var(--gold); }
+.steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; counter-reset: s; }
+.step figure { margin: 0; }
+.step .im { aspect-ratio: 4 / 5; border-radius: var(--r); overflow: hidden; background: #000; }
+.step img { width: 100%; height: 100%; object-fit: cover; }
+.step figcaption { margin-top: 14px; }
+.step b { display: flex; gap: 10px; align-items: baseline; font-family: var(--fd); font-weight: 500; font-size: 1.2rem; }
+html[lang="en"] .step b { font-size: 1.4rem; }
+.step b::before { counter-increment: s; content: "0" counter(s); font: 400 .78rem var(--f-l); color: var(--gold); letter-spacing: .1em; }
+.step span { color: rgba(245,241,233,.65); font-size: .9rem; }
+.care { margin-top: 56px; padding-top: 34px; border-top: 1px solid rgba(245,241,233,.14); display: grid; grid-template-columns: 1fr 2fr; gap: 30px; }
+.care h3 { font-size: 1.6rem; }
+.care ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 14px 30px; }
+.care li { display: flex; gap: 12px; color: rgba(245,241,233,.85); font-size: .95rem; }
+.care li::before { content: ""; flex: none; width: 10px; height: 10px; margin-top: .55em; border: 1.5px solid var(--gold); transform: rotate(45deg); }
+@media (max-width: 900px) { .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } .care { grid-template-columns: 1fr; } .care ul { grid-template-columns: 1fr; } }
+
+/* packaging */
+.pack { display: grid; grid-template-columns: 1.15fr 1fr; gap: clamp(30px, 6vw, 80px); align-items: center; }
+.pack .im { border-radius: var(--r); overflow: hidden; aspect-ratio: 16 / 10; }
+.pack .im img { width: 100%; height: 100%; object-fit: cover; }
+.pack h2 { font-size: clamp(1.9rem, 3.4vw, 2.8rem); }
+.pack p { color: var(--fg2); margin-top: 16px; }
+.ticks { list-style: none; padding: 0; margin: 24px 0 0; display: grid; gap: 12px; }
+.ticks li { display: flex; gap: 14px; align-items: center; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+.ticks li .ic { color: var(--gold2); }
+@media (max-width: 900px) { .pack { grid-template-columns: 1fr; } }
+
+/* about + our story */
+.about { background: var(--soft); }
+.ab { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(30px, 6vw, 80px); align-items: start; }
+.ab h2 { font-size: clamp(2rem, 3.6vw, 3rem); }
+.ab .lead { font-size: 1.12rem; margin-top: 18px; color: var(--fg); }
+.ab .story { margin-top: 30px; padding-top: 26px; border-top: 1px solid var(--line); }
+.ab .story h3 { font-size: 1.4rem; margin-bottom: 10px; }
+html[lang="en"] .ab .story h3 { font-size: 1.65rem; }
+.ab .story p + p { margin-top: 12px; }
+.ab .story p { color: var(--fg2); }
+.vision { background: var(--night2); color: var(--ivory); border-radius: 20px; padding: 34px; position: relative; overflow: hidden; }
+.vision .kick { color: var(--gold); }
+.vision blockquote { margin: 0; font-family: var(--fd); font-size: 1.45rem; line-height: 1.6; }
+html[lang="en"] .vision blockquote { font-size: 1.7rem; line-height: 1.35; }
+.vision svg.mk { position: absolute; width: 180px; inset-inline-end: -40px; bottom: -50px; color: rgba(214,173,105,.12); }
+.maker { margin-top: 18px; background: var(--panel); border: 1px solid var(--line); border-radius: 20px; padding: 22px; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+.maker .av { width: 54px; height: 54px; border-radius: 50%; background: var(--night2); color: var(--gold); display: grid; place-items: center; flex: none; }
+.maker .av svg { width: 30px; }
+.maker div { flex: 1 1 180px; }
+.maker b { display: block; font-weight: 500; }
+.maker span { color: var(--mut); font-size: .88rem; }
+.sketches { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 30px; }
+.sketches img { aspect-ratio: 1; object-fit: cover; border-radius: 12px; }
+@media (max-width: 900px) { .ab { grid-template-columns: 1fr; } }
+
+/* ---------- footer ---------- */
+.trust { background: var(--soft); border-top: 1px solid var(--line); }
+.trust ul { list-style: none; margin: 0; padding: 26px 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
+.trust li { display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; font-size: .9rem; color: var(--fg2); }
+.trust .ic { color: var(--gold2); width: 22px; height: 22px; }
+@media (max-width: 700px) { .trust ul { grid-template-columns: 1fr 1fr; } }
+.ftr { background: var(--night); color: rgba(245,241,233,.82); padding: 64px 0 28px; }
+.ftr-top { display: grid; grid-template-columns: 1.3fr repeat(3, 1fr) 1.4fr; gap: 34px; }
+.ftr h4 { margin: 0 0 16px; color: var(--gold); font-weight: 500; }
+.ftr ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; font-size: .93rem; }
+.ftr ul a, .ftr ul button { text-decoration: none; text-align: start; opacity: .85; }
+.ftr ul a:hover, .ftr ul button:hover { opacity: 1; color: var(--goldhi); }
+.ftr .about-col p { font-size: .92rem; margin-top: 14px; opacity: .8; }
+.ftr .about-col img { height: 18px; }
+.addr { margin-top: 16px; display: grid; gap: 8px; font-size: .9rem; }
+.addr div { display: flex; gap: 10px; align-items: flex-start; }
+.addr .ic { width: 18px; height: 18px; color: var(--gold); margin-top: 3px; }
+.news p { font-size: .92rem; opacity: .8; }
+.news form { margin-top: 14px; display: flex; border-bottom: 1px solid rgba(245,241,233,.35); }
+.news input { flex: 1; background: none; border: 0; padding: 10px 0; color: var(--ivory); min-width: 0; }
+.news input::placeholder { color: rgba(245,241,233,.5); }
+.news button { width: 40px; color: var(--gold); }
+.social { display: flex; gap: 10px; margin-top: 20px; }
+.social a { width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(245,241,233,.22); display: grid; place-items: center; }
+.social a:hover { border-color: var(--gold); color: var(--gold); }
+.social .ic { width: 18px; height: 18px; }
+.ftr-pay { margin-top: 44px; padding-top: 22px; border-top: 1px solid rgba(245,241,233,.12); display: flex; flex-wrap: wrap; gap: 14px 24px; align-items: center; justify-content: space-between; font-size: .84rem; }
+.pays { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.pay { height: 30px; min-width: 50px; padding: 0 10px; border-radius: 6px; background: #fff; color: #1a1f71; display: inline-grid; place-items: center; font: 700 italic .82rem/1 var(--f-l); letter-spacing: .02em; }
+.pay.mc { gap: 0; display: inline-flex; align-items: center; justify-content: center; }
+.pay.mc i { width: 16px; height: 16px; border-radius: 50%; background: #eb001b; display: block; }
+.pay.mc i + i { background: #f79e1b; margin-inline-start: -6px; mix-blend-mode: multiply; }
+.pay.cod { background: transparent; border: 1px solid rgba(245,241,233,.3); color: var(--ivory); font: 400 .78rem var(--fb); }
+.ftr-bot { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 10px 20px; justify-content: space-between; font-size: .8rem; opacity: .6; }
+.ftr-bot button { text-decoration: underline; }
+@media (max-width: 1000px) { .ftr-top { grid-template-columns: 1fr 1fr; } .ftr .about-col, .news { grid-column: 1 / -1; } }
+
+/* ---------- shop view ---------- */
+.view-shop { padding-top: 120px; min-height: 80vh; }
+.shop-hd { display: flex; justify-content: space-between; align-items: end; gap: 20px; flex-wrap: wrap; margin-bottom: 26px; }
+.shop-hd h1 { font-size: clamp(2.2rem, 4vw, 3.4rem); }
+.crumbs { color: var(--mut); font-size: .86rem; margin-bottom: 10px; display: flex; gap: 8px; }
+.crumbs a { text-decoration: none; }
+.filters { position: sticky; top: 84px; z-index: 5; background: var(--bg); padding: 12px 0; border-block: 1px solid var(--line); display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+@media (max-width: 860px) { .filters { top: 68px; } }
+.fsel { position: relative; }
+.fsel select { appearance: none; -webkit-appearance: none; background: var(--panel); border: 1px solid var(--line); border-radius: 22px; height: 40px; padding: 0 16px; padding-inline-end: 36px; font-size: .88rem; color: var(--fg); }
+.fsel select.on { border-color: var(--fg); background: var(--fg); color: var(--bg); }
+.fsel .ic { position: absolute; inset-inline-end: 12px; top: 50%; width: 14px; height: 14px; transform: translateY(-50%); pointer-events: none; }
+.fsel select.on + .ic { color: var(--bg); }
+.filters .sp { flex: 1; }
+.filters .clear { font-size: .86rem; text-decoration: underline; color: var(--fg2); }
+.res { color: var(--mut); font-size: .86rem; margin: 18px 0 24px; }
+.empty { padding: 60px 0; text-align: center; color: var(--fg2); }
+
+/* ---------- overlays: sheet, bag, checkout, policies, search ---------- */
+.scrim { position: fixed; inset: 0; background: rgba(10,9,7,.5); z-index: 60; opacity: 0; transition: opacity .3s; }
+.scrim.on { opacity: 1; }
+.panel { position: fixed; z-index: 61; background: var(--panel); color: var(--fg); box-shadow: 0 30px 80px rgba(0,0,0,.3); transition: transform .38s var(--ease), opacity .3s; }
+.side { top: 0; bottom: 0; inset-inline-end: 0; width: min(480px, 100%); transform: translateX(100%); display: flex; flex-direction: column; }
+[dir="rtl"] .side { transform: translateX(-100%); }
+.side.from-start { inset-inline-end: auto; inset-inline-start: 0; transform: translateX(-100%); }
+[dir="rtl"] .side.from-start { transform: translateX(100%); }
+.panel.on { transform: none !important; }
+.p-hd { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 18px 22px; border-bottom: 1px solid var(--line); }
+.p-hd h2 { font-size: 1.3rem; }
+html[lang="en"] .p-hd h2 { font-size: 1.5rem; }
+.p-bd { flex: 1; overflow: auto; padding: 22px; overscroll-behavior: contain; }
+.p-ft { padding: 18px 22px; border-top: 1px solid var(--line); display: grid; gap: 12px; }
+.close { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; }
+.close:hover { background: var(--soft); }
+
+.sheet { width: min(960px, 100%); }
+.sheet .p-bd { display: grid; grid-template-columns: 1.05fr 1fr; gap: 30px; padding: 0; }
+.gal { background: var(--tile); position: relative; min-height: 100%; }
+.gal .main { aspect-ratio: 4 / 5; width: 100%; object-fit: cover; }
+.thumbs { display: flex; gap: 8px; padding: 12px; }
+.thumbs button { width: 64px; height: 64px; border-radius: 10px; overflow: hidden; border: 2px solid transparent; }
+.thumbs button[aria-pressed="true"] { border-color: var(--gold2); }
+.thumbs img { width: 100%; height: 100%; object-fit: cover; }
+.info { padding: 30px 0; padding-inline-end: 26px; display: grid; align-content: start; gap: 16px; }
+.info h2 { font-size: 2rem; }
+html[lang="en"] .info h2 { font-size: 2.3rem; }
+.info .coll { color: var(--gold2); }
+.info .price { font: 500 1.35rem var(--f-l); }
+.info .note { color: var(--mut); font-size: .8rem; }
+.info .desc { color: var(--fg2); }
+.opt-lbl { font-size: .86rem; color: var(--fg2); margin-bottom: 8px; display: block; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { border: 1px solid var(--line); border-radius: 22px; padding: 8px 14px; font-size: .86rem; display: inline-flex; align-items: center; gap: 8px; }
+.chip[aria-pressed="true"] { border-color: var(--fg); background: var(--fg); color: var(--bg); }
+.chip .sw { width: 16px; height: 16px; border: 0; box-shadow: none; }
+.facts { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--line); }
+.facts li { display: flex; gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--line); font-size: .9rem; }
+.facts .ic { color: var(--gold2); width: 18px; height: 18px; margin-top: 3px; }
+.ask { display: inline-flex; gap: 8px; align-items: center; font-size: .9rem; text-decoration: underline; color: var(--fg2); justify-self: start; }
+@media (max-width: 760px) {
+  .sheet .p-bd { grid-template-columns: 1fr; gap: 0; }
+  .info { padding: 22px; }
+  .gal .main { aspect-ratio: 1; }
+}
+
+.line { display: grid; grid-template-columns: 76px 1fr auto; gap: 14px; padding: 14px 0; border-bottom: 1px solid var(--line); align-items: start; }
+.line img { width: 76px; height: 92px; object-fit: cover; border-radius: 10px; background: var(--tile); }
+.line b { font-weight: 500; display: block; }
+.line small { color: var(--mut); font-size: .8rem; display: block; }
+.qty { display: inline-flex; align-items: center; border: 1px solid var(--line); border-radius: 20px; margin-top: 8px; }
+.qty button { width: 32px; height: 32px; }
+.qty span { min-width: 22px; text-align: center; font-family: var(--f-l); font-size: .9rem; }
+.line .pr { font-family: var(--f-l); font-size: .92rem; }
+.rm { font-size: .78rem; color: var(--mut); text-decoration: underline; margin-top: 8px; display: block; }
+.sum { display: flex; justify-content: space-between; font-size: .95rem; }
+.sum b { font-family: var(--f-l); font-weight: 500; }
+.sum.tot { font-size: 1.1rem; padding-top: 10px; border-top: 1px solid var(--line); }
+.bag-empty { text-align: center; padding: 50px 10px; color: var(--fg2); display: grid; gap: 18px; justify-items: center; }
+
+.form { display: grid; gap: 14px; }
+.fld { display: grid; gap: 6px; }
+.fld label, .fld .lb { font-size: .84rem; color: var(--fg2); }
+.fld input, .fld select, .fld textarea { width: 100%; border: 1px solid var(--line); background: var(--bg); border-radius: 12px; padding: 12px 14px; font-size: .95rem; }
+.fld textarea { min-height: 96px; resize: vertical; }
+.fld input:focus, .fld select:focus, .fld textarea:focus { outline: none; border-color: var(--gold2); box-shadow: 0 0 0 3px rgba(214,173,105,.2); }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.payopt { display: grid; gap: 8px; }
+.payopt label { display: flex; gap: 12px; align-items: center; border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; cursor: pointer; }
+.payopt label:has(input:checked) { border-color: var(--fg); }
+.payopt small { color: var(--mut); display: block; font-size: .78rem; }
+.ok { text-align: center; display: grid; gap: 14px; justify-items: center; padding: 30px 6px; }
+.ok .tick { width: 64px; height: 64px; border-radius: 50%; background: rgba(63,155,106,.12); color: #3f9b6a; display: grid; place-items: center; }
+.ok p { color: var(--fg2); }
+.demo-note { font-size: .78rem; color: var(--mut); background: var(--soft); border-radius: 10px; padding: 10px 12px; }
+
+.pol-tabs { display: flex; gap: 6px; overflow-x: auto; padding: 0 22px 12px; border-bottom: 1px solid var(--line); scrollbar-width: none; }
+.pol-tabs button { white-space: nowrap; padding: 8px 14px; border-radius: 20px; font-size: .86rem; color: var(--fg2); }
+.pol-tabs button[aria-selected="true"] { background: var(--fg); color: var(--bg); }
+.pol h3 { font-size: 1.15rem; margin: 18px 0 8px; font-family: var(--fb); font-weight: 600; }
+.pol p, .pol li { color: var(--fg2); font-size: .94rem; }
+.pol ul { padding-inline-start: 20px; margin: 6px 0; }
+.pol table { width: 100%; border-collapse: collapse; font-size: .9rem; margin-top: 8px; }
+.pol td, .pol th { text-align: start; padding: 9px 4px; border-bottom: 1px solid var(--line); }
+.pol th { color: var(--mut); font-weight: 500; }
+
+.search { top: 0; inset-inline: 0; transform: translateY(-100%); padding: 22px 0 26px; }
+.search .row { display: flex; gap: 12px; align-items: center; border-bottom: 1px solid var(--fg); }
+.search input { flex: 1; border: 0; background: none; padding: 14px 0; font-size: 1.4rem; font-family: var(--fd); min-width: 0; }
+.search input:focus { outline: none; }
+.s-res { margin-top: 18px; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
+.s-res button { display: flex; gap: 12px; align-items: center; text-align: start; padding: 8px; border-radius: 12px; }
+.s-res button:hover { background: var(--soft); }
+.s-res img { width: 52px; height: 52px; border-radius: 10px; object-fit: cover; }
+.s-sug { margin-top: 14px; display: flex; gap: 8px; flex-wrap: wrap; align-items: center; color: var(--mut); font-size: .86rem; }
+
+/* menu drawer */
+.menu .p-bd { padding: 8px 22px 22px; }
+.acc { border-bottom: 1px solid var(--line); }
+.acc > button { width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 16px 0; font-family: var(--fd); font-size: 1.2rem; }
+html[lang="en"] .acc > button { font-size: 1.4rem; }
+.acc > button .ic { width: 16px; height: 16px; transition: transform .25s; }
+.acc > button[aria-expanded="true"] .ic { transform: rotate(180deg); }
+.acc .in { display: grid; gap: 2px; padding-bottom: 14px; }
+.acc .in a { text-decoration: none; padding: 7px 0; color: var(--fg2); }
+.mlinks { display: grid; margin-top: 14px; }
+.mlinks a, .mlinks button { display: flex; align-items: center; gap: 12px; padding: 13px 0; text-decoration: none; text-align: start; border-bottom: 1px solid var(--line); }
+.mlinks .ic { color: var(--gold2); }
+.mtools { display: flex; gap: 10px; margin-top: 20px; }
+
+/* ---------- the Asala assistant ---------- */
+.asst-fab { position: fixed; z-index: 55; bottom: max(20px, env(safe-area-inset-bottom)); inset-inline-end: 20px; display: flex; align-items: center; gap: 12px; padding: 6px; padding-inline-end: 20px; border-radius: 40px; background: var(--night2); color: var(--ivory); box-shadow: 0 14px 34px -10px rgba(0,0,0,.45), 0 0 0 1px rgba(214,173,105,.35); transition: padding .35s var(--ease), transform .3s var(--ease), opacity .3s; }
+.asst-fab .orb { width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; background: radial-gradient(circle at 35% 30%, #f3dcab, var(--gold) 55%, #9b7535); color: #1a160e; flex: none; position: relative; }
+.asst-fab .orb svg { width: 26px; }
+.asst-fab .orb::after { content: ""; position: absolute; inset: -4px; border-radius: 50%; border: 1px solid rgba(214,173,105,.6); animation: ring 3s ease-out infinite; }
+@keyframes ring { 0% { opacity: .8; transform: scale(.9); } 70%, 100% { opacity: 0; transform: scale(1.25); } }
+.asst-fab .lbl { font-size: .92rem; white-space: nowrap; overflow: hidden; max-width: 220px; transition: max-width .35s var(--ease), opacity .3s; }
+.asst-fab.mini { padding-inline-end: 6px; gap: 0; }
+.asst-fab.mini .lbl { max-width: 0; opacity: 0; }
+.asst-fab:hover { transform: translateY(-2px); }
+.asst-fab.away { opacity: 0; pointer-events: none; transform: translateY(20px); }
+.asst { position: fixed; z-index: 62; bottom: 92px; inset-inline-end: 20px; width: min(400px, 100% - 40px); max-height: min(680px, 100svh - 120px); display: flex; flex-direction: column; background: var(--paper); color: var(--ink); border-radius: 22px; box-shadow: 0 30px 80px -20px rgba(0,0,0,.45), 0 0 0 1px rgba(214,173,105,.3); overflow: hidden; opacity: 0; transform: translateY(14px) scale(.98); transform-origin: bottom; pointer-events: none; transition: opacity .3s, transform .35s var(--ease); }
+html[data-theme="dark"] .asst { background: #1d1c17; color: var(--fg); }
+.asst.on { opacity: 1; transform: none; pointer-events: auto; }
+.a-hd { display: flex; align-items: center; justify-content: space-between; padding: 16px 18px 12px; gap: 10px; position: relative; }
+.a-hd .back { display: inline-flex; gap: 6px; align-items: center; font-size: .86rem; color: var(--fg2); padding: 6px 4px; }
+.a-hd .t { display: flex; align-items: center; gap: 10px; }
+.a-hd .t .m { width: 30px; height: 30px; border-radius: 50%; background: var(--night2); color: var(--gold); display: grid; place-items: center; }
+.a-hd .t .m svg { width: 18px; }
+.a-hd .t b { font-weight: 500; font-size: .95rem; display: block; line-height: 1.2; }
+.a-hd .t small { color: var(--mut); font-size: .76rem; }
+.a-bd { overflow: auto; padding: 4px 18px 18px; overscroll-behavior: contain; }
+.a-bd h3 { font-size: 1.45rem; margin: 6px 0 4px; }
+html[lang="en"] .a-bd h3 { font-size: 1.7rem; }
+.a-sub { color: var(--fg2); font-size: .9rem; margin-bottom: 16px; }
+.a-opt { width: 100%; display: flex; align-items: center; gap: 14px; text-align: start; padding: 14px; border-radius: 16px; border: 1px solid var(--line); background: var(--panel); margin-bottom: 10px; transition: border-color .2s, transform .2s var(--ease); }
+.a-opt:hover { border-color: var(--gold2); transform: translateY(-1px); }
+.a-opt .o { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; color: #fff; flex: none; }
+.a-opt .o.w { background: var(--wine); } .a-opt .o.v { background: var(--olive); } .a-opt .o.g { background: var(--gold2); }
+.a-opt b { display: block; font-weight: 600; font-size: .98rem; }
+.a-opt small { color: var(--mut); font-size: .82rem; line-height: 1.5; display: block; }
+.a-opt .ic.go { margin-inline-start: auto; opacity: .5; width: 16px; }
+.a-foot { display: flex; gap: 10px; align-items: center; justify-content: center; color: var(--mut); font-size: .84rem; padding: 12px; border-radius: 14px; background: var(--soft); margin-top: 6px; }
+.a-foot svg { width: 18px; color: var(--gold2); }
+.q-step { color: var(--mut); font-size: .8rem; display: flex; justify-content: space-between; align-items: center; }
+.q-bar { display: flex; gap: 6px; margin: 8px 0 16px; }
+.q-bar i { flex: 1; height: 3px; border-radius: 2px; background: var(--line); }
+.q-bar i.on { background: var(--gold2); }
+.q-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.q-grid button { border: 1px solid var(--line); border-radius: 14px; padding: 14px 12px; text-align: start; background: var(--panel); transition: border-color .2s; }
+.q-grid button:hover { border-color: var(--gold2); }
+.q-grid b { display: block; font-weight: 500; }
+.q-grid small { color: var(--mut); font-size: .78rem; }
+.recs { display: grid; gap: 10px; margin-top: 12px; }
+.rec { display: grid; grid-template-columns: 74px 1fr; gap: 12px; padding: 10px; border: 1px solid var(--line); border-radius: 14px; background: var(--panel); align-items: center; }
+.rec img { width: 74px; height: 84px; object-fit: cover; border-radius: 10px; }
+.rec b { font-weight: 500; display: block; font-size: .95rem; }
+.rec small { color: var(--mut); font-size: .78rem; display: block; }
+.rec .acts { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
+.rec .acts button { font-size: .8rem; border: 1px solid var(--line); border-radius: 16px; padding: 5px 12px; }
+.rec .acts button.pri { background: var(--ink); color: var(--ivory); border-color: var(--ink); }
+html[data-theme="dark"] .rec .acts button.pri { background: var(--gold); color: #1a160e; border-color: var(--gold); }
+.rec .pr { font-family: var(--f-l); font-size: .86rem; color: var(--fg); }
+.howto { list-style: none; padding: 0; margin: 14px 0; display: grid; gap: 14px; }
+.howto li { display: grid; grid-template-columns: 34px 1fr; gap: 10px; }
+.howto li > span { font: 500 .85rem var(--f-l); color: var(--gold2); padding-top: 2px; }
+.howto b { display: block; font-weight: 600; font-size: .95rem; }
+.howto small { color: var(--mut); font-size: .82rem; }
+.vid { position: relative; aspect-ratio: 16 / 10; border-radius: 16px; overflow: hidden; background: var(--night); color: var(--ivory); }
+.vid .sc { position: absolute; inset: 0; opacity: 0; transition: opacity .6s; }
+.vid .sc.on { opacity: 1; }
+.vid .sc img { width: 100%; height: 100%; object-fit: cover; opacity: .75; }
+.vid .sc.on img { animation: kb 4.2s linear forwards; }
+@keyframes kb { from { transform: scale(1.02); } to { transform: scale(1.1); } }
+.vid .sc p { position: absolute; inset: auto 0 0 0; padding: 30px 16px 26px; background: linear-gradient(transparent, rgba(0,0,0,.8)); font-size: .92rem; }
+.vid .sc p b { color: var(--gold); font-family: var(--f-l); font-weight: 500; margin-inline-end: 8px; }
+.vid .play { position: absolute; inset: 0; display: grid; place-items: center; background: rgba(0,0,0,.25); }
+.vid .play span { width: 62px; height: 62px; border-radius: 50%; background: rgba(250,248,243,.92); color: var(--ink); display: grid; place-items: center; }
+.vid .bar { position: absolute; inset: auto 0 0 0; height: 3px; background: rgba(255,255,255,.2); }
+.vid .bar i { display: block; height: 100%; width: 0; background: var(--gold); }
+.vid .tag { position: absolute; top: 10px; inset-inline-start: 10px; font-size: .72rem; background: rgba(0,0,0,.55); border-radius: 12px; padding: 2px 10px; }
+.drop { border: 1.5px dashed var(--line); border-radius: 14px; padding: 16px; display: flex; gap: 12px; align-items: center; cursor: pointer; font-size: .88rem; color: var(--fg2); }
+.drop:hover { border-color: var(--gold2); }
+.drop img { width: 56px; height: 56px; border-radius: 10px; object-fit: cover; }
+.wa { display: flex; align-items: center; justify-content: center; gap: 8px; border: 1px solid var(--line); border-radius: 24px; min-height: 44px; font-size: .9rem; text-decoration: none; }
+.wa .ic { color: #25a35a; }
+@media (max-width: 600px) {
+  .asst { inset: auto 0 0 0; width: 100%; max-height: 86svh; border-radius: 22px 22px 0 0; transform: translateY(100%); }
+  .asst.on { transform: none; }
+  .asst::before { content: ""; width: 40px; height: 4px; border-radius: 2px; background: var(--line); position: absolute; top: 8px; left: 50%; margin-left: -20px; }
+  .asst-fab { inset-inline-end: 14px; bottom: max(14px, env(safe-area-inset-bottom)); padding-inline-end: 6px; gap: 0; }
+  .asst-fab .lbl { max-width: 0; opacity: 0; }
+  .demo-flag { display: none; }
+  .two { grid-template-columns: 1fr; }
+}
+.toast { position: fixed; z-index: 80; bottom: 100px; left: 50%; transform: translate(-50%, 20px); background: var(--ink); color: var(--ivory); padding: 12px 20px; border-radius: 24px; font-size: .9rem; opacity: 0; transition: opacity .3s, transform .3s var(--ease); pointer-events: none; max-width: calc(100% - 40px); text-align: center; }
+.toast.on { opacity: 1; transform: translate(-50%, 0); }
+.demo-flag { position: fixed; z-index: 30; bottom: 0; inset-inline-start: 0; font-size: .7rem; background: rgba(18,17,14,.75); color: rgba(245,241,233,.75); padding: 4px 12px; border-start-end-radius: 10px; }
+[dir="rtl"] .demo-flag { border-radius: 0 10px 0 0; }
+html.shot .hero { min-height: 900px; } html.shot .stage { height: 700px; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; } }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M3 7h18M3 12h18M3 17h12"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24"><path d="M5 8h14l-1 12H6L5 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+  <symbol id="i-next" viewBox="0 0 24 24"><path d="m9 6 6 6-6 6"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5Z"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+  <symbol id="i-cube" viewBox="0 0 24 24"><path d="M12 3 4 7.5v9L12 21l8-4.5v-9L12 3Z"/><path d="M4 7.5 12 12l8-4.5M12 12v9"/></symbol>
+  <symbol id="i-hand" viewBox="0 0 24 24"><path d="M8 13V5.5a1.5 1.5 0 0 1 3 0V11m0-1.5a1.5 1.5 0 0 1 3 0V11m0-1a1.5 1.5 0 0 1 3 0v1m0 0a1.5 1.5 0 0 1 3 0V15a6 6 0 0 1-6 6h-1.5a6 6 0 0 1-5-2.7L4.6 15a1.6 1.6 0 0 1 2.6-1.8L8 14"/></symbol>
+  <symbol id="i-gift" viewBox="0 0 24 24"><rect x="3.5" y="8" width="17" height="4" rx="1"/><path d="M5 12v8h14v-8M12 8v12M12 8S10.5 4 8 4.5 7.5 8 12 8Zm0 0s1.5-4 4-3.5S16.5 8 12 8Z"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M5 5h14a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1h-7l-4 3.5V16H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"/><path d="M8.5 10.5h7M8.5 13h4"/></symbol>
+  <symbol id="i-pen" viewBox="0 0 24 24"><path d="m14.5 5.5 4 4L9 19H5v-4l9.5-9.5Z"/><path d="m13 7 4 4"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l11-6.5-11-6.5Z" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><path d="M8 5h3v14H8zM13 5h3v14h-3z" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-cash" viewBox="0 0 24 24"><rect x="3" y="6.5" width="18" height="11" rx="1.5"/><circle cx="12" cy="12" r="2.5"/></symbol>
+  <symbol id="i-box" viewBox="0 0 24 24"><rect x="3.5" y="8" width="17" height="12" rx="1"/><path d="M3.5 12h17M12 8v12M8 8c0-2.5 4-3 4 0 0-3 4-2.5 4 0"/></symbol>
+  <symbol id="i-arch" viewBox="0 0 24 24"><path d="M6 21V11a6 6 0 0 1 12 0v10M9.5 21v-9a2.5 2.5 0 0 1 5 0v9M4 21h16"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M6.5 3.5h3l1.5 4.5-2 1.5a11 11 0 0 0 5.5 5.5l1.5-2 4.5 1.5v3a2 2 0 0 1-2 2A16 16 0 0 1 4.5 5.5a2 2 0 0 1 2-2Z"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21Z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+  <symbol id="i-ig" viewBox="0 0 24 24"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".6" fill="currentColor"/></symbol>
+  <symbol id="i-fb" viewBox="0 0 24 24"><path d="M14 8.5h2.5V5H14a3.5 3.5 0 0 0-3.5 3.5V11H8v3.5h2.5V21H14v-6.5h2.5L17 11h-3V9a.5.5 0 0 1 .5-.5"/></symbol>
+  <symbol id="i-wa" viewBox="0 0 24 24"><path d="M4 20l1.2-4A8.5 8.5 0 1 1 8.4 19l-4.4 1Z"/><path d="M9 8.5c0 3.5 3 6.5 6.5 6.5l1-1.6-2-1-1 1a4 4 0 0 1-2.4-2.4l1-1-1-2-1.6.5Z"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><path d="M12 16V5M7 10l5-5 5 5M5 19h14"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-ruler" viewBox="0 0 24 24"><path d="M4 16 16 4l4 4L8 20l-4-4ZM8 12l1.5 1.5M11 9l1.5 1.5M14 6l1.5 1.5"/></symbol>
+  <symbol id="i-seal" viewBox="0 0 24 24"><circle cx="12" cy="10" r="6"/><path d="M8.5 15 7 21l5-2 5 2-1.5-6"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3c.6 4.2 2.8 6.4 7 7-4.2.6-6.4 2.8-7 7-.6-4.2-2.8-6.4-7-7 4.2-.6 6.4-2.8 7-7Z"/><path d="M18.5 15.5c.3 1.7 1.1 2.5 2.8 2.8-1.7.3-2.5 1.1-2.8 2.8-.3-1.7-1.1-2.5-2.8-2.8 1.7-.3 2.5-1.1 2.8-2.8Z"/></symbol>
+</svg>
+
+<a class="sr" href="#main" data-t="skip"></a>
+
+<!-- ======= header ======= -->
+<header class="hdr" id="hdr">
+  <div class="wrap hdr-in">
+    <div class="hdr-side">
+      <button class="ibtn" type="button" id="menu-btn" data-ta="menu"><svg class="ic"><use href="#i-menu"/></svg></button>
+      <button class="tbtn hide-sm" type="button" id="shopby-btn" aria-expanded="false" aria-controls="mega"><span data-t="shop_by"></span><svg class="ic chev"><use href="#i-chev"/></svg></button>
+      <a class="tbtn hide-sm" href="#most" data-t="nav_most"></a>
+    </div>
+    <a class="brand" href="#top" aria-label="ASALA">
+      <img class="wm-light" src="brand/wordmark-white.png" alt="ASALA" width="160" height="24">
+      <img class="wm-dark" src="brand/wordmark-dark.png" alt="" width="160" height="24">
+      <small>أصالة</small>
+    </a>
+    <div class="hdr-side hdr-end">
+      <button class="ibtn" type="button" id="search-btn" data-ta="search"><svg class="ic"><use href="#i-search"/></svg></button>
+      <button class="tbtn hide-sm" type="button" data-lang-btn></button>
+      <button class="ibtn hide-sm" type="button" data-theme-btn data-ta="theme"><svg class="ic"><use href="#i-moon"/></svg></button>
+      <button class="ibtn" type="button" id="bag-btn" data-ta="bag"><svg class="ic"><use href="#i-bag"/></svg><span class="count" data-count hidden>0</span></button>
+    </div>
+  </div>
+  <div class="mega" id="mega" role="region" data-ta="shop_by">
+    <div class="wrap mega-in">
+      <div class="mg-groups" role="tablist" id="mg-groups"></div>
+      <div class="mg-opts" id="mg-opts"></div>
+      <a class="mg-feat" href="#shop?coll=new" id="mg-feat"><img src="brand/new-dome-set.jpg" alt=""><span data-t="mg_feat"></span></a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<!-- ======= home ======= -->
+<div id="view-home">
+  <section class="hero" id="top" aria-labelledby="hero-h">
+    <div class="wrap hero-in">
+      <div class="hero-copy">
+        <p class="eyebrow caps" data-t="eyebrow"></p>
+        <h1 id="hero-h"><span data-t="h1a"></span><span class="g" data-t="h1b"></span></h1>
+        <p class="hero-p" data-t="hero_p"></p>
+        <div class="hero-cta">
+          <a class="btn btn-gold" href="#shop"><span data-t="cta_shop"></span><svg class="ic flip-rtl"><use href="#i-next"/></svg></a>
+          <a class="btn btn-line" href="asala-3d.html#studio" data-t="cta_design"></a>
+        </div>
+        <div class="slides" id="slides" role="tablist" data-ta="slides"></div>
+        <a class="scroll-cue" href="#cats"><span><svg class="ic"><use href="#i-down"/></svg></span><span class="caps" data-t="scroll"></span></a>
+      </div>
+      <div class="stage" id="stage">
+        <div class="floor" aria-hidden="true"></div>
+        <div class="niche" aria-hidden="true"></div>
+        <canvas id="hero-canvas" role="img" data-ta="canvas_lbl"></canvas>
+        <div class="fallback"><img id="fb-img" src="brand/new-double-arch.jpg" alt=""></div>
+        <p class="drag" id="drag"><svg class="ic"><use href="#i-hand"/></svg><span data-t="drag"></span></p>
+        <div class="rail">
+          <div class="rail-list" id="rail-list" hidden></div>
+          <button class="rail-btn" type="button" id="rail-btn" aria-expanded="false" aria-controls="rail-list" data-ta="rail"><svg class="ic"><use href="#i-cube"/></svg></button>
+        </div>
+        <div class="cap"><button type="button" id="cap-btn"><b id="cap-name"></b><small><span data-t="view_piece"></span><svg class="ic flip-rtl" style="width:14px;height:14px"><use href="#i-arrow"/></svg></small></button></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cats" id="cats" aria-labelledby="cats-h">
+    <div class="wrap">
+      <div class="cats-hd"><h2 id="cats-h" data-t="cats_h"></h2><a class="link" href="#shop" data-t="all_pieces"></a></div>
+      <div class="cats-row" id="cats-row"></div>
+    </div>
+  </section>
+
+  <section class="sec" id="most" aria-labelledby="most-h">
+    <div class="wrap">
+      <div class="sec-hd">
+        <div><span class="kick caps" data-t="most_k"></span><h2 id="most-h" data-t="most_h"></h2><p class="auto-note"><i></i><span data-t="most_auto"></span></p></div>
+        <a class="link" href="#shop?sort=most" data-t="all_pieces"></a>
+      </div>
+      <div class="grid" id="most-grid"></div>
+    </div>
+  </section>
+
+  <section class="sec made" id="made" aria-labelledby="made-h">
+    <div class="wrap">
+      <div class="sec-hd"><div><span class="kick caps" data-t="made_k"></span><h2 id="made-h" data-t="made_h"></h2></div><p data-t="made_p"></p></div>
+      <div class="steps">
+        <div class="step"><figure><div class="im"><img src="brand/sketch-dome.jpg" alt="" loading="lazy"></div><figcaption><b data-t="s1"></b><span data-t="s1d"></span></figcaption></figure></div>
+        <div class="step"><figure><div class="im"><img src="brand/sketch-plan.jpg" alt="" loading="lazy"></div><figcaption><b data-t="s2"></b><span data-t="s2d"></span></figcaption></figure></div>
+        <div class="step"><figure><div class="im"><img src="brand/clay-balls.jpg" alt="" loading="lazy"></div><figcaption><b data-t="s3"></b><span data-t="s3d"></span></figcaption></figure></div>
+        <div class="step"><figure><div class="im"><img src="brand/clay-cut.jpg" alt="" loading="lazy"></div><figcaption><b data-t="s4"></b><span data-t="s4d"></span></figcaption></figure></div>
+      </div>
+      <div class="care">
+        <div><h3 data-t="care_h"></h3></div>
+        <ul><li data-t="c1"></li><li data-t="c2"></li><li data-t="c3"></li><li data-t="c4"></li></ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="pack" aria-labelledby="pack-h">
+    <div class="wrap pack">
+      <div class="im"><img src="brand/packaging-family.jpg" alt="" loading="lazy" data-ta-alt="pack_alt"></div>
+      <div>
+        <span class="kick caps" data-t="pack_k"></span>
+        <h2 id="pack-h" data-t="pack_h"></h2>
+        <p data-t="pack_p"></p>
+        <ul class="ticks">
+          <li><svg class="ic"><use href="#i-box"/></svg><span data-t="pk1"></span></li>
+          <li><svg class="ic"><use href="#i-seal"/></svg><span data-t="pk2"></span></li>
+          <li><svg class="ic"><use href="#i-pen"/></svg><span data-t="pk3"></span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec about" id="about" aria-labelledby="about-h">
+    <div class="wrap ab">
+      <div>
+        <span class="kick caps" data-t="about_k"></span>
+        <h2 id="about-h" data-t="about_h"></h2>
+        <p class="lead" data-t="about_p"></p>
+        <div class="story" id="story">
+          <h3 data-t="story_h"></h3>
+          <p data-t="story_p1"></p>
+          <p data-t="story_p2"></p>
+        </div>
+        <div class="sketches"><img src="brand/story-dome.jpg" alt="" loading="lazy"><img src="brand/sketch-plan.jpg" alt="" loading="lazy"><img src="brand/new-double-arch-box.jpg" alt="" loading="lazy"></div>
+      </div>
+      <div>
+        <div class="vision">
+          <span class="kick caps" data-t="vision_k"></span>
+          <blockquote data-t="vision"></blockquote>
+          <svg class="mk" data-mark></svg>
+        </div>
+        <div class="maker">
+          <span class="av" data-mark-wrap><svg data-mark></svg></span>
+          <div><b data-t="maker_h"></b><span data-t="maker_p"></span></div>
+          <button class="btn btn-dark" type="button" data-asst="contact" style="min-height:42px;padding:0 20px"><svg class="ic"><use href="#i-chat"/></svg><span data-t="maker_btn"></span></button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ======= shop view ======= -->
+<div id="view-shop" class="view-shop" hidden>
+  <div class="wrap">
+    <div class="shop-hd">
+      <div><p class="crumbs"><a href="#top" data-t="home"></a><span>/</span><span data-t="shop"></span></p><h1 id="shop-h"></h1></div>
+    </div>
+    <div class="filters" id="filters"></div>
+    <p class="res" id="res" aria-live="polite"></p>
+    <div class="grid" id="shop-grid"></div>
+    <div class="empty" id="shop-empty" hidden><p data-t="empty"></p></div>
+  </div>
+  <div style="height:100px"></div>
+</div>
+</main>
+
+<!-- ======= footer ======= -->
+<div class="trust"><ul class="wrap">
+  <li><svg class="ic"><use href="#i-cash"/></svg><span data-t="tr1"></span></li>
+  <li><svg class="ic"><use href="#i-box"/></svg><span data-t="tr2"></span></li>
+  <li><svg class="ic"><use href="#i-arch"/></svg><span data-t="tr3"></span></li>
+  <li><svg class="ic"><use href="#i-phone"/></svg><span data-t="tr4"></span></li>
+</ul></div>
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr-top">
+      <div class="about-col">
+        <img src="brand/wordmark-white.png" alt="ASALA" width="120" height="18">
+        <p data-t="f_about"></p>
+        <div class="addr">
+          <div><svg class="ic"><use href="#i-pin"/></svg><span data-t="f_addr"></span></div>
+          <div><svg class="ic"><use href="#i-clock"/></svg><span data-t="f_hours"></span></div>
+          <div><svg class="ic"><use href="#i-wa"/></svg><span data-t="f_wa"></span></div>
+        </div>
+        <div class="social">
+          <a href="#" data-soon data-ta="ig"><svg class="ic"><use href="#i-ig"/></svg></a>
+          <a href="#" data-soon data-ta="fb"><svg class="ic"><use href="#i-fb"/></svg></a>
+          <a href="#" data-soon data-ta="wa"><svg class="ic"><use href="#i-wa"/></svg></a>
+        </div>
+      </div>
+      <div><h4 data-t="f_care"></h4><ul>
+        <li><button type="button" data-pol="ship" data-t="p_ship"></button></li>
+        <li><button type="button" data-pol="sizes" data-t="p_sizes"></button></li>
+        <li><button type="button" data-pol="care" data-t="p_care"></button></li>
+        <li><button type="button" data-pol="faq" data-t="p_faq"></button></li>
+      </ul></div>
+      <div><h4 data-t="f_pol"></h4><ul>
+        <li><button type="button" data-pol="returns" data-t="p_returns"></button></li>
+        <li><button type="button" data-pol="ship" data-t="p_ship2"></button></li>
+        <li><button type="button" data-pol="privacy" data-t="p_privacy"></button></li>
+        <li><button type="button" data-pol="terms" data-t="p_terms"></button></li>
+      </ul></div>
+      <div><h4 data-t="f_us"></h4><ul>
+        <li><a href="#about" data-t="f_aboutus"></a></li>
+        <li><a href="#story" data-t="f_story"></a></li>
+        <li><a href="#made" data-t="f_made"></a></li>
+        <li><a href="asala-3d.html#studio" data-t="f_studio"></a></li>
+        <li><button type="button" data-asst="contact" data-t="f_contact"></button></li>
+      </ul></div>
+      <div class="news"><h4 data-t="f_news"></h4><p data-t="f_news_p"></p>
+        <form id="news-form"><label class="sr" for="news-in" data-t="email"></label><input id="news-in" type="email" data-tp="email" autocomplete="email"><button type="submit" data-ta="subscribe"><svg class="ic flip-rtl"><use href="#i-arrow"/></svg></button></form>
+      </div>
+    </div>
+    <div class="ftr-pay">
+      <div class="pays"><span data-t="f_pay"></span><span class="pay">VISA</span><span class="pay mc" aria-label="Mastercard"><i></i><i></i></span><span class="pay cod" data-t="cod"></span></div>
+      <span data-t="f_secure"></span>
+    </div>
+    <div class="ftr-bot">
+      <span>© 2026 ASALA · <span data-t="f_rights"></span></span>
+      <span><button type="button" data-lang-btn></button> · <button type="button" data-theme-btn data-t="f_theme"></button></span>
+      <span data-t="f_demo"></span>
+    </div>
+  </div>
+</footer>
+
+<!-- ======= overlays ======= -->
+<div class="scrim" id="scrim" hidden></div>
+
+<aside class="panel side from-start menu" id="menu" hidden role="dialog" aria-modal="true" aria-labelledby="menu-h">
+  <div class="p-hd"><h2 id="menu-h" data-t="menu"></h2><button class="close" type="button" data-close data-ta="close"><svg class="ic"><use href="#i-x"/></svg></button></div>
+  <div class="p-bd"><div id="menu-acc"></div>
+    <div class="mlinks">
+      <a href="#most" data-close><svg class="ic"><use href="#i-spark"/></svg><span data-t="nav_most"></span></a>
+      <a href="asala-3d.html#studio"><svg class="ic"><use href="#i-cube"/></svg><span data-t="cta_design"></span></a>
+      <a href="#about" data-close><svg class="ic"><use href="#i-arch"/></svg><span data-t="f_aboutus"></span></a>
+      <button type="button" data-pol="ship"><svg class="ic"><use href="#i-box"/></svg><span data-t="f_pol"></span></button>
+      <button type="button" data-asst="contact"><svg class="ic"><use href="#i-chat"/></svg><span data-t="f_contact"></span></button>
+    </div>
+    <div class="mtools"><button class="btn btn-ghost" type="button" data-lang-btn style="min-height:40px"></button><button class="btn btn-ghost" type="button" data-theme-btn data-t="f_theme" style="min-height:40px"></button></div>
+  </div>
+</aside>
+
+<aside class="panel search" id="search" hidden role="dialog" aria-modal="true" data-ta="search">
+  <div class="wrap">
+    <div class="row"><svg class="ic"><use href="#i-search"/></svg><label class="sr" for="s-in" data-t="search"></label><input id="s-in" type="search" data-tp="search_ph" autocomplete="off"><button class="close" type="button" data-close data-ta="close"><svg class="ic"><use href="#i-x"/></svg></button></div>
+    <div class="s-sug" id="s-sug"></div>
+    <div class="s-res" id="s-res"></div>
+  </div>
+</aside>
+
+<aside class="panel side sheet" id="sheet" hidden role="dialog" aria-modal="true" aria-labelledby="sh-name">
+  <div class="p-hd"><span class="caps" id="sh-cat"></span><button class="close" type="button" data-close data-ta="close"><svg class="ic"><use href="#i-x"/></svg></button></div>
+  <div class="p-bd">
+    <div class="gal"><img class="main" id="sh-img" alt=""><div class="thumbs" id="sh-thumbs"></div></div>
+    <div class="info">
+      <span class="coll caps" id="sh-coll"></span>
+      <h2 id="sh-name"></h2>
+      <p><span class="price" id="sh-price"></span> <span class="note" data-t="price_note"></span></p>
+      <p class="desc" id="sh-desc"></p>
+      <div id="sh-mats"><span class="opt-lbl" data-t="metal"></span><div class="chips" id="sh-mat-chips"></div></div>
+      <button class="btn btn-dark" type="button" id="sh-add" style="width:100%"><svg class="ic"><use href="#i-bag"/></svg><span data-t="add"></span></button>
+      <button class="ask" type="button" id="sh-ask"><svg class="ic" style="width:18px"><use href="#i-chat"/></svg><span data-t="ask_maker"></span></button>
+      <ul class="facts">
+        <li><svg class="ic"><use href="#i-ruler"/></svg><span id="sh-mat-fact"></span></li>
+        <li><svg class="ic"><use href="#i-arch"/></svg><span data-t="fact_made"></span></li>
+        <li><svg class="ic"><use href="#i-box"/></svg><span data-t="fact_box"></span></li>
+        <li><svg class="ic"><use href="#i-cash"/></svg><span data-t="fact_cod"></span></li>
+      </ul>
+    </div>
+  </div>
+</aside>
+
+<aside class="panel side" id="bag" hidden role="dialog" aria-modal="true" aria-labelledby="bag-h">
+  <div class="p-hd"><h2 id="bag-h" data-t="bag"></h2><button class="close" type="button" data-close data-ta="close"><svg class="ic"><use href="#i-x"/></svg></button></div>
+  <div class="p-bd" id="bag-body"></div>
+  <div class="p-ft" id="bag-ft"></div>
+</aside>
+
+<aside class="panel side" id="checkout" hidden role="dialog" aria-modal="true" aria-labelledby="co-h">
+  <div class="p-hd"><h2 id="co-h" data-t="checkout"></h2><button class="close" type="button" data-close data-ta="close"><svg class="ic"><use href="#i-x"/></svg></button></div>
+  <div class="p-bd" id="co-body"></div>
+</aside>
+
+<aside class="panel side" id="policies" hidden role="dialog" aria-modal="true" aria-labelledby="pol-h">
+  <div class="p-hd"><h2 id="pol-h" data-t="f_pol"></h2><button class="close" type="button" data-close data-ta="close"><svg class="ic"><use href="#i-x"/></svg></button></div>
+  <div class="pol-tabs" role="tablist" id="pol-tabs"></div>
+  <div class="p-bd pol" id="pol-body"></div>
+</aside>
+
+<!-- the Asala assistant: on every page, never a home-page section -->
+<button class="asst-fab" type="button" id="asst-fab" aria-expanded="false" aria-controls="asst"><span class="orb"><svg data-mark></svg></span><span class="lbl" data-t="asst_fab"></span></button>
+<section class="asst" id="asst" role="dialog" aria-modal="false" aria-labelledby="asst-title" hidden>
+  <div class="a-hd" id="a-hd"></div>
+  <div class="a-bd" id="a-bd"></div>
+</section>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="demo-flag" data-t="demo_flag"></div>
+
+<script>
+(function () {
+'use strict';
+var IMG = 'brand/';
+var MARK = '<g stroke="currentColor" stroke-width="1.15" fill="none"><path d="M50 3 L95 48 L50 93 L5 48 Z"/><path d="M50 7 L95 52 L50 97 L5 52 Z"/><path d="M50 11 L95 56 L50 101 L5 56 Z"/><path d="M50 15 L87 52 L50 89 L13 52 Z"/></g><g fill="currentColor"><path d="M43.8 34.5 L56.2 34.5 L56.2 44.8 L50 49.6 L43.8 44.8 Z"/><path d="M67.5 45.8 L67.5 58.2 L57.2 58.2 L52.4 52 L57.2 45.8 Z"/><path d="M56.2 69.5 L43.8 69.5 L43.8 59.2 L50 54.4 L56.2 59.2 Z"/><path d="M32.5 58.2 L32.5 45.8 L42.8 45.8 L47.6 52 L42.8 58.2 Z"/></g>';
+
+// ---------------- catalogue: one list feeds every section (as one Shopify product list would) ----------------
+// orders = placeholder counts; "Most requested" is always sorted by them.
+var PRODUCTS = [
+  { id: 'double-arch', cat: 'earrings', coll: 'new', mats: ['A'], price: 150, orders: 88, isNew: true, img: 'new-double-arch.jpg', alts: ['new-double-arch-box.jpg'], who: ['mum', 'bride', 'self'], style: ['bold', 'heritage'],
+    ar: 'أقراط القوسين', en: 'Double-arch earrings',
+    dAr: 'قوسان متداخلان يعبرهما قضيب، بين قرصين منقوشين بوردة ثمانية. تصميم جديد، والاسم للتأكيد.',
+    dEn: 'Two nested arches crossed by a bar, between two discs carved with an eight-petal rosette. A new design; the name is to be confirmed.' },
+  { id: 'dome-set', cat: 'set', coll: 'dome', mats: ['A'], price: 290, orders: 76, isNew: true, img: 'new-dome-set.jpg', alts: ['new-crop-dome-pendant.jpg'], who: ['bride', 'mum'], style: ['heritage'],
+    ar: 'طقم القبة: أقراط وقلادة', en: 'Dome set: earrings and pendant',
+    dAr: 'أقراط القبة المخرّمة مع قلادة بالتصميم نفسه، تتدلى منهما معيّنات صغيرة. مستوحاة من تخريم قبة الصخرة.',
+    dEn: 'The pierced Dome earrings with a matching pendant, each with small hanging diamonds. Inspired by the filigree of the Dome of the Rock.' },
+  { id: 'window', cat: 'earrings', coll: 'new', mats: ['A'], price: 120, orders: 69, isNew: true, img: 'new-window.jpg', alts: ['new-crop-window.jpg'], who: ['friend', 'self'], style: ['soft', 'heritage'],
+    ar: 'أقراط النافذة', en: 'Window earrings',
+    dAr: 'نافذة طويلة بقوس في أعلاها، مفرّغة بنجوم ثمانية كالمشربية، وتنتهي بثلاثة أقواس صغيرة. تصميم جديد، والاسم للتأكيد.',
+    dEn: 'A tall arched window pierced with eight-point stars like a mashrabiya, ending in three small arches. A new design; the name is to be confirmed.' },
+  { id: 'dome', cat: 'earrings', coll: 'dome', mats: ['A', 'B', 'C'], price: 180, orders: 64, img: 'dome-render.jpg', alts: ['dome-worn.jpg', 'dome-stone.jpg'], who: ['mum', 'bride', 'self'], style: ['heritage', 'bold'],
+    ar: 'أقراط القبة', en: 'Dome earrings',
+    dAr: 'مستوحاة من قبة الصخرة: قبة مخرّمة بنقش هندسي فوق أربعة أقواس، تتدلى منها ثلاث معيّنات. مقاس 24 × 28 مم، مقصوصة بالليزر وحوافها مشطّبة باليد.',
+    dEn: 'Inspired by the Dome of the Rock: a pierced geometric dome over four arches, with three hanging diamonds. 24 × 28 mm, laser cut, edges finished by hand.' },
+  { id: 'rosette-set', cat: 'set', coll: 'new', mats: ['A'], price: 260, orders: 58, isNew: true, img: 'new-rosette-set.jpg', alts: ['new-crop-rosette-ring.jpg'], who: ['bride', 'mum'], style: ['heritage', 'bold'],
+    ar: 'طقم الوردة: أقراط وقلادة وخاتم', en: 'Rosette set: earrings, pendant and ring',
+    dAr: 'وردة هندسية مفرّغة على أقراط صغيرة وقلادة وخاتم. تصميم جديد، والاسم للتأكيد.',
+    dEn: 'A pierced geometric rosette on small earrings, a pendant and a ring. A new design; the name is to be confirmed.' },
+  { id: 'arch-set', cat: 'set', coll: 'new', mats: ['A'], price: 210, orders: 47, isNew: true, img: 'new-arch-ring-set.jpg', alts: ['new-crop-arch-ring.jpg', 'new-crop-bar-necklace.jpg'], who: ['friend', 'self'], style: ['soft', 'bold'],
+    ar: 'طقم القوس: قلادة وخاتم', en: 'Arch set: necklace and ring',
+    dAr: 'قلادة بقطعة معيّن ممدودة، مع خاتم بوجه على شكل قوس تملؤه معيّنات بارزة. تصميم جديد، والاسم للتأكيد.',
+    dEn: 'A necklace with a long faceted diamond, with a ring whose arched face is filled with raised diamonds. A new design; the name is to be confirmed.' },
+  { id: 'dome-pendant', cat: 'necklace', coll: 'dome', mats: ['A'], price: 150, orders: 44, isNew: true, img: 'new-crop-dome-pendant.jpg', alts: ['new-dome-set.jpg'], who: ['mum', 'self'], style: ['heritage'],
+    ar: 'قلادة القبة', en: 'Dome pendant',
+    dAr: 'قبة مخرّمة فوق أربعة أقواس، تتدلى منها أربع معيّنات، على سلسلة رفيعة.', dEn: 'A pierced dome over four arches with four hanging diamonds, on a fine chain.' },
+  { id: 'lotus', cat: 'necklace', coll: 'dome', mats: ['A'], price: 160, orders: 41, img: 'lotus-pendant.jpg', alts: ['lotus-45.jpg'], who: ['mum', 'friend'], style: ['soft'],
+    ar: 'قلادة اللوتس', en: 'Lotus pendant',
+    dAr: 'دلاية هندسية مفرّغة على شكل زهرة لوتس، على سلسلة رفيعة.', dEn: 'An open geometric lotus pendant on a fine chain.' },
+  { id: 'arch-ring', cat: 'ring', coll: 'new', mats: ['A'], price: 95, orders: 39, isNew: true, img: 'new-crop-arch-ring.jpg', alts: ['new-arch-ring-set.jpg'], who: ['friend', 'self'], style: ['soft', 'heritage'],
+    ar: 'خاتم القوس', en: 'Arch ring',
+    dAr: 'خاتم بوجه على شكل قوس، تملؤه معيّنات بارزة وشمس صغيرة في أعلاه.', dEn: 'A ring with an arched face filled with raised diamonds and a small sunburst at the top.' },
+  { id: 'horseshoe', cat: 'earrings', coll: 'dome', mats: ['A'], price: 85, orders: 35, img: 'horseshoe-close.jpg', alts: ['woman-arch.jpg'], who: ['friend', 'self'], style: ['soft'],
+    ar: 'أقراط قوس الحدوة', en: 'Horseshoe arch earrings',
+    dAr: 'قوس على شكل حدوة الحصان بلونَي الذهب والفضة، مستوحى من بوابات الأفنية.', dEn: 'A horseshoe arch in gold and silver tones, drawn from courtyard gateways.' },
+  { id: 'rosette-ring', cat: 'ring', coll: 'new', mats: ['A'], price: 90, orders: 33, isNew: true, img: 'new-crop-rosette-ring.jpg', alts: ['new-rosette-set.jpg'], who: ['mum', 'self'], style: ['heritage'],
+    ar: 'خاتم الوردة', en: 'Rosette ring',
+    dAr: 'خاتم بوجه دائري تملؤه وردة هندسية مفرّغة.', dEn: 'A ring with a round face filled with a pierced geometric rosette.' },
+  { id: 'dome-teal', cat: 'earrings', coll: 'najma', mats: ['clay'], price: 95, orders: 30, img: 'dome-teal.jpg', alts: ['sketch-plan.jpg'], who: ['friend', 'self'], style: ['bold'],
+    ar: 'أقراط القبة الفيروزية', en: 'Turquoise dome earrings',
+    dAr: 'نصف قبة ذهبية مخرّمة فوق أقواس فيروزية من طين البوليمر، تتدلى منها مربعات بيضاء.', dEn: 'A pierced gold half-dome over turquoise arches in polymer clay, with white hanging squares.' },
+  { id: 'bar-necklace', cat: 'necklace', coll: 'new', mats: ['A'], price: 85, orders: 28, isNew: true, img: 'new-crop-bar-necklace.jpg', alts: ['new-arch-ring-set.jpg'], who: ['friend', 'self'], style: ['soft'],
+    ar: 'قلادة المعيّن', en: 'Diamond bar necklace',
+    dAr: 'قطعة معدنية مضلّعة على شكل معيّن ممدود، على سلسلة رفيعة.', dEn: 'A faceted metal piece shaped like a long diamond, on a fine chain.' },
+  { id: 'arcs', cat: 'earrings', coll: 'najma', mats: ['clay'], price: 70, orders: 22, img: 'clay-arcs.jpg', alts: [], who: ['friend'], style: ['soft'],
+    ar: 'أقراط الأقواس', en: 'Arc earrings',
+    dAr: 'قوس مزدوج من طين البوليمر بلون العاج، يعبره قضيب ذهبي.', dEn: 'A double arc in ivory polymer clay, crossed by a gold bar.' },
+  { id: 'mihrab', cat: 'earrings', coll: 'najma', mats: ['clay'], price: 75, orders: 18, img: 'pink-teal.png', alts: [], who: ['friend'], style: ['bold'],
+    ar: 'أقراط المحراب', en: 'Mihrab earrings',
+    dAr: 'قطعتان بلون الورد بشكل المحراب، تجمعهما قطعة فيروزية منقّطة.', dEn: 'Two rose pieces shaped like a mihrab, joined by a speckled turquoise band.' },
+  { id: 'branch', cat: 'earrings', coll: 'najma', mats: ['B'], price: 90, orders: 15, img: 'cover-ear.jpg', alts: [], who: ['self', 'friend'], style: ['soft'],
+    ar: 'أقراط الغصن', en: 'Branch earrings',
+    dAr: 'سلك فضي رفيع ينحني كغصن زيتون.', dEn: 'A fine silver wire that bends like an olive branch.' }
+];
+var CATS = { earrings: { ar: 'أقراط', en: 'Earrings' }, necklace: { ar: 'قلائد', en: 'Necklaces' }, ring: { ar: 'خواتم', en: 'Rings' }, set: { ar: 'أطقم', en: 'Sets' } };
+var COLLS = { dome: { ar: 'مجموعة القبة', en: 'The Dome collection' }, najma: { ar: 'مجموعة النجمة', en: 'The Najma collection' }, 'new': { ar: 'تصاميم جديدة', en: 'New designs' } };
+var MATS = {
+  A: { ar: 'نحاس بطلاء ذهب 18 قيراط', en: 'Brass, 18K gold plating', add: 0 },
+  B: { ar: 'فضة استرليني 925', en: '925 sterling silver', add: 60 },
+  C: { ar: 'فضة 925 بطبقة ذهب (فيرميل)', en: '925 silver, gold vermeil', add: 110 },
+  clay: { ar: 'طين البوليمر بلمسات ذهبية', en: 'Polymer clay with gold touches', add: 0 }
+};
+var OCC = { mum: { ar: 'هدية للأم', en: 'For mum' }, friend: { ar: 'هدية لصديقة', en: 'For a friend' }, bride: { ar: 'للعروس', en: 'For a bride' }, self: { ar: 'لنفسكِ', en: 'For yourself' } };
+var PRICES = { lt100: { ar: 'أقل من 100 ₪', en: 'Under ₪100', lo: 0, hi: 99 }, mid: { ar: '100 – 200 ₪', en: '₪100 – 200', lo: 100, hi: 200 }, gt200: { ar: 'أكثر من 200 ₪', en: 'Over ₪200', lo: 201, hi: 1e9 } };
+var CITIES = [
+  { id: 'nablus', ar: 'نابلس', en: 'Nablus', fee: 15 }, { id: 'ramallah', ar: 'رام الله والبيرة', en: 'Ramallah & Al-Bireh', fee: 20 },
+  { id: 'jenin', ar: 'جنين', en: 'Jenin', fee: 20 }, { id: 'tulkarm', ar: 'طولكرم', en: 'Tulkarm', fee: 20 }, { id: 'qalqilya', ar: 'قلقيلية', en: 'Qalqilya', fee: 20 },
+  { id: 'salfit', ar: 'سلفيت', en: 'Salfit', fee: 20 }, { id: 'jericho', ar: 'أريحا', en: 'Jericho', fee: 25 }, { id: 'bethlehem', ar: 'بيت لحم', en: 'Bethlehem', fee: 25 },
+  { id: 'hebron', ar: 'الخليل', en: 'Hebron', fee: 25 }, { id: 'jerusalem', ar: 'القدس', en: 'Jerusalem', fee: 30 }
+];
+// the three pieces turned in 3D in the hero (no prices, no colour clutter)
+var SLIDES = [{ id: 'dome', d3: 'dome', fb: 'dome-render.jpg' }, { id: 'double-arch', d3: 'arch2', fb: 'new-double-arch.jpg' }, { id: 'window', d3: 'window', fb: 'new-crop-window.jpg' }];
+var PATTERNS = [{ id: 'geometric', img: 'pat-geometric.jpg', ar: 'هندسي إسلامي', en: 'Islamic geometric' }, { id: 'star', img: 'pat-star.jpg', ar: 'نجمة ثمانية', en: 'Eight-point star' }, { id: 'mashrabiya', img: 'pat-mashrabiya.jpg', ar: 'مشربية', en: 'Mashrabiya' }, { id: 'tatreez', img: 'pat-tatreez.jpg', ar: 'نقش التطريز', en: 'Tatreez pattern' }];
+
+// ---------------- words ----------------
+var T = {
+  ar: {
+    skip: 'تخطّي إلى المحتوى', menu: 'القائمة', search: 'بحث', bag: 'الحقيبة', theme: 'تبديل الوضع الداكن', close: 'إغلاق',
+    shop_by: 'تسوّقي حسب', nav_most: 'الأكثر طلباً', mg_feat: 'تصاميم جديدة من المشغل',
+    g_cat: 'الفئة', g_coll: 'المجموعة', g_mat: 'المادة', g_occ: 'هدية لمناسبة', g_price: 'السعر',
+    eyebrow: 'أقراط فريدة بروح شرقية', h1a: 'عمارةٌ', h1b: 'تُلبَس.',
+    hero_p: 'كل قطعة تبدأ رسماً لقبة أو قوس أو مشربية، وتُصنع يدوياً في نابلس. أديري القطعة لتريها من كل الجهات.',
+    cta_shop: 'تسوّقي القطع', cta_design: 'صمّمي قطعتكِ', slides: 'القطع المعروضة', scroll: 'اكتشفي المزيد',
+    canvas_lbl: 'عرض ثلاثي الأبعاد للقطعة، اسحبي لتدويرها', drag: 'اسحبي لتدوير القطعة', rail: 'المعدن والنقش', view_piece: 'عرض القطعة',
+    cats_h: 'تسوّقي حسب الفئة', all_pieces: 'كل القطع', made_order: 'حسب الطلب',
+    most_k: 'من المشغل', most_h: 'الأكثر طلباً', most_auto: 'يتغيّر الترتيب تلقائياً حسب عدد الطلبات',
+    made_k: 'من الرسم إلى القطعة', made_h: 'كيف تُصنع', made_p: 'تبدأ كل قطعة رسماً معمارياً، ثم مخططاً، ثم معدناً يُقصّ بالليزر أو طيناً يُشكَّل باليد.',
+    s1: 'الرسمة', s1d: 'قبة الصخرة بالقلم.', s2: 'المخطط', s2d: 'القبة والأقواس مقسّمة إلى أجزاء.', s3: 'الطين', s3d: 'ألوان الطين قبل التشكيل.', s4: 'القصّ', s4d: 'الأشكال تُقصّ بالمقاس المرسوم.',
+    care_h: 'العناية بالقطع', c1: 'انزعيها قبل الماء والعطر والرياضة.', c2: 'امسحيها بقطعة قماش ناعمة وجافة.', c3: 'احفظي كل قطعة في علبتها بعيداً عن الشمس.', c4: 'قطع طين البوليمر خفيفة، لكنها قد تنكسر إن ثُنيت بقوة.',
+    pack_k: 'التغليف', pack_h: 'كل قطعة تصل في علبة أصالة', pack_p: 'علبة بلون الفحم بنقش المعيّن، تُختم بختم أصالة، ومعها بطاقة شكر. تصل جاهزة لتُهدى كما هي.',
+    pk1: 'علبة أصالة مع كل قطعة', pk2: 'ختم بالأحمر أو الفحمي أو العاجي، تختارينه عند الطلب', pk3: 'بطاقة شكر، ويمكن أن تحمل رسالة إهداء بكلماتكِ', pack_alt: 'علب أصالة الفحمية مع الختم وبطاقة الشكر',
+    about_k: 'من نحن', about_h: 'أصالة',
+    about_p: 'أصالة علامة أقراط وحُليّ مصنوعة يدوياً في نابلس، تصمّمها مهندسة معمارية. تبدأ كل قطعة رسماً من العمارة الإسلامية: تخريم قبة الصخرة، والأقواس، والمشربيات.',
+    story_h: 'قصتنا', story_p1: 'بدأت أصالة من دفتر رسم: قباب وأقواس رُسمت بالقلم، ثم قُسّمت إلى أجزاء كما يُقسَّم مخطط البناء.',
+    story_p2: 'واليوم تُصنع القطع في نابلس: بعضها من طين البوليمر بلمسات ذهبية، وبعضها من النحاس المطلي بالذهب أو الفضة، مقصوصاً بالليزر ومشطّباً باليد.',
+    vision_k: 'رؤية أصالة', vision: 'أن تقتني المرأة قطعة فريدة ذات قيمة، تحتفظ بها أو تهديها لمن تحب، وتستمدّ قيمتها من العمارة الإسلامية العريقة.',
+    maker_h: 'عندكِ سؤال عن قطعة أو فكرة تصميم؟', maker_p: 'تواصلي مع الصانعة مباشرة من مساعد أصالة.', maker_btn: 'تواصلي مع الصانعة',
+    home: 'الرئيسية', shop: 'المتجر', empty: 'لا توجد قطع بهذه الاختيارات. جرّبي إزالة أحد الفلاتر.',
+    tr1: 'الدفع عند الاستلام', tr2: 'كل قطعة في علبة هدية', tr3: 'صُنعت يدوياً في نابلس', tr4: 'نؤكد كل طلب بالهاتف',
+    f_about: 'أقراط فريدة بروح شرقية، تُصمَّم وتُصنع يدوياً في نابلس.', f_addr: 'نابلس، فلسطين · العنوان الكامل يُضاف (للتأكيد)', f_hours: 'السبت إلى الخميس، 10:00 – 18:00 (للتأكيد)', f_wa: 'واتساب: يُضاف الرقم عند الإطلاق',
+    ig: 'إنستغرام', fb: 'فيسبوك', wa: 'واتساب',
+    f_care: 'خدمة العملاء', p_ship: 'الشحن والتوصيل', p_sizes: 'مقاسات القطع', p_care: 'العناية بالقطع', p_faq: 'أسئلة شائعة',
+    f_pol: 'السياسات', p_returns: 'الاستبدال والإرجاع', p_ship2: 'سياسة التوصيل', p_privacy: 'الخصوصية', p_terms: 'الشروط والأحكام',
+    f_us: 'أصالة', f_aboutus: 'من نحن', f_story: 'قصتنا', f_made: 'كيف تُصنع', f_studio: 'صمّمي قطعتكِ', f_contact: 'تواصلي مع الصانعة',
+    f_news: 'النشرة البريدية', f_news_p: 'قطع جديدة، والمباني التي رُسمت منها.', email: 'بريدكِ الإلكتروني', subscribe: 'اشتراك',
+    f_pay: 'طرق الدفع', cod: 'الدفع عند الاستلام', f_secure: 'الدفع بالبطاقة عبر بوابة البنك العربي (قيد التفعيل)', f_rights: 'جميع الحقوق محفوظة', f_theme: 'الوضع الداكن', f_theme2: 'الوضع الفاتح',
+    f_demo: 'نموذج تصميم: الأسعار والرسوم وأسماء التصاميم الجديدة للتأكيد.',
+    price_note: '(السعر للتأكيد)', metal: 'المعدن', add: 'أضيفي إلى الحقيبة', ask_maker: 'اسألي الصانعة عن هذه القطعة',
+    fact_made: 'صُنعت يدوياً في نابلس', fact_box: 'تصل في علبة أصالة مع بطاقة شكر', fact_cod: 'الدفع عند الاستلام أو بالبطاقة', is_new: 'جديد',
+    checkout: 'إتمام الطلب', bag_empty: 'حقيبتكِ فارغة.', subtotal: 'المجموع', delivery: 'التوصيل', total: 'الإجمالي', to_checkout: 'إتمام الطلب', keep: 'متابعة التسوق', remove: 'إزالة', fee_hint: 'يُحسب عند اختيار المدينة',
+    name: 'الاسم الكامل', phone: 'رقم الهاتف', city: 'المدينة', city_ph: 'اختاري المدينة', address: 'العنوان', pay: 'طريقة الدفع',
+    pay_cod: 'الدفع عند الاستلام', pay_cod_d: 'نتصل بكِ لتأكيد الطلب قبل الإرسال.', pay_card: 'بطاقة فيزا أو ماستركارد', pay_card_d: 'عبر بوابة البنك العربي، تُفعَّل قبل الإطلاق.',
+    gift: 'هذه هدية: أضيفي رسالة على البطاقة', gift_msg: 'رسالة البطاقة', seal: 'لون الختم', seal_red: 'أحمر', seal_charcoal: 'فحمي', seal_ivory: 'عاجي', place: 'تأكيد الطلب', req: 'أكملي الحقول المطلوبة.',
+    ok_h: 'شكراً لكِ!', ok_p: 'هذا نموذج: لم يُرسل أي طلب. في المتجر الحقيقي نتصل بكِ لتأكيد الطلب.', ok_rank: 'انظري إلى قسم «الأكثر طلباً»: تحدّث ترتيبه تلقائياً.', ok_btn: 'شاهدي الترتيب الجديد',
+    demo_weight: 'للتجربة فقط: يُحسب كل طلب هنا كـ15 طلباً حتى يظهر تغيّر الترتيب.',
+    added: 'أُضيفت إلى الحقيبة', soon: 'يُضاف الرابط عند الإطلاق', subscribed: 'شكراً! (نموذج: لم يُرسل شيء)',
+    search_ph: 'ابحثي عن قطعة أو مجموعة أو معدن', s_sug: 'اقتراحات:', s_none: 'لا نتائج.',
+    asst_fab: 'كيف ممكن نساعدك؟', a_title: 'مساعد أصالة', a_sub: 'نرافقكِ خطوة بخطوة', a_h: 'كيف يمكننا مساعدتكِ؟', a_p: 'اختاري ما تحتاجينه لنرافقكِ في رحلتكِ مع أصالة.',
+    o1: 'ساعديني أختار هدية', o1d: 'ثلاثة أسئلة ونرشّح لكِ القطعة المناسبة', o2: 'تواصلي مع الصانعة', o2d: 'استفسري عن قطعة أو عن تفاصيل تصنيعها', o3: 'كيف أطلب تصميمي الخاص؟', o3d: 'تعرّفي على الخطوات وابدئي تصميمكِ',
+    a_foot: 'في أصالة، كل قطعة تبدأ بفكرة.', back: 'رجوع', g_title: 'اختيار الهدية',
+    q: 'السؤال {n} من 3', q1: 'لمين الهدية؟', mum: 'لأمي', mum_d: 'قطعة كلاسيكية تبقى', friend: 'لصديقتي', friend_d: 'لون ومرح', bride: 'لعروس', bride_d: 'قطعة لليوم الكبير', self: 'لنفسي', self_d: 'لأنكِ تستحقين',
+    q2: 'شو الأسلوب المفضّل؟', heritage: 'تراثي وأصيل', heritage_d: 'قباب ونقوش', soft: 'ناعم وبسيط', soft_d: 'قطعة لكل يوم', bold: 'جريء ومميّز', bold_d: 'تلفت النظر',
+    q3: 'شو الميزانية المناسبة؟', b_lt100: 'أقل من 100 ₪', b_mid: '100 – 200 ₪', b_gt200: 'أكثر من 200 ₪',
+    res_h: 'وجدنا لكِ ثلاث قطع', res_p: 'بحسب اختياراتكِ، وكلها تصل في علبتها جاهزة للإهداء.', view: 'عرض القطعة', add_s: 'أضيفي للحقيبة', again: 'إعادة الاختيار',
+    c_h: 'تواصلي مع الصانعة', c_p: 'اسألي عن قطعة، أو عن تفاصيل تصنيعها، أو عن طلبكِ.', about_q: 'سؤالكِ عن', t_piece: 'قطعة معيّنة', t_custom: 'تصميم خاص', t_order: 'طلب أو توصيل', t_other: 'شيء آخر',
+    which: 'أي قطعة؟', msg: 'رسالتكِ', send: 'إرسال', reply_by: 'نردّ عليكِ عبر', by_wa: 'واتساب', by_call: 'اتصال', by_mail: 'البريد',
+    c_ok: 'وصلت رسالتكِ', c_ok_p: 'تردّ عليكِ أصالة عادةً خلال يوم عمل (للتأكيد). هذا نموذج: لم تُرسل الرسالة.', wa_btn: 'أو راسلينا على واتساب', done: 'تم',
+    x_h: 'كيف أطلب تصميمي الخاص؟', x_p: 'شاهدي الفيديو القصير، ثم ابدئي طلبكِ.', vid_tag: 'مسودة الفيديو التعليمي',
+    v1: 'صوّري فكرتكِ أو ارسميها: مبنى، أو نقش، أو صورة قطعة.', v2: 'نراجع التفاصيل معكِ: المعدن والمقاس وإمكانية التنفيذ والسعر.', v3: 'نرسل لكِ التصميم لتوافقي عليه قبل التصنيع.', v4: 'نصنع القطعة في نابلس، وتصلكِ في علبة أصالة.',
+    play: 'تشغيل', pause: 'إيقاف',
+    st1: 'شاركي فكرتكِ', st1d: 'صورة مرجعية أو وصف للقطعة المطلوبة', st2: 'نراجع التفاصيل', st2d: 'المعدن والمقاسات وإمكانية التنفيذ والسعر', st3: 'نؤكّد الطلب', st3d: 'اعتماد التصميم والمدة والتكلفة قبل التصنيع',
+    x_start: 'ابدئي طلب تصميم خاص', x_studio: 'أو صمّميها بنفسكِ في الاستوديو ثلاثي الأبعاد',
+    f_h: 'طلب تصميم خاص', ref: 'صورة مرجعية (اختياري)', ref_p: 'اختاري صورة: مبنى، أو نقش، أو رسمة', kind: 'نوع القطعة', mat: 'المعدن', m_unsure: 'لست متأكدة',
+    budget: 'الميزانية', idea: 'صفي فكرتكِ', f_send: 'إرسال الطلب', f_ok: 'وصل طلبكِ', f_ok_p: 'نراجع الفكرة ونتواصل معكِ لنكمل التفاصيل والسعر. هذا نموذج: لم يُرسل شيء.',
+    demo_flag: 'نموذج تصميم · ٢٥ أكتوبر',
+    sort: 'الترتيب', s_most: 'الأكثر طلباً', s_new: 'الأحدث', s_low: 'السعر: من الأقل', s_high: 'السعر: من الأعلى', all: 'الكل', clear: 'مسح الفلاتر', count: '{n} قطعة', count1: 'قطعة واحدة', all_h: 'كل القطع',
+    pol_ship_h: 'الشحن والتوصيل', pol_ret_h: 'الاستبدال والإرجاع', pol_priv_h: 'الخصوصية', pol_terms_h: 'الشروط والأحكام', pol_sizes_h: 'مقاسات القطع', pol_care_h: 'العناية بالقطع', pol_faq_h: 'أسئلة شائعة'
+  },
+  en: {
+    skip: 'Skip to content', menu: 'Menu', search: 'Search', bag: 'Bag', theme: 'Toggle dark mode', close: 'Close',
+    shop_by: 'Shop by', nav_most: 'Most requested', mg_feat: 'New designs from the atelier',
+    g_cat: 'Category', g_coll: 'Collection', g_mat: 'Material', g_occ: 'Gifting occasion', g_price: 'Price',
+    eyebrow: 'Unique earrings with an oriental feel', h1a: 'Architecture,', h1b: 'to wear.',
+    hero_p: 'Every piece starts as a drawing of a dome, an arch or a mashrabiya, and is made by hand in Nablus. Turn it to see it from every side.',
+    cta_shop: 'Shop the pieces', cta_design: 'Design your piece', slides: 'Pieces on show', scroll: 'Scroll to explore',
+    canvas_lbl: 'A 3D view of the piece; drag to turn it', drag: 'Drag to turn the piece', rail: 'Metal and pattern', view_piece: 'View the piece',
+    cats_h: 'Shop by category', all_pieces: 'All pieces', made_order: 'Made to order',
+    most_k: 'From the atelier', most_h: 'Most requested', most_auto: 'The order updates itself as orders come in',
+    made_k: 'From drawing to piece', made_h: 'How they’re made', made_p: 'Every piece starts as an architect’s drawing, then a plan, then metal cut by laser or clay shaped by hand.',
+    s1: 'The sketch', s1d: 'The Dome of the Rock in pencil.', s2: 'The plan', s2d: 'Dome and arches split into parts.', s3: 'The clay', s3d: 'Clay colours before shaping.', s4: 'The cut', s4d: 'Shapes cut to the drawn size.',
+    care_h: 'Caring for your pieces', c1: 'Take them off before water, perfume and sport.', c2: 'Wipe with a soft, dry cloth.', c3: 'Keep each piece in its box, out of the sun.', c4: 'Polymer clay is light, but can snap if bent hard.',
+    pack_k: 'Packaging', pack_h: 'Every piece arrives in an Asala box', pack_p: 'A charcoal box with the diamond pattern, closed with the Asala seal, with a thank-you card. Ready to give as it is.',
+    pk1: 'An Asala box with every piece', pk2: 'A red, charcoal or ivory seal, chosen when you order', pk3: 'A thank-you card that can carry your own gift message', pack_alt: 'Charcoal Asala boxes with the seal and thank-you card',
+    about_k: 'About us', about_h: 'Asala',
+    about_p: 'Asala makes handmade earrings and jewellery in Nablus, designed by an architect. Every piece starts as a drawing from Islamic architecture: the filigree of the Dome of the Rock, arches and mashrabiya.',
+    story_h: 'Our story', story_p1: 'Asala began in a sketchbook: domes and arches drawn in pencil, then split into parts the way a building plan is.',
+    story_p2: 'Today the pieces are made in Nablus: some in polymer clay with gold touches, others in gold-plated brass or silver, laser cut and finished by hand.',
+    vision_k: 'The Asala vision', vision: 'For a woman to own a unique piece of real value, to keep or to give to someone she loves, its value drawn from historic Islamic architecture.',
+    maker_h: 'A question about a piece, or a design idea?', maker_p: 'Talk to the maker directly through the Asala assistant.', maker_btn: 'Talk to the maker',
+    home: 'Home', shop: 'Shop', empty: 'No pieces match these choices. Try removing a filter.',
+    tr1: 'Cash on delivery', tr2: 'Gift-boxed, always', tr3: 'Handmade in Nablus', tr4: 'Every order confirmed by phone',
+    f_about: 'Unique earrings with an oriental feel, designed and made by hand in Nablus.', f_addr: 'Nablus, Palestine · full address to be added', f_hours: 'Saturday to Thursday, 10:00 – 18:00 (to confirm)', f_wa: 'WhatsApp: number added at launch',
+    ig: 'Instagram', fb: 'Facebook', wa: 'WhatsApp',
+    f_care: 'Customer care', p_ship: 'Shipping and delivery', p_sizes: 'Piece sizes', p_care: 'Jewellery care', p_faq: 'FAQ',
+    f_pol: 'Policies', p_returns: 'Exchanges and returns', p_ship2: 'Delivery policy', p_privacy: 'Privacy', p_terms: 'Terms',
+    f_us: 'Asala', f_aboutus: 'About us', f_story: 'Our story', f_made: 'How they’re made', f_studio: 'Design your piece', f_contact: 'Talk to the maker',
+    f_news: 'Newsletter', f_news_p: 'New pieces, and the buildings behind them.', email: 'Your email address', subscribe: 'Subscribe',
+    f_pay: 'Payment', cod: 'Cash on delivery', f_secure: 'Card payments through the Arab Bank gateway (being activated)', f_rights: 'All rights reserved', f_theme: 'Dark mode', f_theme2: 'Light mode',
+    f_demo: 'Design demo: prices, fees and the names of the new designs are to be confirmed.',
+    price_note: '(price to confirm)', metal: 'Metal', add: 'Add to bag', ask_maker: 'Ask the maker about this piece',
+    fact_made: 'Handmade in Nablus', fact_box: 'Arrives in an Asala box with a thank-you card', fact_cod: 'Cash on delivery or card', is_new: 'New',
+    checkout: 'Checkout', bag_empty: 'Your bag is empty.', subtotal: 'Subtotal', delivery: 'Delivery', total: 'Total', to_checkout: 'Checkout', keep: 'Keep shopping', remove: 'Remove', fee_hint: 'Shown once you pick a city',
+    name: 'Full name', phone: 'Phone number', city: 'City', city_ph: 'Choose your city', address: 'Address', pay: 'Payment',
+    pay_cod: 'Cash on delivery', pay_cod_d: 'We call you to confirm the order before it ships.', pay_card: 'Visa or Mastercard', pay_card_d: 'Through the Arab Bank gateway, switched on before launch.',
+    gift: 'This is a gift: add a message on the card', gift_msg: 'Card message', seal: 'Seal colour', seal_red: 'Red', seal_charcoal: 'Charcoal', seal_ivory: 'Ivory', place: 'Place order', req: 'Please fill in the required fields.',
+    ok_h: 'Thank you!', ok_p: 'This is a demo: no order was sent. In the real store we call you to confirm.', ok_rank: 'Look at “Most requested”: its order has updated itself.', ok_btn: 'See the new order',
+    demo_weight: 'Demo only: each order here counts as 15 so the ranking visibly moves.',
+    added: 'Added to your bag', soon: 'Link added at launch', subscribed: 'Thank you! (demo: nothing was sent)',
+    search_ph: 'Search for a piece, collection or metal', s_sug: 'Try:', s_none: 'No results.',
+    asst_fab: 'How can we help?', a_title: 'Asala assistant', a_sub: 'With you step by step', a_h: 'How can we help?', a_p: 'Choose what you need and we’ll guide you through Asala.',
+    o1: 'Help me choose a gift', o1d: 'Three questions, and we suggest the right piece', o2: 'Talk to the maker', o2d: 'Ask about a piece or how it is made', o3: 'How do I order my own design?', o3d: 'See the steps and start your design',
+    a_foot: 'At Asala, every piece starts with an idea.', back: 'Back', g_title: 'Choosing a gift',
+    q: 'Question {n} of 3', q1: 'Who is the gift for?', mum: 'My mum', mum_d: 'A classic that lasts', friend: 'A friend', friend_d: 'Colour and fun', bride: 'A bride', bride_d: 'For the big day', self: 'Myself', self_d: 'Because you deserve it',
+    q2: 'Which style do you prefer?', heritage: 'Heritage', heritage_d: 'Domes and patterns', soft: 'Soft and simple', soft_d: 'For every day', bold: 'Bold', bold_d: 'Turns heads',
+    q3: 'What budget suits you?', b_lt100: 'Under ₪100', b_mid: '₪100 – 200', b_gt200: 'Over ₪200',
+    res_h: 'Three pieces for you', res_p: 'Based on your answers. Each arrives boxed and ready to give.', view: 'View', add_s: 'Add to bag', again: 'Start again',
+    c_h: 'Talk to the maker', c_p: 'Ask about a piece, how it is made, or your order.', about_q: 'Your question is about', t_piece: 'A piece', t_custom: 'A custom design', t_order: 'An order or delivery', t_other: 'Something else',
+    which: 'Which piece?', msg: 'Your message', send: 'Send', reply_by: 'Reply by', by_wa: 'WhatsApp', by_call: 'Call', by_mail: 'Email',
+    c_ok: 'Message received', c_ok_p: 'Asala usually replies within a working day (to confirm). This is a demo: nothing was sent.', wa_btn: 'Or message us on WhatsApp', done: 'Done',
+    x_h: 'How do I order my own design?', x_p: 'Watch the short video, then start your request.', vid_tag: 'Tutorial video draft',
+    v1: 'Photograph or sketch your idea: a building, a pattern, or a piece you love.', v2: 'We go through the details with you: metal, size, what can be made, and price.', v3: 'We send you the design to approve before anything is made.', v4: 'We make it in Nablus and it arrives in an Asala box.',
+    play: 'Play', pause: 'Pause',
+    st1: 'Share your idea', st1d: 'A reference image or a description of the piece', st2: 'We review the details', st2d: 'Metal, sizes, feasibility and price', st3: 'We confirm the order', st3d: 'Design, timing and cost approved before making',
+    x_start: 'Start a custom design request', x_studio: 'Or design it yourself in the 3D studio',
+    f_h: 'Custom design request', ref: 'Reference image (optional)', ref_p: 'Choose a photo: a building, a pattern or a sketch', kind: 'Type of piece', mat: 'Metal', m_unsure: 'Not sure yet',
+    budget: 'Budget', idea: 'Describe your idea', f_send: 'Send request', f_ok: 'Request received', f_ok_p: 'We review the idea and contact you to settle the details and price. This is a demo: nothing was sent.',
+    demo_flag: 'Design demo · 25 Oct',
+    sort: 'Sort', s_most: 'Most requested', s_new: 'Newest', s_low: 'Price: low to high', s_high: 'Price: high to low', all: 'All', clear: 'Clear filters', count: '{n} pieces', count1: '1 piece', all_h: 'All pieces',
+    pol_ship_h: 'Shipping and delivery', pol_ret_h: 'Exchanges and returns', pol_priv_h: 'Privacy', pol_terms_h: 'Terms', pol_sizes_h: 'Piece sizes', pol_care_h: 'Jewellery care', pol_faq_h: 'FAQ'
+  }
+};
+
+// ---------------- helpers ----------------
+var $ = function (s, r) { return (r || document).querySelector(s); };
+var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
+function keep(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
+var Q0 = new URLSearchParams(location.search);
+var lang = (Q0.get('lang') || keep('asala-fs-lang')) === 'en' ? 'en' : 'ar';
+var theme = (Q0.get('theme') || keep('asala-fs-theme')) === 'dark' ? 'dark' : 'light';
+function t(k, v) { var s = (T[lang][k] != null ? T[lang][k] : T.ar[k]) || ''; if (v) Object.keys(v).forEach(function (x) { s = s.replace('{' + x + '}', v[x]); }); return s; }
+function L(o) { return o[lang]; }
+function nm(p) { return p[lang]; }
+function ds(p) { return lang === 'ar' ? p.dAr : p.dEn; }
+function money(n) { return lang === 'ar' ? n + ' ₪' : '₪' + n; }
+function byId(id) { return PRODUCTS.filter(function (p) { return p.id === id; })[0]; }
+var extra = {}; try { extra = JSON.parse(keep('asala-fs-orders') || '{}') || {}; } catch (e) { extra = {}; }
+function orders(p) { return p.orders + (extra[p.id] || 0); }
+function ranked() { return PRODUCTS.slice().sort(function (a, b) { return orders(b) - orders(a); }); }
+function priceOf(p, mat) { return p.price + ((MATS[mat || p.mats[0]] || {}).add || 0); }
+function toast(msg) { var el = $('#toast'); el.textContent = msg; el.classList.add('on'); clearTimeout(toast.t); toast.t = setTimeout(function () { el.classList.remove('on'); }, 2600); }
+function icon(id, cls) { return '<svg class="ic ' + (cls || '') + '"><use href="#' + id + '"/></svg>'; }
+
+// ---------------- language + theme ----------------
+function applyLang() {
+  var h = document.documentElement; h.lang = lang; h.dir = lang === 'ar' ? 'rtl' : 'ltr';
+  document.title = lang === 'ar' ? 'أصالة · أقراط فريدة بروح شرقية' : 'ASALA · Unique earrings with an oriental feel';
+  $$('[data-t]').forEach(function (el) { el.textContent = t(el.getAttribute('data-t')); });
+  $$('[data-tp]').forEach(function (el) { el.setAttribute('placeholder', t(el.getAttribute('data-tp'))); });
+  $$('[data-ta]').forEach(function (el) { el.setAttribute('aria-label', t(el.getAttribute('data-ta'))); });
+  $$('[data-ta-alt]').forEach(function (el) { el.setAttribute('alt', t(el.getAttribute('data-ta-alt'))); });
+  $$('[data-lang-btn]').forEach(function (el) { el.textContent = lang === 'ar' ? 'English' : 'عربي'; el.setAttribute('lang', lang === 'ar' ? 'en' : 'ar'); });
+  applyTheme();
+  renderAll();
+}
+function applyTheme() {
+  document.documentElement.setAttribute('data-theme', theme);
+  $$('[data-theme-btn]').forEach(function (el) {
+    if (el.classList.contains('ibtn')) el.innerHTML = icon(theme === 'dark' ? 'i-sun' : 'i-moon');
+    else el.textContent = t(theme === 'dark' ? 'f_theme2' : 'f_theme');
+  });
+}
+document.addEventListener('click', function (e) {
+  if (e.target.closest('[data-lang-btn]')) { lang = lang === 'ar' ? 'en' : 'ar'; keep('asala-fs-lang', lang); applyLang(); if (window.HERO3D) window.HERO3D.relabel(); }
+  if (e.target.closest('[data-theme-btn]')) { theme = theme === 'dark' ? 'light' : 'dark'; keep('asala-fs-theme', theme); applyTheme(); }
+});
+$$('svg[data-mark]').forEach(function (s) { s.setAttribute('viewBox', '0 0 100 104'); s.innerHTML = MARK; });
+
+// ---------------- header: solid after the hero, shop-by mega menu ----------------
+var hdr = $('#hdr');
+function onScroll() {
+  var home = !$('#view-home').hidden, past = !home || window.scrollY > window.innerHeight * 0.82;
+  hdr.classList.toggle('solid', past || megaOpen);
+  $('#asst-fab').classList.toggle('mini', window.scrollY > 300);
+}
+window.addEventListener('scroll', onScroll, { passive: true });
+var GROUPS = ['cat', 'coll', 'mat', 'occ', 'price'], mgGroup = 'cat', megaOpen = false;
+function groupOpts(g) {
+  var src = { cat: CATS, coll: COLLS, mat: MATS, occ: OCC, price: PRICES }[g];
+  return Object.keys(src).map(function (k) { return { k: k, label: src[k][lang], n: filterList(objFor(g, k)).length }; });
+}
+function objFor(g, k) { var o = {}; o[g] = k; return o; }
+var GROUP_IMG = { cat: { earrings: 'new-double-arch.jpg', necklace: 'new-crop-dome-pendant.jpg', ring: 'new-crop-arch-ring.jpg', set: 'new-rosette-set.jpg' }, coll: { dome: 'dome-stone.jpg', najma: 'dome-teal.jpg', 'new': 'new-window.jpg' }, mat: { A: 'fin-gold-shiny.jpg', B: 'fin-silver-matte.jpg', C: 'fin-gold-matte.jpg', clay: 'clay-balls.jpg' }, occ: { mum: 'lotus-pendant.jpg', friend: 'clay-arcs.jpg', bride: 'new-dome-set.jpg', self: 'cover-ear.jpg' }, price: { lt100: 'new-crop-arch-ring.jpg', mid: 'new-window.jpg', gt200: 'new-rosette-set.jpg' } };
+function renderMega() {
+  $('#mg-groups').innerHTML = GROUPS.map(function (g) { return '<button type="button" role="tab" aria-selected="' + (g === mgGroup) + '" data-g="' + g + '"><span>' + t('g_' + g) + '</span>' + icon('i-next', 'flip-rtl') + '</button>'; }).join('');
+  $('#mg-opts').innerHTML = groupOpts(mgGroup).map(function (o) { return '<a href="#shop?' + mgGroup + '=' + o.k + '" data-close-mega><img src="' + IMG + GROUP_IMG[mgGroup][o.k] + '" alt="" loading="lazy"><span>' + esc(o.label) + '</span><span class="n">' + o.n + '</span></a>'; }).join('');
+}
+$('#mg-groups').addEventListener('mouseover', function (e) { var b = e.target.closest('[data-g]'); if (b && b.getAttribute('data-g') !== mgGroup) { mgGroup = b.getAttribute('data-g'); renderMega(); } });
+$('#mg-groups').addEventListener('click', function (e) { var b = e.target.closest('[data-g]'); if (b) { mgGroup = b.getAttribute('data-g'); renderMega(); $('#mg-groups [aria-selected="true"]').focus(); } });
+function setMega(on) { megaOpen = on; $('#mega').classList.toggle('open', on); $('#shopby-btn').setAttribute('aria-expanded', String(on)); onScroll(); }
+$('#shopby-btn').addEventListener('click', function () { setMega(!megaOpen); });
+$('#mega').addEventListener('click', function (e) { if (e.target.closest('[data-close-mega]') || e.target.closest('#mg-feat')) setMega(false); });
+document.addEventListener('click', function (e) { if (megaOpen && !e.target.closest('#mega') && !e.target.closest('#shopby-btn')) setMega(false); });
+
+// ---------------- home sections ----------------
+function cardHTML(p, i, opts) {
+  var alt = p.alts && p.alts[0] ? '<img class="alt" src="' + IMG + p.alts[0] + '" alt="" loading="lazy">' : '';
+  return '<button class="card" type="button" data-open="' + p.id + '" data-id="' + p.id + '">' +
+    '<span class="ph"><img src="' + IMG + p.img + '" alt="" loading="lazy">' + alt +
+    (opts.rank ? '<span class="rank">' + (i < 9 ? '0' : '') + (i + 1) + '</span>' : '') + (p.isNew ? '<span class="new">' + t('is_new') + '</span>' : '') +
+    '<span class="view">' + t('view_piece') + '</span></span>' +
+    '<h3>' + esc(nm(p)) + '</h3><span class="meta"><span>' + esc(L(CATS[p.cat])) + ' · ' + esc(L(COLLS[p.coll])) + '</span>' + (opts.price ? '<b>' + money(p.price) + '</b>' : '') + '</span></button>';
+}
+var lastRank = [];
+function renderMost(flash) {
+  var top = ranked().slice(0, 8);
+  $('#most-grid').innerHTML = top.map(function (p, i) { return cardHTML(p, i, { rank: true, price: false }); }).join('');
+  if (flash) top.forEach(function (p, i) { if (lastRank.indexOf(p.id) !== i) { var el = $('#most-grid [data-id="' + p.id + '"]'); if (el) el.classList.add('moved'); } });
+  lastRank = top.map(function (p) { return p.id; });
+}
+function renderCats() {
+  var items = [['cat', 'earrings'], ['cat', 'necklace'], ['cat', 'ring'], ['cat', 'set'], ['coll', 'dome'], ['coll', 'najma']];
+  $('#cats-row').innerHTML = items.map(function (it) {
+    var label = it[0] === 'cat' ? L(CATS[it[1]]) : L(COLLS[it[1]]);
+    return '<a class="cat" href="#shop?' + it[0] + '=' + it[1] + '"><span class="c"><img src="' + IMG + GROUP_IMG[it[0]][it[1]] + '" alt="" loading="lazy"></span><span>' + esc(label) + '</span></a>';
+  }).join('') + '<a class="cat" href="#" data-asst="custom"><span class="c"><img src="' + IMG + 'pat-geometric.jpg" alt="" loading="lazy"></span><span>' + t('made_order') + '</span></a>';
+}
+
+// ---------------- shop view + filters ----------------
+var F = { cat: '', coll: '', mat: '', occ: '', price: '', sort: 'most' };
+function filterList(f) {
+  return PRODUCTS.filter(function (p) {
+    if (f.cat && p.cat !== f.cat) return false;
+    if (f.coll && p.coll !== f.coll) return false;
+    if (f.mat && p.mats.indexOf(f.mat) < 0) return false;
+    if (f.occ && p.who.indexOf(f.occ) < 0) return false;
+    if (f.price) { var b = PRICES[f.price]; if (p.price < b.lo || p.price > b.hi) return false; }
+    return true;
+  });
+}
+function renderShop() {
+  var list = filterList(F);
+  if (F.sort === 'most') list.sort(function (a, b) { return orders(b) - orders(a); });
+  if (F.sort === 'new') list.sort(function (a, b) { return (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0); });
+  if (F.sort === 'low') list.sort(function (a, b) { return a.price - b.price; });
+  if (F.sort === 'high') list.sort(function (a, b) { return b.price - a.price; });
+  var src = { cat: CATS, coll: COLLS, mat: MATS, occ: OCC, price: PRICES };
+  var title = t('all_h'); GROUPS.forEach(function (g) { if (F[g]) title = src[g][F[g]][lang]; });
+  $('#shop-h').textContent = title;
+  $('#filters').innerHTML = GROUPS.map(function (g) {
+    return '<span class="fsel"><label class="sr" for="f-' + g + '">' + t('g_' + g) + '</label><select id="f-' + g + '" data-f="' + g + '"' + (F[g] ? ' class="on"' : '') + '><option value="">' + t('g_' + g) + ': ' + t('all') + '</option>' +
+      Object.keys(src[g]).map(function (k) { return '<option value="' + k + '"' + (F[g] === k ? ' selected' : '') + '>' + esc(src[g][k][lang]) + '</option>'; }).join('') + '</select>' + icon('i-chev') + '</span>';
+  }).join('') + '<span class="sp"></span>' + (GROUPS.some(function (g) { return F[g]; }) ? '<button class="clear" type="button" data-clear>' + t('clear') + '</button>' : '') +
+    '<span class="fsel"><label class="sr" for="f-sort">' + t('sort') + '</label><select id="f-sort" data-f="sort">' + ['most', 'new', 'low', 'high'].map(function (k) { return '<option value="' + k + '"' + (F.sort === k ? ' selected' : '') + '>' + t('s_' + k) + '</option>'; }).join('') + '</select>' + icon('i-chev') + '</span>';
+  $('#res').textContent = list.length === 1 ? t('count1') : t('count', { n: list.length });
+  $('#shop-grid').innerHTML = list.map(function (p, i) { return cardHTML(p, i, { price: true }); }).join('');
+  $('#shop-empty').hidden = list.length > 0;
+}
+$('#filters').addEventListener('change', function (e) { var s = e.target.closest('[data-f]'); if (!s) return; F[s.getAttribute('data-f')] = s.value; writeHash(); });
+$('#filters').addEventListener('click', function (e) { if (e.target.closest('[data-clear]')) { GROUPS.forEach(function (g) { F[g] = ''; }); writeHash(); } });
+function writeHash() {
+  var q = GROUPS.concat(['sort']).filter(function (g) { return F[g] && !(g === 'sort' && F[g] === 'most'); }).map(function (g) { return g + '=' + F[g]; }).join('&');
+  history.replaceState(null, '', '#shop' + (q ? '?' + q : '')); renderShop();
+}
+
+// ---------------- router: home or shop ----------------
+function route() {
+  var h = location.hash || '';
+  var shop = h.indexOf('#shop') === 0;
+  $('#view-home').hidden = shop; $('#view-shop').hidden = !shop;
+  if (shop) {
+    GROUPS.forEach(function (g) { F[g] = ''; }); F.sort = 'most';
+    (h.split('?')[1] || '').split('&').forEach(function (kv) { var p = kv.split('='); if (p[0] && p[1] != null && (GROUPS.indexOf(p[0]) >= 0 || p[0] === 'sort')) F[p[0]] = decodeURIComponent(p[1]); });
+    renderShop(); window.scrollTo(0, 0);
+  } else if (h && h !== '#top') {
+    var el = document.getElementById(h.slice(1)); if (el) setTimeout(function () { el.scrollIntoView(); }, 30);
+  }
+  if (window.HERO3D) window.HERO3D.active(!shop);
+  onScroll();
+}
+window.addEventListener('hashchange', route);
+
+// ---------------- panels ----------------
+var stack = [];
+function openPanel(id) {
+  var el = $('#' + id), scrim = $('#scrim');
+  if (stack.indexOf(id) < 0) stack.push(id);
+  scrim.hidden = false; el.hidden = false;
+  requestAnimationFrame(function () { scrim.classList.add('on'); el.classList.add('on'); });
+  document.body.style.overflow = 'hidden';
+  $('#asst-fab').classList.toggle('away', id === 'checkout' || stack.indexOf('checkout') >= 0);
+  if (id !== 'checkout') closeAsst();
+  setTimeout(function () { var f = el.querySelector('input[type=search], .close'); if (f) f.focus({ preventScroll: true }); }, 80);
+}
+function closePanel(id) {
+  var el = $('#' + id); if (!el || el.hidden) return;
+  el.classList.remove('on'); stack = stack.filter(function (x) { return x !== id; });
+  setTimeout(function () { el.hidden = true; }, 380);
+  if (!stack.length) { $('#scrim').classList.remove('on'); setTimeout(function () { if (!stack.length) $('#scrim').hidden = true; }, 300); document.body.style.overflow = ''; }
+  $('#asst-fab').classList.toggle('away', stack.indexOf('checkout') >= 0);
+}
+function closeTop() { if (stack.length) closePanel(stack[stack.length - 1]); }
+$('#scrim').addEventListener('click', function () { while (stack.length) closePanel(stack[stack.length - 1]); });
+document.addEventListener('click', function (e) {
+  var c = e.target.closest('[data-close]'); if (c) { var p = c.closest('.panel'); if (p) closePanel(p.id); }
+  var o = e.target.closest('[data-open]'); if (o) { e.preventDefault(); openProduct(o.getAttribute('data-open')); }
+  var pol = e.target.closest('[data-pol]'); if (pol) { closePanel('menu'); openPolicy(pol.getAttribute('data-pol')); }
+  var a = e.target.closest('[data-asst]'); if (a) { e.preventDefault(); closePanel('menu'); openAsst(a.getAttribute('data-asst')); }
+  var s = e.target.closest('[data-soon]'); if (s) { e.preventDefault(); toast(t('soon')); }
+});
+document.addEventListener('keydown', function (e) { if (e.key === 'Escape') { if (asstOpen) closeAsst(); else if (megaOpen) setMega(false); else closeTop(); } });
+$('#menu-btn').addEventListener('click', function () { renderMenu(); openPanel('menu'); });
+$('#search-btn').addEventListener('click', function () { renderSearch(''); openPanel('search'); });
+$('#bag-btn').addEventListener('click', function () { renderBag(); openPanel('bag'); });
+
+function renderMenu() {
+  var src = { cat: CATS, coll: COLLS, mat: MATS, occ: OCC, price: PRICES };
+  $('#menu-acc').innerHTML = '<p class="caps" style="color:var(--mut);margin:14px 0 2px">' + t('shop_by') + '</p>' + GROUPS.map(function (g, i) {
+    return '<div class="acc"><button type="button" aria-expanded="' + (i === 0) + '" data-acc>' + t('g_' + g) + icon('i-chev') + '</button><div class="in"' + (i === 0 ? '' : ' hidden') + '>' +
+      Object.keys(src[g]).map(function (k) { return '<a href="#shop?' + g + '=' + k + '" data-close>' + esc(src[g][k][lang]) + '</a>'; }).join('') + '</div></div>';
+  }).join('');
+}
+$('#menu-acc').addEventListener('click', function (e) { var b = e.target.closest('[data-acc]'); if (!b) return; var on = b.getAttribute('aria-expanded') !== 'true'; b.setAttribute('aria-expanded', String(on)); b.nextElementSibling.hidden = !on; });
+
+// search
+function renderSearch(q) {
+  q = q.trim().toLowerCase();
+  var sug = ['القبة', 'خاتم', 'فضة', 'طقم'], sugEn = ['Dome', 'ring', 'silver', 'set'];
+  $('#s-sug').innerHTML = '<span>' + t('s_sug') + '</span>' + (lang === 'ar' ? sug : sugEn).map(function (s) { return '<button class="chip" type="button" data-sq="' + esc(s) + '">' + esc(s) + '</button>'; }).join('');
+  if (!q) { $('#s-res').innerHTML = ''; return; }
+  var hits = PRODUCTS.filter(function (p) { var hay = [p.ar, p.en, p.dAr, p.dEn, CATS[p.cat].ar, CATS[p.cat].en, COLLS[p.coll].ar, COLLS[p.coll].en].concat(p.mats.map(function (m) { return MATS[m].ar + ' ' + MATS[m].en; })).join(' ').toLowerCase(); return hay.indexOf(q) >= 0; });
+  $('#s-res').innerHTML = hits.length ? hits.map(function (p) { return '<button type="button" data-open="' + p.id + '"><img src="' + IMG + p.img + '" alt=""><span><b style="font-weight:500;display:block">' + esc(nm(p)) + '</b><small style="color:var(--mut)">' + esc(L(CATS[p.cat])) + '</small></span></button>'; }).join('') : '<p style="color:var(--mut)">' + t('s_none') + '</p>';
+}
+$('#s-in').addEventListener('input', function (e) { renderSearch(e.target.value); });
+$('#s-sug').addEventListener('click', function (e) { var b = e.target.closest('[data-sq]'); if (b) { $('#s-in').value = b.getAttribute('data-sq'); renderSearch($('#s-in').value); } });
+$('#s-res').addEventListener('click', function (e) { if (e.target.closest('[data-open]')) closePanel('search'); });
+
+// ---------------- product sheet ----------------
+var cur = null, curMat = 'A';
+function openProduct(id) {
+  var p = byId(id); if (!p) return;
+  cur = p; curMat = p.mats[0];
+  ['search', 'menu'].forEach(closePanel);
+  fillSheet(); openPanel('sheet');
+}
+function fillSheet() {
+  var p = cur; if (!p) return;
+  var imgs = [p.img].concat(p.alts || []);
+  $('#sh-img').src = IMG + imgs[0]; $('#sh-img').alt = nm(p);
+  $('#sh-thumbs').innerHTML = imgs.length > 1 ? imgs.map(function (s, i) { return '<button type="button" aria-pressed="' + (i === 0) + '" data-thumb="' + s + '"><img src="' + IMG + s + '" alt=""></button>'; }).join('') : '';
+  $('#sh-cat').textContent = L(CATS[p.cat]); $('#sh-coll').textContent = L(COLLS[p.coll]); $('#sh-name').textContent = nm(p);
+  $('#sh-price').textContent = money(priceOf(p, curMat)); $('#sh-desc').textContent = ds(p);
+  $('#sh-mats').hidden = p.mats.length < 2;
+  $('#sh-mat-chips').innerHTML = p.mats.map(function (m) { return '<button class="chip" type="button" aria-pressed="' + (m === curMat) + '" data-mat="' + m + '"><span class="sw ' + m + '"></span>' + esc(L(MATS[m])) + '</button>'; }).join('');
+  $('#sh-mat-fact').textContent = L(MATS[curMat]);
+}
+$('#sh-thumbs').addEventListener('click', function (e) { var b = e.target.closest('[data-thumb]'); if (!b) return; $('#sh-img').src = IMG + b.getAttribute('data-thumb'); $$('#sh-thumbs button').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); }); });
+$('#sh-mat-chips').addEventListener('click', function (e) { var b = e.target.closest('[data-mat]'); if (!b) return; curMat = b.getAttribute('data-mat'); fillSheet(); });
+$('#sh-add').addEventListener('click', function () { addToBag(cur.id, curMat); closePanel('sheet'); renderBag(); openPanel('bag'); });
+$('#sh-ask').addEventListener('click', function () { var id = cur.id; closePanel('sheet'); openAsst('contact', { topic: 'piece', piece: id }); });
+
+// ---------------- bag + checkout ----------------
+var cart = []; try { cart = JSON.parse(keep('asala-fs-cart') || '[]') || []; } catch (e) { cart = []; }
+function saveCart() { keep('asala-fs-cart', JSON.stringify(cart)); var n = cart.reduce(function (s, l) { return s + l.qty; }, 0); $$('[data-count]').forEach(function (el) { el.textContent = n; el.hidden = !n; }); }
+function addToBag(id, mat) { var k = id + '|' + mat, l = cart.filter(function (x) { return x.k === k; })[0]; if (l) l.qty++; else cart.push({ k: k, id: id, mat: mat, qty: 1 }); saveCart(); toast(t('added')); }
+function sub() { return cart.reduce(function (s, l) { return s + l.qty * priceOf(byId(l.id), l.mat); }, 0); }
+function renderBag() {
+  if (!cart.length) { $('#bag-body').innerHTML = '<div class="bag-empty">' + icon('i-bag') + '<p>' + t('bag_empty') + '</p><a class="btn btn-dark" href="#shop" data-close>' + t('keep') + '</a></div>'; $('#bag-ft').hidden = true; return; }
+  $('#bag-ft').hidden = false;
+  $('#bag-body').innerHTML = cart.map(function (l) {
+    var p = byId(l.id);
+    return '<div class="line"><img src="' + IMG + p.img + '" alt=""><div><b>' + esc(nm(p)) + '</b><small>' + esc(L(MATS[l.mat])) + '</small><span class="qty"><button type="button" data-q="-1" data-k="' + l.k + '" aria-label="−">−</button><span>' + l.qty + '</span><button type="button" data-q="1" data-k="' + l.k + '" aria-label="+">+</button></span><button class="rm" type="button" data-q="-99" data-k="' + l.k + '">' + t('remove') + '</button></div><span class="pr">' + money(l.qty * priceOf(p, l.mat)) + '</span></div>';
+  }).join('');
+  $('#bag-ft').innerHTML = '<div class="sum"><span>' + t('subtotal') + '</span><b>' + money(sub()) + '</b></div><div class="sum"><span>' + t('delivery') + '</span><span style="color:var(--mut);font-size:.86rem">' + t('fee_hint') + '</span></div><button class="btn btn-dark" type="button" id="to-co">' + t('to_checkout') + '</button><p class="demo-note">' + t('f_demo') + '</p>';
+}
+$('#bag-body').addEventListener('click', function (e) { var b = e.target.closest('[data-q]'); if (!b) return; var k = b.getAttribute('data-k'), d = +b.getAttribute('data-q'); cart = cart.filter(function (l) { if (l.k === k) l.qty = Math.max(0, l.qty + d); return l.qty > 0; }); saveCart(); renderBag(); });
+$('#bag-ft').addEventListener('click', function (e) { if (e.target.closest('#to-co')) { renderCheckout(); closePanel('bag'); openPanel('checkout'); } });
+function renderCheckout() {
+  $('#co-body').innerHTML = '<form class="form" id="co-form" novalidate>' +
+    '<div class="fld"><label for="co-name">' + t('name') + ' *</label><input id="co-name" required autocomplete="name"></div>' +
+    '<div class="fld"><label for="co-phone">' + t('phone') + ' *</label><input id="co-phone" type="tel" required autocomplete="tel" inputmode="tel" dir="ltr"></div>' +
+    '<div class="two"><div class="fld"><label for="co-city">' + t('city') + ' *</label><select id="co-city" required><option value="">' + t('city_ph') + '</option>' + CITIES.map(function (c) { return '<option value="' + c.id + '">' + esc(c[lang]) + ' · ' + money(c.fee) + '</option>'; }).join('') + '</select></div>' +
+    '<div class="fld"><label for="co-addr">' + t('address') + ' *</label><input id="co-addr" required autocomplete="street-address"></div></div>' +
+    '<div class="fld"><span class="lb">' + t('pay') + '</span><div class="payopt"><label><input type="radio" name="pay" value="cod" checked><span><b style="font-weight:500">' + t('pay_cod') + '</b><small>' + t('pay_cod_d') + '</small></span></label><label><input type="radio" name="pay" value="card"><span><b style="font-weight:500">' + t('pay_card') + '</b><small>' + t('pay_card_d') + '</small></span></label></div></div>' +
+    '<div class="fld"><span class="lb">' + t('seal') + '</span><div class="chips" id="co-seal">' + ['red', 'charcoal', 'ivory'].map(function (s, i) { return '<button class="chip" type="button" aria-pressed="' + (i === 0) + '" data-seal="' + s + '"><span class="sw" style="background:' + { red: '#C6383C', charcoal: '#33342F', ivory: '#E9E2D5' }[s] + '"></span>' + t('seal_' + s) + '</button>'; }).join('') + '</div></div>' +
+    '<label style="display:flex;gap:10px;align-items:center;font-size:.92rem"><input type="checkbox" id="co-gift"> ' + t('gift') + '</label>' +
+    '<div class="fld" id="co-gmsg" hidden><label for="co-msg">' + t('gift_msg') + '</label><textarea id="co-msg" maxlength="160"></textarea></div>' +
+    '<div class="sum"><span>' + t('subtotal') + '</span><b>' + money(sub()) + '</b></div><div class="sum"><span>' + t('delivery') + '</span><b id="co-fee">—</b></div><div class="sum tot"><span>' + t('total') + '</span><b id="co-tot">' + money(sub()) + '</b></div>' +
+    '<p id="co-err" style="color:var(--red);font-size:.88rem" hidden>' + t('req') + '</p>' +
+    '<button class="btn btn-dark" type="submit">' + t('place') + '</button><p class="demo-note">' + t('demo_weight') + '</p></form>';
+}
+$('#co-body').addEventListener('change', function (e) {
+  if (e.target.id === 'co-city') { var c = CITIES.filter(function (x) { return x.id === e.target.value; })[0]; $('#co-fee').textContent = c ? money(c.fee) : '—'; $('#co-tot').textContent = money(sub() + (c ? c.fee : 0)); }
+  if (e.target.id === 'co-gift') $('#co-gmsg').hidden = !e.target.checked;
+});
+$('#co-body').addEventListener('click', function (e) { var b = e.target.closest('[data-seal]'); if (b) $$('#co-seal [data-seal]').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); }); });
+$('#co-body').addEventListener('submit', function (e) {
+  e.preventDefault();
+  var need = ['co-name', 'co-phone', 'co-city', 'co-addr'].filter(function (id) { return !$('#' + id).value.trim(); });
+  $('#co-err').hidden = !need.length; if (need.length) { $('#' + need[0]).focus(); return; }
+  // every order feeds the ranking: this is what keeps "Most requested" automatic
+  lastRank = ranked().slice(0, 8).map(function (p) { return p.id; });
+  cart.forEach(function (l) { extra[l.id] = (extra[l.id] || 0) + l.qty * 15; });
+  keep('asala-fs-orders', JSON.stringify(extra)); cart = []; saveCart();
+  $('#co-body').innerHTML = '<div class="ok"><span class="tick">' + icon('i-check') + '</span><h2>' + t('ok_h') + '</h2><p>' + t('ok_p') + '</p><p>' + t('ok_rank') + '</p><a class="btn btn-dark" href="#most" id="see-rank">' + t('ok_btn') + '</a></div>';
+  renderMost(true);
+});
+$('#co-body').addEventListener('click', function (e) { if (e.target.closest('#see-rank')) { closePanel('checkout'); } });
+
+// ---------------- policies (real headings; numbers marked to confirm) ----------------
+var POL = {
+  ship: { k: 'pol_ship_h', ar: function () { return '<p>نوصل إلى كل مدن الضفة الغربية والقدس. نتصل بكِ لتأكيد الطلب قبل إرساله، ويصل عادةً خلال 2 – 4 أيام عمل (للتأكيد).</p><table><tr><th>المدينة</th><th>رسوم التوصيل</th></tr>' + CITIES.map(function (c) { return '<tr><td>' + c.ar + '</td><td>' + money(c.fee) + '</td></tr>'; }).join('') + '</table><h3>الدفع</h3><ul><li>الدفع عند الاستلام نقداً.</li><li>الدفع بالبطاقة (فيزا وماستركارد) عبر بوابة البنك العربي، بعد تفعيلها.</li></ul><h3>القطع حسب الطلب</h3><p>القطع المصمّمة خصيصاً تحتاج 2 – 3 أسابيع قبل الإرسال (للتأكيد)، ونؤكد المدة معكِ قبل البدء.</p>'; }, en: function () { return '<p>We deliver across the West Bank and Jerusalem. We call you to confirm before dispatch; delivery usually takes 2 – 4 working days (to confirm).</p><table><tr><th>City</th><th>Delivery fee</th></tr>' + CITIES.map(function (c) { return '<tr><td>' + c.en + '</td><td>' + money(c.fee) + '</td></tr>'; }).join('') + '</table><h3>Payment</h3><ul><li>Cash on delivery.</li><li>Card (Visa, Mastercard) through the Arab Bank gateway once it is live.</li></ul><h3>Made-to-order pieces</h3><p>Custom pieces take 2 – 3 weeks before dispatch (to confirm); we agree the timing with you first.</p>'; } },
+  returns: { k: 'pol_ret_h', ar: '<p>يمكنكِ استبدال القطعة خلال 7 أيام من استلامها إذا لم تُستعمل وكانت في علبتها الأصلية (للتأكيد).</p><ul><li>لأسباب صحية، تُستبدل الأقراط فقط إذا لم تُلبس.</li><li>القطع المصمّمة حسب الطلب لا تُستبدل إلا إذا وصلت بعيب في التصنيع.</li><li>إذا وصلت القطعة بعيب، نستبدلها على حسابنا.</li></ul><p>للاستبدال، تواصلي مع الصانعة من مساعد أصالة واذكري رقم الطلب.</p>', en: '<p>You can exchange a piece within 7 days of delivery if it is unused and in its original box (to confirm).</p><ul><li>For hygiene, earrings can be exchanged only if they have not been worn.</li><li>Made-to-order pieces are exchanged only for a manufacturing fault.</li><li>If a piece arrives faulty, we replace it at our cost.</li></ul><p>To exchange, contact the maker through the Asala assistant with your order number.</p>' },
+  privacy: { k: 'pol_priv_h', ar: '<p>نجمع الاسم ورقم الهاتف والعنوان فقط لتوصيل طلبكِ والتواصل معكِ بشأنه.</p><ul><li>لا نشارك بياناتكِ إلا مع شركة التوصيل.</li><li>الدفع بالبطاقة تتم معالجته لدى البنك، ولا نحتفظ بأرقام البطاقات.</li><li>يمكنكِ إلغاء الاشتراك في النشرة البريدية في أي وقت.</li></ul>', en: '<p>We collect your name, phone and address only to deliver your order and contact you about it.</p><ul><li>We share your details only with the delivery company.</li><li>Card payments are processed by the bank; we never store card numbers.</li><li>You can unsubscribe from the newsletter at any time.</li></ul>' },
+  terms: { k: 'pol_terms_h', ar: '<ul><li>الأسعار بالشيكل وتشمل العلبة وبطاقة الشكر.</li><li>كل قطعة مصنوعة يدوياً، لذلك قد تختلف قليلاً عن الصورة.</li><li>يُعتمد الطلب بعد تأكيده بالهاتف.</li><li>القطع حسب الطلب تبدأ بعد اعتماد التصميم والسعر.</li></ul><p class="demo-note">صياغة أولية، تراجعها أصالة قبل الإطلاق.</p>', en: '<ul><li>Prices are in shekels and include the box and thank-you card.</li><li>Every piece is handmade, so it may differ slightly from the photo.</li><li>An order is final once confirmed by phone.</li><li>Made-to-order pieces start once the design and price are approved.</li></ul><p class="demo-note">A first draft for Asala to review before launch.</p>' },
+  sizes: { k: 'pol_sizes_h', ar: '<table><tr><th>القطعة</th><th>المقاس التقريبي</th></tr><tr><td>أقراط القبة</td><td>24 × 28 مم</td></tr><tr><td>أقراط النافذة</td><td>للتأكيد</td></tr><tr><td>أقراط القوسين</td><td>للتأكيد</td></tr><tr><td>الخواتم</td><td>مقاسات 5 – 9 (للتأكيد)</td></tr><tr><td>طول السلاسل</td><td>42 – 45 سم (للتأكيد)</td></tr></table>', en: '<table><tr><th>Piece</th><th>Approx. size</th></tr><tr><td>Dome earrings</td><td>24 × 28 mm</td></tr><tr><td>Window earrings</td><td>to confirm</td></tr><tr><td>Double-arch earrings</td><td>to confirm</td></tr><tr><td>Rings</td><td>sizes 5 – 9 (to confirm)</td></tr><tr><td>Chain length</td><td>42 – 45 cm (to confirm)</td></tr></table>' },
+  care: { k: 'pol_care_h', ar: function () { return '<ul><li>' + t('c1') + '</li><li>' + t('c2') + '</li><li>' + t('c3') + '</li><li>' + t('c4') + '</li><li>الفضة تغمق طبيعياً مع الهواء، ويعود لمعانها بقطعة قماش ناعمة.</li></ul>'; }, en: function () { return '<ul><li>' + t('c1') + '</li><li>' + t('c2') + '</li><li>' + t('c3') + '</li><li>' + t('c4') + '</li><li>Silver darkens naturally in air; a soft cloth brings the shine back.</li></ul>'; } },
+  faq: { k: 'pol_faq_h', ar: '<h3>هل القطع من الذهب؟</h3><p>القطع المعدنية من نحاس مطلي بذهب عيار 18، أو فضة 925، أو فضة بطبقة ذهب (فيرميل). المادة مكتوبة في صفحة كل قطعة.</p><h3>هل تصمّمون قطعاً خاصة؟</h3><p>نعم. افتحي مساعد أصالة واختاري «كيف أطلب تصميمي الخاص؟».</p><h3>هل تصل القطعة جاهزة للإهداء؟</h3><p>كل قطعة تصل في علبة أصالة مع ختم وبطاقة شكر، ويمكنكِ إضافة رسالة.</p><h3>كيف أدفع؟</h3><p>عند الاستلام، أو بالبطاقة عبر البنك العربي بعد تفعيلها.</p>', en: '<h3>Are the pieces gold?</h3><p>Metal pieces are brass with 18K gold plating, 925 silver, or silver with gold vermeil. Each product page says which.</p><h3>Do you make custom pieces?</h3><p>Yes. Open the Asala assistant and choose “How do I order my own design?”.</p><h3>Does it arrive ready to give?</h3><p>Every piece comes in an Asala box with a seal and a thank-you card; you can add a message.</p><h3>How do I pay?</h3><p>Cash on delivery, or by card through the Arab Bank once it is live.</p>' }
+};
+var POL_ORDER = ['ship', 'returns', 'privacy', 'terms', 'sizes', 'care', 'faq'], polCur = 'ship';
+function openPolicy(k) { polCur = k; renderPolicy(); openPanel('policies'); }
+function renderPolicy() {
+  $('#pol-tabs').innerHTML = POL_ORDER.map(function (k) { return '<button type="button" role="tab" aria-selected="' + (k === polCur) + '" data-ptab="' + k + '">' + t(POL[k].k) + '</button>'; }).join('');
+  var c = POL[polCur][lang]; $('#pol-body').innerHTML = '<h2 style="font-size:1.6rem;margin-bottom:10px">' + t(POL[polCur].k) + '</h2>' + (typeof c === 'function' ? c() : c);
+}
+$('#pol-tabs').addEventListener('click', function (e) { var b = e.target.closest('[data-ptab]'); if (b) { polCur = b.getAttribute('data-ptab'); renderPolicy(); } });
+
+// newsletter
+$('#news-form').addEventListener('submit', function (e) { e.preventDefault(); if ($('#news-in').value.indexOf('@') > 0) { $('#news-in').value = ''; toast(t('subscribed')); } else $('#news-in').focus(); });
+
+// ---------------- the Asala assistant ----------------
+var asstOpen = false, A = { screen: 'home' };
+function openAsst(screen, opts) {
+  A = Object.assign({ screen: screen || 'home', who: '', style: '', budget: '', step: 1 }, opts || {});
+  if (screen && screen !== 'home' && screen !== 'gift') A.screen = screen;
+  renderAsst(); var el = $('#asst'); el.hidden = false;
+  requestAnimationFrame(function () { el.classList.add('on'); });
+  asstOpen = true; $('#asst-fab').setAttribute('aria-expanded', 'true');
+  if (matchMedia('(max-width: 600px)').matches) $('#asst-fab').classList.add('away');
+  setTimeout(function () { var f = el.querySelector('.a-bd button, .a-bd input'); if (f) f.focus({ preventScroll: true }); }, 120);
+}
+function closeAsst() { if (!asstOpen) return; var el = $('#asst'); el.classList.remove('on'); asstOpen = false; $('#asst-fab').classList.toggle('away', stack.indexOf('checkout') >= 0); $('#asst-fab').setAttribute('aria-expanded', 'false'); stopVid(); setTimeout(function () { if (!asstOpen) el.hidden = true; }, 350); }
+$('#asst-fab').addEventListener('click', function () { if (asstOpen) closeAsst(); else openAsst('home'); });
+function go(screen) { A.screen = screen; stopVid(); renderAsst(); $('#a-bd').scrollTop = 0; var f = $('#a-bd button, #a-bd input'); if (f) f.focus({ preventScroll: true }); }
+function aHead(title, backTo) {
+  return (backTo ? '<button class="back" type="button" data-ago="' + backTo + '">' + icon('i-arrow', 'flip-ltr') + t('back') + '</button>' : '<span class="t"><span class="m"><svg viewBox="0 0 100 104">' + MARK + '</svg></span><span><b id="asst-title">' + t('a_title') + '</b><small>' + t('a_sub') + '</small></span></span>') +
+    (backTo ? '<span class="caps" id="asst-title" style="color:var(--mut)">' + esc(title || '') + '</span>' : '') +
+    '<button class="close" type="button" data-aclose aria-label="' + t('close') + '">' + icon('i-x') + '</button>';
+}
+var GIFT_Q = [
+  { key: 'who', q: 'q1', opts: ['mum', 'friend', 'bride', 'self'] },
+  { key: 'style', q: 'q2', opts: ['heritage', 'soft', 'bold'] },
+  { key: 'budget', q: 'q3', opts: ['lt100', 'mid', 'gt200'] }
+];
+function giftPicks() {
+  var b = PRICES[A.budget];
+  return PRODUCTS.map(function (p) {
+    var s = (p.who.indexOf(A.who) >= 0 ? 3 : 0) + (p.style.indexOf(A.style) >= 0 ? 2 : 0) + (b && p.price >= b.lo && p.price <= b.hi ? 3 : 0) + orders(p) / 200;
+    return { p: p, s: s };
+  }).sort(function (x, y) { return y.s - x.s; }).slice(0, 3).map(function (x) { return x.p; });
+}
+function renderAsst() {
+  var hd = $('#a-hd'), bd = $('#a-bd'), s = A.screen;
+  if (s === 'home') {
+    hd.innerHTML = aHead();
+    bd.innerHTML = '<h3>' + t('a_h') + '</h3><p class="a-sub">' + t('a_p') + '</p>' +
+      '<button class="a-opt" type="button" data-ago="gift"><span class="o w">' + icon('i-gift') + '</span><span><b>' + t('o1') + '</b><small>' + t('o1d') + '</small></span>' + icon('i-next', 'go flip-rtl') + '</button>' +
+      '<button class="a-opt" type="button" data-ago="contact"><span class="o v">' + icon('i-chat') + '</span><span><b>' + t('o2') + '</b><small>' + t('o2d') + '</small></span>' + icon('i-next', 'go flip-rtl') + '</button>' +
+      '<button class="a-opt" type="button" data-ago="custom"><span class="o g">' + icon('i-pen') + '</span><span><b>' + t('o3') + '</b><small>' + t('o3d') + '</small></span>' + icon('i-next', 'go flip-rtl') + '</button>' +
+      '<p class="a-foot"><svg viewBox="0 0 100 104">' + MARK + '</svg>' + t('a_foot') + '</p>';
+  } else if (s === 'gift') {
+    var q = GIFT_Q[A.step - 1];
+    hd.innerHTML = aHead(t('g_title'), A.step > 1 ? 'gift-back' : 'home');
+    bd.innerHTML = '<p class="q-step"><span>' + t('q', { n: A.step }) + '</span></p><div class="q-bar">' + [1, 2, 3].map(function (i) { return '<i class="' + (i <= A.step ? 'on' : '') + '"></i>'; }).join('') + '</div>' +
+      '<h3>' + t(q.q) + '</h3><div class="q-grid" style="margin-top:14px">' + q.opts.map(function (o) { var lbl = q.key === 'budget' ? t('b_' + o) : t(o), d = q.key === 'budget' ? '' : t(o + '_d'); return '<button type="button" data-ans="' + o + '"><b>' + lbl + '</b>' + (d ? '<small>' + d + '</small>' : '') + '</button>'; }).join('') + '</div>';
+  } else if (s === 'gift-res') {
+    hd.innerHTML = aHead(t('g_title'), 'gift-back');
+    bd.innerHTML = '<p style="color:var(--gold2);margin-top:6px">' + icon('i-spark') + '</p><h3>' + t('res_h') + '</h3><p class="a-sub">' + t('res_p') + '</p><div class="recs">' + giftPicks().map(function (p) {
+      return '<div class="rec"><img src="' + IMG + p.img + '" alt=""><div><b>' + esc(nm(p)) + '</b><small>' + esc(L(CATS[p.cat])) + ' · <span class="pr">' + money(p.price) + '</span></small><div class="acts"><button type="button" data-aview="' + p.id + '">' + t('view') + '</button><button class="pri" type="button" data-aadd="' + p.id + '">' + t('add_s') + '</button></div></div></div>';
+    }).join('') + '</div><button class="btn btn-ghost" type="button" data-ago="gift-again" style="width:100%;margin-top:14px;min-height:42px">' + t('again') + '</button>';
+  } else if (s === 'contact') {
+    hd.innerHTML = aHead(t('c_h'), 'home');
+    var topic = A.topic || 'piece';
+    bd.innerHTML = '<h3>' + t('c_h') + '</h3><p class="a-sub">' + t('c_p') + '</p><form class="form" id="c-form" novalidate>' +
+      '<div class="fld"><span class="lb">' + t('about_q') + '</span><div class="chips" id="c-topic">' + ['piece', 'custom', 'order', 'other'].map(function (k) { return '<button class="chip" type="button" aria-pressed="' + (k === topic) + '" data-topic="' + k + '">' + t('t_' + k) + '</button>'; }).join('') + '</div></div>' +
+      '<div class="fld" id="c-piece-f"' + (topic === 'piece' ? '' : ' hidden') + '><label for="c-piece">' + t('which') + '</label><select id="c-piece">' + PRODUCTS.map(function (p) { return '<option value="' + p.id + '"' + (A.piece === p.id ? ' selected' : '') + '>' + esc(nm(p)) + '</option>'; }).join('') + '</select></div>' +
+      '<div class="fld"><label for="c-msg">' + t('msg') + ' *</label><textarea id="c-msg" required></textarea></div>' +
+      '<div class="two"><div class="fld"><label for="c-name">' + t('name') + ' *</label><input id="c-name" required autocomplete="name"></div><div class="fld"><label for="c-phone">' + t('phone') + ' *</label><input id="c-phone" type="tel" required dir="ltr" autocomplete="tel"></div></div>' +
+      '<div class="fld"><span class="lb">' + t('reply_by') + '</span><div class="chips" id="c-by">' + ['wa', 'call', 'mail'].map(function (k, i) { return '<button class="chip" type="button" aria-pressed="' + (i === 0) + '" data-by="' + k + '">' + t('by_' + k) + '</button>'; }).join('') + '</div></div>' +
+      '<button class="btn btn-dark" type="submit">' + t('send') + '</button><a class="wa" href="#" data-soon>' + icon('i-wa') + t('wa_btn') + '</a></form>';
+  } else if (s === 'contact-ok' || s === 'form-ok') {
+    hd.innerHTML = aHead('', 'home');
+    bd.innerHTML = '<div class="ok"><span class="tick">' + icon('i-check') + '</span><h3>' + t(s === 'contact-ok' ? 'c_ok' : 'f_ok') + '</h3><p>' + t(s === 'contact-ok' ? 'c_ok_p' : 'f_ok_p') + '</p><button class="btn btn-dark" type="button" data-aclose>' + t('done') + '</button></div>';
+  } else if (s === 'custom') {
+    hd.innerHTML = aHead(t('o3'), 'home');
+    var scenes = [['sketch-dome.jpg', 'v1'], ['sketch-plan.jpg', 'v2'], ['dome-render.jpg', 'v3'], ['packaging-family.jpg', 'v4']];
+    bd.innerHTML = '<h3>' + t('x_h') + '</h3><p class="a-sub">' + t('x_p') + '</p>' +
+      '<div class="vid" id="vid">' + scenes.map(function (sc, i) { return '<div class="sc' + (i === 0 ? ' on' : '') + '"><img src="' + IMG + sc[0] + '" alt=""><p><b>0' + (i + 1) + '</b>' + t(sc[1]) + '</p></div>'; }).join('') +
+      '<span class="tag">' + t('vid_tag') + '</span><button class="play" type="button" id="vid-play" aria-label="' + t('play') + '"><span>' + icon('i-play') + '</span></button><div class="bar"><i id="vid-bar"></i></div></div>' +
+      '<ol class="howto"><li><span>01</span><div><b>' + t('st1') + '</b><small>' + t('st1d') + '</small></div></li><li><span>02</span><div><b>' + t('st2') + '</b><small>' + t('st2d') + '</small></div></li><li><span>03</span><div><b>' + t('st3') + '</b><small>' + t('st3d') + '</small></div></li></ol>' +
+      '<button class="btn btn-dark" type="button" data-ago="form" style="width:100%">' + t('x_start') + '</button>' +
+      '<a class="link" href="asala-3d.html#studio" style="margin-top:14px">' + icon('i-cube') + t('x_studio') + '</a>';
+  } else if (s === 'form') {
+    hd.innerHTML = aHead(t('f_h'), 'custom');
+    bd.innerHTML = '<h3>' + t('f_h') + '</h3><form class="form" id="x-form" novalidate style="margin-top:12px">' +
+      '<label class="drop" for="x-ref"><span id="x-prev">' + icon('i-up') + '</span><span><b style="font-weight:500;display:block">' + t('ref') + '</b>' + t('ref_p') + '</span></label><input id="x-ref" type="file" accept="image/*" class="sr">' +
+      '<div class="fld"><span class="lb">' + t('kind') + '</span><div class="chips" data-pick="kind">' + ['earrings', 'necklace', 'ring', 'set'].map(function (k, i) { return '<button class="chip" type="button" aria-pressed="' + (i === 0) + '">' + esc(L(CATS[k])) + '</button>'; }).join('') + '</div></div>' +
+      '<div class="fld"><span class="lb">' + t('mat') + '</span><div class="chips" data-pick="mat">' + ['A', 'B', 'C', 'clay'].map(function (k) { return '<button class="chip" type="button" aria-pressed="false"><span class="sw ' + k + '"' + (k === 'clay' ? ' style="background:#e9b9a6"' : '') + '></span>' + esc(L(MATS[k])) + '</button>'; }).join('') + '<button class="chip" type="button" aria-pressed="true">' + t('m_unsure') + '</button></div></div>' +
+      '<div class="fld"><span class="lb">' + t('budget') + '</span><div class="chips" data-pick="budget">' + ['lt100', 'mid', 'gt200'].map(function (k, i) { return '<button class="chip" type="button" aria-pressed="' + (i === 1) + '">' + t('b_' + k) + '</button>'; }).join('') + '</div></div>' +
+      '<div class="fld"><label for="x-idea">' + t('idea') + ' *</label><textarea id="x-idea" required></textarea></div>' +
+      '<div class="two"><div class="fld"><label for="x-name">' + t('name') + ' *</label><input id="x-name" required autocomplete="name"></div><div class="fld"><label for="x-phone">' + t('phone') + ' *</label><input id="x-phone" type="tel" required dir="ltr" autocomplete="tel"></div></div>' +
+      '<button class="btn btn-dark" type="submit">' + t('f_send') + '</button></form>';
+  }
+}
+$('#asst').addEventListener('click', function (e) {
+  if (e.target.closest('[data-aclose]')) { closeAsst(); return; }
+  var g = e.target.closest('[data-ago]');
+  if (g) {
+    var to = g.getAttribute('data-ago');
+    if (to === 'gift') { A.step = 1; A.who = A.style = A.budget = ''; go('gift'); }
+    else if (to === 'gift-again') { A.step = 1; go('gift'); }
+    else if (to === 'gift-back') { if (A.screen === 'gift-res') { A.step = 3; go('gift'); } else { A.step--; go('gift'); } }
+    else go(to);
+    return;
+  }
+  var ans = e.target.closest('[data-ans]');
+  if (ans) { var q = GIFT_Q[A.step - 1]; A[q.key] = ans.getAttribute('data-ans'); if (A.step < 3) { A.step++; go('gift'); } else go('gift-res'); return; }
+  var v = e.target.closest('[data-aview]'); if (v) { closeAsst(); openProduct(v.getAttribute('data-aview')); return; }
+  var ad = e.target.closest('[data-aadd]'); if (ad) { var p = byId(ad.getAttribute('data-aadd')); addToBag(p.id, p.mats[0]); return; }
+  var tp = e.target.closest('[data-topic]'); if (tp) { $$('#c-topic .chip').forEach(function (x) { x.setAttribute('aria-pressed', String(x === tp)); }); $('#c-piece-f').hidden = tp.getAttribute('data-topic') !== 'piece'; return; }
+  var by = e.target.closest('[data-by]'); if (by) { $$('#c-by .chip').forEach(function (x) { x.setAttribute('aria-pressed', String(x === by)); }); return; }
+  var pk = e.target.closest('[data-pick] .chip'); if (pk) { $$('.chip', pk.parentNode).forEach(function (x) { x.setAttribute('aria-pressed', String(x === pk)); }); return; }
+  if (e.target.closest('#vid-play')) toggleVid();
+});
+$('#asst').addEventListener('submit', function (e) {
+  e.preventDefault(); var f = e.target;
+  var bad = $$('[required]', f).filter(function (x) { return !x.value.trim(); });
+  bad.forEach(function (x) { x.style.borderColor = 'var(--red)'; }); if (bad.length) { bad[0].focus(); return; }
+  go(f.id === 'c-form' ? 'contact-ok' : 'form-ok');
+});
+$('#asst').addEventListener('change', function (e) {
+  if (e.target.id === 'x-ref' && e.target.files[0]) { var r = new FileReader(); r.onload = function () { $('#x-prev').innerHTML = '<img src="' + r.result + '" alt="">'; }; r.readAsDataURL(e.target.files[0]); }
+});
+// the tutorial "video": a timed four-scene draft until Asala films the real one
+var vidT = null, vidStart = 0, vidPos = 0, VID_LEN = 16000;
+function toggleVid() { if (vidT) stopVid(true); else { $('#vid-play').style.opacity = 0; vidStart = performance.now() - vidPos; vidT = requestAnimationFrame(vidTick); } }
+function vidTick(now) {
+  var el = $('#vid'); if (!el) { vidT = null; return; }
+  vidPos = now - vidStart; if (vidPos >= VID_LEN) { vidPos = 0; stopVid(true); }
+  var i = Math.min(3, Math.floor(vidPos / (VID_LEN / 4)));
+  $$('.sc', el).forEach(function (s, k) { s.classList.toggle('on', k === i); });
+  $('#vid-bar').style.width = (vidPos / VID_LEN * 100) + '%';
+  if (vidT) vidT = requestAnimationFrame(vidTick);
+}
+function stopVid(keepPos) { if (vidT) cancelAnimationFrame(vidT); vidT = null; if (!keepPos) vidPos = 0; var p = $('#vid-play'); if (p) p.style.opacity = 1; }
+
+// ---------------- hero: slides + metal/pattern rail ----------------
+var QS = new URLSearchParams(location.search), slide = Math.min(2, +QS.get('slide') || 0), hero = { metal: 'A', pattern: 'geometric' }, slideTimer = null, SLIDE_MS = 8000, paused = QS.has('still');
+function renderSlides() {
+  $('#slides').innerHTML = SLIDES.map(function (s, i) { return '<button type="button" role="tab" aria-current="' + (i === slide) + '" aria-label="' + esc(nm(byId(s.id))) + '" data-slide="' + i + '">0' + (i + 1) + '<i></i></button>'; }).join('');
+  $('#slides').style.setProperty('--dur', SLIDE_MS + 'ms');
+  $('#cap-name').textContent = nm(byId(SLIDES[slide].id));
+  $('#fb-img').src = IMG + SLIDES[slide].fb; $('#fb-img').alt = nm(byId(SLIDES[slide].id));
+  renderRail();
+}
+function renderRail() {
+  var isDome = SLIDES[slide].d3 === 'dome';
+  $('#rail-list').innerHTML = ['A', 'B', 'C'].map(function (m) { return '<button class="sw ' + m + '" type="button" aria-pressed="' + (hero.metal === m) + '" data-hmetal="' + m + '" aria-label="' + esc(L(MATS[m])) + '" title="' + esc(L(MATS[m])) + '"></button>'; }).join('') +
+    (isDome ? '<hr>' + PATTERNS.map(function (p) { return '<button class="pt" type="button" aria-pressed="' + (hero.pattern === p.id) + '" data-hpat="' + p.id + '" aria-label="' + esc(p[lang]) + '" title="' + esc(p[lang]) + '"><img src="' + IMG + p.img + '" alt=""></button>'; }).join('') : '');
+}
+function showSlide(i, user) {
+  slide = (i + SLIDES.length) % SLIDES.length; renderSlides();
+  if (window.HERO3D) window.HERO3D.show(SLIDES[slide].d3, hero);
+  schedule(user);
+}
+function schedule(user) { clearTimeout(slideTimer); if (user) paused = false; slideTimer = setTimeout(function () { if (!paused && !document.hidden && $('#view-shop').hidden) showSlide(slide + 1); else schedule(); }, SLIDE_MS); }
+$('#slides').addEventListener('click', function (e) { var b = e.target.closest('[data-slide]'); if (b) showSlide(+b.getAttribute('data-slide'), true); });
+$('#cap-btn').addEventListener('click', function () { openProduct(SLIDES[slide].id); });
+$('#rail-btn').addEventListener('click', function () { var l = $('#rail-list'), on = l.hidden; l.hidden = !on; this.setAttribute('aria-expanded', String(on)); });
+$('#rail-list').addEventListener('click', function (e) {
+  var m = e.target.closest('[data-hmetal]'), p = e.target.closest('[data-hpat]');
+  if (m) hero.metal = m.getAttribute('data-hmetal'); if (p) hero.pattern = p.getAttribute('data-hpat');
+  if (m || p) { renderRail(); if (window.HERO3D) window.HERO3D.show(SLIDES[slide].d3, hero); schedule(true); }
+});
+var stage = $('#stage');
+stage.addEventListener('pointerenter', function () { paused = true; $('#slides').classList.add('paused'); });
+stage.addEventListener('pointerleave', function () { paused = false; $('#slides').classList.remove('paused'); schedule(); });
+$('#hero-canvas').addEventListener('pointerdown', function () { $('#drag').classList.add('gone'); });
+if (QS.has('shot')) document.documentElement.classList.add('shot');
+window.ASALA_FS = { slide: function () { return SLIDES[slide].d3; }, hero: hero };
+setTimeout(function () { if (!window.HERO3D) document.documentElement.classList.add('no3d'); }, 8000);
+
+function renderAll() {
+  renderMega(); renderCats(); renderMost(false); renderSlides();
+  if (!$('#view-shop').hidden) renderShop();
+  if (stack.indexOf('sheet') >= 0) fillSheet();
+  if (stack.indexOf('bag') >= 0) renderBag();
+  if (stack.indexOf('policies') >= 0) renderPolicy();
+  if (asstOpen) renderAsst();
+}
+saveCart(); applyLang(); route(); schedule();
+})();
+</script>
+<script type="importmap">
+{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.min.js", "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/" } }
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+
+const REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const METALS = { A: { color: 0xffcf73, rough: 0.22, coat: 0.6 }, B: { color: 0xeef1f4, rough: 0.3, coat: 0.15 }, C: { color: 0xf0ba70, rough: 0.36, coat: 0.3 } };
+function metalMat(id, extra) { const m = METALS[id] || METALS.A; return new THREE.MeshPhysicalMaterial(Object.assign({ color: m.color, metalness: 1, roughness: m.rough, envMapIntensity: 2.1, clearcoat: m.coat, clearcoatRoughness: 0.2 }, extra || {})); }
+
+// ---------- shared 2D helpers (units: 1 = 10 mm) ----------
+function arcPts(cx, cy, r, a0, a1, n) { const p = []; for (let i = 0; i <= n; i++) { const a = a0 + (a1 - a0) * i / n; p.push([cx + r * Math.cos(a), cy + r * Math.sin(a)]); } return p; }
+function toShape(pts, Ctor) { const s = new (Ctor || THREE.Shape)(); s.moveTo(pts[0][0], pts[0][1]); for (let i = 1; i < pts.length; i++) s.lineTo(pts[i][0], pts[i][1]); s.closePath(); return s; }
+function extrude(shape, depth, bevel) { const g = new THREE.ExtrudeGeometry(shape, { depth, bevelEnabled: true, bevelThickness: bevel, bevelSize: bevel * 0.8, bevelSegments: 3, curveSegments: 24 }); g.translate(0, 0, -depth / 2); g.computeVertexNormals(); return g; }
+function ring(r, tube, mat) { return new THREE.Mesh(new THREE.TorusGeometry(r, tube, 12, 36), mat); }
+
+// ---------- 1. the Dome earring (same build as the 3D studio) ----------
+const BODY_BOTTOM = -1.26, BAND_TOP = 0.02, BAND_BOTTOM = -0.22, ARCH_TOP = -0.3, ARCH_BOTTOM = -1.14;
+function topOutline(inset, yb) { const R = 1.2 - inset, a = Math.asin(Math.min(0.99, yb / R)); return arcPts(0, 0, R, a, Math.PI - a, 80); }
+function archPath(x0, x1, yb, ytop) { const r = (x1 - x0) / 2, cx = x0 + r, ys = ytop - r; return [[x0, yb], [x1, yb]].concat(arcPts(cx, ys, r, 0, Math.PI, 24)).concat([[x0, yb]]); }
+function archSlots(n) { const hb = 1.2, side = 0.15, gap = 0.1, w = (2 * hb - 2 * side - (n - 1) * gap) / n, out = []; for (let i = 0; i < n; i++) { const x0 = -hb + side + i * (w + gap); out.push([x0, x0 + w]); } return out; }
+function drawDomePattern(ctx, W, H, k, pattern) {
+  const X = x => W / 2 + x * k, Y = y => H - (y - BAND_TOP) * k;
+  ctx.clearRect(0, 0, W, H);
+  const inner = topOutline(0.1, BAND_TOP);
+  ctx.save(); ctx.beginPath(); inner.forEach((p, i) => i ? ctx.lineTo(X(p[0]), Y(p[1])) : ctx.moveTo(X(p[0]), Y(p[1]))); ctx.closePath(); ctx.clip();
+  ctx.strokeStyle = ctx.fillStyle = '#fff'; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+  const lw = 0.032 * k, g = 0.38; ctx.lineWidth = lw;
+  const line = pts => { ctx.beginPath(); pts.forEach((p, i) => i ? ctx.lineTo(X(p[0]), Y(p[1])) : ctx.moveTo(X(p[0]), Y(p[1]))); ctx.stroke(); };
+  const star = (cx, cy, r, n, step, rot) => { const p = []; for (let i = 0; i <= n; i++) { const a = rot + (i * step % n) * 2 * Math.PI / n; p.push([cx + r * Math.cos(a), cy + r * Math.sin(a)]); } line(p); };
+  if (pattern === 'star') {
+    const G = g * 1.5;
+    for (let gx = -4; gx <= 4; gx++) for (let gy = 0; gy <= 5; gy++) { if (gx === 0 && gy === 1) continue; star(gx * G, BAND_TOP + gy * G, G * 0.6, 8, 3, Math.PI / 8); star(gx * G, BAND_TOP + gy * G, G * 0.24, 4, 1, Math.PI / 4); }
+    star(0, BAND_TOP + G, G * 1.25, 8, 3, Math.PI / 8); star(0, BAND_TOP + G, G * 0.55, 8, 2, Math.PI / 8);
+  } else if (pattern === 'mashrabiya') {
+    const s = g * 0.7;
+    for (let x = -3; x <= 3; x += s) line([[x, BAND_TOP], [x, 2]]);
+    for (let y = BAND_TOP + s / 2; y <= 2; y += s) line([[-2, y], [2, y]]);
+    for (let x = -3; x <= 3; x += s) for (let y = BAND_TOP + s / 2; y <= 2; y += s) { ctx.beginPath(); ctx.arc(X(x), Y(y), lw * 1.15, 0, Math.PI * 2); ctx.fill(); }
+  } else if (pattern === 'tatreez') {
+    const STAMP = ['....X....', '...XXX...', '..X.X.X..', '.XXXXXXX.', 'XXX.X.XXX', '.XXXXXXX.', '..X.X.X..', '...XXX...', '....X....'], c = 0.05, per = 10;
+    for (let ty = -1; ty < 8; ty++) for (let tx = -6; tx < 6; tx++) {
+      const ox = tx * per * c + (ty % 2 ? per * c / 2 : 0) - 4.5 * c, oy = BAND_TOP + ty * per * c;
+      STAMP.forEach((row, r) => { for (let q = 0; q < 9; q++) if (row[q] === 'X') { const x = ox + q * c, y = oy + (8 - r) * c, d = c * 0.44; ctx.lineWidth = d * k * 0.55; line([[x - d / 2, y - d / 2], [x + d / 2, y + d / 2]]); line([[x - d / 2, y + d / 2], [x + d / 2, y - d / 2]]); } });
+    }
+    ctx.lineWidth = lw;
+  } else {
+    const cy = BAND_TOP + 0.08, R1 = 0.3 + g * 0.3;
+    star(0, cy, R1, 12, 5, Math.PI / 12);
+    for (let i = 0; i < 12; i++) { const a = i * Math.PI / 6 + Math.PI / 12; line([[R1 * Math.cos(a), cy + R1 * Math.sin(a)], [3 * Math.cos(a), cy + 3 * Math.sin(a)]]); }
+    for (let rr = 1; rr <= 3; rr++) { const R = R1 + rr * g * 1.15, n = 12 + rr * 6; for (let i = 0; i < n; i++) { const a = i * 2 * Math.PI / n; star(R * Math.cos(a), cy + R * Math.sin(a), g * 0.32, 8, 3, a); } }
+  }
+  ctx.restore();
+  ctx.strokeStyle = '#fff'; ctx.lineWidth = 0.05 * k; ctx.beginPath(); inner.forEach((p, i) => i ? ctx.lineTo(X(p[0]), Y(p[1])) : ctx.moveTo(X(p[0]), Y(p[1]))); ctx.closePath(); ctx.stroke();
+}
+function filigreeLayers(canvas, w, h, cx, cy, mat, metal, group) {
+  const tex = new THREE.CanvasTexture(canvas); tex.anisotropy = 8;
+  const m = METALS[metal] || METALS.A;
+  const fm = new THREE.MeshPhysicalMaterial({ color: m.color, metalness: 1, roughness: m.rough + 0.06, envMapIntensity: 2.1, alphaMap: tex, alphaTest: 0.5, side: THREE.DoubleSide, bumpMap: tex, bumpScale: 2.5 });
+  const pg = new THREE.PlaneGeometry(w, h); pg.translate(cx, cy, 0);
+  for (let i = 0; i < 6; i++) { const p = new THREE.Mesh(pg, fm); p.position.z = -0.04 + i * 0.016; group.add(p); }
+}
+function diamondDrop(mat) {
+  const parts = [], d = 0.29, cy = -0.15 - d;
+  const s = toShape([[0, -0.15], [d, cy], [0, cy - d], [-d, cy]]); s.holes.push(toShape([[0, -0.225], [d - 0.075, cy], [0, cy - d + 0.075], [-d + 0.075, cy]], THREE.Path));
+  parts.push(new THREE.Mesh(extrude(s, 0.06, 0.016), mat));
+  [0, Math.PI / 2].forEach(a => { const b = new THREE.Mesh(new THREE.BoxGeometry(2 * (d - 0.075), 0.026, 0.05), mat); b.rotation.z = a; b.position.y = cy; parts.push(b); });
+  [Math.PI / 4, -Math.PI / 4].forEach(a => { const b = new THREE.Mesh(new THREE.BoxGeometry((d - 0.075) * 1.414, 0.026, 0.05), mat); b.rotation.z = a; b.position.y = cy; parts.push(b); });
+  return parts;
+}
+function hookAt(topY, mat) {
+  const h = new THREE.Group();
+  const curve = new THREE.CatmullRomCurve3([new THREE.Vector3(0, topY - 0.02, 0), new THREE.Vector3(0, topY + 0.3, 0.02), new THREE.Vector3(0, topY + 0.72, -0.12), new THREE.Vector3(0, topY + 0.82, -0.42), new THREE.Vector3(0, topY + 0.6, -0.66), new THREE.Vector3(0, topY + 0.18, -0.7)]);
+  h.add(new THREE.Mesh(new THREE.TubeGeometry(curve, 64, 0.024, 10, false), mat));
+  const l = ring(0.07, 0.02, mat); l.position.y = topY + 0.02; l.rotation.y = Math.PI / 2; h.add(l);
+  return h;
+}
+function buildDome(hero) {
+  const mat = metalMat(hero.metal), g = new THREE.Group(), pivots = [];
+  const body = toShape([[-1.2, BODY_BOTTOM], [1.2, BODY_BOTTOM]].concat(topOutline(0, 0)));
+  body.holes.push(toShape(topOutline(0.1, BAND_TOP), THREE.Path));
+  const slots = archSlots(4);
+  slots.forEach(s => body.holes.push(toShape(archPath(s[0], s[1], ARCH_BOTTOM, ARCH_TOP), THREE.Path)));
+  g.add(new THREE.Mesh(extrude(body, 0.12, 0.028), mat));
+  slots.forEach(s => { const sh = toShape(archPath(s[0] - 0.045, s[1] + 0.045, ARCH_BOTTOM - 0.045, ARCH_TOP + 0.045)); sh.holes.push(toShape(archPath(s[0], s[1], ARCH_BOTTOM, ARCH_TOP), THREE.Path)); g.add(new THREE.Mesh(extrude(sh, 0.17, 0.014), mat)); });
+  g.add(new THREE.Mesh(extrude(toShape(topOutline(0, 0).concat(topOutline(0.075, 0).reverse())), 0.17, 0.014), mat));
+  [BAND_TOP - 0.01, BAND_BOTTOM].forEach(y => { const b = new THREE.Mesh(new THREE.BoxGeometry(2.3, 0.022, 0.2), mat); b.position.y = y; g.add(b); });
+  const xm = 1.13, ym = 1.13, W = 1024, k = W / (2 * xm), H = Math.ceil((ym - BAND_TOP) * k);
+  const c = document.createElement('canvas'); c.width = W; c.height = H; drawDomePattern(c.getContext('2d'), W, H, k, hero.pattern);
+  filigreeLayers(c, 2 * xm, ym - BAND_TOP, 0, (ym + BAND_TOP) / 2, mat, hero.metal, g);
+  [-0.74, 0, 0.74].forEach(x => { const pv = new THREE.Group(); pv.position.set(x, BODY_BOTTOM - 0.02, 0); const b = ring(0.055, 0.019, mat); b.position.y = -0.07; pv.add(b); diamondDrop(mat).forEach(m => pv.add(m)); pv.userData = { a: 0, v: 0, b: 0, w: 0 }; pivots.push(pv); g.add(pv); });
+  g.add(hookAt(1.2, mat));
+  g.userData.pivots = pivots; return g;
+}
+
+// ---------- 2. the double-arch earring (from the 25 Oct photos): rosette stud, two arches, a bar, a rosette drop ----------
+function rosette(r, mat, petals) {
+  const g = new THREE.Group();
+  const disc = new THREE.Mesh(new THREE.CylinderGeometry(r, r, 0.07, 64), mat); disc.rotation.x = Math.PI / 2; g.add(disc);
+  const rim = ring(r - 0.018, 0.022, mat); rim.position.z = 0.036; g.add(rim);
+  if (petals) {
+    const kite = toShape([[0, 0.05], [0.085, r * 0.42], [0, r * 0.84], [-0.085, r * 0.42]]);
+    const kg = extrude(kite, 0.035, 0.012);
+    for (let i = 0; i < 8; i++) { const m = new THREE.Mesh(kg, mat); m.rotation.z = i * Math.PI / 4; m.position.z = 0.05; g.add(m); }
+    const small = extrude(toShape([[0, r * 0.3], [0.05, r * 0.5], [0, r * 0.66], [-0.05, r * 0.5]]), 0.025, 0.008);
+    for (let i = 0; i < 8; i++) { const m = new THREE.Mesh(small, mat); m.rotation.z = i * Math.PI / 4 + Math.PI / 8; m.position.z = 0.045; g.add(m); }
+    const bead = new THREE.Mesh(new THREE.SphereGeometry(0.05, 20, 14), mat); bead.position.z = 0.07; g.add(bead);
+  }
+  return g;
+}
+function band(R, r, cy, mat) {
+  const a0 = -0.16, a1 = Math.PI + 0.16;
+  const pts = arcPts(0, cy, R, a0, a1, 90).concat(arcPts(0, cy, r, a1, a0, 90));
+  return new THREE.Mesh(extrude(toShape(pts), 0.075, 0.018), mat);
+}
+function buildDoubleArch(hero) {
+  const mat = metalMat(hero.metal), g = new THREE.Group(), cy = 0.25;
+  g.add(band(1.0, 0.89, cy, mat)); g.add(band(0.8, 0.69, cy, mat));
+  const top = cy + 1.0, bot = -1.05;
+  const bar = new THREE.Mesh(new THREE.BoxGeometry(0.075, top - bot, 0.075), mat); bar.position.y = (top + bot) / 2; g.add(bar);
+  [cy + 1.0, cy + 0.8].forEach(y => { const c = new THREE.Mesh(new THREE.BoxGeometry(0.13, 0.12, 0.1), mat); c.position.y = y - 0.04; g.add(c); });
+  const jr = ring(0.065, 0.02, mat); jr.position.y = top + 0.08; jr.rotation.y = Math.PI / 2; g.add(jr);
+  const stud = rosette(0.3, mat, true); stud.position.y = top + 0.08 + 0.065 + 0.3; g.add(stud);
+  const pv = new THREE.Group(); pv.position.y = bot;
+  const br = ring(0.065, 0.02, mat); br.position.y = -0.07; br.rotation.y = Math.PI / 2; pv.add(br);
+  const drop = rosette(0.3, mat, true); drop.position.y = -0.07 - 0.065 - 0.3; pv.add(drop);
+  pv.userData = { a: 0, v: 0, b: 0, w: 0 }; g.add(pv);
+  g.userData.pivots = [pv]; return g;
+}
+
+// ---------- 3. the window earring: plain stud, a tall arched window of eight-point stars, three small arches ----------
+const WX = 0.36, WTOPC = 0.62, WBOT = -1.62, WIN = 0.06, WSPLIT = -1.06;
+function winOutline(half, yb, cyTop) { return [[-half, yb], [half, yb]].concat(arcPts(0, cyTop, half, 0, Math.PI, 40)); }
+function drawWindowStars(ctx, W, H, k, half, yb, ytop, cyTop) {
+  const X = x => W / 2 + x * k, Y = y => H - (y - yb) * k;
+  ctx.clearRect(0, 0, W, H);
+  const out = winOutline(half, yb, cyTop);
+  ctx.save(); ctx.beginPath(); out.forEach((p, i) => i ? ctx.lineTo(X(p[0]), Y(p[1])) : ctx.moveTo(X(p[0]), Y(p[1]))); ctx.closePath(); ctx.clip();
+  ctx.strokeStyle = ctx.fillStyle = '#fff'; ctx.lineJoin = 'round'; ctx.lineWidth = 0.045 * k;
+  const poly = pts => { ctx.beginPath(); pts.forEach((p, i) => i ? ctx.lineTo(X(p[0]), Y(p[1])) : ctx.moveTo(X(p[0]), Y(p[1]))); ctx.closePath(); ctx.stroke(); };
+  const sq = (cx, cy, r, rot) => poly([0, 1, 2, 3].map(i => [cx + r * Math.cos(rot + i * Math.PI / 2), cy + r * Math.sin(rot + i * Math.PI / 2)]));
+  const step = 0.47;
+  for (let y = yb + 0.26; y < ytop + 0.4; y += step) {
+    sq(0, y, 0.2, Math.PI / 4); sq(0, y, 0.2, 0);
+    [-1, 1].forEach(s => { sq(s * 0.36, y + step / 2, 0.2, Math.PI / 4); sq(s * 0.36, y + step / 2, 0.2, 0); });
+  }
+  ctx.restore();
+  ctx.lineWidth = 0.05 * k; ctx.beginPath(); out.forEach((p, i) => i ? ctx.lineTo(X(p[0]), Y(p[1])) : ctx.moveTo(X(p[0]), Y(p[1]))); ctx.closePath(); ctx.stroke();
+}
+function buildWindow(hero) {
+  const mat = metalMat(hero.metal), g = new THREE.Group();
+  const outer = toShape(winOutline(WX, WBOT, WTOPC));
+  const ih = WX - WIN, winBot = WSPLIT;
+  outer.holes.push(toShape(winOutline(ih, winBot, WTOPC), THREE.Path));
+  const sw = (2 * ih - 2 * 0.05) / 3;
+  for (let i = 0; i < 3; i++) { const x0 = -ih + i * (sw + 0.05); outer.holes.push(toShape(archPath(x0, x0 + sw, WBOT + WIN, WSPLIT - 0.08), THREE.Path)); }
+  g.add(new THREE.Mesh(extrude(outer, 0.11, 0.022), mat));
+  g.add(new THREE.Mesh(extrude(toShape(winOutline(WX, WBOT, WTOPC).concat(winOutline(WX - 0.04, WBOT + 0.04, WTOPC).reverse())), 0.15, 0.012), mat));
+  const W = 512, k = W / (2 * ih), ytop = WTOPC + ih, H = Math.ceil((ytop - winBot) * k);
+  const c = document.createElement('canvas'); c.width = W; c.height = H; drawWindowStars(c.getContext('2d'), W, H, k, ih, winBot, ytop, WTOPC);
+  filigreeLayers(c, 2 * ih, ytop - winBot, 0, (ytop + winBot) / 2, mat, hero.metal, g);
+  const top = WTOPC + WX;
+  const jr = ring(0.06, 0.019, mat); jr.position.y = top + 0.07; jr.rotation.y = Math.PI / 2; g.add(jr);
+  const stud = rosette(0.27, mat, false); stud.position.y = top + 0.07 + 0.06 + 0.27; g.add(stud);
+  g.userData.pivots = []; return g;
+}
+
+// ---------- the plinth: dark marble with a thin gold edge ----------
+function marbleTexture() {
+  const c = document.createElement('canvas'); c.width = 1024; c.height = 512; const x = c.getContext('2d');
+  x.fillStyle = '#141311'; x.fillRect(0, 0, 1024, 512);
+  for (let i = 0; i < 2600; i++) { x.fillStyle = 'rgba(255,255,255,' + (Math.random() * 0.025) + ')'; x.fillRect(Math.random() * 1024, Math.random() * 512, 2, 2); }
+  let seed = 7; const rnd = () => (seed = (seed * 9301 + 49297) % 233280) / 233280;
+  for (let v = 0; v < 14; v++) {
+    x.strokeStyle = v % 3 ? 'rgba(200,190,170,' + (0.08 + rnd() * 0.12) + ')' : 'rgba(214,173,105,' + (0.12 + rnd() * 0.18) + ')';
+    x.lineWidth = 0.6 + rnd() * 2.2; x.beginPath(); let px = rnd() * 1024, py = rnd() * 512; x.moveTo(px, py);
+    for (let s = 0; s < 9; s++) { const nx = px + (rnd() - 0.3) * 220, ny = py + (rnd() - 0.5) * 120; x.quadraticCurveTo((px + nx) / 2 + (rnd() - 0.5) * 80, (py + ny) / 2 + (rnd() - 0.5) * 80, nx, ny); px = nx; py = ny; }
+    x.stroke();
+  }
+  const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.wrapS = THREE.RepeatWrapping; return t;
+}
+function shadowTexture() {
+  const c = document.createElement('canvas'); c.width = c.height = 256; const x = c.getContext('2d');
+  const gr = x.createRadialGradient(128, 128, 4, 128, 128, 128); gr.addColorStop(0, 'rgba(0,0,0,.55)'); gr.addColorStop(1, 'rgba(0,0,0,0)');
+  x.fillStyle = gr; x.fillRect(0, 0, 256, 256); return new THREE.CanvasTexture(c);
+}
+
+// ---------- the viewer ----------
+const canvas = document.getElementById('hero-canvas');
+let renderer;
+try { renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true }); } catch (e) { renderer = null; }
+if (!renderer) { document.documentElement.classList.add('no3d'); }
+else {
+  renderer.setPixelRatio(Math.min(2, window.devicePixelRatio || 1));
+  renderer.outputColorSpace = THREE.SRGBColorSpace; renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.25;
+  const scene = new THREE.Scene();
+  const pmrem = new THREE.PMREMGenerator(renderer); scene.environment = pmrem.fromScene(new RoomEnvironment(), 0.04).texture;
+  const key = new THREE.DirectionalLight(0xfff0d8, 3.0); key.position.set(2.5, 4, 6); scene.add(key);
+  const fill = new THREE.DirectionalLight(0xffffff, 0.9); fill.position.set(-3, -1, 5); scene.add(fill);
+  const rimL = new THREE.DirectionalLight(0xffdcb0, 1.6); rimL.position.set(-4, 2, -3); scene.add(rimL);
+  const spot = new THREE.SpotLight(0xffe2b0, 22, 14, 0.42, 0.7, 1.4); spot.position.set(0, 6, 1.5); spot.target.position.set(0, -0.6, 0); scene.add(spot, spot.target);
+  const camera = new THREE.PerspectiveCamera(30, 1, 0.1, 100);
+  const TARGET_H = 3.3, PLINTH_Y = -TARGET_H / 2 - 0.42;
+  // plinth
+  const plinth = new THREE.Group();
+  const marble = new THREE.MeshPhysicalMaterial({ map: marbleTexture(), roughness: 0.42, metalness: 0, clearcoat: 0.6, clearcoatRoughness: 0.35, envMapIntensity: 0.35 });
+  const cyl = new THREE.Mesh(new THREE.CylinderGeometry(1.1, 1.13, 0.32, 96), marble); plinth.add(cyl);
+  const edge = new THREE.Mesh(new THREE.TorusGeometry(1.1, 0.01, 8, 120), metalMat('A')); edge.rotation.x = Math.PI / 2; edge.position.y = 0.16; plinth.add(edge);
+  const shadow = new THREE.Mesh(new THREE.CircleGeometry(0.8, 48), new THREE.MeshBasicMaterial({ map: shadowTexture(), transparent: true, depthWrite: false })); shadow.rotation.x = -Math.PI / 2; shadow.position.y = 0.162; plinth.add(shadow);
+  plinth.position.y = PLINTH_Y; plinth.rotation.x = 0.0; scene.add(plinth);
+  const holder = new THREE.Group(); scene.add(holder);
+  const BUILD = { dome: buildDome, arch2: buildDoubleArch, window: buildWindow };
+  const cache = new Map();
+  function get(kind, hero) {
+    const k = kind + '|' + hero.metal + '|' + (kind === 'dome' ? hero.pattern : '');
+    if (cache.has(k)) return cache.get(k);
+    const g = BUILD[kind](hero);
+    const box = new THREE.Box3().setFromObject(g), size = new THREE.Vector3(), ctr = new THREE.Vector3(); box.getSize(size); box.getCenter(ctr);
+    const s = TARGET_H / size.y; const wrap = new THREE.Group(); g.position.sub(ctr); wrap.add(g); wrap.scale.setScalar(s); wrap.userData = { s, pivots: g.userData.pivots || [] };
+    cache.set(k, wrap); return wrap;
+  }
+  let curP = null, prevP = null, trans = 1, yaw = 0.45, pitch = 0, vel = 0, dragging = false, lastX = 0, lastY = 0, idle = 3, running = false, last = 0, visible = true, active = true, prevYaw = yaw;
+  function size() {
+    const r = canvas.getBoundingClientRect(); if (!r.width) return;
+    renderer.setSize(r.width, r.height, false); camera.aspect = r.width / r.height;
+    const need = TARGET_H + 1.6, fov = camera.fov * Math.PI / 180;
+    let dist = need / 2 / Math.tan(fov / 2); const distW = 3.4 / 2 / Math.tan(fov / 2) / camera.aspect; dist = Math.max(dist, distW) * 1.04;
+    camera.position.set(0, 0.7, dist); camera.lookAt(0, -0.42, 0); camera.updateProjectionMatrix();
+  }
+  function show(kind, hero) {
+    const next = get(kind, hero); if (next === curP) return;
+    if (prevP) holder.remove(prevP);
+    prevP = curP; curP = next; trans = prevP ? 0 : 1; holder.add(curP); if (trans === 1) curP.scale.setScalar(curP.userData.s);
+  }
+  canvas.addEventListener('pointerdown', e => { dragging = true; lastX = e.clientX; lastY = e.clientY; vel = 0; canvas.setPointerCapture(e.pointerId); });
+  canvas.addEventListener('pointermove', e => { if (!dragging) return; const dx = e.clientX - lastX, dy = e.clientY - lastY; lastX = e.clientX; lastY = e.clientY; yaw += dx * 0.01; vel = dx * 0.01; pitch = Math.max(-0.35, Math.min(0.35, pitch + dy * 0.003)); idle = 0; });
+  ['pointerup', 'pointercancel'].forEach(t => canvas.addEventListener(t, () => { dragging = false; }));
+  new ResizeObserver(size).observe(canvas);
+  new IntersectionObserver(es => { visible = es[0].isIntersecting; if (visible) start(); }, { threshold: 0.01 }).observe(canvas);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) start(); });
+  function start() { if (running || !active) return; running = true; last = performance.now(); requestAnimationFrame(tick); }
+  const ease = x => 1 - Math.pow(1 - x, 3);
+  function tick(now) {
+    if (!visible || document.hidden || !active) { running = false; return; }
+    const dt = Math.min(0.05, (now - last) / 1000); last = now; idle += dt;
+    if (!dragging) { vel *= Math.pow(0.04, dt); yaw += vel; if (idle > 2 && !REDUCED) yaw += dt * 0.35; if (idle > 1.5) pitch *= Math.pow(0.3, dt); }
+    const omega = (yaw - prevYaw) / Math.max(dt, 1e-3); prevYaw = yaw;
+    if (trans < 1) {
+      trans = Math.min(1, trans + dt / 0.75); const e = ease(trans);
+      if (prevP) { prevP.scale.setScalar(prevP.userData.s * Math.max(0.001, 1 - e)); prevP.rotation.y = e * 1.2; if (trans >= 1) { holder.remove(prevP); prevP = null; } }
+      curP.scale.setScalar(curP.userData.s * (0.55 + 0.45 * e)); curP.rotation.y = (1 - e) * -1.2; curP.position.y = (1 - e) * 0.4;
+    }
+    holder.rotation.set(pitch + (REDUCED ? 0 : Math.sin(now / 2600) * 0.035), yaw, 0);
+    holder.position.y = REDUCED ? 0 : Math.sin(now / 1900) * 0.05;
+    if (curP && !REDUCED) curP.userData.pivots.forEach((pv, i) => { const u = pv.userData, om = Math.max(-3, Math.min(3, omega)); u.v += (-28 * u.a - 3.2 * u.v - om * 0.9 + Math.sin(now / 900 + i) * 0.15) * dt; u.a = Math.max(-0.7, Math.min(0.7, u.a + u.v * dt)); u.w += (-30 * u.b - 3 * u.w + om * 0.35 * (i - 1)) * dt; u.b = Math.max(-0.6, Math.min(0.6, u.b + u.w * dt)); pv.rotation.x = u.a * 0.5; pv.rotation.z = u.b * 0.4; });
+    renderer.render(scene, camera);
+    requestAnimationFrame(tick);
+  }
+  window.HERO3D = {
+    show,
+    relabel() {},
+    active(on) { active = on; if (on) start(); }
+  };
+  const FS = window.ASALA_FS;
+  size(); show(FS ? FS.slide() : 'dome', FS ? FS.hero : { metal: 'A', pattern: 'geometric' }); start();
+  if (!location.hash.startsWith('#shop')) window.HERO3D.active(true); else window.HERO3D.active(false);
+}
+</script>
+</body>
+</html>
